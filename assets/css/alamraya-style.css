@@ -1,0 +1,115 @@
+/*
+ 	#
+	# Alamraya Custom Style 
+ 	#
+*/
+
+.table > thead,
+.table > thead > tr > th
+{
+	background-color: #1ab394;
+	color:white;
+}
+.table thead .sorting_asc,
+.table thead .sorting_desc
+{
+	background: #148970;
+}
+.table thead tr th{
+	text-align: center;
+}
+.table .form-control {
+    width: 100%;
+}
+.tab-content .ibox .ibox-title{
+	border-width: 0;
+}
+.nav-tabs a .tab-title{
+	max-width: 0;
+	transition: .3s;
+	overflow: hidden;
+	height: 17px;
+	display: inline-block;
+}
+.nav-tabs a:hover .tab-title,
+.nav-tabs a:focus-within .tab-title,
+.nav-tabs .active a .tab-title
+
+{
+	max-width: 100%;
+}
+/*.input-group-append > .btn-sm{
+	height: 31px;
+}
+.input-group-append > .btn-md{
+	height: 38px;
+}
+.input-group-append > .btn-lg{
+	height: 48px;
+}*/
+.select2-container--default .select2-selection--single{
+	border: 1px solid #ced4da;
+}
+.form-control ~ .select2-container .select2-selection--single{
+	height: 38px;
+}
+.input-sm ~ .select2-container .select2-selection--single{
+	height: 31px;
+}
+.input-lg ~ .select2-container .select2-selection--single{
+	height: 48px;
+}
+/*.input-group-addon {
+    padding: 0 7px 0 7px;
+    display: flex;
+    align-items: center;
+}*/
+
+body.mini-navbar .navbar-default .nav-second-level .arrow,
+body.mini-navbar .navbar-default .nav li a .label,
+body.mini-navbar .navbar-default .nav-second-level .label
+{
+	display: block;
+}
+body.mini-navbar .navbar-default .nav li a{
+	position: relative;
+}
+body.mini-navbar .navbar-default .nav li a .label{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+body.mini-navbar .navbar-default .nav.nav-second-level li a .label,
+body.mini-navbar .navbar-default .nav.nav-third-level li a .label
+{
+	position: initial;
+	right: unset;
+	top: unset;
+}
+
+.sidebar-collapse ul > li > a > i {
+    width: 15px;
+    text-align: center;
+}
+fieldset {
+    border: 1px solid #e7eaec;
+    padding: 13px 13px 0px;
+    margin-bottom: 1.5rem;
+}
+
+.metismenu li.active > a ,
+.metismenu li.nav-active > a
+{
+    color: #ffffff;
+}
+.panel-footer{
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+}
+.note-editor.note-frame {
+    border: 1px solid #e7eaec;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+	vertical-align:unset;
+}
