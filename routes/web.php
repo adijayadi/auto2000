@@ -25,8 +25,19 @@ Route::group(['middleware' => 'guest' ], function(){
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
+	// master
 	Route::get('/master/sales/index', 'Master\SalesController@sales')->name('sales');
 	Route::get('/master/sales/create', 'Master\SalesController@tambah_sales')->name('tambah_sales');
 
+	Route::get('/master/kendaraan/index', 'Master\KendaraanController@kendaraan')->name('kendaraan');
+	Route::get('/master/kendaraan/create', 'Master\KendaraanController@tambah_kendaraan')->name('tambah_kendaraan');
  
+	Route::get('/master/alasan/index', 'Master\AlasanController@alasan')->name('alasan');
+	Route::get('/master/alasan/create', 'Master\AlasanController@tambah_alasan')->name('tambah_alasan');
+
+
+	// pengguna
+
+	Route::get('/pengguna/index', 'Pengguna\PenggunaController@pengguna')->name('pengguna');
+	Route::get('/pengguna/create', 'Pengguna\PenggunaController@tambah_pengguna')->name('tambah_pengguna');
 });//End Route::Group wib-cpanel

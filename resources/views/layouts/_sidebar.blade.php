@@ -40,11 +40,11 @@
                     <li class="{{Request::is('master/sales/*') ? 'active nav-active' : ''}}">
                         <a href="{{route('sales')}}"> Data Sales Account</a>
                     </li>
-                    <li class="">
-                        <a href="javascript:void"> Data Kendaraan</a>
+                    <li class="{{Request::is('master/kendaraan/*') ? 'active' : ''}}">
+                        <a href="{{route('kendaraan')}}"> Data Kendaraan</a>
                     </li>
-                    <li class="">
-                        <a href="javascript:void"> Data Alasan Tindak Lanjut</a>
+                    <li class="{{Request::is('master/alasan/*') ? 'active' : ''}}">
+                        <a href="{{route('alasan')}}"> Data Alasan Tidak Lanjut</a>
                     </li>
                 </ul>
             </li>
@@ -70,8 +70,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="">
-                <a href="javascript:void(0);"><i class="fa fa-users"></i> <span class="nav-label">Manajemen Pengguna</span></a>
+            <li class="{{Request::is('pengguna/*') ? 'active nav-active' : ''}}">
+                <a href="{{route('pengguna')}}"><i class="fa fa-users"></i> <span class="nav-label">Manajemen Pengguna</span></a>
             </li>
         </ul>
 
