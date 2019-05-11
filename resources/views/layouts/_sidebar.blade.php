@@ -48,11 +48,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="">
+            <li class="{{Request::is('data_sales/*') ? 'active nav-active' : ''}}">
                 <a href="javascript:void(0);"><i class="fa fa-user"></i> <span class="nav-label">Pengolaan Data Sales Account</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="">
-                        <a href="javascript:void"> Manajemen Import Data</a>
+                    <li class="{{Request::is('data_sales/import_excel/*') ? 'active' : ''}}">
+                        <a href="{{route('import_excel')}}"> Manajemen Import Data</a>
                     </li>
                     <li class="">
                         <a href="javascript:void"> Manajemen Tindakan Sales Account</a>
@@ -62,11 +62,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="">
+            <li class="{{Request::is('kinerja_sales/*') ? 'active nav-active' : ''}}">
                 <a href="javascript:void(0);"><i class="fa fa-desktop"></i> <span class="nav-label">Pengelolaan Kinerja Sales Account</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="">
-                        <a href="javascript:void"> Monitoring Tindakan Sales Account</a>
+                    <li class="{{Request::is('kinerja_sales/monitoring_kinerja/*') ? 'active' : ''}}">
+                        <a href="{{route('monitoring')}}"> Monitoring Tindakan Sales Account</a>
                     </li>
                 </ul>
             </li>

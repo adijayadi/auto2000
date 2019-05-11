@@ -113,3 +113,29 @@ fieldset {
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
 	vertical-align:unset;
 }
+.modal-xl{
+	width: 1500px;
+}
+@media (max-width: 1600px){
+	.modal-xl{
+		width: 1300px;
+	}
+}
+
+@media (max-width: 1366px){
+	.modal-xl{
+		width: 1024px;
+	}
+}
+
+@media (max-width: 1024px){
+	.modal-xl{
+		width: 768px;
+	}
+}
+
+@media (max-width: 768px){
+	.modal-xl{
+		width: auto;
+	}
+}

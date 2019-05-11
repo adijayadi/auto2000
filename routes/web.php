@@ -35,6 +35,14 @@ Route::group(['middleware' => 'guest' ], function(){
 	Route::get('/master/alasan/index', 'Master\AlasanController@alasan')->name('alasan');
 	Route::get('/master/alasan/create', 'Master\AlasanController@tambah_alasan')->name('tambah_alasan');
 
+	// Data Sales
+	Route::get('/data_sales/import_excel/index', 'DataSales\ImportController@import_excel')->name('import_excel');
+
+
+
+	// Monitoring Sales Account
+
+	Route::get('/kinerja_sales/monitoring_kinerja/index', 'Monitoring\MonitoringController@monitoring')->name('monitoring');
 
 	// pengguna
 
