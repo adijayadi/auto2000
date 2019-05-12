@@ -66,7 +66,7 @@
                                         </div>
 
                                     </div>
-{{-- 
+                                    {{-- 
                                     <div class="col-lg-4 col-md-2 col-sm-12 col-xs-12">
                                         <div class="form-group text-center">
                                         </div>

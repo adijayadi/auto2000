@@ -45,10 +45,10 @@
                             <thead>
                                 <tr>
                                     <th width="1%">No.</th>
-                                    <th>Tanggal</th>
+                                    <th width="10%">Tanggal Difollow Up</th>
                                     <th>No. Kendaraan</th>
                                     <th>Nama Pemilik</th>
-                                    <th>Status</th>
+                                    <th>Status Service</th>
                                     <th width="15%">Aksi</th>
                                 </tr>
                             </thead>
@@ -88,10 +88,10 @@
                             <thead>
                                 <tr>
                                     <th width="1%">No.</th>
-                                    <th>Tanggal</th>
+                                    <th width="10%">Tanggal Difollow Up</th>
                                     <th>No. Kendaraan</th>
                                     <th>Nama Pemilik</th>
-                                    <th>Status</th>
+                                    <th>Status Service</th>
                                 </tr>
                             </thead>
                             <tbody>

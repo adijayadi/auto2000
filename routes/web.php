@@ -38,6 +38,9 @@ Route::group(['middleware' => 'guest' ], function(){
 	// Data Sales
 	Route::get('/data_sales/import_excel/index', 'DataSales\ImportController@import_excel')->name('import_excel');
 
+	Route::get('/data_sales/tindakan_sales/index', 'DataSales\TindakanSalesController@tindakan_sales')->name('tindakan_sales');
+
+	Route::get('/data_sales/summary_tindakan/index', 'DataSales\SummaryTindakanController@summary_tindakan')->name('summary_tindakan');
 
 
 	// Monitoring Sales Account

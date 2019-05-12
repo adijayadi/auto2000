@@ -50,6 +50,10 @@
 
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 
+
+    <!-- iCheck -->
+    <script src="{{asset('assets/js/plugins/iCheck/icheck.min.js')}}"></script>
+
     <script>
         $(document).ready(function() {
 

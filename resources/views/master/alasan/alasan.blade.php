@@ -58,6 +58,16 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Mobilnya sudah dijual</td>
+                                    <td align="center">
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
+                                            <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

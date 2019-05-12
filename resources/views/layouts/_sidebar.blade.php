@@ -54,11 +54,11 @@
                     <li class="{{Request::is('data_sales/import_excel/*') ? 'active' : ''}}">
                         <a href="{{route('import_excel')}}"> Manajemen Import Data</a>
                     </li>
-                    <li class="">
-                        <a href="javascript:void"> Manajemen Tindakan Sales Account</a>
+                    <li class="{{Request::is('data_sales/tindakan_sales/*') ? 'active' : ''}}">
+                        <a href="{{route('tindakan_sales')}}"> Manajemen Tindakan Sales Account</a>
                     </li>
-                    <li class="">
-                        <a href="javascript:void"> Manajemen Summary Tindakan</a>
+                    <li class="{{Request::is('data_sales/summary_tindakan/*') ? 'active' : ''}}">
+                        <a href="{{route('summary_tindakan')}}"> Manajemen Summary Tindakan</a>
                     </li>
                 </ul>
             </li>
