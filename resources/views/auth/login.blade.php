@@ -29,7 +29,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
-                <a href="javascript:void(0);"><small>Forgot password?</small></a>
+                <a href="javascript:void(0);"><small>Lupa password?</small></a>
             </form>
             <p class="m-t"> <small>Copyright by <strong>Alamraya Sebar Barokah</strong> &copy; 2019</small> </p>
         </div>

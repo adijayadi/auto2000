@@ -9,6 +9,6 @@ class ImportController extends Controller
 {
    	public function import_excel()
    	{
-   		return view('data_sales.import_excel.import_excel');
+   		return view('monitoring_kinerja.import_excel.import_excel');
    	}
 }

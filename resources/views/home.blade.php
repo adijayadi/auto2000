@@ -5,37 +5,37 @@
 
         <div class="col-sm-3">
             <h2>Dashboard Auto 2000</h2>
-            <small>You have 42 messages and 6 notifications.</small>
+            <small>Anda punya 42 pesan dan 6 notifikasi.</small>
             <ul class="list-group clear-list m-t">
                 <li class="list-group-item fist-item">
                     <span class="pull-right">
                         09:00 pm
                     </span>
-                    <span class="label label-success">1</span> Please contact me
+                    <span class="label label-success">1</span> Tolong hubungi saya
                 </li>
                 <li class="list-group-item">
                     <span class="pull-right">
                         10:16 am
                     </span>
-                    <span class="label label-info">2</span> Sign a contract
+                    <span class="label label-info">2</span> Tanda tangani sebuah kontrak
                 </li>
                 <li class="list-group-item">
                     <span class="pull-right">
                         08:22 pm
                     </span>
-                    <span class="label label-primary">3</span> Open new shop
+                    <span class="label label-primary">3</span> Buka toko baru
                 </li>
                 <li class="list-group-item">
                     <span class="pull-right">
                         11:06 pm
                     </span>
-                    <span class="label label-default">4</span> Call back to Sylvia
+                    <span class="label label-default">4</span> Telpon kembali Sarah
                 </li>
                 <li class="list-group-item">
                     <span class="pull-right">
                         12:00 am
                     </span>
-                    <span class="label label-primary">5</span> Write a letter to Sandra
+                    <span class="label label-primary">5</span> Tulis surat ke Sarah
                 </li>
             </ul>
         </div>
@@ -47,16 +47,16 @@
                 <div class="col-xs-4">
                     <div class=" m-l-md">
                     <span class="h4 font-bold m-t block">$ 406,100</span>
-                    <small class="text-muted m-b block">Sales marketing report</small>
+                    <small class="text-muted m-b block">Laporan Penjualan & Pemasaran</small>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <span class="h4 font-bold m-t block">$ 150,401</span>
-                    <small class="text-muted m-b block">Annual sales revenue</small>
+                    <small class="text-muted m-b block">Pendapatan Penjualan Tahunan</small>
                 </div>
                 <div class="col-xs-4">
                     <span class="h4 font-bold m-t block">$ 16,822</span>
-                    <small class="text-muted m-b block">Half-year revenue margin</small>
+                    <small class="text-muted m-b block">Margin pendapatan setengah tahun</small>
                 </div>
 
             </div>
@@ -64,10 +64,10 @@
         <div class="col-sm-3">
             <div class="statistic-box">
             <h4>
-                Project Beta progress
+                Progres Proyek Beta
             </h4>
             <p>
-                You have two project with not compleated task.
+                Anda memiliki dua proyek yang belum selesai.
             </p>
                 <div class="row text-center">
                     <div class="col-lg-6">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="m-t">
-                    <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                    <small>Progres proyek Maktor lebih banyak daripada progres proyek Kolter.</small>
                 </div>
 
             </div>

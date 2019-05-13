@@ -4,7 +4,7 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    <input type="text" placeholder="Cari Sesuatu..." class="form-control" name="top-search" id="top-search">
                 </div>
             </form>
         </div>
@@ -23,9 +23,9 @@
                                 <img alt="image" class="img-circle" src="{{asset('assets/img/a7.jpg')}}">
                             </a>
                             <div class="media-body">
-                                <small class="pull-right">46h ago</small>
-                                <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                <small class="pull-right">46j lalu</small>
+                                <strong>Mike Loreipsum</strong> mulai mengikuti <strong>Monica Smith</strong>. <br>
+                                <small class="text-muted">3 hari lalu jam 7:58 pm - 10.06.2014</small>
                             </div>
                         </div>
                     </li>
@@ -36,9 +36,9 @@
                                 <img alt="image" class="img-circle" src="{{asset('assets/img/a4.jpg')}}">
                             </a>
                             <div class="media-body ">
-                                <small class="pull-right text-navy">5h ago</small>
-                                <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                <small class="pull-right text-navy">5j lalu</small>
+                                <strong>Chris Johnatan Overtunk</strong> mulai mengikuti <strong>Monica Smith</strong>. <br>
+                                <small class="text-muted">Kemarin 1:21 pm - 11.06.2014</small>
                             </div>
                         </div>
                     </li>
@@ -49,9 +49,9 @@
                                 <img alt="image" class="img-circle" src="{{asset('assets/img/profile.jpg')}}">
                             </a>
                             <div class="media-body ">
-                                <small class="pull-right">23h ago</small>
-                                <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                <small class="pull-right">23j lalu</small>
+                                <strong>Monica Smith</strong> sayang <strong>Kim Smith</strong>. <br>
+                                <small class="text-muted">2 hari lalu jam 2:30 am - 11.06.2014</small>
                             </div>
                         </div>
                     </li>
@@ -59,7 +59,7 @@
                     <li>
                         <div class="text-center link-block">
                             <a href="javascript:void(0);">
-                                <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                <i class="fa fa-envelope"></i> <strong>Baca Semua Pesan</strong>
                             </a>
                         </div>
                     </li>
@@ -73,8 +73,8 @@
                     <li>
                         <a href="javascript:void(0);">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <i class="fa fa-envelope fa-fw"></i> Anda mempunya 14 pesan
+                                <span class="pull-right text-muted small">4 menit lalu</span>
                             </div>
                         </a>
                     </li>
@@ -82,8 +82,8 @@
                     <li>
                         <a href="javascript:void(0);">
                             <div>
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small">12 minutes ago</span>
+                                <i class="fa fa-twitter fa-fw"></i> 3 Pengikut Baru
+                                <span class="pull-right text-muted small">12 menit lalu</span>
                             </div>
                         </a>
                     </li>
@@ -92,7 +92,7 @@
                         <a href="javascript:void(0);">
                             <div>
                                 <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <span class="pull-right text-muted small">4 menit lalu</span>
                             </div>
                         </a>
                     </li>
@@ -100,7 +100,7 @@
                     <li>
                         <div class="text-center link-block">
                             <a href="javascript:void(0);">
-                                <strong>See All Alerts</strong>
+                                <strong>Lihat Semua Peringatan</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>

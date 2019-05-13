@@ -36,7 +36,6 @@ Route::group(['middleware' => 'guest' ], function(){
 	Route::get('/master/alasan/create', 'Master\AlasanController@tambah_alasan')->name('tambah_alasan');
 
 	// Data Sales
-	Route::get('/data_sales/import_excel/index', 'DataSales\ImportController@import_excel')->name('import_excel');
 
 	Route::get('/data_sales/tindakan_sales/index', 'DataSales\TindakanSalesController@tindakan_sales')->name('tindakan_sales');
 
@@ -47,6 +46,7 @@ Route::group(['middleware' => 'guest' ], function(){
 
 	Route::get('/kinerja_sales/monitoring_kinerja/index', 'Monitoring\MonitoringController@monitoring')->name('monitoring');
 
+	Route::get('/kinerja_sales/import_excel/index', 'DataSales\ImportController@import_excel')->name('import_excel');
 	// pengguna
 
 	Route::get('/pengguna/index', 'Pengguna\PenggunaController@pengguna')->name('pengguna');
