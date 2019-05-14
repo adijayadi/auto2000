@@ -15,7 +15,7 @@
                 <a href="{{url('/')}}">Home</a>
             </li>
             <li>
-                <span>Pengelolaan Data Sales Account</span>
+                <span>Pengelolaan Data Customer</span>
             </li>
             <li class="active">
                 <strong>Manajemen Summary Tindakan</strong>

@@ -7,16 +7,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2>Manajemen Tindakan Sales Account</h2>
+        <h2>Manajemen Tindakan Customer</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="{{url('/')}}">Home</a>
             </li>
             <li>
-                <span>Pengelolaan Data Sales Account</span>
+                <span>Pengelolaan Data Customer</span>
             </li>
             <li class="active">
-                <strong>Manajemen Tindakan Sales Account</strong>
+                <strong>Manajemen Tindakan Customer</strong>
             </li>
         </ol>
     </div>
@@ -43,7 +43,7 @@
                         <div class="ibox float-e-margins">
 
                             <div class="ibox-title">
-                                <h5>Manajemen Tindakan Sales Account</h5>
+                                <h5>Manajemen Tindakan Customer</h5>
                             </div>
                             <div class="ibox-content">
 

@@ -49,10 +49,10 @@
                 </ul>
             </li>
             <li class="{{Request::is('data_sales/*') ? 'active nav-active' : ''}}">
-                <a href="javascript:void(0);"><i class="fa fa-user"></i> <span class="nav-label">Pengolaan Data Sales Account</span><span class="fa arrow"></span></a>
+                <a href="javascript:void(0);"><i class="fa fa-user"></i> <span class="nav-label">Pengolaan Data Customer</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{Request::is('data_sales/tindakan_sales/*') ? 'active' : ''}}">
-                        <a href="{{route('tindakan_sales')}}"> Manajemen Tindakan Sales Account</a>
+                        <a href="{{route('tindakan_sales')}}"> Manajemen Tindakan Customer</a>
                     </li>
                     <li class="{{Request::is('data_sales/summary_tindakan/*') ? 'active' : ''}}">
                         <a href="{{route('summary_tindakan')}}"> Manajemen Summary Tindakan</a>
@@ -60,7 +60,7 @@
                 </ul>
             </li>
             <li class="{{Request::is('kinerja_sales/*') ? 'active nav-active' : ''}}">
-                <a href="javascript:void(0);"><i class="fa fa-desktop"></i> <span class="nav-label">Pengelolaan Kinerja Sales Account</span><span class="fa arrow"></span></a>
+                <a href="javascript:void(0);"><i class="fa fa-desktop"></i> <span class="nav-label">Pengelolaan Penugasan Sales Account</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{Request::is('kinerja_sales/monitoring_kinerja/*') ? 'active' : ''}}">
                         <a href="{{route('monitoring')}}"> Monitoring Tindakan Sales Account</a>

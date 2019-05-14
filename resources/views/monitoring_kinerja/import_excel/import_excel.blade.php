@@ -13,7 +13,7 @@
                 <a href="{{url('/')}}">Home</a>
             </li>
             <li>
-                <span>Pengelolaan Kinerja Sales Account</span>
+                <span>Pengelolaan Penugasan Sales Account</span>
             </li>
             <li class="active">
                 <strong>Manajemen Import Data</strong>
