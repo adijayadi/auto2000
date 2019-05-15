@@ -62,7 +62,7 @@
                                     <td align="center">
                                         <div class="btn-group btn-group-sm">
                                             <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                                            <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
+                                            <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan"><i class="fa fa-times"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -76,7 +76,7 @@
                                     <td align="center">
                                         <div class="btn-group btn-group-sm">
                                             <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                                            <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
+                                            <button class="btn btn-primary" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fa fa-check"></i></button>
                                         </div>
                                     </td>
                                 </tr>
