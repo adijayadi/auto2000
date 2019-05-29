@@ -19,7 +19,8 @@
     <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/select2/css/select2.min.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('assets/select2/css/select2.min.css')}}" rel="stylesheet"> --}}
+    <link href="{{asset('assets/select2-new/select2.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/iziToast/iziToast.min.css')}}" rel="stylesheet">
 
     <link href="{{asset('assets/css/plugins/slick/slick.css')}}" rel="stylesheet">
@@ -32,6 +33,8 @@
     <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 
     <link href="{{asset('assets/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/alamraya-style.css')}}">
 

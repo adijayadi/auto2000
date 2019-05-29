@@ -18,7 +18,7 @@
                             </div>
                             <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
                                 
-                                    <select class="form-control input-sm" name="tindakan">
+                                    <select class="form-control input-sm" name="tindakan-2">
                                         <option selected="" value="ya" data-toggle="tab" data-target="#tab-modal-2-1">Ya</option>
                                         <option value="tidak" data-toggle="tab" data-target="#tab-modal-2-3">Tidak</option>
                                     </select>

@@ -101,7 +101,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td>11 Mei 2019</td>
+                                                <td>11 Mei 2019 08:00</td>
                                                 <td>W 4321 W</td>
                                                 <td>Bravo</td>
                                                 <td align="center">Pernah Service</td>
@@ -136,5 +136,26 @@
 
         $('.input-daterange').datepicker();
     });
+
+    $('select[name="tindakan-1"]').change(function(){
+        if ($(this).val() === 'ya') {
+            $('#tab-modal-1').show();
+            $('#tab-modal-2').hide();
+            $('#tab-modal-3').hide();
+            console.log('a');
+
+        } else if ($(this).val() === 'ntar'){
+            $('#tab-modal-2').show();
+            $('#tab-modal-1').hide();
+            $('#tab-modal-3').hide();
+            console.log('b');
+        } else if ($(this).val() === 'tidak'){
+            $('#tab-modal-3').show();
+            $('#tab-modal-2').hide();
+            $('#tab-modal-1').hide();
+            console.log('c');
+        }
+        
+    })
 </script>
 @endsection

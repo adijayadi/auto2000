@@ -42,11 +42,16 @@ Route::group(['middleware' => 'guest' ], function(){
 	Route::get('/data_sales/summary_tindakan/index', 'DataSales\SummaryTindakanController@summary_tindakan')->name('summary_tindakan');
 
 
-	// Monitoring Sales Account
+	// Manajemen Data & Penugasan
 
 	Route::get('/kinerja_sales/monitoring_kinerja/index', 'Monitoring\MonitoringController@monitoring')->name('monitoring');
 
 	Route::get('/kinerja_sales/import_excel/index', 'DataSales\ImportController@import_excel')->name('import_excel');
+
+	Route::get('/kinerja_sales/kelola_penugasan/index', 'KelolaPenugasanController@kelola_penugasan')->name('kelola_penugasan');
+
+	// End Manajemen Data & Penugasan
+
 	// pengguna
 
 	Route::get('/pengguna/index', 'Pengguna\PenggunaController@pengguna')->name('pengguna');

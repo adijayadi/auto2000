@@ -3,7 +3,7 @@
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('assets/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-
+    <script type="text/javascript" src="{{asset('assets/moment/moment.js')}}"></script>
     <!-- Flot -->
     <script src="{{asset('assets/js/plugins/flot/jquery.flot.js')}}"></script>
     <script src="{{asset('assets/js/plugins/flot/jquery.flot.tooltip.min.js')}}"></script>
@@ -40,7 +40,8 @@
     <script src="{{asset('assets/js/plugins/dataTables/datatables.min.js')}}"></script>
     <script src="{{asset('assets/accounting-js/accounting.umd.js')}}"></script>
     <script src="{{asset('assets/maskmoney/jquery.maskMoney.min.js')}}"></script>
-    <script src="{{asset('assets/select2/js/select2.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/select2/js/select2.min.js')}}"></script> --}}
+    <script src="{{asset('assets/select2-new/select2.min.js')}}"></script>
     <script src="{{asset('assets/iziToast/iziToast.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/slick/slick.min.js')}}"></script>
 
@@ -49,8 +50,9 @@
     <script src="{{asset('assets/summernote/dist/summernote.min.js')}}"></script>
 
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
 
-
+    <script type="text/javascript" src="{{asset('assets/xlsx.full.min.js')}}"></script>
     <!-- iCheck -->
     <script src="{{asset('assets/js/plugins/iCheck/icheck.min.js')}}"></script>
 
@@ -84,6 +86,10 @@
 
             });
 
+            $('.datepicker').datepicker({
+                format:'dd-mm-yyyy'
+            })
+
             $('.input-uang').maskMoney();
 
             $('.select2').select2();
@@ -116,6 +122,6 @@
                 position:'topRight'//Where it will be shown. It can be bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
             })
 
-
+            // $.fn.modal.Constructor.prototype.enforceFocus = function() {};
         });
     </script>

@@ -18,10 +18,10 @@
                             </div>
                             <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
                                 
-                                    <select class="form-control input-sm" name="tindakan">
-                                        <option selected="" value="ya" data-toggle="tab" data-target="#tab-modal-1">Ya</option>
-                                        <option value="ntar" data-toggle="tab" data-target="#tab-modal-2">Ntar</option>
-                                        <option value="tidak" data-toggle="tab" data-target="#tab-modal-3">Tidak</option>
+                                    <select class="form-control input-sm" name="tindakan-1" >
+                                        <option {{-- data-toggle="tab" data-target="#tab-modal-1" --}} selected="" value="ya">Ya</option>
+                                        <option {{-- data-toggle="tab" data-target="#tab-modal-2" --}} value="ntar">Ntar</option>
+                                        <option {{-- data-toggle="tab" data-target="#tab-modal-3" --}} value="tidak">Tidak</option>
                                     </select>
                                 
                             </div>
