@@ -41,6 +41,9 @@ Route::group(['middleware' => 'guest' ], function(){
 
 	Route::get('/data_sales/summary_tindakan/index', 'DataSales\SummaryTindakanController@summary_tindakan')->name('summary_tindakan');
 
+	Route::get('/data_sales/data_suspect/index', 'DataSales\SuspectController@data_suspect')->name('data_suspect');
+
+	Route::get('/data_sales/rencana_followup/index', 'DataSales\RencanaFollowUpController@rencana_followup')->name('rencana_followup');
 
 	// Manajemen Data & Penugasan
 

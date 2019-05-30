@@ -150,3 +150,6 @@ fieldset {
 .select2-container--open {
     z-index: 9999;
 }
+.clockpicker-popover {
+	z-index: 999999 !important;
+}

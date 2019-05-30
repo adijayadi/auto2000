@@ -50,6 +50,7 @@
     <script src="{{asset('assets/summernote/dist/summernote.min.js')}}"></script>
 
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/clockpicker/clockpicker.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
 
     <script type="text/javascript" src="{{asset('assets/xlsx.full.min.js')}}"></script>
@@ -94,6 +95,10 @@
 
             $('.select2').select2();
 
+            $('.clockpicker').clockpicker({
+                default:'now',
+                donetext: 'Selesai'
+            });
             
             $.fn.select2.defaults.set( 'dropdownAutoWidth', true );
             $.fn.select2.defaults.set( 'width', 'resolve' );

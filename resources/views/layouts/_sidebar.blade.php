@@ -65,11 +65,11 @@
             <li class="{{Request::is('data_sales/*') ? 'active nav-active' : ''}}">
                 <a href="javascript:void(0);"><i class="fa fa-user"></i> <span class="nav-label">Manajemen Service Advisor</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">Data Suspect</a>
+                    <li class="{{Request::is('data_sales/data_suspect/*') ? 'active' : ''}}">
+                        <a href="{{route('data_suspect')}}">Data Suspect</a>
                     </li>
-                    <li>
-                        <a href="#">Rencana Follow Up</a>
+                    <li class="{{Request::is('data_sales/rencana_followup/*') ? 'active' : ''}}">
+                        <a href="{{route('rencana_followup')}}">Rencana Follow Up</a>
                     </li>
                     <li class="{{Request::is('data_sales/tindakan_sales/*') ? 'active' : ''}}">
                         <a href="{{route('tindakan_sales')}}"> Tindakan</a>

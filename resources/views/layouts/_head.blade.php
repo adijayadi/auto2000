@@ -9,6 +9,9 @@
 
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/fontawesome-new/css/all.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap-textcolor.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap-marginpadding.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap-display.css')}}" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="{{asset('assets/css/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
@@ -33,6 +36,7 @@
     <link href="{{asset('assets/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 
     <link href="{{asset('assets/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/plugins/clockpicker/clockpicker.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
 

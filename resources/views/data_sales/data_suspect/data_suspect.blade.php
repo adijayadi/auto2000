@@ -7,16 +7,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2>Kelola Penugasan</h2>
+        <h2>Data Suspect</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="{{url('/')}}">Home</a>
             </li>
             <li>
-                <a>Manajemen Data & Penugasan</a>
+                <a>Manajemen Service Advisor</a>
             </li>
             <li class="active">
-                <strong>Kelola Penugasan</strong>
+                <strong>Data Suspect</strong>
             </li>
         </ol>
     </div>
@@ -28,7 +28,7 @@
 
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>Kelola Penugasan</h5>
+                    <h5>Data Suspect</h5>
                     {{-- <div class="ibox-tools">
                         <button class="btn btn-warning btn-sm" title="Ganti Service Advisor yang sudah tidak aktif" data-toggle="modal" data-target="#modal-ganti-semua">
                             <i class="fa fa-edit"></i>
