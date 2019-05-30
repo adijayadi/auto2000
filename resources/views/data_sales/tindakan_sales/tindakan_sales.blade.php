@@ -32,7 +32,7 @@
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a data-toggle="tab" href="#tab-1"><i class="fa fa-dice-one"></i> <span class="tab-title">Rencana Follow Up 1</span></a>
+                        <a data-toggle="tab" href="#tab-1"><i class="fa fa-dice-one"></i> <span class="tab-title">Follow Up 1</span></a>
                     </li>
                     <li class="">
                         <a data-toggle="tab" href="#tab-2"><i class="fa fa-dice-two"></i> <span class="tab-title">Follow Up 2</span></a>
@@ -53,6 +53,7 @@
                                             <tr>
                                                 <th width="1%">No.</th>
                                                 <th>Tanggal Difollow Up</th>
+                                                <th>Jam Difollow Up</th>
                                                 <th>No. Kendaraan</th>
                                                 <th>Nama Pemilik</th>
                                                 <th>Status Service</th>
@@ -64,6 +65,7 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>11 Mei 2019</td>
+                                                <td>08:00</td>
                                                 <td>W 1234 W</td>
                                                 <td>Alpha</td>
                                                 <td align="center">Pernah Service</td>
@@ -142,18 +144,18 @@
             $('#tab-modal-1').show();
             $('#tab-modal-2').hide();
             $('#tab-modal-3').hide();
-            console.log('a');
+            // console.log('a');
 
         } else if ($(this).val() === 'ntar'){
             $('#tab-modal-2').show();
             $('#tab-modal-1').hide();
             $('#tab-modal-3').hide();
-            console.log('b');
+            // console.log('b');
         } else if ($(this).val() === 'tidak'){
             $('#tab-modal-3').show();
             $('#tab-modal-2').hide();
             $('#tab-modal-1').hide();
-            console.log('c');
+            // console.log('c');
         }
         
     })

@@ -58,9 +58,17 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <label>Tanggal di Follow Up lagi</label>
                                     </div>
-                                    <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control input-sm datepicker" name="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <label>Jam di Follow Up lagi</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm clockpicker" name="">
                                         </div>
                                     </div>
                                 </div>
