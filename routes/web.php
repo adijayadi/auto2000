@@ -35,7 +35,7 @@ Route::group(['middleware' => 'guest' ], function(){
 	Route::get('/master/alasan/index', 'Master\AlasanController@alasan')->name('alasan');
 	Route::get('/master/alasan/create', 'Master\AlasanController@tambah_alasan')->name('tambah_alasan');
 
-	// Data Sales
+	// Manajemen Service Advisor
 
 	Route::get('/data_sales/tindakan_sales/index', 'DataSales\TindakanSalesController@tindakan_sales')->name('tindakan_sales');
 
@@ -47,13 +47,16 @@ Route::group(['middleware' => 'guest' ], function(){
 
 	// Manajemen Data & Penugasan
 
-	Route::get('/kinerja_sales/monitoring_kinerja/index', 'Monitoring\MonitoringController@monitoring')->name('monitoring');
+	
 
 	Route::get('/kinerja_sales/import_excel/index', 'DataSales\ImportController@import_excel')->name('import_excel');
 
 	Route::get('/kinerja_sales/kelola_penugasan/index', 'KelolaPenugasanController@kelola_penugasan')->name('kelola_penugasan');
 
 	// End Manajemen Data & Penugasan
+
+	// Monitoring Tindakan Service Advisor
+	Route::get('/monitoring_kinerja/index', 'Monitoring\MonitoringController@monitoring')->name('monitoring');
 
 	// pengguna
 

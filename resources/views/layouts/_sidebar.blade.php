@@ -37,7 +37,7 @@
             <li class="{{Request::is('master/*') ? 'active nav-active' : ''}}">
                 <a href="javascript:void(0);"><i class="fa fa-crown"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="{{Request::is('master/sales/*') ? 'active nav-active' : ''}}">
+                    <li class="{{Request::is('master/sales/*') ? 'active' : ''}}">
                         <a href="{{route('sales')}}"> Data Sales Account</a>
                     </li>
                     <li class="{{Request::is('master/kendaraan/*') ? 'active' : ''}}">
@@ -49,11 +49,8 @@
                 </ul>
             </li>
             <li class="{{Request::is('kinerja_sales/*') ? 'active nav-active' : ''}}">
-                <a href="javascript:void(0);"><i class="fa fa-desktop"></i> <span class="nav-label">Manajemen Data & Penugasan</span><span class="fa arrow"></span></a>
+                <a href="javascript:void(0);"><i class="fa fa-tasks"></i> <span class="nav-label">Manajemen Data & Penugasan</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="{{Request::is('kinerja_sales/monitoring_kinerja/*') ? 'active' : ''}}">
-                        <a href="{{route('monitoring')}}"> Monitoring Tindakan Sales Account</a>
-                    </li>
                     <li class="{{Request::is('kinerja_sales/import_excel/*') ? 'active' : ''}}">
                         <a href="{{route('import_excel')}}"> Manajemen Import Data</a>
                     </li>
@@ -61,6 +58,9 @@
                         <a href="{{route('kelola_penugasan')}}">Kelola Penugasan</a>
                     </li>
                 </ul>
+            </li>
+            <li class="{{Request::is('monitoring_kinerja/*') ? 'active nav-active' : ''}}">
+                <a href="{{route('monitoring')}}"><i class="fa fa-desktop"></i> <span class="nav-label">Monitoring Tindakan Service Advisor</span></a>
             </li>
             <li class="{{Request::is('data_sales/*') ? 'active nav-active' : ''}}">
                 <a href="javascript:void(0);"><i class="fa fa-user"></i> <span class="nav-label">Manajemen Service Advisor</span><span class="fa arrow"></span></a>
