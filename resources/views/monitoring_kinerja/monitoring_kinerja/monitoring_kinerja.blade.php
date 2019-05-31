@@ -40,7 +40,7 @@
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane animated fadeIn active">
-                        <div class="ibox float-e-margins">
+                        <div class="ibox">
                             <div class="ibox-content">
 
                                 <div class="row">
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div id="tab-2" class="tab-pane animated fadeIn">
-                        <div class="ibox float-e-margins">
+                        <div class="ibox">
                             <div class="ibox-content">
 
                                 
