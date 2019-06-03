@@ -7,7 +7,7 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2>Master Sales Account</h2>
+        <h2>Master Service Advisor</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="{{url('/')}}">Home</a>
@@ -16,7 +16,7 @@
                 <a>Master</a>
             </li>
             <li class="active">
-                <strong>Master Sales Account</strong>
+                <strong>Master Service Advisor</strong>
             </li>
         </ol>
     </div>
@@ -28,11 +28,11 @@
 
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Master Sales Account</h5>
+                    <h5>Master Service Advisor</h5>
                     <div class="ibox-tools">
                         <a href="{{route('tambah_sales')}}" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus"></i>
-                            Tambah Data Sales Account
+                            Tambah Data Service Advisor
                         </a>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                             <thead>
                                 <tr>
                                     <th width="1%">No.</th>
-                                    <th>Nama Sales Account</th>
+                                    <th>Nama Service Advisor</th>
                                     <th>E-mail</th>
                                     <th>Username</th>
                                     <th>No HP</th>

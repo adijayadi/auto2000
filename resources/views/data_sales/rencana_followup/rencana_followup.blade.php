@@ -24,86 +24,110 @@
     </div>
 </div>
 
-@include('data_sales.rencana_followup.modal_followup')
+
+@include('data_sales.rencana_followup.modal_tindakan')
+@include('data_sales.rencana_followup.modal_tindakan_2')
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
 
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h5>Rencana Follow Up</h5>
-                    <div class="ibox-tools">
-                        <button class="btn btn-primary btn-sm" id="btn-modal" title="Follow Up yang dicentang" >
-                            <i class="fa fa-calendar-alt"></i>
-                            Follow Up yang dicentang
-                        </button>
-                    </div>
-                </div>
-                <div class="ibox-content">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-1"><i class="fa fa-dice-one"></i> <span class="tab-title">Follow Up 1</span></a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-2"><i class="fa fa-dice-two"></i> <span class="tab-title">Follow Up 2</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane animated fadeIn active">
+                        <div class="ibox float-e-margins">
+{{-- 
+                            <div class="ibox-title">
+                                <h5>Manajemen Tindakan Customer</h5>
+                            </div> --}}
+                            <div class="ibox-content">
 
-                    <div class="text-right mb-3">
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-primary" type="button" id="btn-checkall">Check All</button>
-                            <button class="btn btn-default" type="button" id="btn-uncheckall">Uncheck All</button>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="table_tindakan">
+                                        <thead>
+                                            <tr>
+                                                <th width="1%">No.</th>
+                                                <th>Tanggal Difollow Up</th>
+                                                <th>Jam Difollow Up</th>
+                                                <th>No. Kendaraan</th>
+                                                <th>Nama Pemilik</th>
+                                                <th>Status Service</th>
+                                                <th>Status Follow Up</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>11 Mei 2019</td>
+                                                <td>08:00</td>
+                                                <td>W 1234 W</td>
+                                                <td>Alpha</td>
+                                                <td align="center">Pernah Service</td>
+                                                <td align="center">No. Kendaraan Yang Belum Di Follow Up</td>
+                                                <td align="center">
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail_tindakan" title="Tindakan"><i class="fa fa-cog"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
+                    <div id="tab-2" class="tab-pane animated fadeIn">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
 
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="table_kendaraan">
-                            <thead>
-                                <tr>
-                                    <th width="1%"></th>
-                                    <th width="10%">Tanggal Service</th>
-                                    <th>No. Rangka</th>
-                                    <th>No. Polisi</th>
-                                    <th>Type Kendaraan</th>
-                                    <th>Type Pekerjaan</th>
-                                    <th>Service Advisor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="table_tindakan_2">
+                                        <thead>
+                                            <tr>
+                                                <th width="1%">No.</th>
+                                                <th>Tanggal Difollow Up</th>
+                                                <th>No. Kendaraan</th>
+                                                <th>Nama Pemilik</th>
+                                                <th>Status Service</th>
+                                                <th>Status Follow Up</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>11 Mei 2019 08:00</td>
+                                                <td>W 4321 W</td>
+                                                <td>Bravo</td>
+                                                <td align="center">Pernah Service</td>
+                                                <td align="center">No. Kendaraan Yang Harus Di Follow Up</td>
+                                                <td align="center">
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail_tindakan_2" title="Tindakan"><i class="fa fa-cog"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
 
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="centang-followup" value="1">
-                                    </td>
-                                    <td>2018-10-01</td>
-                                    <td>MHFM1BA2JBK035948</td>
-                                    <td>B1295PKO</td>
-                                    <td>AVANZA</td>
-                                    <td>Service 10.000 Kilometer</td>
-                                    <td>Achmad Nur Taufik</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="centang-followup" value="2">
-                                    </td>
-                                    <td>2018-10-01</td>
-                                    <td>MR053AK50E4506151</td>
-                                    <td>L3PY</td>
-                                    <td>CAMRY</td>
-                                    <td> Service 50.000 Kilometer </td>
-                                    <td>Made Agung Adhi Gunawan</td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="centang-followup" value="3">
-                                    </td>
-                                    <td>2018-10-01</td>
-                                    <td>MHKM1BA2JDK041994</td>
-                                    <td>B1182BYK</td>
-                                    <td>AVANZA</td>
-                                    <td> Service 90.000 kilometer </td>
-                                    <td>Zainul Arifin</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
-            </div>          
+
+
+            </div>   
+
         </div>
     </div>
 </div>
@@ -112,37 +136,52 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#table_kendaraan').DataTable();
+        $('#table_tindakan').DataTable();
+        $('#table_tindakan_2').DataTable();
 
-
+        $('.input-daterange').datepicker();
     });
 
-    $('#btn-modal').click(function(){
-        if ($('#table_kendaraan tbody tr [type="checkbox"]').is(':checked') == false ) {
-            iziToast.warning({
-                title:'Peringatan!',
-                message:'Centang tidak boleh kosong!'
-            });
-        } else {
-            $('#modal-follow-up').modal('show');
+    $('select[name="tindakan-1"]').change(function(){
+        if ($(this).val() === 'ya') {
+            // $('#tab-modal-1').show();
+            $('#tab-modal-2').hide();
+            $('#tab-modal-3').hide();
+            // console.log('a');
+
+        } else if ($(this).val() === 'ntar'){
+            $('#tab-modal-2').show();
+            // $('#tab-modal-1').hide();
+            $('#tab-modal-3').hide();
+            // console.log('b');
+        } else if ($(this).val() === 'tidak'){
+            $('#tab-modal-3').show();
+            $('#tab-modal-2').hide();
+            // $('#tab-modal-1').hide();
+            // console.log('c');
         }
+        
     })
 
-    $('#btn-checkall').click(function(){
-        $('#table_kendaraan tbody [type="checkbox"]').prop('checked', true);
-    });
-    $('#btn-uncheckall').click(function(){
-        $('#table_kendaraan tbody [type="checkbox"]').prop('checked', false);
-    });
+        $('select[name="tindakan-2"]').change(function(){
+        if ($(this).val() === 'ya') {
+            // $('#tab-modal-2-1').show();
+            $('#tab-modal-2-2').hide();
+            $('#tab-modal-2-3').hide();
+            // console.log('a');
 
-    $('#table_kendaraan tbody > tr').click(function(e){
-        // console.log(e);
-
-        $(this).find('[type="checkbox"]').prop('checked', function(index, prop){
-
-            return prop == true ? false : true;
-        });
-
-    });
+        } else if ($(this).val() === 'ntar'){
+            $('#tab-modal-2-2').show();
+            // $('#tab-modal-2-1').hide();
+            $('#tab-modal-2-3').hide();
+            // console.log('b');
+        } else if ($(this).val() === 'tidak'){
+            $('#tab-modal-2-3').show();
+            $('#tab-modal-2-2').hide();
+            // $('#tab-modal-2-1').hide();
+            // console.log('c');
+        }
+        
+    })
 </script>
 @endsection

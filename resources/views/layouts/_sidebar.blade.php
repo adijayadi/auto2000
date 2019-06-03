@@ -71,11 +71,11 @@
                     <li class="{{Request::is('data_sales/rencana_followup/*') ? 'active' : ''}}">
                         <a href="{{route('rencana_followup')}}">Rencana Follow Up</a>
                     </li>
-                    <li class="{{Request::is('data_sales/tindakan_sales/*') ? 'active' : ''}}">
+                    {{-- <li class="{{Request::is('data_sales/tindakan_sales/*') ? 'active' : ''}}">
                         <a href="{{route('tindakan_sales')}}"> Tindakan</a>
-                    </li>
+                    </li> --}}
                     <li class="{{Request::is('data_sales/summary_tindakan/*') ? 'active' : ''}}">
-                        <a href="{{route('summary_tindakan')}}">Summary</a>
+                        <a href="{{route('summary_tindakan')}}">Hasil Tindakan</a>
                     </li>
                 </ul>
             </li>

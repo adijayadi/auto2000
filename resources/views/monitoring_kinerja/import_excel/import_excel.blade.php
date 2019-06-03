@@ -22,7 +22,7 @@
     </div>
 </div>
 
-@include('monitoring_kinerja.import_excel.crosscheck')
+{{-- @include('monitoring_kinerja.import_excel.crosscheck') --}}
 @include('monitoring_kinerja.import_excel.modal_import')
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -61,11 +61,26 @@
                     <div id="my_file_output">
                         
                     </div>
-                
+                    <hr>
+                    <h2>Rekap Import</h2>
+                    <hr>
 
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped" id="table_rekap">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal Import</th>
+                                    <th>Jumlah Data</th>
+                                    <th>Data Tersedia</th>
+                                    <th>Data Ditambahkan</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="ibox-footer text-right">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#crosscheck" type="button">Cross Check Data</button>
+                    <button class="btn btn-primary" type="button">Simpan Data</button>
                 </div>
             </div>          
         </div>
@@ -82,6 +97,8 @@
                 "emptyTable": "Menunggu data dari import excel"
             }
         });
+
+        $('#table_rekap').DataTable();
 
         $('.input-daterange').datepicker({
             format:'dd-mm-yyyy'

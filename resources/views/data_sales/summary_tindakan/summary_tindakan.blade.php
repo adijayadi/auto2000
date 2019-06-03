@@ -9,16 +9,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2>Manajemen Summary Tindakan</h2>
+        <h2>Hasil Tindakan</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="{{url('/')}}">Home</a>
             </li>
             <li>
-                <span>Pengelolaan Data Customer</span>
+                <span>Manajemen Service Advisor</span>
             </li>
             <li class="active">
-                <strong>Manajemen Summary Tindakan</strong>
+                <strong>Hasil Tindakan</strong>
             </li>
         </ol>
     </div>
@@ -32,7 +32,7 @@
 
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Manajemen Summary Tindakan</h5>
+                    <h5>Hasil Tindakan</h5>
                 </div>
                 <div class="ibox-content">
                     <div class="table-responsive">
@@ -47,37 +47,27 @@
                             <tbody>
                                 <tr>
                                     <td align="center">1</td>
-                                    <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Telah Melakukan Service</a></td>
+                                    <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Belum Di Follow Up</a></td>
                                     <td align="center">0</td>
                                 </tr>
                                 <tr>
                                     <td align="center">2</td>
-                                    <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Harus Di Follow Up</a></td>
-                                    <td align="center">0</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">3</td>
                                     <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</a></td>
                                     <td align="center">0</td>
                                 </tr>
                                 <tr>
-                                    <td align="center">4</td>
+                                    <td align="center">3</td>
                                     <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Telah Di Follow Up Dan Bersedia Service</a></td>
                                     <td align="center">0</td>
                                 </tr>
                                 <tr>
-                                    <td align="center">5</td>
+                                    <td align="center">4</td>
                                     <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</a></td>
                                     <td align="center">0</td>
                                 </tr>
                                 <tr>
-                                    <td align="center">6</td>
+                                    <td align="center">5</td>
                                     <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</a></td>
-                                    <td align="center">0</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">7</td>
-                                    <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Belum Di Follow Up</a></td>
                                     <td align="center">0</td>
                                 </tr>
                             </tbody>

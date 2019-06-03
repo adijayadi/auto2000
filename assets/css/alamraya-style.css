@@ -161,3 +161,12 @@ fieldset {
 .clockpicker-popover {
 	z-index: 999999 !important;
 }
+.table .table-checked{
+    background-color: #71E9CF !important;
+    color: #fff;
+}
+.table-hover .table-checked:hover,
+.table-hover .table-checked:active{
+    background-color: #34DFB7 !important;
+    color: #fff;
+}
