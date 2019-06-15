@@ -30,28 +30,18 @@
                         <hr>
 
                         <div class="tab-content">
-                            {{-- <div id="tab-modal-1" class="tab-pane animated fadeIn active">
+                            <div id="tab-modal-1" class="tab-pane animated fadeIn active">
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <label>
-                                            <input type="radio" name="tindakan_ya" value="sedia_service">
-                                            <span>No. Kendaraan Yang Telah Di Follow Up Dan Bersedia Service</span>
-                                        </label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <label>Tanggal Service</label>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <label>
-                                            <input type="radio" name="tindakan_ya" value="sedia_service">
-                                            <span>No. Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking </span>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <label>
-                                            <input type="radio" name="tindakan_ya" value="sedia_service">
-                                            <span>No. Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking </span>
-                                        </label>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm datepicker" name="">
+                                        </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div id="tab-modal-2" class="tab-pane animated fadeIn">
                                 
                                 <div class="row">
