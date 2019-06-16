@@ -51,7 +51,13 @@ Route::group(['middleware' => 'guest' ], function(){
 
 	Route::get('/kinerja_sales/import_excel/index', 'DataSales\ImportController@import_excel')->name('import_excel');
 
+	//system excel
+
+	Route::post('/kinerja_sales/import_excel/input', 'DataSales\ImportController@storedata')->name('store.excel');
+
 	Route::get('/kinerja_sales/kelola_penugasan/index', 'KelolaPenugasanController@kelola_penugasan')->name('kelola_penugasan');
+
+
 
 	// End Manajemen Data & Penugasan
 

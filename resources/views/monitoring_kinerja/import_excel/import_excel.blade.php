@@ -24,7 +24,10 @@
 
 {{-- @include('monitoring_kinerja.import_excel.crosscheck') --}}
 @include('monitoring_kinerja.import_excel.modal_import')
-
+<form id="formexcel">
+    @csrf
+    <input type="hidden" value="{{$code}}"  name="code">
+    <input type="hidden" name="data" id="data">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -80,17 +83,47 @@
                     </div>
                 </div>
                 <div class="ibox-footer text-right">
-                    <button class="btn btn-primary" type="button">Simpan Data</button>
+                    <button class="btn btn-primary" id="excelstore" type="button">Simpan Data</button>
                 </div>
             </div>          
         </div>
     </div>
 </div>
+</form>
 @endsection
 
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('#excelstore').on('click',function(){
+            var form = $('#formexcel');
+            $.ajax({
+                url : '{{route("store.excel")}}',
+                type : 'POST',
+                data : form.serialize(),
+                success:function(){
+                    iziToast.show({
+                        color: '#228B22',
+                        titleColor: '#ffffff',
+                        messageColor: '#ffffff',
+                        title: 'Berhasil!',
+                        message: 'Input '+ nama,
+                    });
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.show({
+                                color: '#DC143C',
+                                titleColor: '#ffffff',
+                                messageColor: '#ffffff',
+                                title: 'Gagal!',
+                                message: 'Menginput Customer',
+                    });
+                }
+            })
+        });
+
+
         $('#table_db').DataTable();
         var table = $('#table_upload').DataTable({
             "language": {
@@ -142,6 +175,8 @@ function fileReader(oEvent) {
         };
         reader.readAsArrayBuffer(oFile);
 }
+
+$('#data').val(counter);
 
 // Add your id of "File Input" 
 $('[name="excel"]').change(function(ev) {
