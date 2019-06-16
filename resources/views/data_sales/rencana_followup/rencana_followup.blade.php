@@ -44,7 +44,7 @@
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane animated fadeIn active">
                         <div class="ibox float-e-margins">
-{{-- 
+                            {{-- 
                             <div class="ibox-title">
                                 <h5>Manajemen Tindakan Customer</h5>
                             </div> --}}
@@ -144,20 +144,20 @@
 
     $('select[name="tindakan-1"]').change(function(){
         if ($(this).val() === 'ya') {
-            // $('#tab-modal-1').show();
+            $('#tab-modal-1').show();
             $('#tab-modal-2').hide();
             $('#tab-modal-3').hide();
             // console.log('a');
 
         } else if ($(this).val() === 'ntar'){
             $('#tab-modal-2').show();
-            // $('#tab-modal-1').hide();
+            $('#tab-modal-1').hide();
             $('#tab-modal-3').hide();
             // console.log('b');
         } else if ($(this).val() === 'tidak'){
             $('#tab-modal-3').show();
             $('#tab-modal-2').hide();
-            // $('#tab-modal-1').hide();
+            $('#tab-modal-1').hide();
             // console.log('c');
         }
         
@@ -165,20 +165,20 @@
 
         $('select[name="tindakan-2"]').change(function(){
         if ($(this).val() === 'ya') {
-            // $('#tab-modal-2-1').show();
+            $('#tab-modal-2-1').show();
             $('#tab-modal-2-2').hide();
             $('#tab-modal-2-3').hide();
             // console.log('a');
 
         } else if ($(this).val() === 'ntar'){
             $('#tab-modal-2-2').show();
-            // $('#tab-modal-2-1').hide();
+            $('#tab-modal-2-1').hide();
             $('#tab-modal-2-3').hide();
             // console.log('b');
         } else if ($(this).val() === 'tidak'){
             $('#tab-modal-2-3').show();
             $('#tab-modal-2-2').hide();
-            // $('#tab-modal-2-1').hide();
+            $('#tab-modal-2-1').hide();
             // console.log('c');
         }
         

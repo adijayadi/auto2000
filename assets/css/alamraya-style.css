@@ -127,6 +127,8 @@ fieldset {
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
 	vertical-align:unset;
+}
+.table > tfoot > tr > td:has(.btn-group) {
 	text-align: center;
 }
 .modal-xl{
