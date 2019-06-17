@@ -7,16 +7,16 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2>Monitoring Tindakan Sales Account</h2>
+        <h2>Monitoring Tindakan Service Advisor</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="{{url('/')}}">Home</a>
             </li>
             <li>
-                <span>Pengelolaan Penugasan Sales Account</span>
+                <span>Pengelolaan Penugasan Service Advisor</span>
             </li>
             <li class="active">
-                <strong>Monitoring Tindakan Sales Account</strong>
+                <strong>Monitoring Tindakan Service Advisor</strong>
             </li>
         </ol>
     </div>
@@ -32,10 +32,10 @@
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a data-toggle="tab" href="#tab-1"><i class="fa fa-desktop"></i> <span class="tab-title">Monitoring Tindakan Sales Account</span></a>
+                        <a data-toggle="tab" href="#tab-1"><i class="fa fa-desktop"></i> <span class="tab-title">Monitoring Tindakan Service Advisor</span></a>
                     </li>
                     <li class="">
-                        <a data-toggle="tab" href="#tab-2"><i class="fa fa-history"></i> <span class="tab-title">Log Sales Account</span></a>
+                        <a data-toggle="tab" href="#tab-2"><i class="fa fa-history"></i> <span class="tab-title">Log Service Advisor</span></a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -109,7 +109,7 @@
                                         <thead>
                                             <tr>
                                                 <th width="1%">No.</th>
-                                                <th>Nama Sales Account</th>
+                                                <th>Nama Service Advisor</th>
                                                 <th width="15%">Aksi</th>
                                             </tr>
                                         </thead>
