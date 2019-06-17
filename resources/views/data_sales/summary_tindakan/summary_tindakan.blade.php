@@ -36,10 +36,10 @@
                         <a data-toggle="tab" href="#tab-1"><i class="fa fa-dice-one"></i> <span class="tab-title">Result Suspect</span></a>
                     </li>
                     <li class="">
-                        <a data-toggle="tab" href="#tab-2"><i class="fa fa-dice-two"></i> <span class="tab-title">Bersedia Booking</span></a>
+                        <a data-toggle="tab" href="#tab-2"><i class="fa fa-dice-two"></i> <span class="tab-title">Bersedia + Booking</span></a>
                     </li>
                     <li class="">
-                        <a data-toggle="tab" href="#tab-3"><i class="fa fa-dice-three"></i> <span class="tab-title">Bersedia Belum Booking</span></a>
+                        <a data-toggle="tab" href="#tab-3"><i class="fa fa-dice-three"></i> <span class="tab-title">Bersedia + Belum Booking</span></a>
                     </li>
                     <li class="">
                         <a data-toggle="tab" href="#tab-4"><i class="fa fa-dice-four"></i> <span class="tab-title">Minta Dihubungi Lagi</span></a>
@@ -265,6 +265,7 @@
                                                 <th>No. Polisi</th>
                                                 <th>Type Kendaraan</th>
                                                 <th>Type Pekerjaan</th>
+                                                <th>Alasan Tidak Bersedia</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -276,6 +277,7 @@
                                                 <td>B1295PKO</td>
                                                 <td>AVANZA</td>
                                                 <td>Service 10.000 Kilometer</td>
+                                                <th>Mobilnya sudah dijual</th>
                                             </tr>
                                             <tr>
                                                 
@@ -284,6 +286,7 @@
                                                 <td>L3PY</td>
                                                 <td>CAMRY</td>
                                                 <td> Service 50.000 Kilometer </td>
+                                                <th>Mobilnya sudah dijual</th>
                                             </tr>
 
                                             <tr>
@@ -293,6 +296,7 @@
                                                 <td>B1182BYK</td>
                                                 <td>AVANZA</td>
                                                 <td> Service 90.000 kilometer </td>
+                                                <th>Mobilnya sudah dijual</th>
                                             </tr>
                                         </tbody>
                                     </table>

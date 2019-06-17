@@ -14,7 +14,7 @@
                         
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <label>Tindakan</label>
+                                <label>Hasil Tindakan</label>
                             </div>
                             <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
                                 
@@ -32,7 +32,7 @@
                             <div id="tab-modal-2-1" class="tab-pane animated fadeIn active">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <label>Tanggal Service</label>
+                                        <label>Tanggal Melakukan Booking</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                         <div class="form-group">

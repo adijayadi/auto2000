@@ -14,13 +14,13 @@
                         
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <label>Tindakan</label>
+                                <label>Hasil Tindakan</label>
                             </div>
                             <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
                                 
                                     <select class="form-control input-sm" name="tindakan-1" >
                                         <option {{-- data-toggle="tab" data-target="#tab-modal-1" --}} selected="" value="ya">Bersedia Service</option>
-                                        <option {{-- data-toggle="tab" data-target="#tab-modal-2" --}} value="ntar">Bersedia Service dan Belum Melakukan Booking</option>
+                                        <option {{-- data-toggle="tab" data-target="#tab-modal-2" --}} value="ntar">Minta Dihubungi Kembali</option>
                                         <option {{-- data-toggle="tab" data-target="#tab-modal-3" --}} value="tidak">Tidak Bersedia Service</option>
                                     </select>
                                 
@@ -33,7 +33,7 @@
                             <div id="tab-modal-1" class="tab-pane animated fadeIn active">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <label>Tanggal Service</label>
+                                        <label>Tanggal Melakukan Booking</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                         <div class="form-group">
