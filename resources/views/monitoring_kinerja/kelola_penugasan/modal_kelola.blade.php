@@ -48,7 +48,7 @@
                 </div>
                 <div class="modal-footer text-right">
                     <button class="btn btn-primary" type="button">Simpan</button>
-                    <button class="btn btn-warning" type="button" data-dismiss="modal">Close</button>
+                     
                 </div>
             </div>
         </div>
