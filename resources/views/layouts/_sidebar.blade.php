@@ -38,7 +38,7 @@
                 <a href="javascript:void(0);"><i class="fa fa-crown"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{Request::is('master/sales/*') ? 'active' : ''}}">
-                        <a href="{{route('sales')}}"> Data Sales Account</a>
+                        <a href="{{route('sales')}}"> Data Service Advisor</a>
                     </li>
                     <li class="{{Request::is('master/kendaraan/*') ? 'active' : ''}}">
                         <a href="{{route('kendaraan')}}"> Data Kendaraan</a>

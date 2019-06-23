@@ -87,7 +87,7 @@
                             <div class="form-group">
                                 <select class="form-control input-sm" name="">
                                     <option value="1">Manajer</option>
-                                    <option value="2">Sales Account</option>
+                                    <option value="2">Service Advisor</option>
                                 </select>
                             </div>
                         </div>

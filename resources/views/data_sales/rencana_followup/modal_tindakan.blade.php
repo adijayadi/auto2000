@@ -6,7 +6,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     
-                    <h4 class="modal-title text-center">Tindakan Sales Account ke 1</h4>
+                    <h4 class="modal-title text-center">Tindakan Service Advisor ke 1</h4>
                     
                 </div>
                 <div class="modal-body">
@@ -14,13 +14,13 @@
                         
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <label>Tindakan</label>
+                                <label>Hasil Tindakan</label>
                             </div>
                             <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
                                 
                                     <select class="form-control input-sm" name="tindakan-1" >
                                         <option {{-- data-toggle="tab" data-target="#tab-modal-1" --}} selected="" value="ya">Bersedia Service</option>
-                                        <option {{-- data-toggle="tab" data-target="#tab-modal-2" --}} value="ntar">Bersedia Service dan Belum Melakukan Booking</option>
+                                        <option {{-- data-toggle="tab" data-target="#tab-modal-2" --}} value="ntar">Minta Dihubungi Kembali</option>
                                         <option {{-- data-toggle="tab" data-target="#tab-modal-3" --}} value="tidak">Tidak Bersedia Service</option>
                                     </select>
                                 
@@ -33,7 +33,7 @@
                             <div id="tab-modal-1" class="tab-pane animated fadeIn active">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <label>Tanggal Service</label>
+                                        <label>Tanggal Melakukan Booking</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                         <div class="form-group">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="modal-footer text-right">
                     <button class="btn btn-primary" type="button">Simpan</button>
-                    <button class="btn btn-warning" type="button" data-dismiss="modal">Close</button>
+                     
                 </div>
             </div>
         </div>
