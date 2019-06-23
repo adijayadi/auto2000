@@ -51,7 +51,7 @@
 
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <div class="form-group">
-                                <input type="text" class="form-control input-sm" name="">
+                                <input type="text" class="form-control input-sm" id="reason">
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@
 
 
                 <div class="ibox-footer text-right">
-                    <button type="button" class="btn btn-primary">Simpan Data</button>
+                    <button type="button" id="input_alasan" class="btn btn-primary">Simpan Data</button>
                     <a href="{{route('alasan')}}" class="btn btn-default">Kembali</a>
                 </div>
             </div>
@@ -71,6 +71,49 @@
 @endsection
 @section('extra_script')
 <script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#input_alasan').on('click',function(){
+            if ($('#reason').val() != '') {
+                adddata();
+            }else{
+                iziToast.show({
+                    color: '#DC143C',
+                    titleColor: '#ffffff',
+                    messageColor: '#ffffff',
+                    title: 'Gagal!',
+                    message: 'Ada Yang Kosong',
+                });
+            }
+        })
+
+        function adddata(){
+            var alasan = $('#reason').val();
+            $.ajax({
+                url : '{{route("alasan.input")}}',
+                method : 'POST',
+                data : { '_token' : '{{csrf_token()}}','alasan' : alasan },
+                success: function(get){
+                    iziToast.show({
+                        color: '#228B22',
+                        titleColor: '#ffffff',
+                        messageColor: '#ffffff',
+                        title: 'Berhasil!',
+                        message: 'Menginput Alasan ',
+                    });
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.show({
+                                color: '#DC143C',
+                                titleColor: '#ffffff',
+                                messageColor: '#ffffff',
+                                title: 'Gagal!',
+                                message: 'Menginput Alasan',
+                    });
+                },
+            })
+        }
+    })
 
 </script>
 @endsection

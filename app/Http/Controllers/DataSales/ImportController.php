@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\d_customer;
 use DataTables;
 use Carbon\Carbon;
+use Excel;
 
 class ImportController extends Controller
 {
@@ -20,24 +21,28 @@ class ImportController extends Controller
    	}
 
    	public function storedata(Request $request){
-   		$count = $request->data;
-   		$alldata = [];
+   		 $count = $request->data;
+   		 $alldata = [];
+            for ($i=0; $i < $request->datacount ; $i++) { 
+               $i += 1;
+      		$arr = array(
+      			'c_serial' => $request->result['Sheet1'][$i][0],  
+      			'c_plate' => $request->result['Sheet1'][$i][1],
+      			'c_typecar' => $request->result['Sheet1'][$i][2],
+      			'c_jobdesc' => $request->result['Sheet1'][$i][3],
+      			'c_dateservice' => $request->result['Sheet1'][$i][4],
+      			'c_serviceadvisor' => $request->result['Sheet1'][$i][5],
+      			'c_code' => $request->result['Sheet1'][$i][0],
+      			'status_data' => 'true',
 
-   		$arr = array(
-   			'c_serial' => $request->serial,  
-   			'c_plate' => $request->plate,
-   			'c_typecar' => $request->typecar,
-   			'c_jobdesc' => $request->jobdesc,
-   			'c_dateservice' => $request->dateservice,
-   			'c_serviceadvisor' => $request->serviceadvisor,
-   			'c_code' => $request->code,
-   			'status_data' => 'true',
+      		    );
 
-   		);
-
-   		array_push($alldata, $arr);
+   		 array_push($alldata, $arr);
+            }
 
    		d_customer::insert($alldata);
+
+     //     DB::table('')
 
    	}
 }

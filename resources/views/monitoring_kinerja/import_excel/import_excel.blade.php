@@ -96,35 +96,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-        $('#excelstore').on('click',function(){
-            var form = $('#formexcel');
-            $.ajax({
-                url : '{{route("store.excel")}}',
-                type : 'POST',
-                data : form.serialize(),
-                success:function(){
-                    iziToast.show({
-                        color: '#228B22',
-                        titleColor: '#ffffff',
-                        messageColor: '#ffffff',
-                        title: 'Berhasil!',
-                        message: 'Input '+ nama,
-                    });
-                },
-                error:function(xhr,textStatus,errorThrowl){
-                            iziToast.show({
-                                color: '#DC143C',
-                                titleColor: '#ffffff',
-                                messageColor: '#ffffff',
-                                title: 'Gagal!',
-                                message: 'Menginput Customer',
-                    });
-                }
-            })
-        });
-
-
-        $('#table_db').DataTable();
+        var table2 = $('#table_db').DataTable();
         var table = $('#table_upload').DataTable({
             "language": {
                 "emptyTable": "Menunggu data dari import excel"
@@ -133,13 +105,12 @@
 
         $('#table_rekap').DataTable();
 
-        $('.input-daterange').datepicker({
-            format:'dd-mm-yyyy'
-        });
-
 var counter = 0;
 
 function fileReader(oEvent) {
+    setInterval(function(){
+        table2.ajax.reload();
+    },1000)
         var oFile = oEvent.target.files[0];
         var sFilename = oFile.name;
 
@@ -160,23 +131,58 @@ function fileReader(oEvent) {
                 Global_sheetname.push(sheetName);
             });
             // see the result, caution: it works after reader event is done.
-            console.log(result);
-            console.log(Global_sheetname[0]);
             var single_sheetname = Global_sheetname[0].toString();
 
             var data = result;
-            console.log(data.length);
+
+            
+            
+            $('#excelstore').on('click',function(){
+            var form = $('#formexcel');
+            var alldata = data[single_sheetname].length;
+            console.log(alldata);
+            
+            
+            $.ajax({
+                url : '{{route("store.excel")}}',
+                type : 'POST',
+                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : alldata},
+                success:function(){
+                    console.log(result);
+                    iziToast.show({
+                        color: '#228B22',
+                        titleColor: '#ffffff',
+                        messageColor: '#ffffff',
+                        title: 'Berhasil!',
+                        message: 'Input ',
+                    });
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.show({
+                                color: '#DC143C',
+                                titleColor: '#ffffff',
+                                messageColor: '#ffffff',
+                                title: 'Gagal!',
+                                message: 'Menginput Customer',
+                    });
+                }
+            });
+        });
 
             for(var i = 1; i <= data[single_sheetname].length;i++){
                 data[single_sheetname][i].push('<button class="btn btn-danger btn-sm" type="button"><i class="fa fa-trash"></i></button>');
                 table.row.add(data[single_sheetname][i]).draw(false);
                 counter++;
             }
+
+            
         };
         reader.readAsArrayBuffer(oFile);
-}
 
-$('#data').val(counter);
+        
+            
+        
+}
 
 // Add your id of "File Input" 
 $('[name="excel"]').change(function(ev) {

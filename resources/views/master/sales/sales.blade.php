@@ -52,34 +52,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Alpha</td>
-                                    <td>alpha@alpha.com</td>
-                                    <td>alpha</td>
-                                    <td>+6285331219757</td>
-                                    <td align="center"><label class="label label-success">AKTIF</label></td>
-                                    <td align="center">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                                            <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Bravo</td>
-                                    <td>bravo@bravo.com</td>
-                                    <td>bravo</td>
-                                    <td>+6285331219757</td>
-                                    <td align="center"><label class="label label-danger">TIDAK AKTIF</label></td>
-                                    <td align="center">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                                            <button class="btn btn-primary" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fa fa-check"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -94,8 +66,31 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#table_sales').DataTable();
+        var table = $('#table_sales').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('sales.table') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 's_name' , name : 's_name'},
+            {data : 's_email' , name : 's_name'},
+            {data : 's_username' , name : 's_name'},
+            {data : 's_nphone' , name : 's_name'},
+            {data : 'status' , name : 'status'},
+            {data : 'action' , name : 'action'},
 
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+
+        });
     });
 </script>
 @endsection

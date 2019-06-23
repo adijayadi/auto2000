@@ -14,14 +14,15 @@ class DCustomer extends Migration
     public function up()
     {
         Schema::create('d_customer', function (Blueprint $table) {
+            $table->bigIncrements('c_id');
             $table->string('c_serial',100)->index();
-            $table->string('c_plate');
-            $table->string('c_typecar');
-            $table->string('c_jobdesc');
-            $table->string('c_dateservice');
-            $table->string('c_serviceadvisor');
-            $table->string('c_code');
-            $table->timestamp('created_at')->nullable();
+            $table->string('c_plate',20);
+            $table->string('c_typecar',50);
+            $table->string('c_jobdesc',100);
+            $table->date('c_dateservice')->nullable();
+            $table->string('c_serviceadvisor',30);
+            $table->string('c_code',20);
+            $table->string('status_data',5);
         });
     }
 

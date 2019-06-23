@@ -19,10 +19,10 @@
             </div>
             <h3>Auto 2000</h3>
            
-            <form class="m-t" method="POST" action="{{ url('login') }}">
+            <form class="m-t" method="POST" action="{{ route('login.sign') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="text" id="email" name="email" class="form-control" placeholder="Username" required="">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="">
@@ -36,7 +36,19 @@
     </div>
 
     @include('layouts._script')
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            @if(Session::get('gagal') != '')
+                    iziToast.show({
+                                color: '#DC143C',
+                                titleColor: '#ffffff',
+                                messageColor: '#ffffff',
+                                title: 'Gagal!',
+                                message: 'Anda Tidak Terdaftar',
+                            });
+            @endif
+        })
+    </script>
 </body>
 
 </html>
