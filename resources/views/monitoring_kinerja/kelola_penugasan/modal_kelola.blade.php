@@ -6,20 +6,20 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     
-                    <h4 class="modal-title text-center">Ganti Service Advisor Lama ke Baru</h4>
+                    <h4 class="modal-title text-center">Pilih Service Advisor</h4>
                     
                 </div>
                 <div class="modal-body" >
                     <div class="row">
 
                         <div class="col-sm-2 col-xs-12">
-                            <label>Ganti Service Advisor?</label>
+                            <label>Ganti Service Advisor</label>
                         </div>
 
                         <div class="col-sm-10 col-xs-12">
                             <div class="form-group">
                                 <select class=" form-control input-sm select2" name="advisor_baru">
-                                    <option value="">~ Pilih Service Advisor Baru ~</option>
+                                    <option value="">~ Pilih Service Advisor ~</option>
                                 </select>
                             </div>
                         </div>
