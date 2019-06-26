@@ -21,7 +21,7 @@ class DCustomer extends Migration
             $table->string('c_jobdesc',100);
             $table->date('c_dateservice')->nullable();
             $table->string('c_serviceadvisor',30);
-            $table->string('c_code',20);
+            $table->string('c_code',100);
             $table->string('status_data',5);
         });
     }

@@ -39,101 +39,52 @@
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane animated fadeIn active">
-        
-                        <div class="ibox">
+                            <div class="ibox">
 
-                            <div class="ibox-title">
-                                <div class="ibox-tools">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-kelola">
-                                        <i class="fa fa-user-edit"></i>
-                                        Buat Rencana
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="ibox-content">
-
-                                <div class="text-right mb-3">
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-primary" type="button" id="btn-checkall-1">Check All</button>
-                                        <button class="btn btn-default" type="button" id="btn-uncheckall-1">Uncheck All</button>
-                                        <button class="btn btn-info" type="button" id="btn-interval-1">Check Interval</button>
+                                <div class="ibox-title">
+                                    <div class="ibox-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-kelola">
+                                            <i class="fa fa-user-edit"></i>
+                                            Buat Rencana
+                                        </button>
                                     </div>
                                 </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_kelola">
-                                        <thead>
-                                            <tr>
-                                                <th width="1%"></th>
-                                                <th width="10%">Tanggal Service</th>
-                                                <th>No. Rangka</th>
-                                                <th>No. Polisi</th>
-                                                <th>Type Kendaraan</th>
-                                                <th>Type Pekerjaan</th>
-                                                <th>Service Advisor</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @for($i=0;$i<20;$i++)
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup[]" value="">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 10.000 Kilometer</td>
-                                                <td>Achmad Nur Taufik</td>
-                                                
-                                            </tr>
+                            <form id="addservice">
+                                @csrf
+                                <input type="hidden" id="addcountservice" name="pcount">
+                                <div class="ibox-content">
 
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup" value="1">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 20.000 Kilometer</td>
-                                                <td>Achmad Nur Taufik</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup" value="2">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MR053AK50E4506151</td>
-                                                <td>L3PY</td>
-                                                <td>CAMRY</td>
-                                                <td> Service 50.000 Kilometer </td>
-                                                <td>Made Agung Adhi Gunawan</td>
-                                                
-                                            </tr>
+                                    <div class="text-right mb-3">
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-primary" type="button" id="btn-checkall-1">Check All</button>
+                                            <button class="btn btn-default" type="button" id="btn-uncheckall-1">Uncheck All</button>
+                                            <button class="btn btn-info" type="button" id="btn-interval-1">Check Interval</button>
+                                        </div>
+                                    </div>
 
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup" value="3">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MHKM1BA2JDK041994</td>
-                                                <td>B1182BYK</td>
-                                                <td>AVANZA</td>
-                                                <td> Service 90.000 kilometer </td>
-                                                <td>Zainul Arifin</td>
-                                                
-                                            </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="table_kelola">
+                                            <thead>
+                                                <tr>
+                                                    <th width="1%"></th>
+                                                    <th width="10%">Tanggal Service</th>
+                                                    <th>No. Rangka</th>
+                                                    <th>No. Polisi</th>
+                                                    <th>Type Kendaraan</th>
+                                                    <th>Type Pekerjaan</th>
+                                                    <th>Service Advisor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
                                 </div>
+                            </form>
                                 
                             </div>
-                            
-                        </div>
 
                     </div>
 
@@ -149,109 +100,64 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="ibox-content">
-                                <fieldset>
-                                    <div class="row">
-                                        
-                                        <div class="col-sm-4 col-xs-12">
-                                            <label>Service Advisor</label>
-                                        </div>
+                            <form id="gantiservice">
+                                @csrf
+                                <input type="hidden" id="gantiservicelength" name="scount">
+                                <div class="ibox-content">
+                                    <fieldset>
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-4 col-xs-12">
+                                                <label>Service Advisor</label>
+                                            </div>
 
-                                        <div class="col-sm-8 col-xs-12">
-                                            <div class="form-group">
-                                                <div class="input-group input-group-sm">
-                                                    <select class="form-control input-sm select2" name="">
-                                                        <option value="">~ Pilih Service Advisor ~</option>
-                                                    </select>
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary" type="button" id="btn-cari"><i class="fa fa-search"></i></button>
+                                            <div class="col-sm-8 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-sm">
+                                                        <select class="form-control input-sm select2" id="selectservice" name="">
+                                                            <option value="" hidden>~ Pilih Service Advisor ~</option>
+                                                            @foreach($advisor as $row)
+                                                            <option value="{{$row->u_name}}">{{$row->u_name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-primary" id="seachservice" type="button" id="btn-cari"><i class="fa fa-search"></i></button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
+                                    </fieldset>
 
+                                    <div class="text-right mb-3">
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-primary" type="button" id="btn-checkall-2">Check All</button>
+                                            <button class="btn btn-default" type="button" id="btn-uncheckall-2">Uncheck All</button>
+                                            <button class="btn btn-info" type="button" id="btn-interval-2">Check Interval</button>
+                                        </div>
                                     </div>
-                                </fieldset>
 
-                                <div class="text-right mb-3">
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-primary" type="button" id="btn-checkall-2">Check All</button>
-                                        <button class="btn btn-default" type="button" id="btn-uncheckall-2">Uncheck All</button>
-                                        <button class="btn btn-info" type="button" id="btn-interval-2">Check Interval</button>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="table_kendaraan">
+                                            <thead>
+                                                <tr>
+                                                    <th width="1%"></th>
+                                                    <th width="10%">Tanggal Service</th>
+                                                    <th>No. Rangka</th>
+                                                    <th>No. Polisi</th>
+                                                    <th>Type Kendaraan</th>
+                                                    <th>Type Pekerjaan</th>
+                                                    <th>Service Advisor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                     </div>
+
                                 </div>
-
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan">
-                                        <thead>
-                                            <tr>
-                                                <th width="1%"></th>
-                                                <th width="10%">Tanggal Service</th>
-                                                <th>No. Rangka</th>
-                                                <th>No. Polisi</th>
-                                                <th>Type Kendaraan</th>
-                                                <th>Type Pekerjaan</th>
-                                                <th>Service Advisor</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @for($i=0;$i<20;$i++)
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup[]" value="">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 10.000 Kilometer</td>
-                                                <td>Achmad Nur Taufik</td>
-                                                
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup" value="1">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 10.000 Kilometer</td>
-                                                <td>Achmad Nur Taufik</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup" value="2">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MR053AK50E4506151</td>
-                                                <td>L3PY</td>
-                                                <td>CAMRY</td>
-                                                <td> Service 50.000 Kilometer </td>
-                                                <td>Made Agung Adhi Gunawan</td>
-                                                
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" name="centang-followup" value="3">
-                                                </td>
-                                                <td>2018-10-01</td>
-                                                <td>MHKM1BA2JDK041994</td>
-                                                <td>B1182BYK</td>
-                                                <td>AVANZA</td>
-                                                <td> Service 90.000 kilometer </td>
-                                                <td>Zainul Arifin</td>
-                                                
-                                            </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
+                            </form>
                         </div>  
 
                     </div>
@@ -268,13 +174,161 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#table_kendaraan').DataTable();
-        $('#table_kelola').DataTable();
+        $('#saveplan').on('click',function(){
+            var form = $('#addservice').serialize();
+            var form2 =  $('#kelola_form').serialize();
+            $.ajax({
+                url : '{{route("addplan.penugasan")}}',
+                type : 'POST',
+                data : form +'&'+form2,
+                success:function(get){
+                    if (get['error'] == 'Mohon Import Data') {
+                        iziToast.error({
+                                    title: 'Gagal!',
+                                    message: 'Mohon Import Data',
+                        });
+                    }else{
+                        iziToast.success({
+                            title: 'Berhasil!',
+                            message: 'Menyimpan Data',
+                        });
+                        table2.ajax.reload();
+                    } 
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.show({
+                                color: '#DC143C',
+                                titleColor: '#ffffff',
+                                messageColor: '#ffffff',
+                                title: 'Gagal!',
+                                message: 'Menyimpan Data',
+                    });
+                }
+            })
+        })
+
+        $('#seachservice').on('click',function(){
+            var search = $('#selectservice').val();
+            var table22 = $('#table_kendaraan').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('filtertablec.penugasan') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'serviceadv' : search,
+                }
+            },
+            columns : [
+            {data : 'check' , name : 'check'},
+            {data : 'c_dateservice' , name : 'c_dateservice'},
+            {data : 'serial' , name : 'serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+            {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        })
+
+        $('#gantib').on('click',function(){
+            var form3 = $('#gantiservice').serialize();
+            var form4 =  $('#modaladv').serialize();
+            var up = $('.table-checked').length;
+
+            $.ajax({
+                url : '{{route("updateadv.penugasan")}}',
+                type : 'POST',
+                data : form3 +'&'+form4,
+                success:function(get){
+                    console.log(up);
+                    table2.ajax.reload();
+                    if (get['error'] == 'Mohon Import Data') {
+                        iziToast.error({
+                                    title: 'Gagal!',
+                                    message: 'Mohon Import Data',
+                        });
+                    }else{
+                        iziToast.success({
+                            title: 'Berhasil!',
+                            message: 'Menyimpan Data',
+                        });
+                        table2.ajax.reload();
+                    } 
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.show({
+                                color: '#DC143C',
+                                titleColor: '#ffffff',
+                                messageColor: '#ffffff',
+                                title: 'Gagal!',
+                                message: 'Menyimpan Data',
+                    });
+                }
+            })
+
+        })
+
+        var table = $('#table_kendaraan').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('tablec.penugasan') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'check' , name : 'check'},
+            {data : 'c_dateservice' , name : 'c_dateservice'},
+            {data : 'serial' , name : 'serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+            {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+
+        var table2 = $('#table_kelola').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('tablec.penugasan') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'check' , name : 'check'},
+            {data : 'c_dateservice' , name : 'c_dateservice'},
+            {data : 'serial' , name : 'serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+            {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
 
 
         $('#btn-checkall-2').click(function(){
             $('#table_kendaraan tbody [type="checkbox"]').prop('checked', true).parents('tr').addClass('table-checked');
         });
+
         $('#btn-uncheckall-2').click(function(){
             $('#table_kendaraan tbody [type="checkbox"]').prop('checked', false).parents('tr').removeClass('table-checked');
         });
@@ -309,10 +363,13 @@
             if($(':checkbox', this).is(':checked')){
                 $(this).addClass('table-checked');
                 console.log('a');
+                var up = $('.table-checked').length;
+                $('#gantiservicelength').val(up);
             } else {
                 $(this).removeClass('table-checked');
                 console.log('b');
-
+                var up = $('.table-checked').length;
+                $('#gantiservicelength').val(up);
             }
 
         });
@@ -352,10 +409,13 @@
 
             if($(':checkbox', this).is(':checked')){
                 $(this).addClass('table-checked');
-                console.log('a');
+                var upp = $('.table-checked').length;
+                $('#addcountservice').val(upp);
+
             } else {
                 $(this).removeClass('table-checked');
-                console.log('b');
+                var upp = $('.table-checked').length;
+                $('#addcountservice').val(upp);
 
             }
 

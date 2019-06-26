@@ -40,101 +40,103 @@
                         </a>
                     </div>
                 </div>
-                <div class="ibox-content">
+                <form id="form_kendaraan">
+                    @csrf
+                    <div class="ibox-content">
 
-                    <div class="row">
-                        
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="row">
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-                            <div class="row">
+                                <div class="row">
 
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label>Nama Pemilik</label>
-                                </div>
-
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control input-sm" name="">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <label>Nama Pemilik</label>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label>No HP</label>
-                                </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm" name="name">
+                                        </div>
+                                    </div>
 
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">+62</span>
-                                            <input type="text" class="form-control input-sm" name="">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <label>No HP</label>
+                                    </div>
+
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">+62</span>
+                                                <input type="text" class="form-control input-sm" name="nphone">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <label>E-mail</label>
+                                    </div>
+
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm" name="email">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label>E-mail</label>
-                                </div>
-
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control input-sm" name="">
-                                    </div>
-                                </div>
                             </div>
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-                        </div>
-                        
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="row">
 
-                            <div class="row">
-
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label>No Kendaraan</label>
-                                </div>
-
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control input-sm" name="">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <label>No Kendaraan</label>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label>Nama Kendaraan</label>
-                                </div>
-
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control input-sm" name="">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm" name="nkendaraan">
+                                        </div>
                                     </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <label>Nama Kendaraan</label>
+                                    </div>
+
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm" name="namekendaraan">
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
 
+
                         </div>
 
-
-                    </div>
-
-                    <div class="row">
-                        
-                        
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                            <label>Alamat</label>
-                        </div>
-
-                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                            <div class="form-group">
-                                <textarea class="form-control" name=""></textarea>
+                        <div class="row">
+                            
+                            
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <label>Alamat</label>
                             </div>
+
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="address"></textarea>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
-
-                </div>
-
+                </form>
 
                 <div class="ibox-footer text-right">
-                    <button type="button" class="btn btn-primary">Simpan Data</button>
+                    <button type="button" id="save" class="btn btn-primary">Simpan Data</button>
                     <a href="{{route('kendaraan')}}" class="btn btn-default">Kembali</a>
                 </div>
             </div>
@@ -144,6 +146,33 @@
 @endsection
 @section('extra_script')
 <script type="text/javascript">
-
+    $(document).ready(function(){
+        $('#save').on('click',function(){
+            var form = $('#form_kendaraan');
+            $.ajax({
+                url : '{{route("input.kendaraan")}}',
+                method : 'POST',
+                data : form.serialize(),
+                success: function(get){
+                    iziToast.show({
+                        color: '#228B22',
+                        titleColor: '#ffffff',
+                        messageColor: '#ffffff',
+                        title: 'Berhasil!',
+                        message: 'Menginput Data Kendaraan ',
+                    });
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.show({
+                                color: '#DC143C',
+                                titleColor: '#ffffff',
+                                messageColor: '#ffffff',
+                                title: 'Gagal!',
+                                message: 'Menginput Data Kendaraan',
+                    });
+                },
+            })
+        })
+    })
 </script>
 @endsection

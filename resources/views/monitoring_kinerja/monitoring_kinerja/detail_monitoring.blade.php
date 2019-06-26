@@ -14,14 +14,14 @@
                     <div class="form-group">
                         <label>Nama</label>
                         <br>
-                        <span>Alpha</span>
+                        <span id="staff"></span>
                     </div>
 
                     <hr>
 
                     <div class="table-responsive">
                         
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered" id="list">
                             <thead>
                                 <tr>
                                     <th width="1%">No</th>
@@ -46,11 +46,6 @@
                                     <td align="center">0</td>
                                 </tr>
                                 <tr>
-                                    <td align="center">4</td>
-                                    <td>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service</td>
-                                    <td align="center">0</td>
-                                </tr>
-                                <tr>
                                     <td align="center">5</td>
                                     <td>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</td>
                                     <td align="center">0</td>
@@ -58,11 +53,6 @@
                                 <tr>
                                     <td align="center">6</td>
                                     <td>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</td>
-                                    <td align="center">0</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">7</td>
-                                    <td>Kendaraan Yang Belum Di Follow Up</td>
                                     <td align="center">0</td>
                                 </tr>
                             </tbody>

@@ -75,7 +75,7 @@
                                 </div>
 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_pengguna">
+                                    <table style="width: 100%;" class="table table-striped table-bordered table-hover" id="table_pengguna">
                                         <thead>
                                             <tr>
                                                 <th width="1%">No.</th>
@@ -84,15 +84,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Alpha</td>
-                                                <td align="center">
-                                                    <div class="btn-group btn-group-sm">
-                                                       <button class="btn btn-info" type="button" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -105,7 +96,7 @@
                             <div class="ibox-content">
 
                                 
-                                    <table class="table table-striped table-bordered table-hover" id="table_log">
+                                    <table style="width: 100%;" class="table table-striped table-bordered table-hover" id="table_log">
                                         <thead>
                                             <tr>
                                                 <th width="1%">No.</th>
@@ -114,15 +105,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Alpha</td>
-                                                <td align="center">
-                                                    <div class="btn-group btn-group-sm">
-                                                        <button class="btn btn-info" type="button" data-toggle="modal" data-target="#log-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 
@@ -142,8 +124,75 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#table_pengguna').DataTable();
-        $('#table_log').DataTable();
+
+        $(document).on('click','.list',function(){
+            var serviceadv = $(this).data('serviceadv');
+            console.log(serviceadv);
+            $('#staff').html(serviceadv);
+            $('#list').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('dataservice.monitoring') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'serviceadv' : serviceadv,
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'tindakan' , name : 'tindakan'},
+            {data : 'jumlah' , name : 'jumlah'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        })
+
+        $('#table_pengguna').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('table.monitoring') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'u_name' , name : 'u_name'},
+            {data : 'action' , name : 'action'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+
+        $('#table_log').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('tablelog.monitoring') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'u_name' , name : 'u_name'},
+            {data : 'action' , name : 'action'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
 
         $('.input-daterange').datepicker();
 

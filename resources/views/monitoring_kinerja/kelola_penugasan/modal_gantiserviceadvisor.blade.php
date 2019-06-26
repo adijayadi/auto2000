@@ -9,24 +9,30 @@
                     <h4 class="modal-title text-center">Ganti Service Advisor</h4>
                     
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        
-                        <div class="col-sm-4 col-xs-12">
-                            <label>Service Advisor Baru</label>
-                        </div>
+                <form id="modaladv">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            
+                            <div class="col-sm-4 col-xs-12">
+                                <label>Service Advisor Baru</label>
+                            </div>
 
-                        <div class="col-sm-8 col-xs-12">
-                            <div class="form-group">
-                                <select class=" form-control input-sm select2" name="advisor_lama_satu">
-                                    <option value="">~ Pilih Service Advisor Baru ~</option>
-                                </select>
+                            <div class="col-sm-8 col-xs-12">
+                                <div class="form-group">
+                                    <select class=" form-control input-sm select2" name="newadvisor">
+                                        <option value="" hidden>~ Pilih Service Advisor Baru ~</option>
+                                        @foreach($advisor as $row)
+                                            <option value="{{$row->u_name}}">{{$row->u_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="modal-footer text-right">
-                    <button class="btn btn-primary" type="button">Simpan</button>
+                    <button class="btn btn-primary" id="gantib" type="button">Simpan</button>
                      
                 </div>
             </div>

@@ -9,45 +9,50 @@
                     <h4 class="modal-title text-center">Ganti Service Advisor Lama ke Baru</h4>
                     
                 </div>
-                <div class="modal-body" >
-                    <div class="row">
+                <form id="kelola_form">
+                    <div class="modal-body" >
+                        <div class="row">
 
-                        <div class="col-sm-2 col-xs-12">
-                            <label>Ganti Service Advisor?</label>
-                        </div>
-
-                        <div class="col-sm-10 col-xs-12">
-                            <div class="form-group">
-                                <select class=" form-control input-sm select2" name="advisor_baru">
-                                    <option value="">~ Pilih Service Advisor Baru ~</option>
-                                </select>
+                            <div class="col-sm-2 col-xs-12">
+                                <label>Ganti Service Advisor?</label>
                             </div>
-                        </div>
 
-                        <div class="col-sm-2 col-xs-12">
-                            <label>Tanggal Follow Up</label>
-                        </div>
-
-                        <div class="col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control input-sm datepicker" name="">
+                            <div class="col-sm-10 col-xs-12">
+                                <div class="form-group">
+                                    <select class=" form-control input-sm select2" name="advisor_baru">
+                                        <option value="">~ Pilih Service Advisor Baru ~</option>
+                                        @foreach($advisor as $row)
+                                                <option value="{{$row->u_name}}">{{$row->u_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="col-sm-2 col-xs-12">
+                                <label>Tanggal Follow Up</label>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-sm datepicker" name="dateup">
+                                </div>
+                            </div>
 
 
-                        <div class="col-sm-2 col-xs-12">
-                            <label>Jam Follow Up</label>
-                        </div>
+                            <div class="col-sm-2 col-xs-12">
+                                <label>Jam Follow Up</label>
+                            </div>
 
-                        <div class="col-sm-4 col-xs-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control input-sm clockpicker" name="">
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-sm clockpicker" name="timeup">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="modal-footer text-right">
-                    <button class="btn btn-primary" type="button">Simpan</button>
+                    <button class="btn btn-primary" id="saveplan" type="button">Simpan</button>
                      
                 </div>
             </div>

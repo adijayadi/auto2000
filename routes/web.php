@@ -11,27 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-    // for enable login
-    // return redirect('home');
-});
-
-Auth::routes([ 'register' => false ]);
 
 
 
 
 // Group wib-cpanel
 Route::group(['middleware' => 'guest' ], function(){
+
 	Route::get('/login','Account\loginController@view')->name('login');	
+	Route::post('/login_process','Account\loginController@login')->name('login.sign');
 });//End Route::Group wib-cpanel
 
 //login
-Route::post('/login_process','Account\loginController@login')->name('login.sign');
 Route::post('/login_out','Account\loginController@logout')->name('logout');
 
 Route::group(['middleware' => 'auth' ], function(){
+	//register
+	Route::get('/daftar', 'Account\RegisterController@index')->name('daftar');
+	Route::post('/register', 'Account\RegisterController@register')->name('register');
+
+
+	Route::get('/', 'HomeController@index')->name('index');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -46,6 +46,10 @@ Route::group(['middleware' => 'auth' ], function(){
 
 	Route::get('/master/kendaraan/index', 'Master\KendaraanController@kendaraan')->name('kendaraan');
 	Route::get('/master/kendaraan/create', 'Master\KendaraanController@tambah_kendaraan')->name('tambah_kendaraan');
+	//system kendaraan 
+	Route::post('/master/kendaraan/table', 'Master\KendaraanController@table')->name('table.kendaraan');
+	Route::post('/master/kendaraan/input', 'Master\KendaraanController@add')->name('input.kendaraan');
+
  
 	Route::get('/master/alasan/index', 'Master\AlasanController@alasan')->name('alasan');
 	Route::get('/master/alasan/create', 'Master\AlasanController@tambah_alasan')->name('tambah_alasan');
@@ -73,8 +77,19 @@ Route::group(['middleware' => 'auth' ], function(){
 	//system excel
 
 	Route::post('/kinerja_sales/import_excel/input', 'DataSales\ImportController@storedata')->name('store.excel');
+	Route::post('/kinerja_sales/import_excel/hinput', 'DataSales\ImportController@hstoredata')->name('hstore.excel');
+	Route::post('/kinerja_sales/import_excel/delete', 'DataSales\ImportController@delete')->name('delete.excel');
+	Route::post('/kinerja_sales/import_excel/table', 'DataSales\ImportController@table')->name('table.excel');
+	Route::post('/kinerja_sales/import_excel/tablerekap', 'DataSales\ImportController@tablerekap')->name('table.rekap');
+	Route::post('/kinerja_sales/import_excel/reset', 'DataSales\ImportController@reset')->name('table.reset');
+	Route::post('/kinerja_sales/import_excel/rekap', 'DataSales\ImportController@rekap')->name('rekap.excel');
 
 	Route::get('/kinerja_sales/kelola_penugasan/index', 'KelolaPenugasanController@kelola_penugasan')->name('kelola_penugasan');
+	// system penugasan
+	Route::post('/kinerja_sales/kelola_penugasan/tablec', 'KelolaPenugasanController@tablecustomer')->name('tablec.penugasan');
+	Route::post('/kinerja_sales/kelola_penugasan/filtertablec', 'KelolaPenugasanController@filtertablecustomer')->name('filtertablec.penugasan');
+	Route::post('/kinerja_sales/kelola_penugasan/addplan', 'KelolaPenugasanController@addplan')->name('addplan.penugasan');
+	Route::post('/kinerja_sales/kelola_penugasan/updateservice', 'KelolaPenugasanController@updateserviceadv')->name('updateadv.penugasan');
 
 
 
@@ -82,6 +97,12 @@ Route::group(['middleware' => 'auth' ], function(){
 
 	// Monitoring Tindakan Service Advisor
 	Route::get('/monitoring_kinerja/index', 'Monitoring\MonitoringController@monitoring')->name('monitoring');
+	// table
+	Route::post('/monitoring_kinerja/table', 'Monitoring\MonitoringController@table')->name('table.monitoring');
+	Route::post('/monitoring_kinerja/tablelog', 'Monitoring\MonitoringController@tablelog')->name('tablelog.monitoring');
+	Route::post('/monitoring_kinerja/dataservice', 'Monitoring\MonitoringController@dataservice')->name('dataservice.monitoring');
+	Route::post('/monitoring_kinerja/datalog', 'Monitoring\MonitoringController@datalog')->name('datalog.monitoring');
+
 
 	// pengguna
 

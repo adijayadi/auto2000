@@ -21,7 +21,7 @@ class MVehicle extends Migration
             $table->string('v_address',100);
             $table->string('v_plate',20);
             $table->string('v_namecar',100);
-            $table->string('v_code',20);
+            $table->string('v_code',100);
             $table->string('status_data',5);
         });
 

@@ -62,10 +62,7 @@
                                     <td>alpha@alpha.com</td>
                                     <td>Jl. Alpha</td>
                                     <td align="center">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                                            <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
-                                        </div>
+                                        
                                     </td>
                                 </tr>
                             </tbody>
@@ -82,7 +79,31 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#table_kendaraan').DataTable();
+        var table = $('#table_kendaraan').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('table.kendaraan') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'v_plate' , name : 'v_plate'},
+            {data : 'v_namecar' , name : 'v_namecar'},
+            {data : 'v_owner' , name : 'v_owner'},
+            {data : 'v_nphone' , name : 'v_nphone'},
+            {data : 'v_email' , name : 'v_email'},
+            {data : 'v_address' , name : 'v_address'},
+            {data : 'action' , name : 'action'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
 
     });
 </script>

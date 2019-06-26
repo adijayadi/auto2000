@@ -17,9 +17,9 @@ class DRecap extends Migration
             $table->bigIncrements('re_id');
             $table->string('re_dataadded',100);
             $table->string('re_availabledata',100);
-            $table->string('re_totaldata',15);
+            $table->string('re_totaldata',100);
             $table->string('re_dateupload',100);
-            $table->string('re_ccustomer',100);
+            $table->string('re_ccustomer',100)->unique();
             $table->string('status_data',5);
         });
 
