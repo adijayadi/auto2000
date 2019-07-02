@@ -14,15 +14,15 @@
                         <div class="row">
 
                             <div class="col-sm-2 col-xs-12">
-                                <label>Ganti Service Advisor?</label>
+                                <label>Pilih Advisor yang diberi Tugas</label>
                             </div>
 
                             <div class="col-sm-10 col-xs-12">
                                 <div class="form-group">
                                     <select class=" form-control input-sm select2" name="advisor_baru">
-                                        <option value="">~ Pilih Service Advisor Baru ~</option>
+                                        <option value="">~ Pilih Service Advisor~</option>
                                         @foreach($advisor as $row)
-                                                <option value="{{$row->u_name}}">{{$row->u_name}}</option>
+                                                <option value="{{$row->u_code}}">{{$row->u_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

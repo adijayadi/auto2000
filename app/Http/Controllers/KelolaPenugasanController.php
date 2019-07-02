@@ -24,7 +24,14 @@ class KelolaPenugasanController extends Controller
     }
 
     public function tablecustomer(Request $request){
-    		$data = DB::table('d_customer')->where('status_data','true')->get();
+      $sekarang = Carbon::now('Asia/Jakarta');
+      $notservice = Carbon::now('Asia/Jakarta')->subMonth()->format('Y,m,d');
+      $notserviceto = Carbon::now('Asia/Jakarta')->subMonths(5)->format('Y,m,d');
+      $datain = Carbon::now('Asia/Jakarta')->subMonths(4)->format('Y,m,d');
+      $datainto = Carbon::now('Asia/Jakarta')->subMonths(8)->format('Y,d,m');
+    		$data = DB::table('d_customer')->where('status_data','true')
+        ->whereBetween('c_dateservice', [$datainto, $datain])
+        ->get();
     	return DataTables::of($data)
     	->addColumn('check',function($data){
     		return '<input type="checkbox" class="up" name="followup[]" value="'.$data->c_code.'"><input type="checkbox" hidden name="customer[]" value="'.$data->c_serviceadvisor.'"><input type="checkbox" hidden name="id[]" value="'.$data->c_id.'">';

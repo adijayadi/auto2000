@@ -65,6 +65,9 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::get('/data_sales/summary_tindakan/index', 'DataSales\SummaryTindakanController@summary_tindakan')->name('summary_tindakan');
 
 	Route::get('/data_sales/data_suspect/index', 'DataSales\SuspectController@data_suspect')->name('data_suspect');
+	//table suspect
+	Route::post('/data_sales/data_suspect/table', 'DataSales\SuspectController@table')->name('table.suspect');
+
 
 	Route::get('/data_sales/rencana_followup/index', 'DataSales\RencanaFollowUpController@rencana_followup')->name('rencana_followup');
 
@@ -102,6 +105,8 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::post('/monitoring_kinerja/tablelog', 'Monitoring\MonitoringController@tablelog')->name('tablelog.monitoring');
 	Route::post('/monitoring_kinerja/dataservice', 'Monitoring\MonitoringController@dataservice')->name('dataservice.monitoring');
 	Route::post('/monitoring_kinerja/datalog', 'Monitoring\MonitoringController@datalog')->name('datalog.monitoring');
+	//get data
+	Route::PUT('/monitoring_kinerja/get', 'Monitoring\MonitoringController@gdata')->name('gdata.monitoring');
 
 
 	// pengguna

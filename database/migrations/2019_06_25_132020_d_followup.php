@@ -19,6 +19,8 @@ class DFollowup extends Migration
             $table->string('fu_cstaff',100)->nullable();
             $table->date('fu_date');
             $table->time('fu_time');
+            $table->date('fu_plandate')->nullable();
+            $table->time('fu_plantime')->nullable();
             $table->date('fu_updatedate')->nullable();
             $table->time('fu_updatetime')->nullable();
             $table->string('fu_status',20);

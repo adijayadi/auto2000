@@ -127,29 +127,35 @@
 
         $(document).on('click','.list',function(){
             var serviceadv = $(this).data('serviceadv');
-            console.log(serviceadv);
-            $('#staff').html(serviceadv);
-            $('#list').DataTable({
-            responsive: true,
-            serverSide: true,
-            destroy: true,
-            ajax : {
-                url: "{{ route('dataservice.monitoring') }}",
-                type: "post",
+            var names = $(this).data('name');
+            $('#staff').html(names);
+            $('#list').DataTable();
+            $.ajax({
+                url : '{{route("gdata.monitoring")}}',
+                type : 'POST',
+                dataType:'json',
                 data: {
-                    "_token": "{{ csrf_token() }}",
-                    'serviceadv' : serviceadv,
+                    '_token' :'{{csrf_token()}}',
+                    '_method' :'PUT',
+                    'adv' : serviceadv,
+                },
+                success: function(get){
+                        console.log(get);
+                    $('#satu').html(' ');
+                    $('#dua').html(' ');
+                    $('#tiga').html(' ');
+                    $('#empat').html(' ');
+                    $('#lima').html(' ');
+                    
+                    setTimeout(function(){
+                        $('#satu').html(get['satu']);
+                        $('#dua').html(get['dua']);
+                        $('#tiga').html(get['tiga']);
+                        $('#empat').html(get['empat']);
+                        $('#lima').html(get['lima']);
+                    },300)
                 }
-            },
-            columns : [
-            {data: 'DT_RowIndex'},
-            {data : 'tindakan' , name : 'tindakan'},
-            {data : 'jumlah' , name : 'jumlah'},
-
-            ],
-            pageLength: 10,
-            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
-        });
+            })
         })
 
         $('#table_pengguna').DataTable({

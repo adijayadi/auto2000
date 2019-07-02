@@ -24,7 +24,7 @@ class MonitoringController extends Controller
     	return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function($data){
-    		return '<button class="btn btn-info list" type="button" data-serviceadv="'.$data->u_name.'" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
+    		return '<button class="btn btn-info list" type="button" data-nama="'.$data->u_name.'" data-serviceadv="'.$data->u_code.'" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
     	})
     	->rawColumns(['action'])
     	->make(true);
@@ -42,7 +42,7 @@ class MonitoringController extends Controller
     	return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function($data){
-    		return '<button class="btn btn-info listlog" type="button" data-serviceadv="'.$data->u_name.'" data-toggle="modal" data-target="#log-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
+    		return '<button class="btn btn-info listlog" type="button" data-nama="'.$data->u_name.'" data-serviceadv="'.$data->u_code.'" data-toggle="modal" data-target="#log-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
     	})
     	->rawColumns(['action'])
     	->make(true);
@@ -96,5 +96,41 @@ class MonitoringController extends Controller
     	})
     	->rawColumns(['action'])
     	->make(true);
+    }
+
+    public function gdata(Request $request){
+        $adv = $request->adv;
+        $satu = DB::table('d_followup')
+        ->join('d_resultfu','rf_cid','fu_cid')
+        ->where('fu_cstaff',$adv)
+        ->where('d_resultfu.status_data','true')
+        ->where('rf_csummary','1')->count();
+        $dua = DB::table('d_followup')
+        ->join('d_resultfu','rf_cid','fu_cid')
+        ->where('fu_cstaff',$adv)
+        ->where('d_resultfu.status_data','true')
+        ->where('rf_csummary','2')->count();
+        $tiga = DB::table('d_followup')
+        ->join('d_resultfu','rf_cid','fu_cid')
+        ->where('fu_cstaff',$adv)
+        ->where('d_resultfu.status_data','true')
+        ->where('rf_csummary','3')->count();
+        $empat = DB::table('d_followup')
+        ->join('d_resultfu','rf_cid','fu_cid')
+        ->where('fu_cstaff',$adv)
+        ->where('d_resultfu.status_data','true')
+        ->where('rf_csummary','4')->count();
+        $lima = DB::table('d_followup')
+        ->join('d_resultfu','rf_cid','fu_cid')
+        ->where('fu_cstaff',$adv)
+        ->where('d_resultfu.status_data','true')
+        ->where('rf_csummary','5')->count();
+        return response()->json(array(
+            'satu' => $satu,
+            'dua' => $dua,
+            'tiga' => $tiga,
+            'empat' => $empat,
+            'lima' => $lima,
+        ));
     }
 }

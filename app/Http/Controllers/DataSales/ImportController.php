@@ -16,6 +16,7 @@ class ImportController extends Controller
    	public function import_excel()
    	{
    		$urutan = d_customer::all()->count();
+      setlocale(LC_TIME, 'IND');
    		$code = 'S'.$urutan.Carbon::now()->format('ds');
    		return view('monitoring_kinerja.import_excel.import_excel',array(
    			'code' => $code,
@@ -24,6 +25,7 @@ class ImportController extends Controller
 
       public function tablerekap(){
          $data = DB::table('d_recap')->get();
+         setlocale(LC_TIME, 'IND');
          return DataTables::of($data)
          ->make(true);
       }
@@ -33,7 +35,7 @@ class ImportController extends Controller
          return DataTables::of($data)
          ->addIndexColumn()
          ->addcolumn('rangka',function($data){
-            return $data->cr_serial .'<input type="hidden" value="'.$data->cr_serial.'" class="serial" name="serial[]"><input type="hidden" value="'.$data->cr_id.'" class="serial" name="idd[]">';
+            return $data->cr_serial .'<input type="hidden" value="'.$data->cr_serial.'" class="serialc" name="serial[]"><input type="hidden" value="'.$data->cr_id.'" class="serial" name="idd[]">';
          })
          ->addcolumn('plate',function($data){
             return $data->cr_plate .'<input type="hidden" value="'.$data->cr_plate.'" class="plate" name="plate[]">';
@@ -45,7 +47,7 @@ class ImportController extends Controller
             return $data->cr_jobdesc .'<input type="hidden" value="'.$data->cr_jobdesc.'" class="job" name="job[]">';
          })
          ->addcolumn('date',function($data){
-            return $data->cr_dateservice .'<input type="hidden" value="'.$data->cr_dateservice.'" class="date" name="date[]">';
+            return Carbon::parse($data->cr_dateservice)->formatLocalized('%d %B %Y').'<input type="hidden" value="'.setlocale(LC_TIME, 'IND').'"><input type="hidden" value="'.$data->cr_dateservice.'" class="date" name="date[]">';
          })
          ->addcolumn('servicead',function($data){
             return $data->cr_serviceadvisor .'<input type="hidden" value="'.$data->cr_serviceadvisor.'" class="advisor" name="advisor[]">';
@@ -59,12 +61,12 @@ class ImportController extends Controller
 
    	public function hstoredata(Request $request){
           $code = $request->code;
-         $datetime = Carbon::parse($request->result['Sheet1'][10][4])->format('Y,m,d');
          $check = DB::table('d_customerremovable')->count();
          if ($check == 0) {
-      		 $alldata = [];
-               for ($i=0; $i < $request->datacount ; $i++) { 
-         		$arr = array(
+      		    $alldata = [];
+               for ($i=1; $i < $request->datacount ; $i++) { 
+              $datetime = Carbon::parse($request->result['Sheet1'][$i][4])->format('Y,m,d');
+              $arr = array(
          			'cr_serial' => $request->result['Sheet1'][$i][0],  
          			'cr_plate' => $request->result['Sheet1'][$i][1],
          			'cr_typecar' => $request->result['Sheet1'][$i][2],
@@ -82,7 +84,8 @@ class ImportController extends Controller
          }else{
             d_hcustommer::truncate();
 
-            for ($i=0; $i < $request->datacount ; $i++) { 
+            for ($i=1 ; $i < $request->datacount ; $i++) { 
+                $datetime = Carbon::parse($request->result['Sheet1'][$i][4])->format('Y,m,d');
                $arr = array(
                   'cr_serial' => $request->result['Sheet1'][$i][0],  
                   'cr_plate' => $request->result['Sheet1'][$i][1],
@@ -103,14 +106,11 @@ class ImportController extends Controller
    	}
 
       public function storedata(Request $request){
+        $rcount = $request->serialc;
         $code = $request->code;
           $id = $request->idd;
           $count = DB::table('d_customerremovable')->count();
-          if ($count > 10 ) {
-            $cout = 10;
-          }else{
-            $cout = $count;
-          }
+
           if ($count == 0) {
             return response()->json(array(
               'error' => 'Mohon Import Data',
@@ -118,7 +118,7 @@ class ImportController extends Controller
           }else{
 
           $alldata = [];
-            for ($i=0; $i < $cout ; $i++) { 
+            for ($i=0; $i < $rcount ; $i++) { 
             $arr = array(
                'c_serial' => $request->serial[$i],
                'c_plate' => $request->plate[$i],
@@ -142,13 +142,14 @@ class ImportController extends Controller
       }
 
       public function rekap(Request $request){
+        $rcount = $request->serial;
         $code = $request->code;
         $data = DB::table('d_customer')->where('c_code',$code)->count();
-        $avaible = $request->cout - $data;
+        $avaible = $request->cout - $data - 1;
           DB::table('d_recap')->insert([
             're_dataadded' => $data,
             're_availabledata' => $avaible,
-            're_totaldata' => $request->cout,
+            're_totaldata' => $request->cout - 1,
             're_dateupload' => Carbon::now(),
             're_ccustomer' => $code,
             'status_data' => 'true',
@@ -164,4 +165,6 @@ class ImportController extends Controller
       public function reset(Request $request){
           d_hcustommer::truncate();
       }
+
+
 }

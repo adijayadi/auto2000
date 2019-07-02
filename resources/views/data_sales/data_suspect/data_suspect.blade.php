@@ -48,52 +48,22 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="table_kendaraan">
-                            <thead>
-                                <tr>
-                                    <th width="1%"></th>
-                                    <th width="10%">Tanggal Service</th>
-                                    <th>No. Rangka</th>
-                                    <th>No. Polisi</th>
-                                    <th>Type Kendaraan</th>
-                                    <th>Type Pekerjaan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="centang-followup" value="1">
-                                    </td>
-                                    <td>2018-10-01</td>
-                                    <td>MHFM1BA2JBK035948</td>
-                                    <td>B1295PKO</td>
-                                    <td>AVANZA</td>
-                                    <td>Service 10.000 Kilometer</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="centang-followup" value="2">
-                                    </td>
-                                    <td>2018-10-01</td>
-                                    <td>MR053AK50E4506151</td>
-                                    <td>L3PY</td>
-                                    <td>CAMRY</td>
-                                    <td> Service 50.000 Kilometer </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="centang-followup" value="3">
-                                    </td>
-                                    <td>2018-10-01</td>
-                                    <td>MHKM1BA2JDK041994</td>
-                                    <td>B1182BYK</td>
-                                    <td>AVANZA</td>
-                                    <td> Service 90.000 kilometer </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <form id="form_table">
+                            <table class="table table-striped table-bordered table-hover" id="table_kendaraan">
+                                <thead>
+                                    <tr>
+                                        <th width="1%"></th>
+                                        <th width="10%">Tanggal Service</th>
+                                        <th>No. Rangka</th>
+                                        <th>No. Polisi</th>
+                                        <th>Type Kendaraan</th>
+                                        <th>Type Pekerjaan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
 
                 </div>
@@ -106,8 +76,39 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#table_kendaraan').DataTable();
+        $('#table_kendaraan').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('table.suspect') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'check' , name : 'check'},
+            {data : 'c_dateservice' , name : 'c_dateservice'},
+            {data : 'c_serial' , name : 'c_serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
 
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+
+        $('#simpan_rencana').on('click',function(){
+            $.ajax({
+                url : '{{route("delete.excel")}}',
+                type : 'POST',
+                data : {'_token' : '{{csrf_token()}}','id' : id },
+                success:function(){
+                }
+            });
+        })
 
     });
 
@@ -129,7 +130,7 @@
         $('#table_kendaraan tbody [type="checkbox"]').prop('checked', false).parents('tr').removeClass('table-checked');
     });
 
-    $('#table_kendaraan tbody > tr').click(function(e){
+    $('#table_kendaraan tbody').on('click','true',function(e){
         // console.log(e);
 
         $(this).find('[type="checkbox"]').prop('checked', function(index, prop){

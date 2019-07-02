@@ -24,8 +24,7 @@
 
 {{-- @include('monitoring_kinerja.import_excel.crosscheck') --}}
 @include('monitoring_kinerja.import_excel.modal_import')
-    
-    
+
     <input type="hidden" name="data" id="data">
 <form id="formexcel">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -44,6 +43,7 @@
                 <form id="import">
                     <input type="hidden" value="{{$code}}"  name="code" id="code">
                     <input type="hidden"  name="cout" id="cout">
+                    <input type="hidden" id="seriallenght" name="serialc">
                     @csrf
                         <div class="ibox-content">
                             <h2>Data dari Import Excel</h2>
@@ -101,6 +101,10 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+
+        setInterval(function(){
+            $('#seriallenght').val($('.serialc').length);
+        },500);
 var counter = 0;
 
 function fileReader(oEvent) {
@@ -121,7 +125,7 @@ function fileReader(oEvent) {
             var result = {};
             Global_sheetname = [];
             workbook.SheetNames.forEach(function (sheetName) {
-                var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header: 1});
+                var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header: 1, raw:false});
                 if (roa.length) result[sheetName] = roa;
                 Global_sheetname.push(sheetName);
             });
@@ -179,18 +183,12 @@ function fileReader(oEvent) {
                 success:function(get){
                     table.ajax.reload();
                     if (get['error'] == 'Mohon Import Data') {
-                        iziToast.show({
-                                    color: '#DC143C',
-                                    titleColor: '#ffffff',
-                                    messageColor: '#ffffff',
+                        iziToast.error({
                                     title: 'Gagal!',
                                     message: 'Mohon Import Data',
                         });
                     }else{
-                        iziToast.show({
-                            color: '#228B22',
-                            titleColor: '#ffffff',
-                            messageColor: '#ffffff',
+                        iziToast.success({
                             title: 'Berhasil!',
                             message: 'Menyimpan Data',
                         });

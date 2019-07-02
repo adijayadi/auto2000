@@ -136,7 +136,7 @@ return [
     */
 
     'providers' => [
-
+        'App\Providers\HelperServiceProvider',
         /*
          * Laravel Framework Service Providers...
          */
@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 

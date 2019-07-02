@@ -33,27 +33,27 @@
                                 <tr>
                                     <td align="center">1</td>
                                     <td>Kendaraan Telah Melakukan Service</td>
-                                    <td align="center">0</td>
+                                    <td align="center" id="satu"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">2</td>
                                     <td>Kendaraan Yang Harus Di Follow Up</td>
-                                    <td align="center">0</td>
+                                    <td align="center" id="dua"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">3</td>
                                     <td>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</td>
-                                    <td align="center">0</td>
+                                    <td align="center" id="tiga"></td>
+                                </tr>
+                                <tr>
+                                    <td align="center">4</td>
+                                    <td>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</td>
+                                    <td align="center" id="empat"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">5</td>
-                                    <td>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</td>
-                                    <td align="center">0</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">6</td>
                                     <td>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</td>
-                                    <td align="center">0</td>
+                                    <td align="center" id="lima"></td>
                                 </tr>
                             </tbody>
                         </table>

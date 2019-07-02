@@ -64,7 +64,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="table_kelola">
+                                        <table class="table table-striped table-bordered table-hover" id="table_kelola" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th width="1%"></th>
@@ -192,7 +192,7 @@
                             title: 'Berhasil!',
                             message: 'Menyimpan Data',
                         });
-                        table2.ajax.reload();
+                        window.location.reload();
                     } 
                 },
                 error:function(xhr,textStatus,errorThrowl){
@@ -247,19 +247,20 @@
                 data : form3 +'&'+form4,
                 success:function(get){
                     console.log(up);
-                    table2.ajax.reload();
                     if (get['error'] == 'Mohon Import Data') {
                         iziToast.error({
                                     title: 'Gagal!',
                                     message: 'Mohon Import Data',
                         });
+
                     }else{
                         iziToast.success({
                             title: 'Berhasil!',
                             message: 'Menyimpan Data',
                         });
-                        table2.ajax.reload();
+                        window.location.reload();
                     } 
+                    
                 },
                 error:function(xhr,textStatus,errorThrowl){
                             iziToast.show({
@@ -327,10 +328,14 @@
 
         $('#btn-checkall-2').click(function(){
             $('#table_kendaraan tbody [type="checkbox"]').prop('checked', true).parents('tr').addClass('table-checked');
+            var upp = $('.table-checked').length;
+             $('#gantiservicelength').val(upp);
         });
 
         $('#btn-uncheckall-2').click(function(){
             $('#table_kendaraan tbody [type="checkbox"]').prop('checked', false).parents('tr').removeClass('table-checked');
+            var upp = $('.table-checked').length;
+             $('#gantiservicelength').val(upp);
         });
 
         $('#btn-interval-2').click(function(){
@@ -350,6 +355,8 @@
             for(var j = start; j<end;  j++){
                 table.eq(j).prop('checked', true).parents('tr').addClass('table-checked');
             }
+            var upp = $('.table-checked').length;
+             $('#gantiservicelength').val(upp);
         })
 
         $('#table_kendaraan tbody').on('click', 'tr',function(e){
@@ -375,9 +382,13 @@
         });
         $('#btn-checkall-1').click(function(){
             $('#table_kelola tbody [type="checkbox"]').prop('checked', true).parents('tr').addClass('table-checked');
+             var upp = $('.table-checked').length;
+                $('#addcountservice').val(upp);
         });
         $('#btn-uncheckall-1').click(function(){
             $('#table_kelola tbody [type="checkbox"]').prop('checked', false).parents('tr').removeClass('table-checked');
+             var upp = $('.table-checked').length;
+                $('#addcountservice').val(upp);
         });
 
         $('#btn-interval-1').click(function(){
@@ -397,6 +408,8 @@
             for(var j = start; j<end;  j++){
                 table.eq(j).prop('checked', true).parents('tr').addClass('table-checked');
             }
+             var upp = $('.table-checked').length;
+                $('#addcountservice').val(upp);
         })
 
         $('#table_kelola tbody').on('click', 'tr',function(e){

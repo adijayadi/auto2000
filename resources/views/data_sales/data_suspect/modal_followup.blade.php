@@ -9,33 +9,35 @@
                     <h4 class="modal-title text-center">Follow Up</h4>
                     
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        
-                        <div class="col-sm-4 col-xs-12">
-                            <label>Tanggal Rencana Follow Up</label>
-                        </div>
+                    <form id="form_modal">
+                        <div class="modal-body">
+                            <div class="row">
+                                
+                                <div class="col-sm-4 col-xs-12">
+                                    <label>Tanggal Rencana Follow Up</label>
+                                </div>
 
-                        <div class="col-sm-8 col-xs-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control input-sm datepicker" name="">
+                                <div class="col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm datepicker" name="">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-xs-12">
+                                    <label>Jam Rencana Follow Up</label>
+                                </div>
+
+                                <div class="col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm clockpicker" name="">
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
-
-                        <div class="col-sm-4 col-xs-12">
-                            <label>Jam Rencana Follow Up</label>
-                        </div>
-
-                        <div class="col-sm-8 col-xs-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control input-sm clockpicker" name="">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
+                    </form>
                 <div class="modal-footer text-right">
-                    <button class="btn btn-primary" id="btn-simpan" type="button">Simpan</button>
+                    <button class="btn btn-primary" id="btn-simpan" id="simpan_rencana" type="button">Simpan</button>
                      
                 </div>
             </div>
