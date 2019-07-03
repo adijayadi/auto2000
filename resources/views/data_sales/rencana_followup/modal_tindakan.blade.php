@@ -12,13 +12,14 @@
                 <div class="modal-body">
                     <div class="tabs-container">
                         
+                        <form id="form_tindakan">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <label>Hasil Tindakan</label>
                             </div>
                             <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
                                 
-                                    <select class="form-control input-sm" name="tindakan-1" >
+                                    <select class="form-control input-sm" name="tindakan">
                                         <option {{-- data-toggle="tab" data-target="#tab-modal-1" --}} selected="" value="ya">Bersedia Service</option>
                                         <option {{-- data-toggle="tab" data-target="#tab-modal-2" --}} value="ntar">Minta Dihubungi Kembali</option>
                                         <option {{-- data-toggle="tab" data-target="#tab-modal-3" --}} value="tidak">Tidak Bersedia Service</option>
@@ -28,64 +29,69 @@
                         </div>
 
                         <hr>
-
-                        <div class="tab-content">
-                            <div id="tab-modal-1" class="tab-pane animated fadeIn active">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <label>Tanggal Melakukan Booking</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control input-sm datepicker" name="">
+                            @csrf
+                            <input type="hidden" id="id" name="id">
+                            <div class="tab-content">
+                                <div id="tab-modal-1" class="tab-pane animated fadeIn active">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <label>Tanggal Melakukan Booking</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control input-sm datepicker" name="tanggalbooking">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="tab-modal-2" class="tab-pane animated fadeIn">
-                                
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <label>Tanggal di Follow Up lagi</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control input-sm datepicker" name="">
+                                <div id="tab-modal-2" class="tab-pane animated fadeIn">
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <label>Tanggal di Follow Up lagi</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control input-sm datepicker" name="tanggalrefollowup">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <label>Jam di Follow Up lagi</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control input-sm clockpicker" name="timerefollowup">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <label>Jam di Follow Up lagi</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control input-sm clockpicker" name="">
+
+                                </div>
+                                <div id="tab-modal-3" class="tab-pane animated fadeIn">
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <label>Alasan</label>
+                                        </div>
+                                        <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
+                                            
+                                                <select class="form-control input-sm" name="alasan">
+                                                    <option value="" disabled="" selected="">~ Pilih Alasan ~</option>
+                                                    @foreach($alasan as $row)
+                                                        <option value="{{$row->r_code}}">{{$row->r_reason}}</option>
+                                                    @endforeach
+                                                </select>
+                                            
                                         </div>
                                     </div>
+
                                 </div>
 
                             </div>
-                            <div id="tab-modal-3" class="tab-pane animated fadeIn">
-                                
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <label>Alasan</label>
-                                    </div>
-                                    <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
-                                        
-                                            <select class="form-control input-sm" name="alasan">
-                                                <option value="" disabled="" selected="">~ Pilih Alasan ~</option>
-                                            </select>
-                                        
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer text-right">
-                    <button class="btn btn-primary" type="button">Simpan</button>
+                    <button class="btn btn-primary" id="fu1" type="button">Simpan</button>
                      
                 </div>
             </div>

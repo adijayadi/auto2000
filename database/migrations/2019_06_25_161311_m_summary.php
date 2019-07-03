@@ -17,7 +17,7 @@ class MSummary extends Migration
             $table->bigIncrements('s_id');
             $table->string('s_name',100)->index();
             $table->string('s_code',100)->nullable();
-            $table->string('status_data',5);
+            $table->string('status_data',20);
         });
 
     }

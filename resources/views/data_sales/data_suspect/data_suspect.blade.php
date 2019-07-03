@@ -49,6 +49,8 @@
 
                     <div class="table-responsive">
                         <form id="form_table">
+                            @csrf
+                            <input id="cout" type="hidden" name="cout">
                             <table class="table table-striped table-bordered table-hover" id="table_kendaraan">
                                 <thead>
                                     <tr>
@@ -76,6 +78,28 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('#btn-simpan').on('click',function(){
+            var cout = $('.table-checked').length;
+            $('#cout').val(cout);
+            var form = $('#form_table').serialize() + '&' + $('#form_modal').serialize();
+            $.ajax({
+                url : '{{route("rencana.suspect")}}',
+                type : 'POST',
+                data : form,
+                success:function(){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Rendana di Simpan!'
+                    });
+
+                    setTimeout(function(){
+                        window.location.reload();
+                    },500);
+                }
+            });
+        });
+
         $('#table_kendaraan').DataTable({
             responsive: true,
             serverSide: true,
@@ -100,15 +124,8 @@
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
 
-        $('#simpan_rencana').on('click',function(){
-            $.ajax({
-                url : '{{route("delete.excel")}}',
-                type : 'POST',
-                data : {'_token' : '{{csrf_token()}}','id' : id },
-                success:function(){
-                }
-            });
-        })
+
+            
 
     });
 
@@ -130,7 +147,7 @@
         $('#table_kendaraan tbody [type="checkbox"]').prop('checked', false).parents('tr').removeClass('table-checked');
     });
 
-    $('#table_kendaraan tbody').on('click','true',function(e){
+    $('#table_kendaraan tbody').on('click','tr',function(e){
         // console.log(e);
 
         $(this).find('[type="checkbox"]').prop('checked', function(index, prop){

@@ -19,7 +19,7 @@
 
                                 <div class="col-sm-8 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control input-sm datepicker" name="">
+                                        <input type="text" class="form-control input-sm datepicker" name="rencanadate">
                                     </div>
                                 </div>
 
@@ -29,7 +29,7 @@
 
                                 <div class="col-sm-8 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control input-sm clockpicker" name="">
+                                        <input type="text" class="form-control input-sm clockpicker" name="rencanatime">
                                     </div>
                                 </div>
                                 

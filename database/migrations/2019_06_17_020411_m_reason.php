@@ -18,7 +18,7 @@ class MReason extends Migration
             $table->string('r_reason',100);
             $table->string('r_group',100);
             $table->string('r_code',15);
-            $table->string('status_data',5);
+            $table->string('status_data',20);
         });
 
     }

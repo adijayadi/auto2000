@@ -17,8 +17,8 @@ class DResultfu extends Migration
             $table->bigIncrements('rf_id');
             $table->string('rf_csummary',100)->index();
             $table->string('rf_cid',100)->nullable();
-            $table->string('rf_count',30);
-            $table->string('status_data',5);
+            $table->string('rf_reason',100)->nullable();
+            $table->string('status_data',20);
         });
    
     }

@@ -65,18 +65,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>11 Mei 2019</td>
-                                                <td>08:00</td>
-                                                <td>W 1234 W</td>
-                                                <td>Alpha</td>
-                                                <td align="center">Pernah Service</td>
-                                                <td align="center">No. Kendaraan Yang Belum Di Follow Up</td>
-                                                <td align="center">
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail_tindakan" title="Tindakan"><i class="fa fa-cog"></i></button>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -136,13 +124,87 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#table_tindakan').DataTable();
+
+        $(document).on('click','.ubah',function(){
+            var id = $(this).data('id');
+            $('#id').val('');
+            $('#id2').val('');
+            $('#id').val(id);
+
+        })
+
+        $(document).on('click','.ubah2',function(){
+            var id = $(this).data('id');
+            $('#id').val('');
+            $('#id2').val('');
+            $('#id2').val(id2);
+
+        })
+
+        $('#fu1').on('click',function(){
+            var form = $('#form_tindakan').serialize();
+            $.ajax({
+                url : '{{route("update.follow")}}',
+                type : 'POST',
+                data : form,
+                success:function(){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Follow Up Selesai!'
+                    });
+
+                    setTimeout(function(){
+                        window.location.reload();
+                    },500);
+                }
+            })
+        })
+
+        $('#fu2').on('click',function(){
+            var form2 = $('#form_tindakan2').serialize();
+            $.ajax({
+                url : '{{route("rencana.suspect")}}',
+                type : 'POST',
+                data : form2,
+                success:function(){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Follow Up di Selesai!'
+                    });
+                }
+            })
+        })
+
         $('#table_tindakan_2').DataTable();
 
-        $('.input-daterange').datepicker();
+        $('#table_tindakan').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('table.follow') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'DT_RowIndex'},
+            {data : 'tanggal_rencana' , name : 'tanggal_rencana'},
+            {data : 'fu_plantime' , name : 'fu_plantime'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'v_owner' , name : 'v_owner'},
+            {data : 'status_service' , name : 'status_service'},
+            {data : 'status' , name : 'status'},
+            {data : 'action' , name : 'action'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
     });
 
-    $('select[name="tindakan-1"]').change(function(){
+    $('select[name="tindakan"]').change(function(){
         if ($(this).val() === 'ya') {
             $('#tab-modal-1').show();
             $('#tab-modal-2').hide();

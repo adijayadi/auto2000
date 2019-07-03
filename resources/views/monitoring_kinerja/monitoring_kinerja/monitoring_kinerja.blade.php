@@ -127,7 +127,8 @@
 
         $(document).on('click','.list',function(){
             var serviceadv = $(this).data('serviceadv');
-            var names = $(this).data('name');
+            var names = $(this).data('nama');
+            console.log(names);
             $('#staff').html(names);
             $('#list').DataTable();
             $.ajax({

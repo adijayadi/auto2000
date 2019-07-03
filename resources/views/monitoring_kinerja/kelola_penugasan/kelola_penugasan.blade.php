@@ -380,6 +380,7 @@
             }
 
         });
+
         $('#btn-checkall-1').click(function(){
             $('#table_kelola tbody [type="checkbox"]').prop('checked', true).parents('tr').addClass('table-checked');
              var upp = $('.table-checked').length;
@@ -412,27 +413,7 @@
                 $('#addcountservice').val(upp);
         })
 
-        $('#table_kelola tbody').on('click', 'tr',function(e){
-            // console.log(e);
-
-            $(':checkbox' ,this).prop('checked', function(index, prop){
-
-                return prop == true ? false : true;
-            });
-
-            if($(':checkbox', this).is(':checked')){
-                $(this).addClass('table-checked');
-                var upp = $('.table-checked').length;
-                $('#addcountservice').val(upp);
-
-            } else {
-                $(this).removeClass('table-checked');
-                var upp = $('.table-checked').length;
-                $('#addcountservice').val(upp);
-
-            }
-
-        });
+        
     });
 </script>
 @endsection

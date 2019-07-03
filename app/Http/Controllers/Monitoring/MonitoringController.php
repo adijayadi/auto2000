@@ -106,10 +106,9 @@ class MonitoringController extends Controller
         ->where('d_resultfu.status_data','true')
         ->where('rf_csummary','1')->count();
         $dua = DB::table('d_followup')
-        ->join('d_resultfu','rf_cid','fu_cid')
         ->where('fu_cstaff',$adv)
-        ->where('d_resultfu.status_data','true')
-        ->where('rf_csummary','2')->count();
+        ->where('status_data','true')
+        ->where('fu_status','Planning')->count();
         $tiga = DB::table('d_followup')
         ->join('d_resultfu','rf_cid','fu_cid')
         ->where('fu_cstaff',$adv)

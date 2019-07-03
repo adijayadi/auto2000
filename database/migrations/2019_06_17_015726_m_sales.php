@@ -22,7 +22,7 @@ class MSales extends Migration
             $table->string('s_username',100);
             $table->string('password',150);
             $table->string('s_code',20);
-            $table->string('status_data',5);
+            $table->string('status_data',20);
         });
 
     }

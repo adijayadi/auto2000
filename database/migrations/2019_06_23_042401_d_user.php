@@ -27,7 +27,7 @@ class DUser extends Migration
             $table->dateTime('u_lastlogout')->nullable();
             $table->dateTime('u_create_at');
             $table->dateTime('u_update_at');
-            $table->string('status_data',5)->nullable();
+            $table->string('status_data',20)->nullable();
 
         });
 

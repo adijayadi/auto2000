@@ -37,10 +37,10 @@ class KendaraanController extends Controller
     		'v_owner' => $request->name, 
     		'v_nphone' => $request->nphone,
     		'v_email' => $request->email,
-    		'v_address' => $request->nkendaraan,
-    		'v_plate' => $request->namekendaraan,
-    		'v_namecar' => $request->address,
-    		'v_code' => $code,
+    		'v_address' => $request->address,
+    		'v_plate' => $request->nkendaraan,
+    		'v_namecar' => $request->namekendaraan,
+    		'v_code' => $request->nkendaraan,
             'status_data' => 'true',
     	]);
     }

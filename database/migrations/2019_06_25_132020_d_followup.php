@@ -23,8 +23,9 @@ class DFollowup extends Migration
             $table->time('fu_plantime')->nullable();
             $table->date('fu_updatedate')->nullable();
             $table->time('fu_updatetime')->nullable();
+            $table->date('fu_bookingdate')->nullable();
             $table->string('fu_status',20);
-            $table->string('status_data',5);
+            $table->string('status_data',20);
         });
 
     }

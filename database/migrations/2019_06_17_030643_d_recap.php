@@ -20,7 +20,7 @@ class DRecap extends Migration
             $table->string('re_totaldata',100);
             $table->string('re_dateupload',100);
             $table->string('re_ccustomer',100)->unique();
-            $table->string('status_data',5);
+            $table->string('status_data',20);
         });
 
     }

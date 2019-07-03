@@ -67,9 +67,14 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::get('/data_sales/data_suspect/index', 'DataSales\SuspectController@data_suspect')->name('data_suspect');
 	//table suspect
 	Route::post('/data_sales/data_suspect/table', 'DataSales\SuspectController@table')->name('table.suspect');
+	Route::post('/data_sales/data_suspect/rencana', 'DataSales\SuspectController@simpan')->name('rencana.suspect');
 
 
 	Route::get('/data_sales/rencana_followup/index', 'DataSales\RencanaFollowUpController@rencana_followup')->name('rencana_followup');
+	// system rencana followup
+	Route::post('/data_sales/rencana_followup/table', 'DataSales\RencanaFollowUpController@table')->name('table.follow');
+	Route::post('/data_sales/rencana_followup/update', 'DataSales\RencanaFollowUpController@update')->name('update.follow');
+
 
 	// Manajemen Data & Penugasan
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Auth;
 use DataTables;
+use Carbon\Carbon;
 
 class SuspectController extends Controller
 {
@@ -21,12 +22,13 @@ class SuspectController extends Controller
     	$data = DB::table('d_followup')
     			->join('d_customer','c_id' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
+                ->where('fu_status','planning')
     			->get();
 
     	return DataTables::of($data)
     	->addColumn('check',function($data){
     		return '
-                        <input type="checkbox" name="centang-followup" value="'.$data->fu_cid.'">
+                        <input class="count" type="checkbox" name="id[]" value="'.$data->fu_cid.'">
                     ';
     	})
     	->rawColumns(['check'])
@@ -35,7 +37,23 @@ class SuspectController extends Controller
 
     public function simpan(Request $request)
     {
-    	$id = $erquest->id;
-    	DB::table('d_followup')->where('fu_cid',$id);
+    	$id = $request->id;
+        $count = $request->cout;
+        
+        for ($i=0; $i < $count ; $i++) {
+    	   DB::table('d_followup')
+                ->where('fu_cid',$request->id[$i])
+                ->update([
+                    'fu_status' => 'planned',
+                    'fu_plandate' => Carbon::parse($request->rencanadate)->format('Y-m-d'),
+                    'fu_plantime' => $request->rencanatime,
+                ]);
+
+            DB::table('d_customer')
+            ->where('c_id',$id[$i])
+            ->update([
+                'status_data' => 'wait',
+            ]);
+        }
     }
 }
