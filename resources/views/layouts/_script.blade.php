@@ -50,7 +50,7 @@
     <script src="{{asset('assets/summernote/dist/summernote.min.js')}}"></script>
 
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
-    
+
     <script src="{{asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
     <script src="{{asset('assets/clockpicker/bootstrap-clockpicker-custom.js')}}"></script>
@@ -63,6 +63,28 @@
 
     <script>
         $(document).ready(function() {
+
+            $('.div-loading').addClass('fadeOut');
+            setTimeout(function(){
+
+                $('body').removeClass('body-loading');
+            },1000);
+
+            $(document).ajaxStart(function(){
+                $('.div-loading').removeClass('fadeOut');
+                $('body').addClass('body-loading');
+
+                
+            });
+
+            $(document).ajaxComplete(function(){
+                $('.div-loading').addClass('fadeOut');
+                setTimeout(function(){
+
+                    $('body').removeClass('body-loading');
+                },1000);
+              
+            });
 
             $('.navbar-minimalize.minimalize-styl-2').click(function(){
                 ($('body').hasClass('mini-navbar')) ? localStorage.setItem('_minisidebar', 'mini-navbar') : localStorage.removeItem('_minisidebar');
