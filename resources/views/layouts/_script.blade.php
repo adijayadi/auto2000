@@ -50,6 +50,8 @@
     <script src="{{asset('assets/summernote/dist/summernote.min.js')}}"></script>
 
     <script src="{{asset('assets/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+    
+    <script src="{{asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
     <script src="{{asset('assets/clockpicker/bootstrap-clockpicker-custom.js')}}"></script>
     {{-- <script src="{{asset('assets/js/plugins/clockpicker/clockpicker.js')}}"></script> --}}
