@@ -22,7 +22,7 @@
                 <a href="{{route('alasan')}}">Master Alasan Tidak Lanjut</a>
             </li>
             <li class="active">
-                <strong>Tambah Alasan Tidak Lanjut</strong>
+                <strong>Edit Alasan Tidak Lanjut</strong>
             </li>
         </ol>
     </div>
@@ -54,7 +54,10 @@
 
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <div class="form-group">
-                                <input type="text" class="form-control input-sm" id="reason">
+                                @foreach($data as $row)
+                                <input type="hidden" id="id" value="{{$row->r_id}}">
+                                <input type="text" class="form-control input-sm" value="{{$row->r_reason}}" id="reason">
+                                @endforeach
                             </div>
                         </div>
 
@@ -81,9 +84,6 @@
                 adddata();
             }else{
                 iziToast.show({
-                    color: '#DC143C',
-                    titleColor: '#ffffff',
-                    messageColor: '#ffffff',
                     title: 'Gagal!',
                     message: 'Ada Yang Kosong',
                 });
@@ -92,15 +92,19 @@
 
         function adddata(){
             var alasan = $('#reason').val();
+            var id = $('#id').val();
             $.ajax({
-                url : '{{route("alasan.input")}}',
+                url : '{{route("edit.alasan")}}',
                 method : 'POST',
-                data : { '_token' : '{{csrf_token()}}','alasan' : alasan },
+                data : { 'id' : id,'_token' : '{{csrf_token()}}','alasan' : alasan },
                 success: function(get){
                     iziToast.success({
                         title: 'Berhasil!',
                         message: 'Menginput Alasan ',
                     });
+                    setTimeout(function(){
+                        window.location.href="{{route('alasan')}}";
+                    },500)
                 },
                 error:function(xhr,textStatus,errorThrowl){
                             iziToast.error({

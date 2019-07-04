@@ -1,3 +1,7 @@
+@if(Auth::user()->u_user != 'A')
+<script type="text/javascript">window.location.href="{{route('home')}}";</script>
+@endif
+
 @extends('main')
 @section('extra_style')
 <style type="text/css">
@@ -83,6 +87,48 @@
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
 
         });
+
+        $(document).on('click','.delete',function(){
+            swal({
+                title: "Apa anda yakin?",
+                text: "Data akan dihapus permanent!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak!",
+                closeOnConfirm: true,
+                closeOnCancel: true 
+            },
+            function (isConfirm) {
+                if(isConfirm){
+                deletee();
+                }
+            });
+
+            var id = $(this).data('id');
+             function deletee(){
+                $.ajax({
+                url : '{{route("delete.alasan")}}',
+                type : 'POST',
+                data : { '_token' : '{{csrf_token()}}' ,'id' : id},
+                success:function(){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Menghapus!'
+                    });
+
+                    table.ajax.reload();
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.error({
+                                title: 'Gagal!',
+                                message: 'Menghapus',
+                        });
+                    },
+                });
+            }
+        })
     });
 </script>
 @endsection

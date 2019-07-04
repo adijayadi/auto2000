@@ -17,14 +17,23 @@ class AlasanController extends Controller
 		return view('master.alasan.tambah_alasan');
 	}
 
+	public function editpage(Request $request){
+		$get_data = DB::table('m_reason')->where('r_id',$request->id)->get();
+		return view('master.alasan.edit_alasan',array(
+			'data' => $get_data,
+		));
+	}
+
 	public function table(Request $request){
-		$data = DB::table('m_reason')->get();
+		$data = DB::table('m_reason')->where('status_data','true')->get();
 		return DataTables::of($data)
 		->addIndexColumn()
 		->addcolumn('action',function($data){
-			return '<div class="btn-group btn-group-sm">
-                      <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                      <button class="btn btn-danger" data-id="'.$data->r_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
+			return '<form action="'.route("editpage.alasan").'" method="POST"><div class="btn-group btn-group-sm">
+						<input type="hidden" name="_token" value="'.csrf_token().'">
+						<input type="hidden" value="'.$data->r_id.'" name="id" >
+                      <button class="btn btn-warning" type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button></form>
+                      <button class="btn btn-danger delete" data-id="'.$data->r_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
                     </div>';
 		})
 		->rawColumns(['action'])

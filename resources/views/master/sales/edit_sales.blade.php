@@ -45,6 +45,8 @@
                         </div>
                     </div>
                     <form id="form_sales">
+                        @foreach($data as $row)
+                        <input type="hidden" value="{{$row->s_id}}" name="id">
                         <div class="ibox-content">
 
                             <div class="row">
@@ -59,7 +61,7 @@
 
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control input-sm" name="name">
+                                                <input type="text" class="form-control input-sm" value="{{$row->s_name}}" name="name">
                                             </div>
                                         </div>
 
@@ -69,7 +71,7 @@
 
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control input-sm" name="email">
+                                                <input type="text" class="form-control input-sm" value="{{$row->s_email}}" name="email">
                                             </div>
                                         </div>
 
@@ -81,7 +83,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">+62</span>
-                                                    <input type="text" class="form-control input-sm" name="phone">
+                                                    <input type="text" class="form-control input-sm" value="{{$row->s_nphone}}" name="phone">
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +101,7 @@
 
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control input-sm" name="username">
+                                                <input type="text" class="form-control input-sm" value="{{$row->s_username}}" name="username">
                                             </div>
                                         </div>
 
@@ -133,13 +135,14 @@
 
                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="address"></textarea>
+                                        <textarea class="form-control" name="address">{{$row->s_address}}</textarea>
                                     </div>
                                 </div>
 
                             </div>
 
                         </div>
+                        @endforeach
                     </form>
 
                     <div class="ibox-footer text-right">
@@ -159,7 +162,7 @@
         $('#storesales').on('click',function(){
             var form = $('#form_sales');
             $.ajax({
-                url : '{{route("sales.input")}}',
+                url : '{{route("sales.edit")}}',
                 type : 'POST',
                 data : form.serialize(),
                 success:function(){

@@ -21,7 +21,7 @@ class DUser extends Migration
             $table->string('password');
             $table->string('u_cmenu',50)->nullable();
             $table->string('u_group',50)->nullable();
-            $table->enum('u_user',['A','S','O'])->nullable()->comment('Admin','Staff','Owner');
+            $table->enum('u_user',['A','S','U'])->nullable()->comment('Admin','Staff','unknown');
             $table->string('u_code',20);
             $table->dateTime('u_lastlogin')->nullable();
             $table->dateTime('u_lastlogout')->nullable();

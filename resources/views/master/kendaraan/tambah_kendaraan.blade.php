@@ -1,3 +1,6 @@
+@if(Auth::user()->u_user != 'A')
+<script type="text/javascript">window.location.href="{{route('home')}}";</script>
+@endif
 @extends('main')
 @section('extra_style')
 <style type="text/css">
@@ -154,19 +157,17 @@
                 method : 'POST',
                 data : form.serialize(),
                 success: function(get){
-                    iziToast.show({
-                        color: '#228B22',
-                        titleColor: '#ffffff',
-                        messageColor: '#ffffff',
+                    iziToast.success({
                         title: 'Berhasil!',
                         message: 'Menginput Data Kendaraan ',
                     });
+
+                    setTimeout(function(){
+                        window.location.href="{{route('kendaraan')}}";
+                    },500)
                 },
                 error:function(xhr,textStatus,errorThrowl){
-                            iziToast.show({
-                                color: '#DC143C',
-                                titleColor: '#ffffff',
-                                messageColor: '#ffffff',
+                            iziToast.error({   
                                 title: 'Gagal!',
                                 message: 'Menginput Data Kendaraan',
                     });

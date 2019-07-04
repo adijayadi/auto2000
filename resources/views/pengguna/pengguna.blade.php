@@ -1,3 +1,6 @@
+@if(Auth::user()->u_user != 'A')
+<script type="text/javascript">window.location.href="{{route('home')}}";</script>
+@endif
 @extends('main')
 @section('extra_style')
 <style type="text/css">
@@ -47,18 +50,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Administrator</td>
-                                    <td>admin</td>
-                                    <td>Manajer</td>
-                                    <td align="center">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                                            <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -73,8 +64,72 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-    $('#table_pengguna').DataTable();
 
+        $(document).on('click','.delete',function(){
+            swal({
+                title: "Apa anda yakin?",
+                text: "Data akan dihapus permanent!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak!",
+                closeOnConfirm: true,
+                closeOnCancel: true 
+            },
+            function (isConfirm) {
+                if(isConfirm){
+                deletee();
+                }
+            });
+
+            var id = $(this).data('id');
+             function deletee(){
+                $.ajax({
+                url : '{{route("delete.pengguna")}}',
+                type : 'POST',
+                data : { '_token' : '{{csrf_token()}}' ,'id' : id},
+                success:function(){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Menghapus!'
+                    });
+
+                    table.ajax.reload();
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.error({
+                                title: 'Gagal!',
+                                message: 'Menghapus',
+                        });
+                    },
+                });
+            }
+        })
+
+
+    var table = $('#table_pengguna').DataTable({
+                responsive: true,
+                serverSide: true,
+                destroy: true,
+                ajax : {
+                    url: "{{ route('table.pengguna') }}",
+                    type: "post",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    }
+                },
+                columns : [
+                {data: 'DT_RowIndex'},
+                {data : 'u_name' , name : 'u_name'},
+                {data : 'u_username' , name : 'u_username'},
+                {data : 'hak' , name : 'hak'},
+                {data : 'action' , name : 'action'},
+
+                ],
+                pageLength: 10,
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+            });
     });
 </script>
 @endsection

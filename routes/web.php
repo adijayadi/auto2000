@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth' ], function(){
 	// master
 	Route::get('/master/sales/index', 'Master\SalesController@sales')->name('sales');
 	Route::get('/master/sales/create', 'Master\SalesController@tambah_sales')->name('tambah_sales');
+	Route::post('/master/sales/editpage', 'Master\SalesController@editpage')->name('editpage.sales');
 	//system sales
 	Route::post('/master/sales/input', 'Master\SalesController@addsales')->name('sales.input');
 	Route::post('/master/sales/table', 'Master\SalesController@tablesales')->name('sales.table');
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'auth' ], function(){
 
 	Route::get('/master/kendaraan/index', 'Master\KendaraanController@kendaraan')->name('kendaraan');
 	Route::get('/master/kendaraan/create', 'Master\KendaraanController@tambah_kendaraan')->name('tambah_kendaraan');
+	Route::post('/master/kendaraan/editpage', 'Master\KendaraanController@editpage')->name('editpage.kendaraan');
 	//system kendaraan 
 	Route::post('/master/kendaraan/table', 'Master\KendaraanController@table')->name('table.kendaraan');
 	Route::post('/master/kendaraan/input', 'Master\KendaraanController@add')->name('input.kendaraan');
@@ -56,12 +58,13 @@ Route::group(['middleware' => 'auth' ], function(){
 
  
 	Route::get('/master/alasan/index', 'Master\AlasanController@alasan')->name('alasan');
+	Route::post('/master/alasan/editpage', 'Master\AlasanController@editpage')->name('editpage.alasan');
 	Route::get('/master/alasan/create', 'Master\AlasanController@tambah_alasan')->name('tambah_alasan');
 	//system alasan
 	Route::post('/master/alasan/insert', 'Master\AlasanController@add')->name('alasan.input');
 	Route::post('/master/alasan/table', 'Master\AlasanController@table')->name('alasan.table');
-	Route::post('/master/alasan/edit', 'Master\AlasanController@edit')->name('edit.table');
-	Route::post('/master/alasan/delete', 'Master\AlasanController@delete')->name('delete.table');
+	Route::post('/master/alasan/edit', 'Master\AlasanController@edit')->name('edit.alasan');
+	Route::post('/master/alasan/delete', 'Master\AlasanController@delete')->name('delete.alasan');
 
 
 	// Manajemen Service Advisor
@@ -134,4 +137,10 @@ Route::group(['middleware' => 'auth' ], function(){
 
 	Route::get('/pengguna/index', 'Pengguna\PenggunaController@pengguna')->name('pengguna');
 	Route::get('/pengguna/create', 'Pengguna\PenggunaController@tambah_pengguna')->name('tambah_pengguna');
+	Route::post('/pengguna/editpage', 'Pengguna\PenggunaController@editpage')->name('editpage.pengguna');
+	//table
+	Route::post('/pengguna/table', 'Pengguna\PenggunaController@table')->name('table.pengguna');
+	Route::post('/pengguna/delete', 'Pengguna\PenggunaController@delete')->name('delete.pengguna');
+	Route::post('/pengguna/edit', 'Pengguna\PenggunaController@edit')->name('edit.pengguna');
+
 });

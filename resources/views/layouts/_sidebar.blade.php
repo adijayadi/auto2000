@@ -28,10 +28,11 @@
                     A2000
                 </div>
             </li>
-
+        
             <li class="{{Request::is('/') ? 'active nav-active' : '' || Request::is('home') ? 'active nav-active' : ''}}">
                 <a href="{{route('home')}}"><i class="fa fa-home"></i> <span class="nav-label">Dashboard</span></a>
             </li>
+            @if(Auth::user()->u_user == 'A')
             <li class="{{Request::is('master/*') ? 'active nav-active' : ''}}">
                 <a href="javascript:void(0);"><i class="fa fa-crown"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -60,6 +61,9 @@
             <li class="{{Request::is('monitoring_kinerja/*') ? 'active nav-active' : ''}}">
                 <a href="{{route('monitoring')}}"><i class="fa fa-desktop"></i> <span class="nav-label">Monitoring Tindakan Service Advisor</span></a>
             </li>
+            @endif
+
+            @if(Auth::user()->u_user== 'S')
             <li class="{{Request::is('data_sales/*') ? 'active nav-active' : ''}}">
                 <a href="javascript:void(0);"><i class="fa fa-user"></i> <span class="nav-label">Manajemen Service Advisor</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -77,9 +81,12 @@
                     </li>
                 </ul>
             </li>
+            @endif
+            @if(Auth::user()->u_user == 'A')
             <li class="{{Request::is('pengguna/*') ? 'active nav-active' : ''}}">
                 <a href="{{route('pengguna')}}"><i class="fa fa-users"></i> <span class="nav-label">Manajemen Pengguna</span></a>
             </li>
+            @endif
         </ul>
 
     </div>

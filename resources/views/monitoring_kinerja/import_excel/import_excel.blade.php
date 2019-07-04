@@ -1,3 +1,6 @@
+@if(Auth::user()->u_user != 'A')
+<script type="text/javascript">window.location.href="{{route('home')}}";</script>
+@endif
 @extends('main')
 @section('extra_style')
 <style type="text/css">
