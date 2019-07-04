@@ -38,6 +38,7 @@
     <link href="{{asset('assets/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
     <link href="{{asset('assets/clockpicker/bootstrap-clockpicker.css')}}" rel="stylesheet">
     {{-- <link href="{{asset('assets/css/plugins/clockpicker/clockpicker.css')}}" rel="stylesheet"> --}}
+    <link href="{{asset('assets/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
 
