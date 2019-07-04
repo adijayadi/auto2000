@@ -79,7 +79,7 @@
 
                                 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_tindakan_2">
+                                    <table class="table table-striped table-bordered table-hover" id="table_tindakan_2" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th width="1%">No.</th>
@@ -137,7 +137,7 @@
             var id = $(this).data('id');
             $('#id').val('');
             $('#id2').val('');
-            $('#id2').val(id2);
+            $('#id2').val(id);
 
         })
 
@@ -156,14 +156,20 @@
                     setTimeout(function(){
                         window.location.reload();
                     },500);
-                }
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.error({
+                                title: 'Gagal!',
+                                message: 'Ada yang Kosong',
+                    });
+                },
             })
         })
 
         $('#fu2').on('click',function(){
             var form2 = $('#form_tindakan2').serialize();
             $.ajax({
-                url : '{{route("rencana.suspect")}}',
+                url : '{{route("update.follow")}}',
                 type : 'POST',
                 data : form2,
                 success:function(){
@@ -171,11 +177,44 @@
                         title:'Berhasil!',
                         message:'Follow Up di Selesai!'
                     });
-                }
+
+                    setTimeout(function(){
+                        window.location.reload();
+                    },500);
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.error({
+                                title: 'Gagal!',
+                                message: 'Ada yang Kosong',
+                    });
+                },
             })
         })
 
-        $('#table_tindakan_2').DataTable();
+        $('#table_tindakan_2').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('tablere.follow') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'DT_RowIndex'},
+            {data : 'tanggal_rencana' , name : 'tanggal_rencana'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'v_owner' , name : 'v_owner'},
+            {data : 'status_service' , name : 'status_service'},
+            {data : 'status' , name : 'status'},
+            {data : 'action' , name : 'action'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
 
         $('#table_tindakan').DataTable({
             responsive: true,

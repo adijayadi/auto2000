@@ -159,6 +159,32 @@
             })
         })
 
+        $(document).on('click','.listlog',function(){
+            var code = $(this).data('serviceadv');
+                $('#log').DataTable({
+                responsive: true,
+                serverSide: true,
+                destroy: true,
+                ajax : {
+                    url: "{{ route('log.monitoring') }}",
+                    type: "post",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        'code' : code,
+                    }
+                },
+                columns : [
+                {data: 'DT_RowIndex'},
+                {data : 'tanggal' , name : 'tanggal'},
+                {data : 'kendaraan' , name : 'kendaraan'},
+                {data : 'rf_reason' , name : 'rf_reason'},
+
+                ],
+                pageLength: 10,
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+            });
+        })
+
         $('#table_pengguna').DataTable({
             responsive: true,
             serverSide: true,
@@ -179,6 +205,7 @@
             pageLength: 10,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
+
 
         $('#table_log').DataTable({
             responsive: true,

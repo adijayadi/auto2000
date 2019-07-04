@@ -57,7 +57,7 @@
                             </div> --}}
                             <div class="ibox-content">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_summary">
+                                    <table class="table table-striped table-bordered table-hover" id="table_summary" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th width="1%">No.</th>
@@ -69,32 +69,32 @@
                                             <tr>
                                                 <td align="center">1</td>
                                                 <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Suspect</a></td>
-                                                <td align="center">1.000</td>
+                                                <td align="center" id="all"></td>
                                             </tr>
                                             <tr>
                                                 <td align="center">2</td>
                                                 <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Difollow Up</a></td>
-                                                <td align="center">500</td>
+                                                <td align="center" id="done"></td>
                                             </tr>
                                             <tr>
                                                 <td align="center">3</td>
                                                 <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Booking</a></td>
-                                                <td align="center">200</td>
+                                                <td align="center" id="booking"></td>
                                             </tr>
                                             <tr>
                                                 <td align="center">4</td>
                                                 <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Belum Booking</a></td>
-                                                <td align="center">100</td>
+                                                <td align="center" id="nbooking"></td>
                                             </tr>
                                             <tr>
                                                 <td align="center">5</td>
                                                 <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Dihubungi Lagi</a></td>
-                                                <td align="center">100</td>
+                                                <td align="center" id="refu"></td>
                                             </tr>
                                             <tr>
                                                 <td align="center">6</td>
                                                 <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Tidak Bersedia</a></td>
-                                                <td align="center">100</td>
+                                                <td align="center" id="not"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -109,7 +109,7 @@
                             <div class="ibox-content">
                                 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_1">
+                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_1" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 
@@ -158,7 +158,7 @@
                             <div class="ibox-content">
                                 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_2">
+                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_2" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 
@@ -207,7 +207,7 @@
                             <div class="ibox-content">
                                 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_3">
+                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_3" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 
@@ -256,7 +256,7 @@
                             <div class="ibox-content">
                                 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_4">
+                                    <table class="table table-striped table-bordered table-hover" id="table_kendaraan_4" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 
@@ -317,11 +317,127 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $.ajax({
+                url : '{{route("getcount.summary")}}',
+                type : 'POST',
+                dataType:'json',
+                data: {
+                    '_token' :'{{csrf_token()}}',
+                    '_method' :'PUT',
+                },
+                success: function(get){
+                        console.log(get);
+                    $('#all').html(' ');
+                    $('#done').html(' ');
+                    $('#booking').html(' ');
+                    $('#nbooking').html(' ');
+                    $('#refu').html(' ');
+                    $('#not').html(' ');
+                    
+                    setTimeout(function(){
+                        $('#all').html(get['all']);
+                        $('#done').html(get['done']);
+                        $('#booking').html(get['booking']);
+                        $('#nbooking').html(get['notbooking']);
+                        $('#refu').html(get['refu']);
+                        $('#not').html(get['denied']);
+                    },300)
+                }
+            })
+
         $('#table_summary').DataTable();
-        $('#table_kendaraan_1').DataTable();
-        $('#table_kendaraan_2').DataTable();
-        $('#table_kendaraan_3').DataTable();
-        $('#table_kendaraan_4').DataTable();
+        $('#table_kendaraan_1').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('booking.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'tanggal' , name : 'tanggal'},
+            {data : 'c_serial' , name : 'c_serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        $('#table_kendaraan_2').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('notbooking.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'tanggal' , name : 'tanggal'},
+            {data : 'c_serial' , name : 'c_serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        $('#table_kendaraan_3').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('refu.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'tanggal' , name : 'tanggal'},
+            {data : 'c_serial' , name : 'c_serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        $('#table_kendaraan_4').DataTable(
+        {
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('denied.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data : 'tanggal' , name : 'tanggal'},
+            {data : 'c_serial' , name : 'c_serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+            {data : 'rf_reason' , name : 'rf_reason'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        }
+        );
 
 
         $('.input-daterange').datepicker();

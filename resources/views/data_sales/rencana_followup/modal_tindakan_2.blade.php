@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control input-sm datepicker" name="tanggalbooking">
+                                                <input type="text" class="form-control input-sm datepicker" name="tanggalbooking2">
                                             </div>
                                         </div>
                                     </div>
@@ -52,10 +52,10 @@
                                         </div>
                                         <div class="col-lg-8 col-lg-8 col-sm-8 col-xs-12">
                                             
-                                                <select class="form-control input-sm" name="alasan">
+                                                <select class="form-control input-sm" name="alasan2">
                                                     <option value="" disabled="" selected="">~ Pilih Alasan ~</option>
                                                     @foreach($alasan as $row)
-                                                        <option value="{{$row->r_code}}">{{$row->r_reason}}</option>
+                                                        <option value="{{$row->r_reason}}">{{$row->r_reason}}</option>
                                                     @endforeach
                                                 </select>
                                             

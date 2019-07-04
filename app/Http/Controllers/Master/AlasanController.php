@@ -24,7 +24,7 @@ class AlasanController extends Controller
 		->addcolumn('action',function($data){
 			return '<div class="btn-group btn-group-sm">
                       <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                      <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-danger" data-id="'.$data->r_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
                     </div>';
 		})
 		->rawColumns(['action'])
@@ -42,7 +42,21 @@ class AlasanController extends Controller
 			'r_group' => $group,
 			'status_data' => 'true',
 		]);
+	}
 
+	public function delete(Request $request){
+		$id = $request->id;
+		DB::table('m_reason')->where('r_id',$id)
+		->update([
+			'status_data' => 'false',
+		]);
+	}
 
+	public function edit(Request $request){
+		$id = $request->id;
+		DB::table('m_reason')->where('r_id',$id)
+		->update([
+			'r_reason' => $request->alasan,
+		]);
 	}
 }

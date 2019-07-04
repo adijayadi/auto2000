@@ -77,7 +77,7 @@
                                                 <select class="form-control input-sm" name="alasan">
                                                     <option value="" disabled="" selected="">~ Pilih Alasan ~</option>
                                                     @foreach($alasan as $row)
-                                                        <option value="{{$row->r_code}}">{{$row->r_reason}}</option>
+                                                        <option value="{{$row->r_reason}}">{{$row->r_reason}}</option>
                                                     @endforeach
                                                 </select>
                                             

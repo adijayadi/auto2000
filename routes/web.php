@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth' ], function(){
 	//system sales
 	Route::post('/master/sales/input', 'Master\SalesController@addsales')->name('sales.input');
 	Route::post('/master/sales/table', 'Master\SalesController@tablesales')->name('sales.table');
+	Route::post('/master/sales/edit', 'Master\SalesController@edit')->name('sales.edit');
+	Route::post('/master/sales/delete', 'Master\SalesController@delete')->name('sales.delete');
 
 
 
@@ -49,6 +51,8 @@ Route::group(['middleware' => 'auth' ], function(){
 	//system kendaraan 
 	Route::post('/master/kendaraan/table', 'Master\KendaraanController@table')->name('table.kendaraan');
 	Route::post('/master/kendaraan/input', 'Master\KendaraanController@add')->name('input.kendaraan');
+	Route::post('/master/kendaraan/edit', 'Master\KendaraanController@edit')->name('edit.kendaraan');
+	Route::post('/master/kendaraan/delete', 'Master\KendaraanController@delete')->name('delete.kendaraan');
 
  
 	Route::get('/master/alasan/index', 'Master\AlasanController@alasan')->name('alasan');
@@ -56,6 +60,8 @@ Route::group(['middleware' => 'auth' ], function(){
 	//system alasan
 	Route::post('/master/alasan/insert', 'Master\AlasanController@add')->name('alasan.input');
 	Route::post('/master/alasan/table', 'Master\AlasanController@table')->name('alasan.table');
+	Route::post('/master/alasan/edit', 'Master\AlasanController@edit')->name('edit.table');
+	Route::post('/master/alasan/delete', 'Master\AlasanController@delete')->name('delete.table');
 
 
 	// Manajemen Service Advisor
@@ -63,6 +69,14 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::get('/data_sales/tindakan_sales/index', 'DataSales\TindakanSalesController@tindakan_sales')->name('tindakan_sales');
 
 	Route::get('/data_sales/summary_tindakan/index', 'DataSales\SummaryTindakanController@summary_tindakan')->name('summary_tindakan');
+	//get data
+	Route::PUT('/data_sales/summary_tindakan/getcount', 'DataSales\SummaryTindakanController@getcount')->name('getcount.summary');
+	//table
+	Route::post('/data_sales/summary_tindakan/booking', 'DataSales\SummaryTindakanController@booking')->name('booking.summary');
+	Route::post('/data_sales/summary_tindakan/notbooking', 'DataSales\SummaryTindakanController@notbooking')->name('notbooking.summary');
+	Route::post('/data_sales/summary_tindakan/refu', 'DataSales\SummaryTindakanController@refu')->name('refu.summary');
+	Route::post('/data_sales/summary_tindakan/denied', 'DataSales\SummaryTindakanController@denied')->name('denied.summary');
+
 
 	Route::get('/data_sales/data_suspect/index', 'DataSales\SuspectController@data_suspect')->name('data_suspect');
 	//table suspect
@@ -74,6 +88,7 @@ Route::group(['middleware' => 'auth' ], function(){
 	// system rencana followup
 	Route::post('/data_sales/rencana_followup/table', 'DataSales\RencanaFollowUpController@table')->name('table.follow');
 	Route::post('/data_sales/rencana_followup/update', 'DataSales\RencanaFollowUpController@update')->name('update.follow');
+	Route::post('/data_sales/rencana_followup/tablere', 'DataSales\RencanaFollowUpController@tablere')->name('tablere.follow');
 
 
 	// Manajemen Data & Penugasan
@@ -110,6 +125,7 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::post('/monitoring_kinerja/tablelog', 'Monitoring\MonitoringController@tablelog')->name('tablelog.monitoring');
 	Route::post('/monitoring_kinerja/dataservice', 'Monitoring\MonitoringController@dataservice')->name('dataservice.monitoring');
 	Route::post('/monitoring_kinerja/datalog', 'Monitoring\MonitoringController@datalog')->name('datalog.monitoring');
+	Route::post('/monitoring_kinerja/log', 'Monitoring\MonitoringController@log')->name('log.monitoring');
 	//get data
 	Route::PUT('/monitoring_kinerja/get', 'Monitoring\MonitoringController@gdata')->name('gdata.monitoring');
 

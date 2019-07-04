@@ -91,6 +91,31 @@
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
 
         });
+
+        $(document).on('click','.delete',function(){
+            var id = $(this).data('id');
+             $.ajax({
+                url : '{{route("update.follow")}}',
+                type : 'POST',
+                data : {'id' : id},
+                success:function(){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Menghapus!'
+                    });
+
+                    setTimeout(function(){
+                        window.location.reload();
+                    },500);
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.error({
+                                title: 'Gagal!',
+                                message: 'Menghapus',
+                    });
+                },
+            })
+        })
     });
 </script>
 @endsection

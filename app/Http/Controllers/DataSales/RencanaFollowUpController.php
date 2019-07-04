@@ -58,15 +58,16 @@ class RencanaFollowUpController extends Controller
         $data = DB::table('d_followup')
             ->join('d_customer','c_id','fu_cid')
             ->Join('m_vehicle','v_code','c_plate')
-            ->where('fu_status','planned')
+            ->where('fu_status','refollowup')
+            ->where('d_followup.status_data','re')
             ->where('fu_cstaff',Auth::user()->u_code)
-            ->groupBy('fu_cid')
+            ->groupBy('fu_id')
             ->get();
         setlocale(LC_TIME, 'IND');
         return DataTables::of($data)
         ->addIndexColumn()
         ->addColumn('tanggal_rencana',function($data){
-            return Carbon::parse($data->fu_plandate)->formatLocalized('%d %B %Y');
+            return Carbon::parse($data->fu_plandate)->formatLocalized('%d %B %Y') .' '. $data->fu_plantime;
         })
         ->addColumn('status_service',function($data){
             if ($data->c_jobdesc != '') {
@@ -77,10 +78,10 @@ class RencanaFollowUpController extends Controller
         })
         ->addColumn('status',function($data){
 
-            return 'Belum Di Follow up';
+            return 'Mengulang Follow up';
         })
         ->addColumn('action',function($data){
-            return '<button type="button" class="btn btn-info ubah" data-id="'.$data->c_id.'" data-plate="'.$data->c_plate.'" data-toggle="modal" data-target="#detail_tindakan" title="Tindakan"><i class="fa fa-cog"></i></button>';
+            return '<button type="button" class="btn btn-info ubah2" data-id="'.$data->c_id.'" data-plate="'.$data->c_plate.'" data-toggle="modal" data-target="#detail_tindakan_2" title="Tindakan"><i class="fa fa-cog"></i></button>';
         })
         ->rawColumns(['tanggal_rencana','status_service','status','action'])
         ->make(true);
@@ -99,7 +100,7 @@ class RencanaFollowUpController extends Controller
                 DB::table('d_followup')->where('fu_cid',$id)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),
-                    'fu_bookingdate' => Carbon::parse($request->tanggalbooking)->format('Y m h'),
+                    'fu_bookingdate' => Carbon::parse($request->tanggalbooking)->format('Y,m,d'),
                     'fu_status' => 'success',
                     'status_data' => 'false',
                 ]);
@@ -117,8 +118,8 @@ class RencanaFollowUpController extends Controller
 
             } else if($tindakan === 'ntar'){
                 DB::table('d_followup')->where('fu_cid',$id)->update([
-                    'fu_plandate' => Carbon::parse($request->tanggalrefollowup)->format('Y m h'),
-                    'fu_plantime' => Carbon::parse($request->timerefollowup)->format('Y m h'),
+                    'fu_plandate' => Carbon::parse($request->tanggalrefollowup)->format('Y,m,d'),
+                    'fu_plantime' =>    $request->timerefollowup,
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),
                     'fu_status' => 'refollowup',
@@ -126,7 +127,7 @@ class RencanaFollowUpController extends Controller
                 ]);
 
                 DB::table('d_customer')->where('c_id',$id)->update([
-                    'status_data' => 'done',
+                    'status_data' => 're',
                 ]);
 
             } else if($tindakan === 'tidak'){
@@ -160,7 +161,7 @@ class RencanaFollowUpController extends Controller
                 DB::table('d_resultfu')->insert([
                     'rf_csummary' => '4',
                     'rf_cid' => $id,
-                    'rf_reason' => 'Bersedia Melakukan Service',
+                    'rf_reason' => 'Bersedia Belum booking',
                     'status_data' => 'true',
                 ]);
 
@@ -171,29 +172,29 @@ class RencanaFollowUpController extends Controller
             }
 
         }else if($id2 != null){
-            if ($request->tanggalbooking != null) {
 
-                DB::table('d_followup')->where('fu_cid',$id)->update([
+            if ($request->tanggalbooking2 != null) {
+                DB::table('d_followup')->where('fu_cid',$id2)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),
-                    'fu_bookingdate' => Carbon::parse($request->tanggalbooking)->format('Y m h'),
+                    'fu_bookingdate' => Carbon::parse($request->tanggalbooking2)->format('Y,m,d'),
                     'fu_status' => 'success',
                     'status_data' => 'false',
                 ]);
 
                 DB::table('d_resultfu')->insert([
                     'rf_csummary' => '4',
-                    'rf_cid' => $id,
+                    'rf_cid' => $request->id2,
                     'rf_reason' => 'Bersedia Melakukan Service',
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id)->update([
+                DB::table('d_customer')->where('c_id',$id2)->update([
                     'status_data' => 'done',
                 ]);
 
-            }else if($tindakan === 'tidak'){
-                DB::table('d_followup')->where('fu_cid',$id)->update([
+            }else if($alasan != ''){
+                DB::table('d_followup')->where('fu_cid',$id2)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),
                     'fu_status' => 'denied',
@@ -202,14 +203,16 @@ class RencanaFollowUpController extends Controller
 
                 DB::table('d_resultfu')->insert([
                     'rf_csummary' => '3',
-                    'rf_cid' => $id,
-                    'rf_reason' => $alasan,
+                    'rf_cid' => $request->id2,
+                    'rf_reason' => $request->alasan2,
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id)->update([
+                DB::table('d_customer')->where('c_id',$id2)->update([
                     'status_data' => 'not',
                 ]);
+            }else{
+                return false;
             }
         }
     }

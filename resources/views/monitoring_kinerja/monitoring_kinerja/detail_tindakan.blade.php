@@ -21,7 +21,7 @@
 
                     <div class="table-responsive">
                         
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered" id="log">
                             <thead>
                                 <tr>
                                     <th width="1%">No</th>

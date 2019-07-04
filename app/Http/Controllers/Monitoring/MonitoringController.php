@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use DataTables;
+use Carbon\Carbon;
 
 class MonitoringController extends Controller
 {
@@ -48,42 +49,6 @@ class MonitoringController extends Controller
     	->make(true);
     }
 
-    public function dataservice(Request $request){
-    	$sales = $request->serviceadv;
-    	$data = DB::table('m_summary')
-    	->get();
-    	// ->join('d_resultfu','rf_csummary','s_code')
-    	// ->join('d_followup','fu_cid','rf_cid')
-    	// ->join('d_user','u_code','fu_cstaff');
-    	// ->where('fu_cstaff',$sales)
-    	// ->groupBy('s_name');
-    	
-
-    	return DataTables::of($data)
-    	->addIndexColumn()
-    	->addColumn('action',function($data){
-    		return '<button class="btn btn-info" type="button" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
-    	})
-    	->addColumn('tindakan',function($data){
-    		return '<span>'.$data->s_name.'</span>';
-    	})
-    	// ->addColumn('jumlah',function($data){
-    		// if ($data->where('rf_cid') == '1') {
-    		// 	return $data->where('rf_cid','1')->count();
-    		// }else if($data->where('rf_cid') == '2'){
-    		// 	return $data->where('rf_cid','2')->count();
-    		// }else if($data->where('rf_cid') == '3'){
-    		// 	return $data->where('rf_cid','3')->count();
-    		// }else if($data->where('rf_cid') == '4'){
-    		// 	return $data->where('rf_cid','4')->count();
-    		// }else if($data->where('rf_cid') == '5'){
-    		// 	return $data->where('rf_cid','5')->count();
-    		// }
-    	// })
-    	->rawColumns(['action','tindakan'])
-    	->make(true);
-    }
-
     public function datalog(){
     	$sales = $request->serviceadv;
     	$data = DB::table('d_followup')
@@ -92,7 +57,7 @@ class MonitoringController extends Controller
     	return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function(){
-    		return '<button class="btn btn-info" type="button" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
+    		return '<button class="btn btn-info log" type="button" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
     	})
     	->rawColumns(['action'])
     	->make(true);
@@ -131,5 +96,28 @@ class MonitoringController extends Controller
             'empat' => $empat,
             'lima' => $lima,
         ));
+    }
+
+    public function log(Request $request){
+        $code = $request->code;
+        $log = DB::table('d_resultfu')
+        ->join('d_followup','fu_cid','rf_cid')
+        ->join('d_customer','c_id','rf_cid')
+        ->join('m_vehicle','v_code','c_plate')
+        ->where('fu_cstaff',$code)
+        ->groupBy('rf_id')
+        ->get();
+        setlocale(LC_TIME, 'IND');
+        
+        return DataTables::of($log)
+        ->addIndexColumn()
+        ->addColumn('tanggal',function($log){
+            return Carbon::parse($log->fu_updatedate)->formatLocalized('%d %B %Y') . ' ' . $log->fu_updatetime;
+        })
+        ->addColumn('kendaraan',function($log){
+            return $log->v_plate . ' - ' . $log->v_owner; 
+        })
+        ->rawColumns(['tanggal','kendaraan'])
+        ->make(true);
     }
 }

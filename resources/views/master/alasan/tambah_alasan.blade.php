@@ -94,19 +94,13 @@
                 method : 'POST',
                 data : { '_token' : '{{csrf_token()}}','alasan' : alasan },
                 success: function(get){
-                    iziToast.show({
-                        color: '#228B22',
-                        titleColor: '#ffffff',
-                        messageColor: '#ffffff',
+                    iziToast.success({
                         title: 'Berhasil!',
                         message: 'Menginput Alasan ',
                     });
                 },
                 error:function(xhr,textStatus,errorThrowl){
-                            iziToast.show({
-                                color: '#DC143C',
-                                titleColor: '#ffffff',
-                                messageColor: '#ffffff',
+                            iziToast.error({
                                 title: 'Gagal!',
                                 message: 'Menginput Alasan',
                     });

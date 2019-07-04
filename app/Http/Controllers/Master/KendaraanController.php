@@ -18,14 +18,14 @@ class KendaraanController extends Controller
     }
 
     public function table(){
-        $data = DB::table('m_vehicle')->get();
+        $data = DB::table('m_vehicle')->where('status_data','true')->get();
 
         return DataTables::of($data)
         ->addIndexColumn()
         ->addColumn('action',function($data){
             return '<div class="btn-group btn-group-sm">
                         <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger" data-id="'.$data->v_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
                     </div>';
         })
         ->make(true);
@@ -43,5 +43,27 @@ class KendaraanController extends Controller
     		'v_code' => $request->nkendaraan,
             'status_data' => 'true',
     	]);
+    }
+
+    public function delete(Request $request){
+        $id = $request->id;
+        DB::table('m_vehicle')->where('s_id',$id)
+            ->update([
+                'status_data' => 'false',
+            ]);
+    }
+
+    public function edit(Request $request){
+        $id = $request->id;
+        DB::table('m_vehicle')->where('s_id',$id)
+        ->update([
+            'v_owner' => $request->name, 
+            'v_nphone' => $request->nphone,
+            'v_email' => $request->email,
+            'v_address' => $request->address,
+            'v_plate' => $request->nkendaraan,
+            'v_namecar' => $request->namekendaraan,
+            'v_code' => $request->nkendaraan,
+        ]);
     }
 }

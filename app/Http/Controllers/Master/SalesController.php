@@ -20,19 +20,19 @@ class SalesController extends Controller
     }
 
     public function tablesales(Request $request){
-    	$data = DB::table('m_sales')->get();
+    	$data = DB::table('m_sales')->where('status_data','true')->orWhere('status_data','no')->get();
     	return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function($data){
     		if ($data->status_data === 'true') {
 	    		return '<div class="btn-group btn-group-sm">
-	    		          <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-	    		          <button class="btn btn-danger" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan"><i class="fa fa-times"></i></button>
+	    		          <button class="btn btn-warning edit" data-id="'.$data->s_id.'" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
+	    		          <button class="btn btn-danger delete" type="button" data-id="'.$data->s_id.'" data-toggle="tooltip" data-placement="top" title="Non Aktifkan"><i class="fa fa-times"></i></button>
 	    		        </div>';	
     		}else{
     			return '<div class="btn-group btn-group-sm">
-    			            <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-    			            <button class="btn btn-primary" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fa fa-check"></i></button>
+    			            <button class="btn btn-warning edit" data-id="'.$data->s_id.'" type="button" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
+    			            <button class="btn btn-primary delete" data-id="'.$data->s_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fa fa-check"></i></button>
     			        </div>';
     		}
     	})
@@ -50,17 +50,43 @@ class SalesController extends Controller
     public function addsales(Request $request){
     	$urutan = DB::table('m_sales')->get()->count()+ 1;
     	$code = 'S'.$urutan.Carbon::now()->format('hs');
-    	DB::table('m_sales')
-    		->insert([
-    			's_name' => $request->name,
-    			's_email' => $request->email,
-    			's_nphone' => $request->phone,
-    			's_address' => $request->address,
-    			's_username' => $request->username,
-    			'password' => bcrypt($request->password),
-    			's_code' => $code,
-    			'status_data' => 'true',
-    		]);
+        $check = DB::table('m_sales')->where('s_username',$request->username)->count();
+        if ($check == 0) {
+        	DB::table('m_sales')
+        		->insert([
+        			's_name' => $request->name,
+        			's_email' => $request->email,
+        			's_nphone' => $request->phone,
+        			's_address' => $request->address,
+        			's_username' => $request->username,
+        			'password' => bcrypt($request->password),
+        			's_code' => $code,
+        			'status_data' => 'true',
+        		]);
+        }else{
+            return false;
+        }
+    }
+
+    public function delete(Request $request){
+        $id = $request->id;
+        DB::table('m_sales')->where('s_id',$id)
+            ->update([
+                'status_data' => 'false',
+            ]);
+    }
+
+    public function edit(Request $request){
+        $id = $request->id;
+        DB::table('m_sales')->where('s_id',$id)
+            ->update([
+                's_name' => $request->name,
+                's_email' => $request->email,
+                's_nphone' => $request->phone,
+                's_address' => $request->address,
+                's_username' => $request->username,
+                'password' => bcrypt($request->password),
+        ]);
     }
 }
 
