@@ -172,3 +172,22 @@ fieldset {
     background-color: #34DFB7 !important;
     color: #fff;
 }
+.body-loading .div-loading{
+	display: initial;
+	position: fixed;
+	z-index: 999999999;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,.3);
+}
+.body-loading .div-loading .spiner-example {
+    transform: translate(50%, 50%);
+    width: 50%;
+    height: 50%;
+}
+.body-loading{
+	overflow: initial;
+}
+.div-loading{
+	display: none;
+}
