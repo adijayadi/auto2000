@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="">
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <button type="submit" class="btn btn-danger block full-width m-b">Login</button>
 
                 <a href="javascript:void(0);"><small>Lupa password?</small></a>
             </form>
