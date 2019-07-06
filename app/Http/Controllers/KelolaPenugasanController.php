@@ -28,7 +28,7 @@ class KelolaPenugasanController extends Controller
       $notservice = Carbon::now('Asia/Jakarta')->subMonth()->format('Y,m,d');
       $notserviceto = Carbon::now('Asia/Jakarta')->subMonths(5)->format('Y,m,d');
       $datain = Carbon::now('Asia/Jakarta')->subMonths(4)->format('Y,m,d');
-      $datainto = Carbon::now('Asia/Jakarta')->subMonths(8)->format('Y,d,m');
+      $datainto = Carbon::now('Asia/Jakarta')->subMonths(8)->format('Y,m,d');
     		$data = DB::table('d_customer')->where('status_data','true')
         ->whereBetween('c_dateservice', [$datainto, $datain])
         ->get();

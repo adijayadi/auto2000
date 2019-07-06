@@ -289,6 +289,7 @@ var table2 = $('#table_db').DataTable();
         var table = $('#table_upload').DataTable({
             responsive: true,
             serverSide: true,
+            paging: false,
             destroy: true,
             ajax : {
                 url: "{{ route('table.excel') }}",
@@ -307,8 +308,6 @@ var table2 = $('#table_db').DataTable();
             {data : 'action' , name : 'action'},
 
             ],
-            pageLength: 10,
-            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
 
         });
         var table2 = $('#table_rekap').DataTable({
