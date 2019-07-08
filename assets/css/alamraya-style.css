@@ -8,7 +8,7 @@
   src: url(../fonts/Myriad Pro Regular.ttf);
 }
 body.body-cpanel{
-	background-image: url(../img/background-red.png);
+	background-image: url(../img/background-black.png);
 }
 .table > thead > tr
 /*.table > thead > tr > th*/
@@ -117,10 +117,10 @@ fieldset {
 	
 }
 .mini-navbar .nav-second-level{
-	background-image: url(../img/background-red.png);
+	background-image: url(../img/background-black.png);
 }
 .nav > li > a{
-	color: #c2a7a7;
+	color: #a7b7c2;
 }
 .nav > li.active{
     border-left: 4px solid #f11c2b;
@@ -232,8 +232,8 @@ fieldset {
 }
 
 .btn-primary{
-	background-color: #319B38;
-    border-color: #319B38;
+	background-color: #f3291a;
+    border-color: #f3291a;
 }
 .btn-primary:hover
 , .btn-primary:focus
@@ -245,8 +245,8 @@ fieldset {
 , .btn-primary.active:hover
 , .btn-primary.active:focus{
 
-  background-color: #26732B;
-  border-color: #26732B;
+  background-color: #c81a0d;
+  border-color: #c81a0d;
 }
 
 .btn-success{
