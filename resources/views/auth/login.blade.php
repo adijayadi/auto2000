@@ -14,10 +14,11 @@
         <div>
             <div>
 
-                <h3 class="logo-name">Auto 2000</h3>
+                {{-- <h3 class="logo-name">Auto 2000</h3> --}}
+                <img src="{{asset('assets/img/auto2000.png')}}" height="100px">
 
             </div>
-            <h3>Auto 2000</h3>
+            {{-- <h3>Login</h3> --}}
            
             <form class="m-t" method="POST" action="{{ route('login.sign') }}">
                 {{ csrf_field() }}
