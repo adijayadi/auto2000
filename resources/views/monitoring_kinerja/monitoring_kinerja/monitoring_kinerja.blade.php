@@ -163,6 +163,9 @@
         })
 
         $(document).on('click','.listlog',function(){
+            var serviceadv = $(this).data('serviceadv');
+            var names = $(this).data('nama');
+            $('#staff').html(names);
             var code = $(this).data('serviceadv');
                 $('#log').DataTable({
                 responsive: true,

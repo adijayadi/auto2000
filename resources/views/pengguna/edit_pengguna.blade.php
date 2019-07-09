@@ -132,8 +132,7 @@
                             title:'Berhasil!',
                             message:'Mengubah!'
                         });
-
-                        table.ajax.reload();
+                        window.location.href="{{route('pengguna')}}";
                     },
                     error:function(xhr,textStatus,errorThrowl){
                                 iziToast.error({
