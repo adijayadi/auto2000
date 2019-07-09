@@ -416,6 +416,28 @@
                 $('#addcountservice').val(upp);
         })
 
+        $('#table_kelola tbody').on('click', 'tr',function(e){
+            // console.log(e);
+
+            $(':checkbox' ,this).prop('checked', function(index, prop){
+
+                return prop == true ? false : true;
+            });
+
+            if($(':checkbox', this).is(':checked')){
+                $(this).addClass('table-checked');
+                console.log('a');
+                var up = $('.table-checked').length;
+                $('#gantiservicelength').val(up);
+            } else {
+                $(this).removeClass('table-checked');
+                console.log('b');
+                var up = $('.table-checked').length;
+                $('#gantiservicelength').val(up);
+            }
+
+        });
+
         
     });
 </script>

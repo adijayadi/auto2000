@@ -90,7 +90,7 @@
                 success:function(){
                     iziToast.success({
                         title:'Berhasil!',
-                        message:'Rendana di Simpan!'
+                        message:'Rencana di Simpan!'
                     });
 
                     setTimeout(function(){

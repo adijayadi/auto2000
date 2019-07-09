@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label>Nama</label>
                         <br>
-                        <span>Alpha</span>
+                        <span id="staff2"></span>
                     </div>
 
                     <hr>
