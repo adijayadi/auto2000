@@ -112,42 +112,49 @@ fieldset {
     padding: 13px 13px 0px;
     margin-bottom: 1.5rem;
 }
-.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus{
-    background:rgba(0,0,0,.3);
-	
-}
+
 .mini-navbar .nav-second-level{
 	background-image: url(../img/background-black.png);
+}
+.nav-header {
+    padding: 33px 25px;
+    background: url(patterns/header-profile-skin-4.png) no-repeat;
 }
 .nav > li > a{
 	color: #a7b7c2;
 }
 .nav > li.active{
     border-left: 4px solid #f11c2b;
-    background:rgba(0,0,0,.3);
+    /*background-image: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,0));*/
+    background:rgba(255,255,255,.1);
+}
+.navbar-default .nav > li > a:hover, 
+.navbar-default .nav > li > a:focus{
+    background:rgba(255,255,255,.2);
+    /*background-image: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,0));*/
+
+	
 }
 .metismenu li{
 	transition: .3s;
 }
 .metismenu li.nav-active > a
 {
-    color: #fff;
-    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
-    background-image: linear-gradient(90deg, #6f0000, #f11c2b);
+    color: #f11c2b;
+    background:rgba(255,255,255,.3);
+    text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+    
     transition: .2s ease-in-out;
-}
-.nav-header {
-    padding: 33px 25px;
-    background: url(patterns/header-profile-skin-4.png) no-repeat;
 }
 
 .metismenu li.nav-active > a:hover,
-
 .metismenu li.nav-active > a:focus
 {
-    color: #000;
-    text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-    background-image: linear-gradient(0deg, #6f0000, #f11c2b);
+    color: #f11c2b;
+    background:rgba(255,255,255,.1);
+    /*text-shadow: initial;*/
+    /*text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;*/
+    /*background-image: linear-gradient(0deg, #6f0000, #f11c2b);*/
 }
 
 .panel-footer{
