@@ -3,17 +3,32 @@
 	# Alamraya Custom Style 
  	#
 */
-
-.table > thead,
-.table > thead > tr > th
-{
-	background-color: #1ab394;
-	color:white;
+@font-face {
+  font-family: "Myriad Pro Regular"
+  src: url(../fonts/Myriad Pro Regular.ttf);
 }
+body.body-cpanel{
+	background-image: url(../img/background-black.png);
+}
+.table > thead > tr
+/*.table > thead > tr > th*/
+{
+	background-image: linear-gradient(45deg, #7e2424, #f11b2a);
+    color: white;
+    text-shadow: 2px 2px 2px #4d4d4d;
+}
+.table > thead > tr > th{
+    color: white;
+    text-shadow: 2px 2px 2px #4d4d4d;
+    background-color: #f11b2a;
+}
+
 .table thead .sorting_asc,
 .table thead .sorting_desc
 {
-	background: #148970;
+	background: #911219;
+    color: black;
+    text-shadow: 0 0 5px white;
 }
 .table thead tr th{
 	text-align: center;
@@ -97,20 +112,44 @@ fieldset {
     padding: 13px 13px 0px;
     margin-bottom: 1.5rem;
 }
-
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus{
+    background:rgba(0,0,0,.3);
+	
+}
+.mini-navbar .nav-second-level{
+	background-image: url(../img/background-black.png);
+}
+.nav > li > a{
+	color: #a7b7c2;
+}
+.nav > li.active{
+    border-left: 4px solid #f11c2b;
+    background:rgba(0,0,0,.3);
+}
+.metismenu li{
+	transition: .3s;
+}
 .metismenu li.nav-active > a
 {
-    color: #ffffff;
-    background-color: #1ab394;
+    color: #fff;
+    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    background-image: linear-gradient(90deg, #6f0000, #f11c2b);
+    transition: .2s ease-in-out;
+}
+.nav-header {
+    padding: 33px 25px;
+    background: url(patterns/header-profile-skin-4.png) no-repeat;
 }
 
 .metismenu li.nav-active > a:hover,
 
 .metismenu li.nav-active > a:focus
 {
-    color: #ffffff;
-    background-color: #148970;
+    color: #000;
+    text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+    background-image: linear-gradient(0deg, #6f0000, #f11c2b);
 }
+
 .panel-footer{
     background-color: #fafafa;
     border: 1px solid #ddd;
@@ -190,4 +229,49 @@ fieldset {
 }
 .div-loading{
 	display: none;
+}
+
+.btn-primary{
+	background-color: #f3291a;
+    border-color: #f3291a;
+}
+.btn-primary:hover
+, .btn-primary:focus
+, .btn-primary:active
+, .btn-primary.active
+, .open .dropdown-toggle.btn-primary
+, .btn-primary:active:focus
+, .btn-primary:active:hover
+, .btn-primary.active:hover
+, .btn-primary.active:focus{
+
+  background-color: #c81a0d;
+  border-color: #c81a0d;
+}
+
+.btn-success{
+	background-color: #28a745;
+	border-color: #28a745;
+}
+.btn-success:hover
+, .btn-success:focus
+, .btn-success:active
+, .btn-success.active
+, .open .dropdown-toggle.btn-success
+, .btn-success:active:focus
+, .btn-success:active:hover
+, .btn-success.active:hover
+, .btn-success.active:focus{
+	background-color: #218838;
+	border-color: #1e7e34;
+}
+.label-success,
+.badge-success {
+  background-color: #1ab394;
+  color: #FFFFFF;
+}
+.label-primary,
+.badge-primary {
+  background-color: #1c84c6;
+  color: #FFFFFF;
 }

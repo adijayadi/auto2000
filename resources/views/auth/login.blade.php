@@ -14,10 +14,11 @@
         <div>
             <div>
 
-                <h3 class="logo-name">Auto 2000</h3>
+                {{-- <h3 class="logo-name">Auto 2000</h3> --}}
+                <img src="{{asset('assets/img/auto2000.png')}}" height="100px">
 
             </div>
-            <h3>Auto 2000</h3>
+            {{-- <h3>Login</h3> --}}
            
             <form class="m-t" method="POST" action="{{ route('login.sign') }}">
                 {{ csrf_field() }}
@@ -27,7 +28,7 @@
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="">
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <button type="submit" class="btn btn-danger block full-width m-b">Login</button>
 
                 <a href="javascript:void(0);"><small>Lupa password?</small></a>
             </form>

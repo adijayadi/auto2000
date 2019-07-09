@@ -2,7 +2,7 @@
 <html>
 @include('layouts._head')
 @yield('extra_style')
-<body class="body-loading">
+<body class="body-loading body-cpanel">
 
 	<div id="wrapper">
 

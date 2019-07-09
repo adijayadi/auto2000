@@ -25,7 +25,7 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    A2000
+                    <img src="{{asset('assets/img/auto2000-icon-sm.png')}}" width="50px">
                 </div>
             </li>
         
