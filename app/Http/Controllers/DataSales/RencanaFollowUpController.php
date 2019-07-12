@@ -23,7 +23,7 @@ class RencanaFollowUpController extends Controller
     {
         $data = DB::table('d_followup')
             ->join('d_customer','c_id','fu_cid')
-            ->Join('m_vehicle','v_code','c_plate')
+            ->leftJoin('m_vehicle','v_code','c_plate')
             ->where('fu_status','planned')
             ->where('fu_cstaff',Auth::user()->u_code)
             ->groupBy('fu_cid')

@@ -20,7 +20,7 @@ class SuspectController extends Controller
     {
 
     	$data = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->leftJoin('d_customer','c_id' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','planning')
     			->get();
