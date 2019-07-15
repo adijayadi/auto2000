@@ -56,13 +56,14 @@ class RencanaFollowUpController extends Controller
     public function tablere()
     {
         $data = DB::table('d_followup')
-            ->join('d_customer','c_id','fu_cid')
-            ->Join('m_vehicle','v_code','c_plate')
+            ->leftJoin('d_customer','c_id','fu_cid')
+            ->LeftJoin('m_vehicle','v_code','c_plate')
             ->where('fu_status','refollowup')
             ->where('d_followup.status_data','re')
             ->where('fu_cstaff',Auth::user()->u_code)
             ->groupBy('fu_id')
             ->get();
+
         setlocale(LC_TIME, 'IND');
         return DataTables::of($data)
         ->addIndexColumn()
@@ -193,7 +194,7 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'done',
                 ]);
 
-            }else if($alasan != ''){
+            }else if($request->alasan2 != ''){
                 DB::table('d_followup')->where('fu_cid',$id2)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),

@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::post('/data_sales/summary_tindakan/notbooking', 'DataSales\SummaryTindakanController@notbooking')->name('notbooking.summary');
 	Route::post('/data_sales/summary_tindakan/refu', 'DataSales\SummaryTindakanController@refu')->name('refu.summary');
 	Route::post('/data_sales/summary_tindakan/denied', 'DataSales\SummaryTindakanController@denied')->name('denied.summary');
+	Route::post('/data_sales/summary_tindakan/all', 'DataSales\SummaryTindakanController@all')->name('all.summary');
 
 
 	Route::get('/data_sales/data_suspect/index', 'DataSales\SuspectController@data_suspect')->name('data_suspect');

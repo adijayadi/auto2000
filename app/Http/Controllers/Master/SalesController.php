@@ -68,8 +68,9 @@ class SalesController extends Controller
     public function addsales(Request $request){
     	$urutan = DB::table('m_sales')->get()->count()+ 1;
     	$code = 'S'.$urutan.Carbon::now()->format('hs');
+        $check2 = DB::table('d_user')->where('u_username',$request->username)->count(); 
         $check = DB::table('m_sales')->where('s_username',$request->username)->count();
-        if ($check == 0) {
+        if ($check == 0 && $check2 == 0) {
         	DB::table('m_sales')
         		->insert([
         			's_name' => $request->name,
@@ -94,7 +95,7 @@ class SalesController extends Controller
                 'status_data' =>'true',
             ]);   
         }else{
-            return false;
+            return $check2 .'   '. $check;
         }
     }
 

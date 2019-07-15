@@ -175,7 +175,7 @@
                 error:function(xhr,textStatus,errorThrowl){
                             iziToast.error({
                                 title: 'Gagal!',
-                                message: 'Ada yang Kosong / username sudah ada',
+                                message: 'Ada yang Kosong / Email, Username Sudah Ada',
                     });
                 },
             })

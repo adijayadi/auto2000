@@ -66,34 +66,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr class="alll">
                                                 <td align="center">1</td>
-                                                <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Suspect</a></td>
+                                                <td><a class="d-block alll" href="#detail_status" data-toggle="modal">Daftar Kendaraan Suspect</a></td>
                                                 <td align="center" id="all"></td>
                                             </tr>
-                                            <tr>
+                                            <tr class="sudah">
                                                 <td align="center">2</td>
-                                                <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Difollow Up</a></td>
+                                                <td><a class="d-block sudah"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Difollow Up</a></td>
                                                 <td align="center" id="done"></td>
                                             </tr>
-                                            <tr>
+                                            <tr class="sbooking">
                                                 <td align="center">3</td>
-                                                <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Booking</a></td>
+                                                <td><a class="d-block sbooking"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Booking</a></td>
                                                 <td align="center" id="booking"></td>
                                             </tr>
-                                            <tr>
+                                            <tr class="bebooking">
                                                 <td align="center">4</td>
-                                                <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Belum Booking</a></td>
+                                                <td><a class="d-block bebooking"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Belum Booking</a></td>
                                                 <td align="center" id="nbooking"></td>
                                             </tr>
-                                            <tr>
+                                            <tr class="refollow">
                                                 <td align="center">5</td>
-                                                <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Dihubungi Lagi</a></td>
+                                                <td><a class="d-block refollow" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Dihubungi Lagi</a></td>
                                                 <td align="center" id="refu"></td>
                                             </tr>
-                                            <tr>
+                                            <tr class="notfu">
                                                 <td align="center">6</td>
-                                                <td><a class="d-block" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Tidak Bersedia</a></td>
+                                                <td><a class="d-block notfu"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Tidak Bersedia</a></td>
                                                 <td align="center" id="not"></td>
                                             </tr>
                                         </tbody>
@@ -121,32 +121,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 10.000 Kilometer</td>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MR053AK50E4506151</td>
-                                                <td>L3PY</td>
-                                                <td>CAMRY</td>
-                                                <td> Service 50.000 Kilometer </td>
-                                            </tr>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHKM1BA2JDK041994</td>
-                                                <td>B1182BYK</td>
-                                                <td>AVANZA</td>
-                                                <td> Service 90.000 kilometer </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -317,6 +291,153 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+
+        
+        $('.alll').on('click',function(){
+            $('#detailll').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('table.suspect') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'nama' , name : 'nama'},
+            {data : 'fu_status' , name : 'fu_status'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+            });
+        })
+        
+        $('.sudah').on('click',function(){
+            $('#detailll').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('all.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'nama' , name : 'nama'},
+            {data : 'fu_status' , name : 'fu_status'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+            });
+        })
+        
+        $('.sbooking').on('click',function(){
+            $('#detailll').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('booking.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'nama' , name : 'nama'},
+            {data : 'fu_status' , name : 'fu_status'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        })
+        
+        $('.bebooking').on('click',function(){
+            $('#detailll').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('notbooking.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'nama' , name : 'nama'},
+            {data : 'fu_status' , name : 'fu_status'},
+
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        })
+        
+        $('.refollow').on('click',function(){
+            $('#detailll').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('refu.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'nama' , name : 'nama'},
+            {data : 'fu_status' , name : 'fu_status'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+            });
+        })
+        
+        $('.notfu').on('click',function(){
+            $('#detailll').DataTable({
+            responsive: true,
+            serverSide: true,
+            destroy: true,
+            ajax : {
+                url: "{{ route('denied.summary') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns : [
+            {data: 'DT_RowIndex'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'nama' , name : 'nama'},
+            {data : 'fu_status' , name : 'fu_status'},
+
+            ],
+            pageLength: 10,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+            });
+        })     
+
         $.ajax({
                 url : '{{route("getcount.summary")}}',
                 type : 'POST',

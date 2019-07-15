@@ -27,11 +27,12 @@ class SuspectController extends Controller
 
     	return DataTables::of($data)
     	->addColumn('check',function($data){
-    		return '
-                        <input class="count" type="checkbox" name="id[]" value="'.$data->fu_cid.'">
-                    ';
+    		return '<input class="count" type="checkbox" name="id[]" value="'.$data->fu_cid.'">';
     	})
-    	->rawColumns(['check'])
+        ->addColumn('nama',function($data){
+            return '';
+        })
+    	->rawColumns(['check','nama'])
     	->make(true);
     }
 

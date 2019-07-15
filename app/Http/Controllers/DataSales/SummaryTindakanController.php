@@ -15,6 +15,27 @@ class SummaryTindakanController extends Controller
 		return view('data_sales.summary_tindakan.summary_tindakan');
 	}
 
+    public function all(){
+        $all = DB::table('d_followup')
+                ->join('d_customer','c_id' , 'fu_cid')
+                ->where('fu_cstaff',Auth::user()->u_code)
+                ->where('d_followup.status_data','false')
+                ->groupBy('fu_id')
+                ->get();
+        setlocale(LC_TIME, 'IND');
+
+        return DataTables::of($all)
+        ->addIndexColumn()
+        ->addColumn('tanggal',function($all){
+             return Carbon::parse($all->c_dateservice)->formatLocalized('%d %B %Y');
+        })
+        ->addColumn('nama',function($all){
+            return '';
+        })
+        ->rawColumns(['tanggal','nama'])
+        ->make(true);
+    }
+
 	public function booking(){
 		$booking = DB::table('d_followup')
     			->join('d_customer','c_id' , 'fu_cid')
@@ -26,10 +47,14 @@ class SummaryTindakanController extends Controller
     	setlocale(LC_TIME, 'IND');
 
     	return DataTables::of($booking)
+        ->addIndexColumn()
     	->addColumn('tanggal',function($booking){
     		 return Carbon::parse($booking->c_dateservice)->formatLocalized('%d %B %Y');
     	})
-    	->rawColumns(['tanggal'])
+        ->addColumn('nama',function($booking){
+            return '';
+        })
+    	->rawColumns(['tanggal','nama'])
     	->make(true);
 	}
 
@@ -44,10 +69,14 @@ class SummaryTindakanController extends Controller
     	setlocale(LC_TIME, 'IND');
 
     	return DataTables::of($notbooking)
-    	->addColumn('tanggal',function($booking){
+        ->addIndexColumn()
+    	->addColumn('tanggal',function($notbooking){
     		 return Carbon::parse($notbooking->c_dateservice)->formatLocalized('%d %B %Y');
     	})
-    	->rawColumns(['tanggal'])
+        ->addColumn('nama',function($notbooking){
+            return '';
+        })
+    	->rawColumns(['tanggal','nama'])
     	->make(true);
 	}
 
@@ -62,10 +91,14 @@ class SummaryTindakanController extends Controller
     	setlocale(LC_TIME, 'IND');
 
     	return DataTables::of($refu)
-    	->addColumn('tanggal',function($booking){
+        ->addIndexColumn()
+    	->addColumn('tanggal',function($refu){
     		 return Carbon::parse($refu->c_dateservice)->formatLocalized('%d %B %Y');
     	})
-    	->rawColumns(['tanggal'])
+        ->addColumn('nama',function($refu){
+            return '';
+        })
+    	->rawColumns(['tanggal','nama'])
     	->make(true);
 	}
 
@@ -81,10 +114,14 @@ class SummaryTindakanController extends Controller
     	setlocale(LC_TIME, 'IND');
 
     	return DataTables::of($denied)
-    	->addColumn('tanggal',function($booking){
+        ->addIndexColumn()
+    	->addColumn('tanggal',function($denied){
     		 return Carbon::parse($denied->c_dateservice)->formatLocalized('%d %B %Y');
     	})
-    	->rawColumns(['tanggal'])
+        ->addColumn('nama',function($denied){
+            return '';
+        })
+    	->rawColumns(['tanggal','nama'])
     	->make(true);
 	}
 
@@ -98,41 +135,36 @@ class SummaryTindakanController extends Controller
     	$done = DB::table('d_resultfu')
         ->join('d_followup','fu_cid','rf_cid')
         ->join('d_customer','c_id','rf_cid')
-        ->join('m_vehicle','v_code','c_plate')
+        ->leftJoin('m_vehicle','v_code','c_plate')
         ->where('fu_cstaff',Auth::user()->u_code)
-        ->groupBy('rf_id')
         ->count();
 
         $booking = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->Leftjoin('d_customer','c_id' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','success')
                 ->where('d_followup.status_data','false')
-                ->groupBy('fu_id')
     			->count();
 
         $notbooking = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->leftJoin('d_customer','c_id' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','schedule')
                 ->where('d_followup.status_data','false')
-                ->groupBy('fu_id')
     			->count();
 
         $refu = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->leftJoin('d_customer','c_id' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','refollowup')
             	->where('d_followup.status_data','re')
-                ->groupBy('fu_id')
     			->count();
 
         $denied = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->leftJoin('d_customer','c_id' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','denied')
                 ->where('d_followup.status_data','false')
-                ->groupBy('fu_id')
     			->count();
 
     			return response()->json(array(
