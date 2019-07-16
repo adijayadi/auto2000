@@ -1,3 +1,8 @@
+<?php $message = App\Http\Controllers\message::alertt();
+    $customer = App\Http\Controllers\message::customer();
+    $planned = App\Http\Controllers\message::planned();
+    $hasil = App\Http\Controllers\message::hasil();
+     ?>
 <div class="row border-bottom">
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -12,7 +17,8 @@
             <li>
                 <span class="m-r-sm text-muted welcome-message">Selamat datang di Auto 2000.</span>
             </li>
-            <li class="dropdown">
+
+            <!-- <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
                 </a>
@@ -64,35 +70,42 @@
                         </div>
                     </li>
                 </ul>
-            </li>
+            </li> -->
+
             <li class="dropdown">
+                @if(Auth::user()->u_user == 'S')
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);">
-                    <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    <i class="fa fa-bell"></i>  <span class="label label-primary">{{$message + $planned + $hasil}}</span>
                 </a>
+                @else
+                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);">
+                    <i class="fa fa-bell"></i>  <span class="label label-primary">{{$customer}}</span>
+                </a>
+                @endif
                 <ul class="dropdown-menu dropdown-alerts">
+                    @if(Auth::user()->u_user == 'S')
+                    <!-- <li class="divider"></li> -->
                     <li>
-                        <a href="javascript:void(0);">
+                        <a href="{{route('data_suspect')}}">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> Anda mempunya 14 pesan
-                                <span class="pull-right text-muted small">4 menit lalu</span>
+                                <i class="fa fa-upload fa-fw"></i> Followup
+                                <span class="pull-right text-muted small">{{$message}}</span>
                             </div>
                         </a>
                     </li>
-                    <li class="divider"></li>
                     <li>
-                        <a href="javascript:void(0);">
+                        <a href="{{route('rencana_followup')}}">
                             <div>
-                                <i class="fa fa-twitter fa-fw"></i> 3 Pengikut Baru
-                                <span class="pull-right text-muted small">12 menit lalu</span>
+                                <i class="fa fa-upload fa-fw"></i> Rencana Follow up
+                                <span class="pull-right text-muted small">{{$planned}}</span>
                             </div>
                         </a>
                     </li>
-                    <li class="divider"></li>
                     <li>
-                        <a href="javascript:void(0);">
+                        <a href="{{route('summary_tindakan')}}">
                             <div>
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 menit lalu</span>
+                                <i class="fa fa-upload fa-fw"></i> Hasil Follow up
+                                <span class="pull-right text-muted small">{{$hasil}}</span>
                             </div>
                         </a>
                     </li>
@@ -105,6 +118,25 @@
                             </a>
                         </div>
                     </li>
+                    @else
+                    <li>
+                        <a href="{{route('kelola_penugasan')}}">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Data Customer
+                                <span class="pull-right text-muted small">{{$customer}}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="text-center link-block">
+                            <a href="javascript:void(0);">
+                                <strong>Lihat Semua Peringatan</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                    @endif
                 </ul>
             </li>
 

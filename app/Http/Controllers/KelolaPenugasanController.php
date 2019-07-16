@@ -76,11 +76,11 @@ class KelolaPenugasanController extends Controller
     public function addplan(Request $request){
     	if ($request->advisor_baru == '') {
     		return false;
-    	}else if($request->pcount == NULL){
+    	}else if(count($request->id) == NULL){
     		return false;
     	}else{
             $alldata = [];
-            for ($i=0; $i < $request->pcount ; $i++) { 
+            for ($i=0; $i < count($request->id) ; $i++) { 
             $arr = array(
                		'fu_cid' => $request->id[$i],
            			'fu_cstaff' => $request->advisor_baru,

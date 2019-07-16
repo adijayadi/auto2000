@@ -24,6 +24,7 @@ Route::group(['middleware' => 'guest' ], function(){
 
 //login
 Route::post('/login_out','Account\loginController@logout')->name('logout');
+Route::post('/alert','message@alertt')->name('alertt');
 
 Route::group(['middleware' => 'auth' ], function(){
 	//register
