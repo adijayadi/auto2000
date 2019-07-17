@@ -124,7 +124,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-
+        $.fn.dataTable.ext.errMode = 'none';
         $(document).on('click','.ubah',function(){
             var id = $(this).data('id');
             $('#id').val('');

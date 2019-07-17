@@ -69,6 +69,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $.fn.dataTable.ext.errMode = 'none';
         var table = $('#table_sales').DataTable({
             responsive: true,
             serverSide: true,

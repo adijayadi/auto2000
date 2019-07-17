@@ -18,6 +18,7 @@ class SummaryTindakanController extends Controller
     public function all(){
         $all = DB::table('d_followup')
                 ->join('d_customer','c_id' , 'fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('d_followup.status_data','false')
                 ->groupBy('fu_id')
@@ -30,7 +31,11 @@ class SummaryTindakanController extends Controller
              return Carbon::parse($all->c_dateservice)->formatLocalized('%d %B %Y');
         })
         ->addColumn('nama',function($all){
-            return '';
+            if ($all->v_owner != null) {
+                return $all->v_owner;
+            }else{
+                return '';
+            }
         })
         ->rawColumns(['tanggal','nama'])
         ->make(true);
@@ -39,6 +44,7 @@ class SummaryTindakanController extends Controller
 	public function booking(){
 		$booking = DB::table('d_followup')
     			->join('d_customer','c_id' , 'fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','success')
                 ->where('d_followup.status_data','false')
@@ -52,7 +58,11 @@ class SummaryTindakanController extends Controller
     		 return Carbon::parse($booking->c_dateservice)->formatLocalized('%d %B %Y');
     	})
         ->addColumn('nama',function($booking){
-            return '';
+            if ($booking->v_owner != null) {
+                return $booking->v_owner;
+            }else{
+                return '';
+            }
         })
     	->rawColumns(['tanggal','nama'])
     	->make(true);
@@ -61,6 +71,7 @@ class SummaryTindakanController extends Controller
 	public function notbooking(){
 		$notbooking = DB::table('d_followup')
     			->join('d_customer','c_id' , 'fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','schedule')
                 ->where('d_followup.status_data','false')
@@ -74,7 +85,11 @@ class SummaryTindakanController extends Controller
     		 return Carbon::parse($notbooking->c_dateservice)->formatLocalized('%d %B %Y');
     	})
         ->addColumn('nama',function($notbooking){
-            return '';
+            if ($notbooking->v_owner != null) {
+                return $notbooking->v_owner;
+            }else{
+                return '';
+            }
         })
     	->rawColumns(['tanggal','nama'])
     	->make(true);
@@ -83,6 +98,7 @@ class SummaryTindakanController extends Controller
 	public function refu(){
 		$refu = DB::table('d_followup')
     			->join('d_customer','c_id' , 'fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','refollowup')
             	->where('d_followup.status_data','re')
@@ -96,7 +112,11 @@ class SummaryTindakanController extends Controller
     		 return Carbon::parse($refu->c_dateservice)->formatLocalized('%d %B %Y');
     	})
         ->addColumn('nama',function($refu){
-            return '';
+            if ($refu->v_owner != null) {
+                return $refu->v_owner;
+            }else{
+                return '';
+            }
         })
     	->rawColumns(['tanggal','nama'])
     	->make(true);
@@ -106,6 +126,7 @@ class SummaryTindakanController extends Controller
 		$denied = DB::table('d_followup')
     			->join('d_customer','c_id' , 'fu_cid')
     			->join('d_resultfu','rf_cid','fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','denied')
                 ->where('d_followup.status_data','false')
@@ -119,7 +140,11 @@ class SummaryTindakanController extends Controller
     		 return Carbon::parse($denied->c_dateservice)->formatLocalized('%d %B %Y');
     	})
         ->addColumn('nama',function($denied){
-            return '';
+            if ($denied->v_owner != null) {
+                return $denied->v_owner;
+            }else{
+                return '';
+            }
         })
     	->rawColumns(['tanggal','nama'])
     	->make(true);
@@ -137,6 +162,7 @@ class SummaryTindakanController extends Controller
         ->join('d_customer','c_id','rf_cid')
         ->leftJoin('m_vehicle','v_code','c_plate')
         ->where('fu_cstaff',Auth::user()->u_code)
+        ->where('d_followup.status_data','false')
         ->count();
 
         $booking = DB::table('d_followup')

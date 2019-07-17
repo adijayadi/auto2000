@@ -78,7 +78,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-
+        $.fn.dataTable.ext.errMode = 'none';
         $('#input_alasan').on('click',function(){
             if ($('#reason').val() != '') {
                 adddata();

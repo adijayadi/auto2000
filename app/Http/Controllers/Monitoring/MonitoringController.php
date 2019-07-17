@@ -39,8 +39,8 @@ class MonitoringController extends Controller
     	->where('u_user','S')
     	->groupBy('u_name')
     	->get();
-
-    	return DataTables::of($data)
+    	
+        return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function($data){
     		return '<button class="btn btn-info listlog" type="button" data-nama="'.$data->u_name.'" data-serviceadv="'.$data->u_code.'" data-toggle="modal" data-target="#log-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
@@ -103,7 +103,7 @@ class MonitoringController extends Controller
         $log = DB::table('d_resultfu')
         ->join('d_followup','fu_cid','rf_cid')
         ->join('d_customer','c_id','rf_cid')
-        ->join('m_vehicle','v_code','c_plate')
+        ->leftJoin('m_vehicle','v_code','c_plate')
         ->where('fu_cstaff',$code)
         ->groupBy('rf_id')
         ->get();
@@ -115,7 +115,7 @@ class MonitoringController extends Controller
             return Carbon::parse($log->fu_updatedate)->formatLocalized('%d %B %Y') . ' ' . $log->fu_updatetime;
         })
         ->addColumn('kendaraan',function($log){
-            return $log->v_plate . ' - ' . $log->v_owner; 
+            return $log->c_plate . ' - ' . $log->v_owner; 
         })
         ->rawColumns(['tanggal','kendaraan'])
         ->make(true);

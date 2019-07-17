@@ -82,6 +82,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $.fn.dataTable.ext.errMode = 'none';
         var table = $('#table_kendaraan').DataTable({
             responsive: true,
             serverSide: true,

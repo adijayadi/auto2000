@@ -21,16 +21,22 @@ class SuspectController extends Controller
 
     	$data = DB::table('d_followup')
     			->leftJoin('d_customer','c_id' , 'fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','planning')
     			->get();
 
     	return DataTables::of($data)
+        ->addIndexColumn()
     	->addColumn('check',function($data){
     		return '<input class="count" type="checkbox" name="id[]" value="'.$data->fu_cid.'">';
     	})
         ->addColumn('nama',function($data){
-            return '';
+            if ($data->v_owner != null) {
+                return $data->v_owner;
+            }else{
+                return '';
+            }
         })
     	->rawColumns(['check','nama'])
     	->make(true);

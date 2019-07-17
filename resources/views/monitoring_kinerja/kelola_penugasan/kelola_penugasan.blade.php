@@ -177,6 +177,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $.fn.dataTable.ext.errMode = 'none';
         $('#saveplan').on('click',function(){
             var form = $('#addservice').serialize();
             var form2 =  $('#kelola_form').serialize();

@@ -31,24 +31,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>11 Mei 2019 21:50</td>
-                                    <td>W 1234 W - Charlie</td>
-                                    <td>Follow up dan tidak bersedia</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>11 Mei 2019 21:52</td>
-                                    <td>W 1234 W - Delta</td>
-                                    <td>Follow up dan bersedia</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>11 Mei 2019 21:53</td>
-                                    <td>W 1234 W - Delta</td>
-                                    <td>Follow up dan bersedia dan booking</td>
-                                </tr>
                             </tbody>
                         </table>
 

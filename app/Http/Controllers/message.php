@@ -15,7 +15,7 @@ class message extends Controller
     }
 
     static function planned(){
-    	$data = DB::table('d_followup')->where('fu_cstaff',Auth::user()->u_code)->where('fu_status','planned')->count();
+    	$data = DB::table('d_followup')->where('fu_cstaff',Auth::user()->u_code)->where('fu_status','planned')->orWhere('fu_status','refollowup')->count();
 
     	return $data;
     }

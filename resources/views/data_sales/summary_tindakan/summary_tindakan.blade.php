@@ -144,32 +144,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 10.000 Kilometer</td>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MR053AK50E4506151</td>
-                                                <td>L3PY</td>
-                                                <td>CAMRY</td>
-                                                <td> Service 50.000 Kilometer </td>
-                                            </tr>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHKM1BA2JDK041994</td>
-                                                <td>B1182BYK</td>
-                                                <td>AVANZA</td>
-                                                <td> Service 90.000 kilometer </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -193,32 +167,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 10.000 Kilometer</td>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MR053AK50E4506151</td>
-                                                <td>L3PY</td>
-                                                <td>CAMRY</td>
-                                                <td> Service 50.000 Kilometer </td>
-                                            </tr>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHKM1BA2JDK041994</td>
-                                                <td>B1182BYK</td>
-                                                <td>AVANZA</td>
-                                                <td> Service 90.000 kilometer </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -243,35 +191,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHFM1BA2JBK035948</td>
-                                                <td>B1295PKO</td>
-                                                <td>AVANZA</td>
-                                                <td>Service 10.000 Kilometer</td>
-                                                <th>Mobilnya sudah dijual</th>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MR053AK50E4506151</td>
-                                                <td>L3PY</td>
-                                                <td>CAMRY</td>
-                                                <td> Service 50.000 Kilometer </td>
-                                                <th>Mobilnya sudah dijual</th>
-                                            </tr>
-
-                                            <tr>
-                                                
-                                                <td>2018-10-01</td>
-                                                <td>MHKM1BA2JDK041994</td>
-                                                <td>B1182BYK</td>
-                                                <td>AVANZA</td>
-                                                <td> Service 90.000 kilometer </td>
-                                                <th>Mobilnya sudah dijual</th>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -291,7 +210,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-
+$.fn.dataTable.ext.errMode = 'none';
         
         $('.alll').on('click',function(){
             $('#detailll').DataTable({

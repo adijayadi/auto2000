@@ -133,6 +133,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $.fn.dataTable.ext.errMode = 'none';
         $('#table_tindakan').DataTable();
         $('#table_tindakan_2').DataTable();
 

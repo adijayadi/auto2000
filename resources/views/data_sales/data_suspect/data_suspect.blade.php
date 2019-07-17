@@ -77,8 +77,9 @@
 
 @section('extra_script')
 <script type="text/javascript">
-    $(document).ready(function(){
-
+    $(document).ready(function(){   
+        $.fn.dataTable.ext.errMode = 'none';
+        
         $('#btn-simpan').on('click',function(){
             var cout = $('.table-checked').length;
             $('#cout').val(cout);

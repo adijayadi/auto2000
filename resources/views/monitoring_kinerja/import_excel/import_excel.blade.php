@@ -104,6 +104,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $.fn.dataTable.ext.errMode = 'none';
 
         setInterval(function(){
             $('#seriallenght').val($('.serialc').length);

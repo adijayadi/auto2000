@@ -75,7 +75,7 @@
             <li class="dropdown">
                 @if(Auth::user()->u_user == 'S')
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);">
-                    <i class="fa fa-bell"></i>  <span class="label label-primary">{{$message + $planned + $hasil}}</span>
+                    <i class="fa fa-bell"></i>  <span class="label label-primary">{{$message + $planned}}</span>
                 </a>
                 @else
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);">
