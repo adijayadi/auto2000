@@ -109,7 +109,8 @@
                         "previous": "Sebelumnya",
                         "next": "Selanjutnya",
                     }
-                }
+                },
+                width: '100%',
 
             });
 

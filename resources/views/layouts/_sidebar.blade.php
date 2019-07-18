@@ -17,10 +17,10 @@
                             <b class="caret"></b>
                         </span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="javascript:void(0);">Profile</a></li>
+                        {{-- <li><a href="javascript:void(0);">Profile</a></li>
                         <li><a href="javascript:void(0);">Contacts</a></li>
                         <li><a href="javascript:void(0);">Mailbox</a></li>
-                        <li class="divider"></li>
+                        <li class="divider"></li> --}}
                         <li><a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
                     </ul>
                 </div>
