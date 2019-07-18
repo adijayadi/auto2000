@@ -128,6 +128,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $.fn.dataTable.ext.errMode = 'none';
+        $.fn.dataTable.ext.errMode = 'none';
         $(document).on('click','.list',function(){
             var serviceadv = $(this).data('serviceadv');
             var names = $(this).data('nama');

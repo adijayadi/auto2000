@@ -15,9 +15,10 @@ class message extends Controller
     }
 
     static function planned(){
-    	$data = DB::table('d_followup')->where('fu_cstaff',Auth::user()->u_code)->where('fu_status','planned')->orWhere('fu_status','refollowup')->count();
+    	$data = DB::table('d_followup')->where('fu_cstaff',Auth::user()->u_code)->where('fu_status','planned')->count();
+        $data2 =DB::table('d_followup')->where('fu_cstaff',Auth::user()->u_code)->Where('fu_status','refollowup')->count();
 
-    	return $data;
+    	return $data + $data2;
     }
 
     static function hasil(){

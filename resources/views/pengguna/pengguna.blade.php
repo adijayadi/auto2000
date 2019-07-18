@@ -64,7 +64,7 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-        
+        $.fn.dataTable.ext.errMode = 'none';
         $(document).on('click','.delete',function(){
             swal({
                 title: "Apa anda yakin?",

@@ -16,8 +16,8 @@ class MonitoringController extends Controller
 
     public function table(){
     	$data = DB::table('d_user')
-    	->join('d_customer','u_name','c_serviceadvisor')
-    	->join('d_followup','fu_cid','c_id')
+    	->leftJoin('d_customer','u_name','c_serviceadvisor')
+    	->leftJoin('d_followup','fu_cid','c_id')
     	->where('u_user','S')
     	->groupBy('u_name')
     	->get();
@@ -34,8 +34,8 @@ class MonitoringController extends Controller
 
     public function tablelog(){
     	$data = DB::table('d_user')
-    	->join('d_customer','u_name','c_serviceadvisor')
-    	->join('d_followup','fu_cid','c_id')
+    	->leftJoin('d_customer','u_name','c_serviceadvisor')
+    	->leftJoin('d_followup','fu_cid','c_id')
     	->where('u_user','S')
     	->groupBy('u_name')
     	->get();

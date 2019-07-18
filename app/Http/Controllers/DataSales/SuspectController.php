@@ -47,7 +47,7 @@ class SuspectController extends Controller
     	$id = $request->id;
         $count = $request->cout;
         
-        for ($i=0; $i < $count ; $i++) {
+        for ($i=0; $i < count($id) ; $i++) {
     	   DB::table('d_followup')
                 ->where('fu_cid',$request->id[$i])
                 ->update([

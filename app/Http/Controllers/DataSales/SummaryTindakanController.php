@@ -21,6 +21,7 @@ class SummaryTindakanController extends Controller
                 ->leftJoin('m_vehicle','v_code','c_plate')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('d_followup.status_data','false')
+                ->orWhere('d_followup.status_data','re')
                 ->groupBy('fu_id')
                 ->get();
         setlocale(LC_TIME, 'IND');
@@ -157,13 +158,11 @@ class SummaryTindakanController extends Controller
                 ->where('fu_status','planning')
     			->count();
 
-    	$done = DB::table('d_resultfu')
-        ->join('d_followup','fu_cid','rf_cid')
-        ->join('d_customer','c_id','rf_cid')
-        ->leftJoin('m_vehicle','v_code','c_plate')
-        ->where('fu_cstaff',Auth::user()->u_code)
-        ->where('d_followup.status_data','false')
-        ->count();
+    	$done = DB::table('d_followup')
+                ->join('d_customer','c_id' , 'fu_cid')
+                ->where('fu_cstaff',Auth::user()->u_code)
+                ->where('d_followup.status_data','false')
+                ->orWhere('d_followup.status_data','re')->count();
 
         $booking = DB::table('d_followup')
     			->Leftjoin('d_customer','c_id' , 'fu_cid')
@@ -195,7 +194,7 @@ class SummaryTindakanController extends Controller
 
     			return response()->json(array(
     				'all' => $suspect,
-    				'done' => $done,
+    				'done' =>  $done,
     				'booking' => $booking,
     				'notbooking' => $notbooking,
     				'refu' => $refu,
