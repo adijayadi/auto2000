@@ -38,7 +38,7 @@
                 <div class="ibox-title">
                     <h5>Manajemen Import Data</h5>
                     <div class="ibox-tools">
-                        <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-file-excel"></i> Contoh Format Excel</button>
+                        <a href="{{asset('download_contoh_excel/contoh_import_excel.xlsx')}}" download="" class="btn btn-primary btn-sm"><i class="fa fa-file-excel"></i> Contoh Format Excel</a>
                         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-import" type="button"><i class="fa fa-file-excel"></i> Import Excel</button>
 
                     </div>
