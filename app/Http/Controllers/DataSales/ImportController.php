@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DataSales;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\d_customer;
+use App\d_followup;
 use DataTables;
 use Carbon\Carbon;
 use Excel;
@@ -67,8 +68,6 @@ class ImportController extends Controller
                for ($i=1; $i < $request->datacount ; $i++) { 
                 if ($request->result['Sheet1'][$i][6] != null) {
                   $direct = $request->result['Sheet1'][$i][6];
-                }else{
-                  $direct = 'B';
                 }
 
               $datetime = Carbon::parse($request->result['Sheet1'][$i][4])->format('Y,m,d');
@@ -131,10 +130,11 @@ class ImportController extends Controller
           $alldata = [];
           $direct = [];
             for ($i=0; $i < $rcount ; $i++) { 
+                $ordercode = DB::table('d_customer')->count().$i;
 
                 $cek = DB::table('d_customer')->where('c_serial',$request->serial[$i])->count();
                 $langsung = DB::table('d_user')->where('u_username',$request->advisor[$i])->count();
-                $count = DB::table('d_customer')->count();
+                $langsung2 = DB::table('d_user')->where('u_username',$request->advisor[$i])->get();
                 $td = Carbon::parse($request->date[$i])->addMonths(3)->format('Y,m');
                 if ($request->direct[$i] == 's') {
                   if ($langsung == 1) {
@@ -146,19 +146,20 @@ class ImportController extends Controller
                    'c_dateservice' => $request->date[$i],
                    'c_serviceadvisor' => $request->advisor[$i],
                    'c_code' => $request->code,
+                   'c_order' => $ordercode,
                    'status_data' => 'plan',
                     );
 
                     $arr2 = array(
-                  'fu_cid' => $count,
-                  'fu_cstaff' => $langsung[0]->u_code,
+                  'fu_cid' => $ordercode,
+                  'fu_cstaff' => $langsung2[0]->u_code,
                   'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
                   'fu_time' => Carbon::parse('Asia/Jakarta'),
                   'fu_status' => 'Planning',
                   'status_data' =>'true',
                   );
 
-                  array_push($alldata, $arr);
+                  array_push($alldata, $arr1);
                   array_push($direct, $arr2);
                   DB::table('d_customerremovable')->where('cr_id', $id[$i])->delete();
                   }else if ($cek == 0 )  {
@@ -170,6 +171,7 @@ class ImportController extends Controller
                    'c_dateservice' => $request->date[$i],
                    'c_serviceadvisor' => $request->advisor[$i],
                    'c_code' => $request->code,
+                   'c_order' => $ordercode,
                    'status_data' => 'true',
                     );
                     
@@ -193,11 +195,12 @@ class ImportController extends Controller
                    'c_dateservice' => $request->date[$i],
                    'c_serviceadvisor' => $request->advisor[$i],
                    'c_code' => $request->code,
+                   'c_order' => $ordercode,
                    'status_data' => 'plan',
                     );
 
                     $arr2 = array(
-                  'fu_cid' => $count,
+                  'fu_cid' => $ordercode,
                   'fu_cstaff' => $langsung[0]->u_code,
                   'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
                   'fu_time' => Carbon::parse('Asia/Jakarta'),
@@ -217,6 +220,7 @@ class ImportController extends Controller
                'c_dateservice' => $request->date[$i],
                'c_serviceadvisor' => $request->advisor[$i],
                'c_code' => $request->code,
+               'c_order' => $ordercode,
                'status_data' => 'true',
                 );
                     
@@ -233,6 +237,7 @@ class ImportController extends Controller
                 }
             }
          d_customer::insert($alldata);
+         d_followup::insert($direct);
          d_hcustommer::truncate();
           }
 
