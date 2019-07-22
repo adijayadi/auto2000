@@ -63,6 +63,7 @@ class ImportController extends Controller
           $code = $request->code;
          $check = DB::table('d_customerremovable')->count();
          if ($check == 0) {
+         dd($request->result['Sheet1'][$i][6] != null);
       		    $alldata = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
                 if ($request->result['Sheet1'][$i][6] != null) {
