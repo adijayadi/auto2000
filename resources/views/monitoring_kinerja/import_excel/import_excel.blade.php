@@ -292,6 +292,7 @@ var table2 = $('#table_db').DataTable();
             serverSide: true,
             paging: false,
             destroy: true,
+            fixedHeader: true,
             ajax : {
                 url: "{{ route('table.excel') }}",
                 type: "post",
@@ -315,6 +316,7 @@ var table2 = $('#table_db').DataTable();
             responsive: true,
             serverSide: true,
             destroy: true,
+            fixedHeader: true,
             ajax : {
                 url: "{{ route('table.rekap') }}",
                 type: "post",

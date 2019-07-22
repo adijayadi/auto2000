@@ -154,7 +154,9 @@
                     });
 
                     setTimeout(function(){
-                        window.location.reload();
+                        
+                        table.ajax.reload();
+                        table2.ajax.reload();
                     },500);
                 },
                 error:function(xhr,textStatus,errorThrowl){
@@ -179,7 +181,8 @@
                     });
 
                     setTimeout(function(){
-                        window.location.reload();
+                        table2.ajax.reload();
+                        table.ajax.reload();
                     },500);
                 },
                 error:function(xhr,textStatus,errorThrowl){
@@ -191,7 +194,7 @@
             })
         })
 
-        $('#table_tindakan_2').DataTable({
+        var table2 = $('#table_tindakan_2').DataTable({
             responsive: true,
             serverSide: true,
             destroy: true,
@@ -216,7 +219,7 @@
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
 
-        $('#table_tindakan').DataTable({
+        var table = $('#table_tindakan').DataTable({
             responsive: true,
             serverSide: true,
             destroy: true,
