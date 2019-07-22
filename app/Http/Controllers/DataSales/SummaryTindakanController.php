@@ -17,14 +17,14 @@ class SummaryTindakanController extends Controller
 
     public function all(){
         $all = DB::table('d_followup')
-                ->join('d_customer','c_id' , 'fu_cid')
+                ->join('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('d_followup.status_data','false')
                 ->groupBy('fu_id')
                 ->get();
         $fu = DB::table('d_followup')
-                ->join('d_customer','c_id' , 'fu_cid')
+                ->join('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('d_followup.status_data','re')
@@ -73,7 +73,7 @@ class SummaryTindakanController extends Controller
 
 	public function booking(){
 		$booking = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->join('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','success')
@@ -100,7 +100,7 @@ class SummaryTindakanController extends Controller
 
 	public function notbooking(){
 		$notbooking = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->join('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','schedule')
@@ -127,7 +127,7 @@ class SummaryTindakanController extends Controller
 
 	public function refu(){
 		$refu = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->join('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','refollowup')
@@ -154,7 +154,7 @@ class SummaryTindakanController extends Controller
 
 	public function denied(){
 		$denied = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->join('d_customer','c_order' , 'fu_cid')
     			->join('d_resultfu','rf_cid','fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
     			->where('fu_cstaff',Auth::user()->u_code)
@@ -182,43 +182,43 @@ class SummaryTindakanController extends Controller
 
 	public function getcount(){
 		$suspect = DB::table('d_followup')
-    			->join('d_customer','c_id' , 'fu_cid')
+    			->join('d_customer','c_order' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','planning')
     			->count();
 
     	$done1 = DB::table('d_followup')
-                ->join('d_customer','c_id' , 'fu_cid')
+                ->join('d_customer','c_order' , 'fu_cid')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('d_followup.status_data','false')->count();
         $done2 = DB::table('d_followup')
-                ->join('d_customer','c_id' , 'fu_cid')
+                ->join('d_customer','c_order' , 'fu_cid')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->Where('d_followup.status_data','re')->count();
         $done = $done1 + $done2;
         $booking = DB::table('d_followup')
-    			->Leftjoin('d_customer','c_id' , 'fu_cid')
+    			->Leftjoin('d_customer','c_order' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','success')
                 ->where('d_followup.status_data','false')
     			->count();
 
         $notbooking = DB::table('d_followup')
-    			->leftJoin('d_customer','c_id' , 'fu_cid')
+    			->leftJoin('d_customer','c_order' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','schedule')
                 ->where('d_followup.status_data','false')
     			->count();
 
         $refu = DB::table('d_followup')
-    			->leftJoin('d_customer','c_id' , 'fu_cid')
+    			->leftJoin('d_customer','c_order' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','refollowup')
             	->where('d_followup.status_data','re')
     			->count();
 
         $denied = DB::table('d_followup')
-    			->leftJoin('d_customer','c_id' , 'fu_cid')
+    			->leftJoin('d_customer','c_order' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','denied')
                 ->where('d_followup.status_data','false')

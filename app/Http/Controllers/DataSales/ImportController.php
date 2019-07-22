@@ -66,9 +66,9 @@ class ImportController extends Controller
          if ($check == 0) {
       		    $alldata = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
-                if(null == ''){
+                if(empty($request->result['Sheet1'][$i][6])){
                   $direct = 'R';
-                  }else if ($request->result['Sheet1'][$i][6] != null) {
+                  }else{
                   $direct = $request->result['Sheet1'][$i][6];
                 }
 
