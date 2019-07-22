@@ -385,7 +385,7 @@ $.fn.dataTable.ext.errMode = 'none';
                 }
             })
 
-        $('#table_summary').DataTable();
+        
         $('#table_kendaraan_1').DataTable({
             responsive: true,
             serverSide: true,

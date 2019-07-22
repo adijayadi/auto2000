@@ -20,7 +20,7 @@ body.body-cpanel{
 .table > thead > tr > th{
     color: white;
     text-shadow: 2px 2px 2px #4d4d4d;
-    background-color: #f11b2a;
+    background-color: transparent;
 }
 
 .table thead .sorting_asc,
