@@ -90,8 +90,8 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <div class="form-group">
                                 <select class="form-control input-sm" name="akses">
+                                    <option selected hidden> ~ Pilih  Akses ~ </option>
                                     <option value="A">Manajer</option>
-                                    <option value="S">Service Advisor</option>
                                 </select>
                             </div>
                         </div>

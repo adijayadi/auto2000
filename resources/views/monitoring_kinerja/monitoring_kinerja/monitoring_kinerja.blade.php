@@ -48,27 +48,21 @@
 
                                 <div class="row">
 
-                                {{--     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                                     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
                                         <label>Periode Bulan</label>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
                                         <div class="form-group">
-
-
                                             <div class="input-group input-daterange">
                                                 <input type="text" class="form-control input-sm" id="tanggal1" name="">
                                                 <span class="input-group-addon">ke</span>
                                                 <input type="text" class="form-control input-sm" id="tanggal2" name="">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-search"></i> Cari</button>
-                                                </span>
                                             </div>
-                                            
                                         </div>
 
-                                    </div> --}}
+                                    </div> 
                                     {{-- 
                                     <div class="col-lg-4 col-md-2 col-sm-12 col-xs-12">
                                         <div class="form-group text-center">
