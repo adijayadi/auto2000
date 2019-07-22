@@ -25,10 +25,11 @@ body.body-cpanel{
 
 .table.table-sticky {
 	position: relative;
-	border-collapse: collapse; 
 }
 .table.table-sticky > thead > tr > th,
-.table.table-sticky th
+.table.table-sticky th,
+.table.table-sticky thead .sorting_asc,
+.table.table-sticky thead .sorting_desc
 {
 	position: -webkit-sticky;
 	position: sticky;

@@ -90,6 +90,24 @@
             }
         })
 
+        $('#reason').keypress(function(e){
+            if (e.which === 13 || e.keyCode === 13) {
+                
+                if ($('#reason').val() != '') {
+                    adddata();
+                }else{
+                    iziToast.show({
+                        color: '#DC143C',
+                        titleColor: '#ffffff',
+                        messageColor: '#ffffff',
+                        title: 'Gagal!',
+                        message: 'Ada Yang Kosong',
+                    });
+                }
+
+            }
+        })
+
         function adddata(){
             var alasan = $('#reason').val();
             $.ajax({
@@ -101,6 +119,8 @@
                         title: 'Berhasil!',
                         message: 'Menginput Alasan ',
                     });
+                    $('#reason').val('');
+                    $('#reason').focus();
                 },
                 error:function(xhr,textStatus,errorThrowl){
                             iziToast.error({
