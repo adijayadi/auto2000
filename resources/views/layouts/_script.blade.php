@@ -95,7 +95,7 @@
             (check_minisidebar) ? $('body').addClass(check_minisidebar) : '';
 
             $.extend(true, $.fn.dataTable.defaults, {
-                "responsive":true,
+                "responsive":false,
                 "pageLength": 10,
                 "lengthMenu": [[10, 20, 50, - 1], [10, 20, 50, "All"]],
                 "language": {
@@ -110,7 +110,7 @@
                         "next": "Selanjutnya",
                     }
                 },
-                width: '100%',
+                // width: '100%',
 
             });
 

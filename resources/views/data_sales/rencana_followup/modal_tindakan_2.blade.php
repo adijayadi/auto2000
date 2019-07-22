@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control input-sm datepicker" name="tanggalbooking2">
+                                                <input type="text" class="form-control input-sm" name="tanggalbooking2">
                                             </div>
                                         </div>
                                     </div>

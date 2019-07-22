@@ -48,11 +48,11 @@
 
                                 <div class="row">
 
-                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
+                                {{--     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
                                         <label>Periode Bulan</label>
                                     </div>
 
-                                    <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
 
                                         <div class="form-group">
 
@@ -68,7 +68,7 @@
                                             
                                         </div>
 
-                                    </div>
+                                    </div> --}}
                                     {{-- 
                                     <div class="col-lg-4 col-md-2 col-sm-12 col-xs-12">
                                         <div class="form-group text-center">
@@ -82,7 +82,7 @@
                                         <thead>
                                             <tr>
                                                 <th width="1%">No.</th>
-                                                <th>Nama Sales</th>
+                                                <th>Nama Service Advisor</th>
                                                 <th width="15%">Aksi</th>
                                             </tr>
                                         </thead>

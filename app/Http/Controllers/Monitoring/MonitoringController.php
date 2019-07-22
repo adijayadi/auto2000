@@ -25,7 +25,7 @@ class MonitoringController extends Controller
     	return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function($data){
-    		return '<button class="btn btn-info list" type="button" data-nama="'.$data->u_name.'" data-serviceadv="'.$data->u_code.'" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
+    		return '<button class="btn btn-info btn-sm list" type="button" data-nama="'.$data->u_name.'" data-serviceadv="'.$data->u_code.'" data-toggle="modal" data-target="#tindakan-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
     	})
     	->rawColumns(['action'])
     	->make(true);
@@ -43,7 +43,7 @@ class MonitoringController extends Controller
         return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function($data){
-    		return '<button class="btn btn-info listlog" type="button" data-nama="'.$data->u_name.'" data-serviceadv="'.$data->u_code.'" data-toggle="modal" data-target="#log-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
+    		return '<button class="btn btn-info btn-sm listlog" type="button" data-nama="'.$data->u_name.'" data-serviceadv="'.$data->u_code.'" data-toggle="modal" data-target="#log-detail" data-placement="top" title="Detail"><i class="fa fa-list"></i></button>';
     	})
     	->rawColumns(['action'])
     	->make(true);

@@ -35,23 +35,23 @@ class SalesController extends Controller
     	->addIndexColumn()
     	->addColumn('action',function($data){
     		if ($data->status_data === 'true') {
-	    		return '
+	    		return '<div class="btn-group btn-group-sm">
                 <form action="'.route("editpage.sales").'" method="POST">
                         <input type="hidden" name="_token" value="'.csrf_token().'">
                         <input type="hidden" name="id" value="'.$data->s_id.'">
 	    		          <button class="btn btn-warning edit" type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
                 </form>
 	    		          <button class="btn btn-danger delete" type="button" data-id="'.$data->s_id.'" data-toggle="tooltip" data-placement="top" title="Non Aktifkan"><i class="fa fa-times"></i></button>
-	    		        ';	
+	    		        </div>';	
     		}else{
-    			return '
+    			return '<div class="btn-group btn-group-sm">
                 <form action="'.route("editpage.sales").'" method="POST">
                             <input type="hidden" name="_token" value="'.csrf_token().'">
                             <input type="hidden" name="id" value="'.$data->s_id.'">
     			            <button class="btn btn-warning edit"  type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
                 </form>
     			            <button class="btn btn-primary delete" data-id="'.$data->s_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fa fa-check"></i></button>
-    			        ';
+    			        </div>';
     		}
     	})
     	->addColumn('status',function($data){

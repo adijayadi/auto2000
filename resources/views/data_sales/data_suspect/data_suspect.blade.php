@@ -103,7 +103,7 @@
 
         $('#table_kendaraan').DataTable({
             responsive: true,
-            serverSide: true,
+            serverSide: false,
             destroy: true,
             ajax : {
                 url: "{{ route('table.suspect') }}",
@@ -121,7 +121,7 @@
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
 
             ],
-            pageLength: 10,
+            pageLength: -1,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
 
@@ -183,6 +183,11 @@
             for(var j = start; j<end;  j++){
                 table.eq(j).prop('checked', true).parents('tr').addClass('table-checked');
             }
+        })
+
+        $('[name="rencanadate"]').datepicker({
+            format:'dd-mm-yyyy',
+            startDate:'0',
         })
 </script>
 @endsection

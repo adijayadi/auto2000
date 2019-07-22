@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control input-sm datepicker" name="tanggalbooking">
+                                                <input type="text" class="form-control input-sm" name="tanggalbooking">
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control input-sm datepicker" name="tanggalrefollowup">
+                                                <input type="text" class="form-control input-sm" name="tanggalrefollowup">
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
