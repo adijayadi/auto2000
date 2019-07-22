@@ -61,6 +61,9 @@
             <li class="{{Request::is('monitoring_kinerja/*') ? 'active nav-active' : ''}}">
                 <a href="{{route('monitoring')}}"><i class="fa fa-desktop"></i> <span class="nav-label">Monitoring Tindakan Service Advisor</span></a>
             </li>
+                    <li class="{{Request::is('data_sales/summary_tindakan/*') ? 'active nav-active' : ''}}">
+                        <a href="{{route('summary_tindakan')}}"><i class="fa fa-list"></i><span class="nav-label"> Hasil Tindakan</span></a>
+                    </li>
             @endif
 
             @if(Auth::user()->u_user== 'S')
@@ -76,9 +79,9 @@
                     {{-- <li class="{{Request::is('data_sales/tindakan_sales/*') ? 'active' : ''}}">
                         <a href="{{route('tindakan_sales')}}"> Tindakan</a>
                     </li> --}}
-                    <li class="{{Request::is('data_sales/summary_tindakan/*') ? 'active' : ''}}">
+                    {{-- <li class="{{Request::is('data_sales/summary_tindakan/*') ? 'active' : ''}}">
                         <a href="{{route('summary_tindakan')}}">Hasil Tindakan</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             @endif
