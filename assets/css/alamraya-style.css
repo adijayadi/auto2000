@@ -23,10 +23,10 @@ body.body-cpanel{
     background-color: transparent;
 }
 
-/*.table.table-sticky {
+.table.table-sticky {
 	position: relative;
 	border-collapse: collapse; 
-}*/
+}
 .table.table-sticky > thead > tr > th,
 .table.table-sticky th
 {

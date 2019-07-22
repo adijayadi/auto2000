@@ -67,7 +67,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="table_kelola" style="width: 100%;">
+                                        <table class="table table-striped table-bordered table-hover table-sticky" id="table_kelola" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th width="1%"></th>
