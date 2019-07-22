@@ -27,7 +27,7 @@
                 <div class="ibox-content">
                     <div class="table-responsive">
 
-                        <table class="table table-bordered table-hover" id="table_service">
+                        <table class="table table-bordered table-hover table-sticky" id="table_service">
                             <thead>
                                 <tr>
                                     <th>Service Advisor</th>
@@ -154,6 +154,9 @@
                 responsive: true,
                 serverSide: true,
                 destroy: true,
+                fixedHeader: {
+                    header: true,
+                },
                 ajax : {
                     url: "{{ route('home.getDataTable') }}",
                     type: "get",
