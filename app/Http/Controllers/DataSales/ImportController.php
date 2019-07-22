@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DataSales;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\d_customer;
+use App\d_followup;
 use DataTables;
 use Carbon\Carbon;
 use Excel;
@@ -17,7 +18,7 @@ class ImportController extends Controller
    	{
    		$urutan = d_customer::all()->count();
       setlocale(LC_TIME, 'IND');
-   		$code = 'S'.$urutan.Carbon::now()->format('ds');
+   		$code = 'S'.$urutan.Carbon::now('Asia/Jakarta')->format('ds');
    		return view('monitoring_kinerja.import_excel.import_excel',array(
    			'code' => $code,
    		));
@@ -53,7 +54,7 @@ class ImportController extends Controller
             return $data->cr_serviceadvisor .'<input type="hidden" value="'.$data->cr_serviceadvisor.'" class="advisor" name="advisor[]">';
          })
          ->addcolumn('action',function($data){
-            return '<button class="btn btn-danger btn-sm hapus" data-id="'.$data->cr_id.'" type="button"><i class="fa fa-trash"></i></button>';
+            return '<button class="btn btn-danger btn-sm hapus" data-id="'.$data->cr_id.'" type="button"><i class="fa fa-trash"></i></button><input type="hidden" value="'.$data->cr_direct.'" name="direct[]">';
          })
          ->rawColumns(['rangka', 'plate', 'type', 'job', 'date', 'servicead', 'action'])
          ->make(true);
@@ -65,6 +66,10 @@ class ImportController extends Controller
          if ($check == 0) {
       		    $alldata = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
+                if ($request->result['Sheet1'][$i][6] != null) {
+                  $direct = $request->result['Sheet1'][$i][6];
+                }
+
               $datetime = Carbon::parse($request->result['Sheet1'][$i][4])->format('Y,m,d');
               $arr = array(
          			'cr_serial' => $request->result['Sheet1'][$i][0],  
@@ -72,7 +77,8 @@ class ImportController extends Controller
          			'cr_typecar' => $request->result['Sheet1'][$i][2],
          			'cr_jobdesc' => $request->result['Sheet1'][$i][3],
          			'cr_dateservice' => $datetime,
-         			'cr_serviceadvisor' => $request->result['Sheet1'][$i][5],
+              'cr_serviceadvisor' => $request->result['Sheet1'][$i][5],
+         			'cr_direct' => $direct,
          			'cr_code' => 'true',
          			'status_data' => 'true',
 
@@ -93,6 +99,7 @@ class ImportController extends Controller
                   'cr_jobdesc' => $request->result['Sheet1'][$i][3],
                   'cr_dateservice' => $datetime,
                   'cr_serviceadvisor' => $request->result['Sheet1'][$i][5],
+                  'cr_direct' => $request->result['Sheet1'][$i][6],
                   'cr_code' => 'true',
                   'status_data' => 'true',
 
@@ -110,12 +117,6 @@ class ImportController extends Controller
       $ns2 = Carbon::now('Asia/Jakarta')->subMonths(2)->format('Y,m');
       $ns3 = Carbon::now('Asia/Jakarta')->subMonths(3)->format('Y,m');
       $ns4 = Carbon::now('Asia/Jakarta')->subMonths(4)->format('Y,m');
-      $ns5 = Carbon::now('Asia/Jakarta')->subMonths(5)->format('Y,m');
-      $di1 = Carbon::now('Asia/Jakarta')->subMonths(4)->format('Y,m');
-      $di2 = Carbon::now('Asia/Jakarta')->subMonths(5)->format('Y,m');
-      $di3 = Carbon::now('Asia/Jakarta')->subMonths(6)->format('Y,m');
-      $di4 = Carbon::now('Asia/Jakarta')->subMonths(7)->format('Y,m');
-      $di5 = Carbon::now('Asia/Jakarta')->subMonths(8)->format('Y,m');
         $rcount = $request->serialc;
         $code = $request->code;
           $id = $request->idd;
@@ -127,11 +128,90 @@ class ImportController extends Controller
             ));
           }else{
           $alldata = [];
+          $direct = [];
             for ($i=0; $i < $rcount ; $i++) { 
+                $ordercode = DB::table('d_customer')->count().$i;
+
                 $cek = DB::table('d_customer')->where('c_serial',$request->serial[$i])->count();
-                $td = Carbon::parse($request->date[$i])->format('Y,m');
-              if ($td == $di1 || $td == $di2 || $td == $di3 || $td == $di4 || $td == $di5  ) {
-                  if ($cek == 0 )  {
+                $langsung = DB::table('d_user')->where('u_username',$request->advisor[$i])->count();
+                $langsung2 = DB::table('d_user')->where('u_username',$request->advisor[$i])->get();
+                $td = Carbon::parse($request->date[$i])->addMonths(3)->format('Y,m');
+                if ($request->direct[$i] == 's') {
+                  if ($langsung == 1) {
+                    $arr1 = array(
+                   'c_serial' => $request->serial[$i],
+                   'c_plate' => $request->plate[$i],
+                   'c_typecar' => $request->car[$i],
+                   'c_jobdesc' => $request->job[$i],
+                   'c_dateservice' => $request->date[$i],
+                   'c_serviceadvisor' => $request->advisor[$i],
+                   'c_code' => $request->code,
+                   'c_order' => $ordercode,
+                   'status_data' => 'plan',
+                    );
+
+                    $arr2 = array(
+                  'fu_cid' => $ordercode,
+                  'fu_cstaff' => $langsung2[0]->u_code,
+                  'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
+                  'fu_time' => Carbon::parse('Asia/Jakarta'),
+                  'fu_status' => 'Planning',
+                  'status_data' =>'true',
+                  );
+
+                  array_push($alldata, $arr1);
+                  array_push($direct, $arr2);
+                  DB::table('d_customerremovable')->where('cr_id', $id[$i])->delete();
+                  }else if ($cek == 0 )  {
+                $arr = array(
+                   'c_serial' => $request->serial[$i],
+                   'c_plate' => $request->plate[$i],
+                   'c_typecar' => $request->car[$i],
+                   'c_jobdesc' => $request->job[$i],
+                   'c_dateservice' => $request->date[$i],
+                   'c_serviceadvisor' => $request->advisor[$i],
+                   'c_code' => $request->code,
+                   'c_order' => $ordercode,
+                   'status_data' => 'true',
+                    );
+                    
+                array_push($alldata, $arr);
+                DB::table('d_customerremovable')->where('cr_id', $id[$i])->delete();
+                    }else{
+                      DB::table('d_customer')->where('c_serial',$request->serial[$i])
+                      ->update([
+                        'c_dateservice' => $request->date[$i],
+                        'status_data' => 'true',
+                      ]);
+                    DB::table('d_customerremovable')->where('cr_id', $id[$i])->delete();
+                    }
+                }else if ($td == $ns1 || $td == $ns2 || $td == $ns3 || $td == $ns4) {
+                  if ($langsung == 1) {
+                    $arr1 = array(
+                   'c_serial' => $request->serial[$i],
+                   'c_plate' => $request->plate[$i],
+                   'c_typecar' => $request->car[$i],
+                   'c_jobdesc' => $request->job[$i],
+                   'c_dateservice' => $request->date[$i],
+                   'c_serviceadvisor' => $request->advisor[$i],
+                   'c_code' => $request->code,
+                   'c_order' => $ordercode,
+                   'status_data' => 'plan',
+                    );
+
+                    $arr2 = array(
+                  'fu_cid' => $ordercode,
+                  'fu_cstaff' => $langsung[0]->u_code,
+                  'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
+                  'fu_time' => Carbon::parse('Asia/Jakarta'),
+                  'fu_status' => 'Planning',
+                  'status_data' =>'true',
+                  );
+
+                  array_push($alldata, $arr);
+                  array_push($direct, $arr2);
+                  DB::table('d_customerremovable')->where('cr_id', $id[$i])->delete();
+                  }else if ($cek == 0 )  {
             $arr = array(
                'c_serial' => $request->serial[$i],
                'c_plate' => $request->plate[$i],
@@ -140,6 +220,7 @@ class ImportController extends Controller
                'c_dateservice' => $request->date[$i],
                'c_serviceadvisor' => $request->advisor[$i],
                'c_code' => $request->code,
+               'c_order' => $ordercode,
                'status_data' => 'true',
                 );
                     
@@ -156,6 +237,7 @@ class ImportController extends Controller
                 }
             }
          d_customer::insert($alldata);
+         d_followup::insert($direct);
          d_hcustommer::truncate();
           }
 
@@ -171,7 +253,7 @@ class ImportController extends Controller
             're_dataadded' => $data,
             're_availabledata' => $avaible,
             're_totaldata' => $request->cout - 1,
-            're_dateupload' => Carbon::now(),
+            're_dateupload' => Carbon::now('Asia/Jakarta'),
             're_ccustomer' => $code,
             'status_data' => 'true',
           ]);

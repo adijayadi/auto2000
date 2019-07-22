@@ -21,6 +21,7 @@ class DCustomerremovable extends Migration
             $table->string('cr_jobdesc',100);
             $table->date('cr_dateservice')->nullable();
             $table->string('cr_serviceadvisor',30);
+            $table->string('cr_direct',30)->nullable();
             $table->string('cr_code',100);
             $table->string('status_data',20);
         });

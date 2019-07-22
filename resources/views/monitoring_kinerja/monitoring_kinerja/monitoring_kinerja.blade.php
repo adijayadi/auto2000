@@ -58,9 +58,9 @@
 
 
                                             <div class="input-group input-daterange">
-                                                <input type="text" class="form-control input-sm" name="">
+                                                <input type="text" class="form-control input-sm" id="tanggal1" name="">
                                                 <span class="input-group-addon">ke</span>
-                                                <input type="text" class="form-control input-sm" name="">
+                                                <input type="text" class="form-control input-sm" id="tanggal2" name="">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-search"></i> Cari</button>
                                                 </span>
@@ -143,6 +143,8 @@
                     '_token' :'{{csrf_token()}}',
                     '_method' :'PUT',
                     'adv' : serviceadv,
+                    'tanggal1' : $('#tanggal1').val(),
+                    'tanggal2' : $('#tanggal2').val(),
                 },
                 success: function(get){
                         console.log(get);
@@ -180,6 +182,7 @@
                         'code' : code,
                     }
                 },
+                order : [[1,'desc']],
                 columns : [
                 {data: 'DT_RowIndex'},
                 {data : 'tanggal' , name : 'tanggal'},

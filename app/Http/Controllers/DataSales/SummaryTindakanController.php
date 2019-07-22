@@ -21,19 +21,48 @@ class SummaryTindakanController extends Controller
                 ->leftJoin('m_vehicle','v_code','c_plate')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('d_followup.status_data','false')
-                ->orWhere('d_followup.status_data','re')
                 ->groupBy('fu_id')
                 ->get();
-        setlocale(LC_TIME, 'IND');
+        $fu = DB::table('d_followup')
+                ->join('d_customer','c_id' , 'fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
+                ->where('fu_cstaff',Auth::user()->u_code)
+                ->where('d_followup.status_data','re')
+                ->groupBy('fu_id')
+                ->get();
+                $data =[];
+                if ($all != '[]') {
+                    foreach ($all as $row) {
+                        $arr = array(
+                            'c_dateservice' => $row->c_dateservice,
+                            'v_owner' => $row->v_owner,
+                            'c_plate' => $row->c_plate,
+                            'fu_status' => $row->fu_status,
+                        );
+                        array_push($data,$arr);
+                    }
+                }
 
-        return DataTables::of($all)
+                if ($fu != '[]') {
+                    foreach ($fu as $row) {
+                        $arrr = array(
+                            'c_dateservice' => $row->c_dateservice,
+                            'v_owner' => $row->v_owner,
+                            'c_plate' => $row->c_plate,
+                            'fu_status' => $row->fu_status,
+                        );
+                        array_push($data,$arrr);
+                    }
+                }
+        setlocale(LC_TIME, 'IND');
+        return DataTables::of($data)
         ->addIndexColumn()
-        ->addColumn('tanggal',function($all){
-             return Carbon::parse($all->c_dateservice)->formatLocalized('%d %B %Y');
+        ->addColumn('tanggal',function($data){
+             return Carbon::parse($data['c_dateservice'])->formatLocalized('%d %B %Y');
         })
-        ->addColumn('nama',function($all){
-            if ($all->v_owner != null) {
-                return $all->v_owner;
+        ->addColumn('nama',function($data){
+            if ($data['v_owner'] != null) {
+                return $data['v_owner'];
             }else{
                 return '';
             }
@@ -158,12 +187,15 @@ class SummaryTindakanController extends Controller
                 ->where('fu_status','planning')
     			->count();
 
-    	$done = DB::table('d_followup')
+    	$done1 = DB::table('d_followup')
                 ->join('d_customer','c_id' , 'fu_cid')
                 ->where('fu_cstaff',Auth::user()->u_code)
-                ->where('d_followup.status_data','false')
-                ->orWhere('d_followup.status_data','re')->count();
-
+                ->where('d_followup.status_data','false')->count();
+        $done2 = DB::table('d_followup')
+                ->join('d_customer','c_id' , 'fu_cid')
+                ->where('fu_cstaff',Auth::user()->u_code)
+                ->Where('d_followup.status_data','re')->count();
+        $done = $done1 + $done2;
         $booking = DB::table('d_followup')
     			->Leftjoin('d_customer','c_id' , 'fu_cid')
     			->where('fu_cstaff',Auth::user()->u_code)

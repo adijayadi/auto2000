@@ -95,13 +95,13 @@
                     });
 
                     setTimeout(function(){
-                        window.location.reload();
+                        table.ajax.reload();
                     },500);
                 }
             });
         });
 
-        $('#table_kendaraan').DataTable({
+        var table = $('#table_kendaraan').DataTable({
             responsive: true,
             serverSide: false,
             destroy: true,

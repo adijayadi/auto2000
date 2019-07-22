@@ -67,7 +67,7 @@ class SalesController extends Controller
 
     public function addsales(Request $request){
     	$urutan = DB::table('m_sales')->get()->count()+ 1;
-    	$code = 'S'.$urutan.Carbon::now()->format('hs');
+    	$code = 'S'.$urutan;
         $check2 = DB::table('d_user')->where('u_username',$request->username)->count(); 
         $check = DB::table('m_sales')->where('s_username',$request->username)->count();
         if ($check == 0 && $check2 == 0) {
@@ -83,19 +83,17 @@ class SalesController extends Controller
         			'status_data' => 'true',
         		]);
 
-            $urutan2 = DB::table('d_user')->count();
-            $code2 = 'SA'.$urutan2.Carbon::now()->format('yhs');
             d_user::create([
                 'u_name' => $request->name,
                 'u_username' => $request->username,
                 'u_email' => $request->email,
                 'password' => bcrypt($request->password),
                 'u_user' => 'S',
-                'u_code' => $code2,
+                'u_code' => $code,
                 'status_data' =>'true',
             ]);   
         }else{
-            return $check2 .'   '. $check;
+            return false;
         }
     }
 

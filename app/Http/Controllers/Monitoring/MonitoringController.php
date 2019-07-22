@@ -69,25 +69,30 @@ class MonitoringController extends Controller
         ->join('d_resultfu','rf_cid','fu_cid')
         ->where('fu_cstaff',$adv)
         ->where('d_resultfu.status_data','true')
+        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
         ->where('rf_csummary','1')->count();
         $dua = DB::table('d_followup')
         ->where('fu_cstaff',$adv)
         ->where('status_data','true')
+        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
         ->where('fu_status','Planning')->count();
         $tiga = DB::table('d_followup')
         ->join('d_resultfu','rf_cid','fu_cid')
         ->where('fu_cstaff',$adv)
         ->where('d_resultfu.status_data','true')
+        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
         ->where('rf_csummary','3')->count();
         $empat = DB::table('d_followup')
         ->join('d_resultfu','rf_cid','fu_cid')
         ->where('fu_cstaff',$adv)
         ->where('d_resultfu.status_data','true')
+        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
         ->where('rf_csummary','4')->count();
         $lima = DB::table('d_followup')
         ->join('d_resultfu','rf_cid','fu_cid')
         ->where('fu_cstaff',$adv)
         ->where('d_resultfu.status_data','true')
+        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
         ->where('rf_csummary','5')->count();
         return response()->json(array(
             'satu' => $satu,

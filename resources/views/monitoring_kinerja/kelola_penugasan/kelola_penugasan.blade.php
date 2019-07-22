@@ -84,6 +84,9 @@
                                         </table>
                                     </div>
                                     
+                                    @foreach($total as $row)
+                                        {!! $row->c_jobdesc . '  : '. $row->total .' Service&nbsp;  | &nbsp;' !!}
+                                    @endforeach
                                 </div>
                             </form>
                                 
@@ -196,7 +199,8 @@
                             title: 'Berhasil!',
                             message: 'Menyimpan Data',
                         });
-                        window.location.reload();
+                        table.ajax.reload();
+                        table2.ajax.reload();
                     } 
                 },
                 error:function(xhr,textStatus,errorThrowl){
@@ -262,7 +266,8 @@
                             title: 'Berhasil!',
                             message: 'Menyimpan Data',
                         });
-                        window.location.reload();
+                        table.ajax.reload();
+                        table2.ajax.reload();
                     } 
                     
                 },
@@ -315,6 +320,7 @@
                     "_token": "{{ csrf_token() }}"
                 }
             },
+            order : [[1,'desc'],[5,'desc']],
             columns : [
             {data : 'check' , name : 'check'},
             {data : 'c_dateservice' , name : 'c_dateservice'},

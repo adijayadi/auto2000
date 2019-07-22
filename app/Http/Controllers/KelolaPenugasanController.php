@@ -13,9 +13,11 @@ class KelolaPenugasanController extends Controller
 {
     public function kelola_penugasan()
     {
+      $countwork = DB::table('d_customer')->where('status_data','true')->select('c_jobdesc', DB::raw('count(*) as total'))->groupBy('c_jobdesc')->orderBy('c_jobdesc','asc')->get();
     	$advisor = DB::table('d_user')->where(['u_user' => 'S', 'status_data' => 'true'])->get();
     	return view('monitoring_kinerja.kelola_penugasan.kelola_penugasan',array(
     		'advisor' => $advisor,
+        'total' => $countwork,
     	));
     }
 
@@ -24,13 +26,9 @@ class KelolaPenugasanController extends Controller
     }
 
     public function tablecustomer(Request $request){
-      $sekarang = Carbon::now('Asia/Jakarta');
-      $notservice = Carbon::now('Asia/Jakarta')->subMonth()->format('Y,m,d');
-      $notserviceto = Carbon::now('Asia/Jakarta')->subMonths(5)->format('Y,m,d');
-      $datain = Carbon::now('Asia/Jakarta')->subMonths(4)->format('Y,m,d');
-      $datainto = Carbon::now('Asia/Jakarta')->subMonths(8)->format('Y,m,d');
     		$data = DB::table('d_customer')->where('status_data','true')
-        ->whereBetween('c_dateservice', [$datainto, $datain])
+        ->orderBy('c_dateservice')
+        ->orderBy('c_jobdesc')
         ->get();
     	return DataTables::of($data)
     	->addColumn('check',function($data){
