@@ -3,213 +3,198 @@
 @section('content')
 <div class="row  border-bottom white-bg dashboard-header">
 
-        <div class="col-sm-3">
+        <div class="col-xs-12">
             <h2>Dashboard Auto 2000</h2>
-            <small>Anda punya 42 pesan dan 6 notifikasi.</small>
-            <ul class="list-group clear-list m-t">
-                <li class="list-group-item fist-item">
-                    <span class="pull-right">
-                        09:00 pm
-                    </span>
-                    <span class="label label-success">1</span> Tolong hubungi saya
-                </li>
-                <li class="list-group-item">
-                    <span class="pull-right">
-                        10:16 am
-                    </span>
-                    <span class="label label-info">2</span> Tanda tangani sebuah kontrak
-                </li>
-                <li class="list-group-item">
-                    <span class="pull-right">
-                        08:22 pm
-                    </span>
-                    <span class="label label-primary">3</span> Buka toko baru
-                </li>
-                <li class="list-group-item">
-                    <span class="pull-right">
-                        11:06 pm
-                    </span>
-                    <span class="label label-default">4</span> Telpon kembali Sarah
-                </li>
-                <li class="list-group-item">
-                    <span class="pull-right">
-                        12:00 am
-                    </span>
-                    <span class="label label-primary">5</span> Tulis surat ke Sarah
-                </li>
-            </ul>
+                    <span>Selamat Datang <b>{{Auth::user()->u_name}}</b></span>
         </div>
-        <div class="col-sm-6">
-            <div class="flot-chart dashboard-chart">
-                <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-            </div>
-            <div class="row text-left">
-                <div class="col-xs-4">
-                    <div class=" m-l-md">
-                    <span class="h4 font-bold m-t block">$ 406,100</span>
-                    <small class="text-muted m-b block">Laporan Penjualan & Pemasaran</small>
+</div>
+
+@if(Auth::user()->u_user == 'A')
+<div class="wrapper wrapper-content">
+
+    <div class="row">
+
+
+        <div class="col-xs-12">
+
+            <div class="ibox">
+
+                <div class="ibox-title">
+
+                    <h5>Summary Tindakan Service Advisor</h5>
+                    
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-hover" id="table_service">
+                            <thead>
+                                <tr>
+                                    <th>Service Advisor</th>
+                                    <th>Summary Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        
                     </div>
-                </div>
-                <div class="col-xs-4">
-                    <span class="h4 font-bold m-t block">$ 150,401</span>
-                    <small class="text-muted m-b block">Pendapatan Penjualan Tahunan</small>
-                </div>
-                <div class="col-xs-4">
-                    <span class="h4 font-bold m-t block">$ 16,822</span>
-                    <small class="text-muted m-b block">Margin pendapatan setengah tahun</small>
+
                 </div>
 
             </div>
+            
         </div>
-        <div class="col-sm-3">
-            <div class="statistic-box">
-            <h4>
-                Progres Proyek Beta
-            </h4>
-            <p>
-                Anda memiliki dua proyek yang belum selesai.
-            </p>
-                <div class="row text-center">
-                    <div class="col-lg-6">
-                        <canvas id="polarChart" width="80" height="80"></canvas>
-                        <h5 >Kolter</h5>
-                    </div>
-                    <div class="col-lg-6">
-                        <canvas id="doughnutChart" width="78" height="78"></canvas>
-                        <h5 >Maxtor</h5>
-                    </div>
-                </div>
-                <div class="m-t">
-                    <small>Progres proyek Maktor lebih banyak daripada progres proyek Kolter.</small>
-                </div>
-
-            </div>
-        </div>
+        
+    </div>
 
 </div>
+@elseif(Auth::user()->u_user == 'S')
+<div class="wrapper wrapper-content">
+
+    <div class="row">
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span> Suspect </span>
+                        <h2 class="font-bold suspect">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+            
+            <div class="widget style1 navy-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-user-check fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Sudah Follow Up</span>
+                        <h2 class="font-bold follow-up">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget style1 blue-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-book-open fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Sudah Booking</span>
+                        <h2 class="font-bold sudah-booking">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-book fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Belum Booking</span>
+                        <h2 class="font-bold belum-booking">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget style1 lazur-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-sync fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Dihubungi Lagi</span>
+                        <h2 class="font-bold dihubungi-lagi">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget style1 red-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-times fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Tidak Bersedia</span>
+                        <h2 class="font-bold tidak-bersedia">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+</div>
+@endif
 
 @endsection
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
-
-        var data1 = [
-            [0,4],[1,8],[2,5],[3,10],[4,4],[5,16],[6,5],[7,11],[8,6],[9,11],[10,30],[11,10],[12,13],[13,4],[14,3],[15,3],[16,6]
-        ];
-        var data2 = [
-            [0,1],[1,0],[2,2],[3,0],[4,1],[5,3],[6,1],[7,5],[8,2],[9,3],[10,2],[11,1],[12,0],[13,2],[14,8],[15,0],[16,0]
-        ];
-        $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
-            data1, data2
-        ],
-                {
-                    series: {
-                        lines: {
-                            show: false,
-                            fill: true
-                        },
-                        splines: {
-                            show: true,
-                            tension: 0.4,
-                            lineWidth: 1,
-                            fill: 0.4
-                        },
-                        points: {
-                            radius: 0,
-                            show: true
-                        },
-                        shadowSize: 2
-                    },
-                    grid: {
-                        hoverable: true,
-                        clickable: true,
-                        tickColor: "#d5d5d5",
-                        borderWidth: 1,
-                        color: '#d5d5d5'
-                    },
-                    colors: ["#1ab394", "#1C84C6"],
-                    xaxis:{
-                    },
-                    yaxis: {
-                        ticks: 4
-                    },
-                    tooltip: false
+        @if (Auth::user()->u_user == 'A')
+            var table = $('#table_service').DataTable({
+                responsive: true,
+                serverSide: true,
+                destroy: true,
+                ajax : {
+                    url: "{{ route('home.getDataTable') }}",
+                    type: "get",
+                },
+                columns : [
+                    {data : 'u_name' , name : ''},
+                    {data : 'summary' , name : 'nama'},
+                ],
+            });
+        @elseif(Auth::user()->u_user == 'S')
+            $.ajax({
+                url:"{{route('getcount.summary')}}",
+                dataType:'JSON',
+                type:'POST',
+                data: {
+                    '_token' :'{{csrf_token()}}',
+                    '_method' :'PUT',
+                },
+                success:function(res){
+                    console.log(res);
+                    counterNum($('.widget .suspect'), 0, res.all, 1, 15);
+                    counterNum($('.widget .follow-up'), 0, res.done, 1, 250);
+                    counterNum($('.widget .sudah-booking'), 0, res.booking, 1, 500);
+                    counterNum($('.widget .belum-booking'), 0, res.notbooking, 1, 500);
+                    counterNum($('.widget .dihubungi-lagi'), 0, res.refu, 1, 500);
+                    counterNum($('.widget .tidak-bersedia'), 0, res.denied, 1, 500);
                 }
-        );
+            });
+        @endif
 
-        var doughnutData = [
-            {
-                value: 300,
-                color: "#a3e1d4",
-                highlight: "#1ab394",
-                label: "App"
-            },
-            {
-                value: 50,
-                color: "#dedede",
-                highlight: "#1ab394",
-                label: "Software"
-            },
-            {
-                value: 100,
-                color: "#A4CEE8",
-                highlight: "#1ab394",
-                label: "Laptop"
-            }
-        ];
-
-        var doughnutOptions = {
-            segmentShowStroke: true,
-            segmentStrokeColor: "#fff",
-            segmentStrokeWidth: 2,
-            percentageInnerCutout: 45, // This is 0 for Pie charts
-            animationSteps: 100,
-            animationEasing: "easeOutBounce",
-            animateRotate: true,
-            animateScale: false
-        };
-
-        var ctx = document.getElementById("doughnutChart").getContext("2d");
-        var DoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
-
-        var polarData = [
-            {
-                value: 300,
-                color: "#a3e1d4",
-                highlight: "#1ab394",
-                label: "App"
-            },
-            {
-                value: 140,
-                color: "#dedede",
-                highlight: "#1ab394",
-                label: "Software"
-            },
-            {
-                value: 200,
-                color: "#A4CEE8",
-                highlight: "#1ab394",
-                label: "Laptop"
-            }
-        ];
-
-        var polarOptions = {
-            scaleShowLabelBackdrop: true,
-            scaleBackdropColor: "rgba(255,255,255,0.75)",
-            scaleBeginAtZero: true,
-            scaleBackdropPaddingY: 1,
-            scaleBackdropPaddingX: 1,
-            scaleShowLine: true,
-            segmentShowStroke: true,
-            segmentStrokeColor: "#fff",
-            segmentStrokeWidth: 2,
-            animationSteps: 100,
-            animationEasing: "easeOutBounce",
-            animateRotate: true,
-            animateScale: false
-        };
-        var ctx = document.getElementById("polarChart").getContext("2d");
-        var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
+        function counterNum(obj, start, end, step, duration) {
+            $(obj).html(start);
+            setInterval(function(){
+                var val = Number($(obj).html());
+                if (val < end) {
+                    $(obj).html(val+step);
+                } else {
+                    clearInterval();
+                }
+            },duration);
+        }
     });
 </script>
 @endsection

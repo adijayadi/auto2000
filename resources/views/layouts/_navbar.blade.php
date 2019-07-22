@@ -15,7 +15,7 @@
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <span class="m-r-sm text-muted welcome-message">Selamat datang di Auto 2000.</span>
+                <span class="m-r-sm text-muted welcome-message">Selamat datang di <b>Auto 2000</b>.</span>
             </li>
 
             <!-- <li class="dropdown">
@@ -109,7 +109,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="divider"></li>
+                    {{-- <li class="divider"></li>
                     <li>
                         <div class="text-center link-block">
                             <a href="javascript:void(0);">
@@ -117,17 +117,17 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </li> --}}
                     @else
                     <li>
                         <a href="{{route('kelola_penugasan')}}">
                             <div>
-                                <i class="fa fa-upload fa-fw"></i> Data Customer
+                                <i class="fa fa-upload fa-fw"></i> Data Suspect
                                 <span class="pull-right text-muted small">{{$customer}}</span>
                             </div>
                         </a>
                     </li>
-                    <li class="divider"></li>
+                    {{-- <li class="divider"></li>
                     <li>
                         <div class="text-center link-block">
                             <a href="javascript:void(0);">
@@ -135,7 +135,7 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </li> --}}
                     @endif
                 </ul>
             </li>

@@ -14,7 +14,7 @@
                         <table class="table table-hover table-bordered data-table" id="detailll" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th width="10px">No</th>
+                                    <th width="1%">No</th>
                                     <th>No. Kendaraan</th>
                                     <th>Nama Pemilik</th>
                                     <th>Status Follow Up</th>

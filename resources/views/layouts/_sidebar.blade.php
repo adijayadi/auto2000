@@ -12,7 +12,7 @@
                                  {{Auth::user()->u_name}} 
                             </strong>
                         </span> 
-                        <span class="text-muted text-xs block">
+                        <span class="text-warning text-xs block">
                              {{Auth::user()->u_email}} 
                             <b class="caret"></b>
                         </span> </span> </a>

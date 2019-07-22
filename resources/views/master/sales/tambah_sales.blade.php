@@ -165,7 +165,7 @@
                 success:function(){
                     iziToast.success({
                         title:'Berhasil!',
-                        message:'Menginput Sales!'
+                        message:'Menginput Service Advisor!'
                     });
 
                     setTimeout(function(){

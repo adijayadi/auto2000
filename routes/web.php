@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::get('/', 'HomeController@index')->name('index');
 
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/home/getDataTable', 'HomeController@getDataTable')->name('home.getDataTable');
 
 	// master
 	Route::get('/master/sales/index', 'Master\SalesController@sales')->name('sales');

@@ -286,7 +286,7 @@
 
         var table = $('#table_kendaraan').DataTable({
             responsive: true,
-            serverSide: true,
+            serverSide: false,
             destroy: true,
             ajax : {
                 url: "{{ route('tablec.penugasan') }}",
@@ -311,7 +311,7 @@
 
         var table2 = $('#table_kelola').DataTable({
             responsive: true,
-            serverSide: true,
+            serverSide: false,
             destroy: true,
             ajax : {
                 url: "{{ route('tablec.penugasan') }}",

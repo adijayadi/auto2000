@@ -244,6 +244,19 @@
             pageLength: 10,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
+        
+        $('[name="tanggalrefollowup"]').datepicker({
+            format:'dd-mm-yyyy',
+            startDate:'0',
+        });
+        $('[name="tanggalbooking"]').datepicker({
+            format:'dd-mm-yyyy',
+            startDate:'0',
+        });
+        $('[name="tanggalbooking2"]').datepicker({
+            format:'dd-mm-yyyy',
+            startDate:'0',
+        });
     });
 
     $('select[name="tindakan"]').change(function(){
@@ -286,6 +299,7 @@
             // console.log('c');
         }
         
+
     })
 </script>
 @endsection

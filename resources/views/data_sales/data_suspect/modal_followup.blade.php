@@ -19,7 +19,7 @@
 
                                 <div class="col-sm-8 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control input-sm datepicker" name="rencanadate">
+                                        <input type="text" class="form-control input-sm" name="rencanadate">
                                     </div>
                                 </div>
 

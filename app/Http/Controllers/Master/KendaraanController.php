@@ -31,7 +31,8 @@ class KendaraanController extends Controller
         return DataTables::of($data)
         ->addIndexColumn()
         ->addColumn('action',function($data){
-            return '<form action="'.route("editpage.kendaraan").'" method="POST"><div class="btn-group btn-group-sm">
+            return '<div class="btn-group btn-group-sm">
+            <form action="'.route("editpage.kendaraan").'" method="POST">
             			<input type="hidden" name="_token" value="'.csrf_token().'">
             			<input type="hidden" name="id" value="'.$data->v_id.'" >
                         <button class="btn btn-warning" type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
