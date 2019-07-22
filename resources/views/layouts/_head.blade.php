@@ -22,6 +22,7 @@
     <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('assets/css/plugins/dataTables/FixedHeader/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet"> --}}
     {{-- <link href="{{asset('assets/select2/css/select2.min.css')}}" rel="stylesheet"> --}}
     <link href="{{asset('assets/select2-new/select2.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/iziToast/iziToast.min.css')}}" rel="stylesheet">
