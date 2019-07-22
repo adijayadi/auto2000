@@ -66,9 +66,12 @@ class ImportController extends Controller
          if ($check == 0) {
       		    $alldata = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
-                if ($request->result['Sheet1'][$i][6] != null) {
+                if(null == ''){
+                  $direct = 'R';
+                  }else if ($request->result['Sheet1'][$i][6] != null) {
                   $direct = $request->result['Sheet1'][$i][6];
                 }
+
 
               $datetime = Carbon::parse($request->result['Sheet1'][$i][4])->format('Y,m,d');
               $arr = array(

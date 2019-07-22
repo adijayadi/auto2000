@@ -124,7 +124,6 @@ function fileReader(oEvent) {
             var data = e.target.result;
             data = new Uint8Array(data);
             var workbook = XLSX.read(data, {type: 'array'});
-            console.log(workbook);
             
             var result = {};
             Global_sheetname = [];
@@ -147,7 +146,7 @@ function fileReader(oEvent) {
 
                 url : '{{route("hstore.excel")}}',
                 type : 'POST',
-                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count},
+                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : workbook},
                 success:function(){
                     table.ajax.reload();
                 },
