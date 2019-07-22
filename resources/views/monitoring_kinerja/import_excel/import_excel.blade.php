@@ -52,7 +52,7 @@
                             <h2>Data dari Import Excel</h2>
                             <hr>
                             <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_upload">
+                                    <table class="table table-striped table-bordered table-hover table-sticky" id="table_upload">
                                         <thead>
                                             <tr>
                                                 <th>No. Rangka</th>
