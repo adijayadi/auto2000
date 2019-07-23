@@ -83,14 +83,46 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    
-                                    @foreach($total as $row)
-                                        {!! $row->c_jobdesc . '  : '. $row->total .' Service&nbsp;  | &nbsp;' !!}
-                                    @endforeach
                                 </div>
                             </form>
                                 
                             </div>
+
+                            <div class="row">
+
+                                @for($i = 0;$i<count($total);$i++)
+                                    @php
+                                        $a=array(
+                                            'gray-bg',
+                                            'white-bg',
+                                            'navy-bg',
+                                            'blue-bg',
+                                            'lazur-bg',
+                                            'yellow-bg',
+                                            'red-bg',
+                                            'black-bg'
+                                        );
+                                        $b = range(0, 8);
+                                        $random_keys=array_rand($a,8);
+                                    @endphp
+                                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+                                        <div class="widget style1 {{$a[$random_keys[shuffle($b)]]}}">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <i class="fa fa-cog fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-8 text-right">
+                                                    <span> {{$total[$i]->c_jobdesc}} </span>
+                                                    <h2 class="font-bold">{{$total[$i]->total}}</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endfor
+                                
+                            </div>
+                                    
 
                     </div>
 

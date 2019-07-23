@@ -23,7 +23,7 @@ body.body-cpanel{
     background-color: transparent;
 }
 
-.table.table-sticky {
+/*.table.table-sticky {
 	position: relative;
 }
 .table.table-sticky > thead > tr > th,
@@ -34,7 +34,7 @@ body.body-cpanel{
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
-}
+}*/
 
 .table thead .sorting_asc,
 .table thead .sorting_desc
