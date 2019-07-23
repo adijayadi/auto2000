@@ -127,6 +127,7 @@ function fileReader(oEvent) {
             
             var result = {};
             Global_sheetname = [];
+            var ini =workbook.SheetNames;
             workbook.SheetNames.forEach(function (sheetName) {
                 var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header: 1, raw:false});
                 if (roa.length) result[sheetName] = roa;
@@ -136,17 +137,15 @@ function fileReader(oEvent) {
             var single_sheetname = Global_sheetname[0].toString();
 
             var data = result;
-            console.log(result);
             var alldata = data[single_sheetname].length;
             var count = alldata;
             $('#cout').val(count);
-            console.log(count);
             
             $.ajax({
 
                 url : '{{route("hstore.excel")}}',
                 type : 'POST',
-                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : workbook},
+                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini},
                 success:function(){
                     table.ajax.reload();
                 },

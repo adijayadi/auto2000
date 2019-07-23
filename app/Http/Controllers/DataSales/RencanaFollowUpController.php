@@ -22,7 +22,7 @@ class RencanaFollowUpController extends Controller
     public function table()
     {
         $data = DB::table('d_followup')
-            ->join('d_customer','c_id','fu_cid')
+            ->join('d_customer','c_order','fu_cid')
             ->leftJoin('m_vehicle','v_code','c_plate')
             ->where('fu_status','planned')
             ->where('fu_cstaff',Auth::user()->u_code)
@@ -46,7 +46,7 @@ class RencanaFollowUpController extends Controller
             return 'Belum Di Follow up';
         })
         ->addColumn('action',function($data){
-            return '<button type="button" class="btn btn-info ubah" data-id="'.$data->c_id.'" data-plate="'.$data->c_plate.'" data-toggle="modal" data-target="#detail_tindakan" title="Tindakan"><i class="fa fa-cog"></i></button>';
+            return '<button type="button" class="btn btn-info ubah" data-id="'.$data->c_order.'" data-plate="'.$data->c_plate.'" data-toggle="modal" data-target="#detail_tindakan" title="Tindakan"><i class="fa fa-cog"></i></button>';
         })
         ->rawColumns(['tanggal_rencana','status_service','status','action'])
         ->make(true);
@@ -56,7 +56,7 @@ class RencanaFollowUpController extends Controller
     public function tablere()
     {
         $data = DB::table('d_followup')
-            ->leftJoin('d_customer','c_id','fu_cid')
+            ->leftJoin('d_customer','c_order','fu_cid')
             ->LeftJoin('m_vehicle','v_code','c_plate')
             ->where('fu_status','refollowup')
             ->where('d_followup.status_data','re')
@@ -82,7 +82,7 @@ class RencanaFollowUpController extends Controller
             return 'Mengulang Follow up';
         })
         ->addColumn('action',function($data){
-            return '<button type="button" class="btn btn-info ubah2" data-id="'.$data->c_id.'" data-plate="'.$data->c_plate.'" data-toggle="modal" data-target="#detail_tindakan_2" title="Tindakan"><i class="fa fa-cog"></i></button>';
+            return '<button type="button" class="btn btn-info ubah2" data-id="'.$data->c_order.'" data-plate="'.$data->c_plate.'" data-toggle="modal" data-target="#detail_tindakan_2" title="Tindakan"><i class="fa fa-cog"></i></button>';
         })
         ->rawColumns(['tanggal_rencana','status_service','status','action'])
         ->make(true);
@@ -113,7 +113,7 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id)->update([
+                DB::table('d_customer')->where('c_order',$id)->update([
                     'status_data' => 'done',
                 ]);
 
@@ -127,7 +127,7 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 're',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id)->update([
+                DB::table('d_customer')->where('c_order',$id)->update([
                     'status_data' => 're',
                 ]);
 
@@ -146,7 +146,7 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id)->update([
+                DB::table('d_customer')->where('c_order',$id)->update([
                     'status_data' => 'not',
                 ]);
             }
@@ -166,7 +166,7 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id)->update([
+                DB::table('d_customer')->where('c_order',$id)->update([
                     'status_data' => 'done',
                 ]);
 
@@ -190,7 +190,7 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id2)->update([
+                DB::table('d_customer')->where('c_order',$id2)->update([
                     'status_data' => 'done',
                 ]);
 
@@ -209,7 +209,7 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_id',$id2)->update([
+                DB::table('d_customer')->where('c_order',$id2)->update([
                     'status_data' => 'not',
                 ]);
             }else{

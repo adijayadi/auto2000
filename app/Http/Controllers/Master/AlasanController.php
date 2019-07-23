@@ -29,13 +29,12 @@ class AlasanController extends Controller
 		return DataTables::of($data)
 		->addIndexColumn()
 		->addcolumn('action',function($data){
-			return '<div class="btn-group btn-group-sm">
-			<form action="'.route("editpage.alasan").'" method="POST">
+			return '<form action="'.route("editpage.alasan").'" class="btn-group btn-group-sm" method="POST">
 						<input type="hidden" name="_token" value="'.csrf_token().'">
 						<input type="hidden" value="'.$data->r_id.'" name="id" >
-                      <button class="btn btn-warning" type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button></form>
+                      <button class="btn btn-warning" type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
                       <button class="btn btn-danger delete" data-id="'.$data->r_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
-                    </div>';
+                      </form>';
 		})
 		->rawColumns(['action'])
 		->make(true);

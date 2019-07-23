@@ -17,7 +17,7 @@ class MonitoringController extends Controller
     public function table(){
     	$data = DB::table('d_user')
     	->leftJoin('d_customer','u_name','c_serviceadvisor')
-    	->leftJoin('d_followup','fu_cid','c_id')
+    	->leftJoin('d_followup','fu_cid','c_order')
     	->where('u_user','S')
     	->groupBy('u_name')
     	->get();
@@ -35,7 +35,7 @@ class MonitoringController extends Controller
     public function tablelog(){
     	$data = DB::table('d_user')
     	->leftJoin('d_customer','u_name','c_serviceadvisor')
-    	->leftJoin('d_followup','fu_cid','c_id')
+    	->leftJoin('d_followup','fu_cid','c_order')
     	->where('u_user','S')
     	->groupBy('u_name')
     	->get();
@@ -107,7 +107,7 @@ class MonitoringController extends Controller
         $code = $request->code;
         $log = DB::table('d_resultfu')
         ->join('d_followup','fu_cid','rf_cid')
-        ->join('d_customer','c_id','rf_cid')
+        ->join('d_customer','c_order','rf_cid')
         ->leftJoin('m_vehicle','v_code','c_plate')
         ->where('fu_cstaff',$code)
         ->groupBy('rf_id')

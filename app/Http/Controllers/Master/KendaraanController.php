@@ -31,14 +31,13 @@ class KendaraanController extends Controller
         return DataTables::of($data)
         ->addIndexColumn()
         ->addColumn('action',function($data){
-            return '<div class="btn-group btn-group-sm">
-            <form action="'.route("editpage.kendaraan").'" method="POST">
+            return '
+                    <form action="'.route("editpage.kendaraan").'" class="btn-group btn-group-sm" method="POST">
             			<input type="hidden" name="_token" value="'.csrf_token().'">
             			<input type="hidden" name="id" value="'.$data->v_id.'" >
                         <button class="btn btn-warning" type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                        </form>
                         <button class="btn btn-danger delete" data-id="'.$data->v_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
-                    </div>';
+                        </form>';
         })
         ->make(true);
     }

@@ -61,26 +61,27 @@ class ImportController extends Controller
       }
 
    	public function hstoredata(Request $request){
+          $workbook = $request->sheet[0];
           $code = $request->code;
          $check = DB::table('d_customerremovable')->count();
          if ($check == 0) {
       		    $alldata = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
-                if(null == ''){
+                if(empty($request->result[$workbook][$i][6])){
                   $direct = 'R';
-                  }else if ($request->result['Sheet1'][$i][6] != null) {
-                  $direct = $request->result['Sheet1'][$i][6];
+                  }else{
+                  $direct = $request->result[$workbook][$i][6];
                 }
 
 
-              $datetime = Carbon::parse($request->result['Sheet1'][$i][4])->format('Y,m,d');
+              $datetime = Carbon::parse($request->result[$workbook][$i][4])->format('Y,m,d');
               $arr = array(
-         			'cr_serial' => $request->result['Sheet1'][$i][0],  
-         			'cr_plate' => $request->result['Sheet1'][$i][1],
-         			'cr_typecar' => $request->result['Sheet1'][$i][2],
-         			'cr_jobdesc' => $request->result['Sheet1'][$i][3],
+         			'cr_serial' => $request->result[$workbook][$i][0],  
+         			'cr_plate' => $request->result[$workbook][$i][1],
+         			'cr_typecar' => $request->result[$workbook][$i][2],
+         			'cr_jobdesc' => $request->result[$workbook][$i][3],
          			'cr_dateservice' => $datetime,
-              'cr_serviceadvisor' => $request->result['Sheet1'][$i][5],
+              'cr_serviceadvisor' => $request->result[$workbook][$i][5],
          			'cr_direct' => $direct,
          			'cr_code' => 'true',
          			'status_data' => 'true',
@@ -94,15 +95,15 @@ class ImportController extends Controller
             d_hcustommer::truncate();
 
             for ($i=1 ; $i < $request->datacount ; $i++) { 
-                $datetime = Carbon::parse($request->result['Sheet1'][$i][4])->format('Y,m,d');
+                $datetime = Carbon::parse($request->result[$workbook][$i][4])->format('Y,m,d');
                $arr = array(
-                  'cr_serial' => $request->result['Sheet1'][$i][0],  
-                  'cr_plate' => $request->result['Sheet1'][$i][1],
-                  'cr_typecar' => $request->result['Sheet1'][$i][2],
-                  'cr_jobdesc' => $request->result['Sheet1'][$i][3],
+                  'cr_serial' => $request->result[$workbook][$i][0],  
+                  'cr_plate' => $request->result[$workbook][$i][1],
+                  'cr_typecar' => $request->result[$workbook][$i][2],
+                  'cr_jobdesc' => $request->result[$workbook][$i][3],
                   'cr_dateservice' => $datetime,
-                  'cr_serviceadvisor' => $request->result['Sheet1'][$i][5],
-                  'cr_direct' => $request->result['Sheet1'][$i][6],
+                  'cr_serviceadvisor' => $request->result[$workbook][$i][5],
+                  'cr_direct' => $request->result[$workbook][$i][6],
                   'cr_code' => 'true',
                   'status_data' => 'true',
 
