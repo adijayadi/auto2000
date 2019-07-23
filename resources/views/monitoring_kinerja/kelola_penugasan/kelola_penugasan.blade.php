@@ -107,36 +107,44 @@
 
                             <div class="row">
 
-                                @for($i = 0;$i<count($total);$i++)
-                                    @php
-                                        $a=array(
-                                            'purple-bg',
-                                            'white-bg',
-                                            'navy-bg',
-                                            'blue-bg',
-                                            'lazur-bg',
-                                            'yellow-bg',
-                                            'red-bg',
-                                            'black-bg'
-                                        );
-                                        $b = range(0, 8);
-                                        $random_keys=array_rand($a,8);
-                                    @endphp
-                                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                @if(count($total) != 0)
+                                    @for($i = 0;$i<count($total);$i++)
+                                        @php
+                                            $a=array(
+                                                'purple-bg',
+                                                'white-bg',
+                                                'navy-bg',
+                                                'blue-bg',
+                                                'lazur-bg',
+                                                'yellow-bg',
+                                                'red-bg',
+                                                'black-bg'
+                                            );
+                                            $b = range(0, 8);
+                                            $random_keys=array_rand($a,8);
+                                        @endphp
+                                        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
 
-                                        <div class="widget style1 {{$a[array_rand($a)]}}">
-                                            <div class="row">
-                                                <div class="col-xs-4">
-                                                    <i class="fa fa-cog fa-5x"></i>
-                                                </div>
-                                                <div class="col-xs-8 text-right">
-                                                    <span> {{$total[$i]->c_jobdesc}} </span>
-                                                    <h2 class="font-bold total_per_pekerjaan">{{$total[$i]->total}}</h2>
+                                            <div class="widget style1 {{$a[array_rand($a)]}}">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <i class="fa fa-cog fa-5x"></i>
+                                                    </div>
+                                                    <div class="col-xs-8 text-right">
+                                                        <span> {{$total[$i]->c_jobdesc}} </span>
+                                                        <h2 class="font-bold total_per_pekerjaan">{{$total[$i]->total}}</h2>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    @endfor
+                                @else
+                                    <div class="col-xs-12">
+                                        <div class="widget white-bg style1">
+                                            <h2 class="text-center">Tidak Ada Data</h2>
+                                        </div>
                                     </div>
-                                @endfor
+                                @endif
                                 
                             </div>
                                     
