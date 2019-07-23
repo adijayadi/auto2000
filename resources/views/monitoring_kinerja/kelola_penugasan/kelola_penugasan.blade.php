@@ -58,11 +58,26 @@
                                 <input type="hidden" id="addcountservice" name="pcount">
                                 <div class="ibox-content">
 
-                                    <div class="text-right mb-3">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-primary" type="button" id="btn-checkall-1">Check All</button>
-                                            <button class="btn btn-default" type="button" id="btn-uncheckall-1">Uncheck All</button>
-                                            <button class="btn btn-info" type="button" id="btn-interval-1">Check Interval</button>
+                                    <div class="row">
+                                        <label class="col-lg-2 col-md-4 col-sm-12 col-xs-12 mt-2">Tipe Pekerjaan</label>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="form-control input-sm" id="type_pekerjaan">
+                                                    <option value="">Semua</option>
+                                                    <option>Service</option>
+                                                    <option>Periodic Maintenance</option>
+                                                </select>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="text-right mb-3">
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-primary" type="button" id="btn-checkall-1">Check All</button>
+                                                    <button class="btn btn-default" type="button" id="btn-uncheckall-1">Uncheck All</button>
+                                                    <button class="btn btn-info" type="button" id="btn-interval-1">Check Interval</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -74,8 +89,8 @@
                                                     <th width="10%">Tanggal Service</th>
                                                     <th>No. Rangka</th>
                                                     <th>No. Polisi</th>
-                                                    <th>Type Kendaraan</th>
-                                                    <th>Type Pekerjaan</th>
+                                                    <th>Tipe Kendaraan</th>
+                                                    <th>Tipe Pekerjaan</th>
                                                     <th>Service Advisor</th>
                                                 </tr>
                                             </thead>
@@ -184,8 +199,8 @@
                                                     <th width="10%">Tanggal Service</th>
                                                     <th>No. Rangka</th>
                                                     <th>No. Polisi</th>
-                                                    <th>Type Kendaraan</th>
-                                                    <th>Type Pekerjaan</th>
+                                                    <th>Tipe Kendaraan</th>
+                                                    <th>Tipe Pekerjaan</th>
                                                     <th>Service Advisor</th>
                                                 </tr>
                                             </thead>
@@ -340,6 +355,13 @@
             pageLength: 10,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
+
+        $('#type_pekerjaan').on( 'change', function () {
+            table2
+                .columns( 5 )
+                .search( this.value )
+                .draw();
+        } );
 
         var table2 = $('#table_kelola').DataTable({
             responsive: true,
