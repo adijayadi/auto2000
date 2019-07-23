@@ -137,10 +137,10 @@ class ImportController extends Controller
                 $ordercode = DB::table('d_customer')->count().$i;
 
                 $cek = DB::table('d_customer')->where('c_serial',$request->serial[$i])->count();
-                $langsung = DB::table('d_user')->where('u_username',$request->advisor[$i])->count();
-                $langsung2 = DB::table('d_user')->where('u_username',$request->advisor[$i])->get();
+                $langsung = DB::table('d_user')->where('u_name',$request->advisor[$i])->count();
+                $langsung2 = DB::table('d_user')->where('u_name',$request->advisor[$i])->get();
                 $td = Carbon::parse($request->date[$i])->addMonths(3)->format('Y,m');
-                if ($request->direct[$i] == 's') {
+                if (strtoupper($request->direct[$i]) == 'S') {
                   if ($langsung == 1) {
                     $arr1 = array(
                    'c_serial' => $request->serial[$i],
