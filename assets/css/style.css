@@ -3840,6 +3840,10 @@ table.table-mail tr td {
   right: 0;
 }
 /* BACKGROUNDS */
+.purple-bg {
+  background-color: #8729C5;
+  color: #fff;
+}
 .gray-bg {
   background-color: #f3f3f4;
 }
@@ -3868,6 +3872,7 @@ table.table-mail tr td {
 }
 .black-bg {
   background-color: #262626;
+  color: #fff;
 }
 .panel-primary {
   border-color: #1ab394;

@@ -104,6 +104,7 @@
                     "emptyTable": "Tidak ada data",
                     "sInfo": "Menampilkan _START_ - _END_ Dari _TOTAL_ Data",
                     "sSearch": '<i class="fa fa-search"></i>',
+                    "infoFiltered":   "(difilter dari _MAX_ total entri)",
                     "sLengthMenu": "Menampilkan &nbsp; _MENU_ &nbsp; Data",
                     "infoEmpty": "",
                     "paginate": {

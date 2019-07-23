@@ -63,7 +63,7 @@
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                             <div class="form-group">
                                                 <select class="form-control input-sm" id="type_pekerjaan">
-                                                    <option value="">Semua</option>
+                                                    <option value="">~ Semua ~</option>
                                                     <option>Service</option>
                                                     <option>Periodic Maintenance</option>
                                                 </select>
@@ -103,12 +103,14 @@
                                 
                             </div>
 
+                            <h1>Total per Tipe Pekerjaan</h1>
+
                             <div class="row">
 
                                 @for($i = 0;$i<count($total);$i++)
                                     @php
                                         $a=array(
-                                            'gray-bg',
+                                            'purple-bg',
                                             'white-bg',
                                             'navy-bg',
                                             'blue-bg',
@@ -122,14 +124,14 @@
                                     @endphp
                                     <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
 
-                                        <div class="widget style1 {{$a[$random_keys[shuffle($b)]]}}">
+                                        <div class="widget style1 {{$a[array_rand($a)]}}">
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <i class="fa fa-cog fa-5x"></i>
                                                 </div>
                                                 <div class="col-xs-8 text-right">
                                                     <span> {{$total[$i]->c_jobdesc}} </span>
-                                                    <h2 class="font-bold">{{$total[$i]->total}}</h2>
+                                                    <h2 class="font-bold total_per_pekerjaan">{{$total[$i]->total}}</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -498,6 +500,31 @@
             }
 
         });
+
+        $('.widget').each(function(){
+            var total =$(this).find('.total_per_pekerjaan');
+            if (parseInt(total.text()) < 100) {
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()));
+            } else if (parseInt(total.text()) > 100) {
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()) / 10);
+            } else if (parseInt(total.text()) > 1000){
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()) / 100);
+            } else {
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()) / 10000);
+            }
+        });
+
+        function counterNum(obj, start, end, step, duration) {
+            $(obj).html(start);
+            setInterval(function(){
+                var val = Number($(obj).html());
+                if (val < end) {
+                    $(obj).html(val+step);
+                } else {
+                    clearInterval();
+                }
+            },duration);
+        }
 
         
     });
