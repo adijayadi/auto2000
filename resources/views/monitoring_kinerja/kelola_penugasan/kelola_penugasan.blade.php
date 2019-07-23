@@ -46,7 +46,7 @@
 
                                 <div class="ibox-title">
                                     <div class="ibox-tools">
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-kelola">
+                                        <button type="button" class="btn btn-primary btn-sm" id="btn-buatrencana">
                                             <i class="fa fa-user-edit"></i>
                                             Buat Rencana
                                         </button>
@@ -157,7 +157,7 @@
                             <div class="ibox-title">
                                 {{-- <h5>Kelola Penugasan</h5> --}}
                                 <div class="ibox-tools">
-                                    <button class="btn btn-warning btn-sm" title="Ganti Service Advisor yang sudah tidak aktif" data-toggle="modal" data-target="#modal-ganti-satu">
+                                    <button class="btn btn-warning btn-sm" title="Ganti Service Advisor yang sudah tidak aktif" id="btn-gantiadvisor">
                                         <i class="fa fa-edit"></i>
                                         Ganti Service Advisor yang dicentang
                                     </button>
@@ -237,6 +237,26 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $('#btn-buatrencana').click(function(){
+            if ($('#table_kelola tbody tr [type="checkbox"]').is(':checked') == false ) {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Centang minimal satu data!'
+                });
+            } else {
+                $('#modal-kelola').modal('show');
+            }
+        });
+        $('#btn-gantiadvisor').click(function(){
+            if ($('#table_kendaraan tbody tr [type="checkbox"]').is(':checked') == false ) {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Centang minimal satu data!'
+                });
+            } else {
+                $('#modal-ganti-satu').modal('show');
+            }
+        });
         $.fn.dataTable.ext.errMode = 'none';
         $('#saveplan').on('click',function(){
             var form = $('#addservice').serialize();
