@@ -14,192 +14,75 @@
 @if(Auth::user()->u_user == 'A')
 <div class="wrapper wrapper-content">
 
-    <div class="row mt-4">
-                    <div class="col-lg-4 services-column">
-                            <div class="ibox float-e-margins services-box">
-                                <div class="ibox-title header-service">
-                                    <h5>Muhammad Bakhrul Bila Sakhil</h5>
-                                    </div>
-                                    <div class="ibox-content service-content no-padding">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Telah Melakukan Service</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Harus Di Follow Up</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</div> 
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</div>
-                                                <div class="label label-servies">0</div>
-                                                
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</div>
-                                                <div>
-                                                <span class="label label-servies">0</span>
-                                                </div>
-                                                
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
+    <div class="ibox">
+
+        <div class="ibox-content">
+            <div class="row">
+
+                <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
+                    <h3 class="mt-2">Monitoring Tindakan Service Advisor</h3>
+                </div>
+
+                <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" id="filter-service" name="" placeholder="Cari Service Advisor">
+                        <div class="input-group-addon"><i class="fa fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row mt-4 " id="list-service-advisor">
+    @if(count($adv) != 0)
+        @for($i = 0;$i<count($adv);$i++)
+            <div class="col-lg-4 services-column">
+                <div class="ibox float-e-margins services-box">
+                    <div class="ibox-title header-service">
+                        <h5>{{$adv[$i]}}</h5>
+                    </div>
+                    <div class="ibox-content service-content no-padding">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>Kendaraan Telah Melakukan Service</div>
+                                <div class="label label-servies">{{$service[$i]}}</div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>Kendaraan Yang Harus Di Follow Up</div>
+                                <div class="label label-servies">{{$followup[$i]}}</div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</div> 
+                                <div class="label label-servies">{{$tidakbersedia[$i]}}</div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</div>
+                                <div class="label label-servies">{{$booking[$i]}}</div>
+                                
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</div>
+                                <div>
+                                <span class="label label-servies">{{$tidakbooking[$i]}}</span>
                                 </div>
-                            </div>           
-                    <div class="col-lg-4 services-column">
-                            <div class="ibox float-e-margins services-box">
-                                <div class="ibox-title header-service">
-                                    <h5>Muhammad Bakhrul Bila Sakhil</h5>
-                                    </div>
-                                    <div class="ibox-content service-content no-padding">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Telah Melakukan Service</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Harus Di Follow Up</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</div> 
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</div>
-                                                <div class="label label-servies">0</div>
-                                                
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</div>
-                                                <div>
-                                                <span class="label label-servies">0</span>
-                                                </div>
-                                                
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                                
+                            </li>
                             
-                    <div class="col-lg-4 services-column">
-                            <div class="ibox float-e-margins services-box">
-                                <div class="ibox-title header-service">
-                                    <h5>Muhammad Bakhrul Bila Sakhil</h5>
-                                    </div>
-                                    <div class="ibox-content service-content no-padding">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Telah Melakukan Service</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Harus Di Follow Up</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</div> 
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</div>
-                                                <div class="label label-servies">0</div>
-                                                
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</div>
-                                                <div>
-                                                <span class="label label-servies">0</span>
-                                                </div>
-                                                
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                    <div class="col-lg-4 services-column">
-                            <div class="ibox float-e-margins services-box">
-                                <div class="ibox-title header-service">
-                                    <h5>Muhammad Bakhrul Bila Sakhil</h5>
-                                    </div>
-                                    <div class="ibox-content service-content no-padding">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Telah Melakukan Service</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Harus Di Follow Up</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</div> 
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</div>
-                                                <div class="label label-servies">0</div>
-                                                
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</div>
-                                                <div>
-                                                <span class="label label-servies">0</span>
-                                                </div>
-                                                
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                    <div class="col-lg-4 services-column">
-                            <div class="ibox float-e-margins services-box">
-                                <div class="ibox-title header-service">
-                                    <h5>Muhammad Bakhrul Bila Sakhil</h5>
-                                    </div>
-                                    <div class="ibox-content service-content no-padding">
-                                        <ul class="list-group">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Telah Melakukan Service</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Harus Di Follow Up</div>
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</div> 
-                                                <div class="label label-servies">0</div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</div>
-                                                <div class="label label-servies">0</div>
-                                                
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</div>
-                                                <div>
-                                                <span class="label label-servies">0</span>
-                                                </div>
-                                                
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> 
+                        </ul>
+                    </div>
+                </div>
+            </div>   
+        @endfor
+    @else
+        <div class="widget style1 white-bg">
+            <h3 class="text-center">Tidak ada Data</h3>
+        </div>
+    @endif
                     
-        <div class="col-xs-12">
+        {{-- <div class="col-xs-12">
 
             <div class="ibox">
 
@@ -228,7 +111,7 @@
 
             </div>
             
-        </div>
+        </div> --}}
         
     </div>
 
@@ -334,19 +217,42 @@
 <script type="text/javascript">
     $(document).ready(function(){
         @if (Auth::user()->u_user == 'A')
-            var table = $('#table_service').DataTable({
-                responsive: true,
-                serverSide: true,
-                destroy: true,
-                ajax : {
-                    url: "{{ route('home.getDataTable') }}",
-                    type: "get",
-                },
-                columns : [
-                    {data : 'u_name' , name : ''},
-                    {data : 'summary' , name : 'nama'},
-                ],
+            $('.services-column .label-servies').each(function(){
+                var ini = $(this);
+                // console.log(ini.text());
+
+                if (parseInt(ini.text()) < 100) {
+                    counterNum(ini, 0, parseInt(ini.text()), 1, parseInt(ini.text()));
+                } else if (parseInt(ini.text()) < 1000){
+                    counterNum(ini, 0, parseInt(ini.text()), 1, parseInt(ini.text()) / 10);
+                } else {
+                    counterNum(ini, 0, parseInt(ini.text()), 1, parseInt(ini.text()) / 10000);
+                }
             });
+
+            $('#filter-service').keyup(function(){
+                myFunction();
+            });
+
+            function myFunction() {
+              // Declare variables
+              var input, filter, ul, li, a, i, txtValue;
+              input = document.getElementById('filter-service');
+              filter = input.value.toUpperCase();
+              ul = document.getElementById("list-service-advisor");
+              li = ul.getElementsByClassName('services-column');
+
+              // Loop through all list items, and hide those who don't match the search query
+              for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("h5")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  li[i].style.display = "";
+                } else {
+                  li[i].style.display = "none";
+                }
+              }
+            }
         @elseif(Auth::user()->u_user == 'S')
             $.ajax({
                 url:"{{route('getcount.summary')}}",

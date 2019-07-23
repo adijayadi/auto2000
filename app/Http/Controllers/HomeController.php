@@ -26,7 +26,44 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = d_user::where('u_user', 'S')->get();
+
+        $adv;
+
+        foreach ($data as $key) {
+            # code...
+           $adv[] = $key->u_name;
+
+            $service[] = DB::table('d_followup')
+            ->join('d_resultfu','rf_cid','fu_cid')
+            ->where('fu_cstaff',$key->u_code)
+            ->where('d_resultfu.status_data','true')
+            ->where('rf_csummary','1')->count();
+            $followup[] = DB::table('d_followup')
+            ->where('fu_cstaff',$key->u_code)
+            ->where('status_data','true')
+            ->where('fu_status','Planning')->count();
+            $tidakbersedia[] = DB::table('d_followup')
+            ->join('d_resultfu','rf_cid','fu_cid')
+            ->where('fu_cstaff',$key->u_code)
+            ->where('d_resultfu.status_data','true')
+            ->where('rf_csummary','3')->count();
+            $booking[] = DB::table('d_followup')
+            ->join('d_resultfu','rf_cid','fu_cid')
+            ->where('fu_cstaff',$key->u_code)
+            ->where('d_resultfu.status_data','true')
+            ->where('rf_csummary','4')->count();
+            $tidakbooking[] = DB::table('d_followup')
+            ->join('d_resultfu','rf_cid','fu_cid')
+            ->where('fu_cstaff',$key->u_code)
+            ->where('d_resultfu.status_data','true')
+            ->where('rf_csummary','5')->count();
+        }
+        // return $adv;
+       
+        // return dd($adv, $satu, $dua, $tiga, $empat, $lima);
+
+        return view('home', ['adv' => $adv, 'service' => $service, 'followup' => $followup, 'tidakbersedia' => $tidakbersedia, 'booking' => $booking, 'tidakbooking' => $tidakbooking]);
     }
 
     public function getDataTable()
