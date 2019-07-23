@@ -76,6 +76,12 @@
                 </div>
             </div>   
         @endfor
+
+        <div class="col-xs-12 d-none" id="noRecordFound">
+            <div class="widget style1 white-bg">
+                <h3 class="text-center">Tidak ada yang cocok</h3>
+            </div>
+        </div>
     @else
         <div class="widget style1 white-bg">
             <h3 class="text-center">Tidak ada Data</h3>
@@ -248,8 +254,10 @@
                 txtValue = a.textContent || a.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                   li[i].style.display = "";
+                  $('#noRecordFound').addClass('d-none');
                 } else {
                   li[i].style.display = "none";
+                  $('#noRecordFound').removeClass('d-none');
                 }
               }
             }
