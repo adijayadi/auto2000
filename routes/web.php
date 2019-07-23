@@ -119,6 +119,7 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::post('/kinerja_sales/kelola_penugasan/filtertablec', 'KelolaPenugasanController@filtertablecustomer')->name('filtertablec.penugasan');
 	Route::post('/kinerja_sales/kelola_penugasan/addplan', 'KelolaPenugasanController@addplan')->name('addplan.penugasan');
 	Route::post('/kinerja_sales/kelola_penugasan/updateservice', 'KelolaPenugasanController@updateserviceadv')->name('updateadv.penugasan');
+	Route::post('/kinerja_sales/kelola_penugasan/tableganti', 'KelolaPenugasanController@tableganti')->name('tableganti.penugasan');
 
 
 

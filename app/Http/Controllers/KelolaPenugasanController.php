@@ -21,8 +21,31 @@ class KelolaPenugasanController extends Controller
     	));
     }
 
-    public function table(){
-    	return '0';
+    public function tableganti(Request $request){
+      if ($request->serviceadv != null) {
+        $data = DB::table('d_followup')
+          ->leftJoin('d_customer','c_order','fu_cid')
+          ->where('d_followup.status_data','true')
+          ->where('fu_status','Planning')
+          ->where('c_serviceadvisor',$request->serviceadv)
+          ->get();
+      }else{
+      	$data = DB::table('d_followup')
+          ->leftJoin('d_customer','c_order','fu_cid')
+          ->where('d_followup.status_data','true')
+          ->where('fu_status','Planning')
+          ->get();
+      }
+
+        return DataTables::of($data)
+      ->addColumn('check',function($data){
+        return '<input type="checkbox" class="up" name="followup[]" value="'.$data->c_code.'"><input type="checkbox" hidden name="customer[]" value="'.$data->c_serviceadvisor.'"><input type="checkbox" hidden name="id[]" value="'.$data->c_id.'">';
+      })
+      ->addColumn('serial',function($data){
+        return $data->c_serial.'<input type="checkbox" hidden name="serial[]" value="'.$data->c_serial.'">';
+      })
+      ->rawColumns(['check','serial'])
+      ->make(true);
     }
 
     public function tablecustomer(Request $request){

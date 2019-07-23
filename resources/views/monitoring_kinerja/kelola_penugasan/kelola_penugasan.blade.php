@@ -204,6 +204,7 @@
                                                     <th>Tipe Kendaraan</th>
                                                     <th>Tipe Pekerjaan</th>
                                                     <th>Service Advisor</th>
+                                                    <th>Status Follow up</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -271,7 +272,7 @@
             serverSide: true,
             destroy: true,
             ajax : {
-                url: "{{ route('filtertablec.penugasan') }}",
+                url: "{{ route('tableganti.penugasan') }}",
                 type: "post",
                 data: {
                     "_token": "{{ csrf_token() }}",
@@ -286,6 +287,7 @@
             {data : 'c_typecar' , name : 'c_typecar'},
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
             {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+            {data : 'fu_status' , name : 'fu_status'},
 
             ],
             pageLength: 10,
@@ -338,7 +340,7 @@
             serverSide: false,
             destroy: true,
             ajax : {
-                url: "{{ route('tablec.penugasan') }}",
+                url: "{{ route('tableganti.penugasan') }}",
                 type: "post",
                 data: {
                     "_token": "{{ csrf_token() }}"
@@ -352,6 +354,7 @@
             {data : 'c_typecar' , name : 'c_typecar'},
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
             {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+            {data : 'fu_status' , name : 'fu_status'},
 
             ],
             pageLength: 10,
