@@ -14,6 +14,42 @@
 
     <div class="row">
 
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            {{-- 'gray-bg',
+                'white-bg',
+                'navy-bg',
+                'blue-bg',
+                'lazur-bg',
+                'yellow-bg',
+                'red-bg',
+                'black-bg' --}}
+            <div class="widget lazur-bg p-xl">
+
+                <h2>
+                    Janet Smith
+                </h2>
+                <ul class="list-unstyled m-t-md">
+                    <li>
+                        <span class="fa fa-envelope m-r-xs"></span>
+                        <label>Email:</label>
+                        mike@mail.com
+                    </li>
+                    <li>
+                        <span class="fa fa-home m-r-xs"></span>
+                        <label>Address:</label>
+                        Street 200, Avenue 10
+                    </li>
+                    <li>
+                        <span class="fa fa-phone m-r-xs"></span>
+                        <label>Contact:</label>
+                        (+121) 678 3462
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
 
         <div class="col-xs-12">
 
@@ -27,7 +63,7 @@
                 <div class="ibox-content">
                     <div class="table-responsive">
 
-                        <table class="table table-bordered table-hover table-sticky" id="table_service">
+                        <table class="table table-bordered table-hover" id="table_service">
                             <thead>
                                 <tr>
                                     <th>Service Advisor</th>
@@ -154,9 +190,6 @@
                 responsive: true,
                 serverSide: true,
                 destroy: true,
-                fixedHeader: {
-                    header: true,
-                },
                 ajax : {
                     url: "{{ route('home.getDataTable') }}",
                     type: "get",

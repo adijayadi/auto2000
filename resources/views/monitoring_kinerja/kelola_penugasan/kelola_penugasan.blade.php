@@ -58,11 +58,26 @@
                                 <input type="hidden" id="addcountservice" name="pcount">
                                 <div class="ibox-content">
 
-                                    <div class="text-right mb-3">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-primary" type="button" id="btn-checkall-1">Check All</button>
-                                            <button class="btn btn-default" type="button" id="btn-uncheckall-1">Uncheck All</button>
-                                            <button class="btn btn-info" type="button" id="btn-interval-1">Check Interval</button>
+                                    <div class="row">
+                                        <label class="col-lg-2 col-md-4 col-sm-12 col-xs-12 mt-2">Tipe Pekerjaan</label>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="form-control input-sm" id="type_pekerjaan">
+                                                    <option value="">~ Semua ~</option>
+                                                    <option>Service</option>
+                                                    <option>Periodic Maintenance</option>
+                                                </select>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="text-right mb-3">
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-primary" type="button" id="btn-checkall-1">Check All</button>
+                                                    <button class="btn btn-default" type="button" id="btn-uncheckall-1">Uncheck All</button>
+                                                    <button class="btn btn-info" type="button" id="btn-interval-1">Check Interval</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -74,8 +89,8 @@
                                                     <th width="10%">Tanggal Service</th>
                                                     <th>No. Rangka</th>
                                                     <th>No. Polisi</th>
-                                                    <th>Type Kendaraan</th>
-                                                    <th>Type Pekerjaan</th>
+                                                    <th>Tipe Kendaraan</th>
+                                                    <th>Tipe Pekerjaan</th>
                                                     <th>Service Advisor</th>
                                                 </tr>
                                             </thead>
@@ -83,14 +98,48 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    
-                                    @foreach($total as $row)
-                                        {!! $row->c_jobdesc . '  : '. $row->total .' Service&nbsp;  | &nbsp;' !!}
-                                    @endforeach
                                 </div>
                             </form>
                                 
                             </div>
+
+                            <h1>Total per Tipe Pekerjaan</h1>
+
+                            <div class="row">
+
+                                @for($i = 0;$i<count($total);$i++)
+                                    @php
+                                        $a=array(
+                                            'purple-bg',
+                                            'white-bg',
+                                            'navy-bg',
+                                            'blue-bg',
+                                            'lazur-bg',
+                                            'yellow-bg',
+                                            'red-bg',
+                                            'black-bg'
+                                        );
+                                        $b = range(0, 8);
+                                        $random_keys=array_rand($a,8);
+                                    @endphp
+                                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+                                        <div class="widget style1 {{$a[array_rand($a)]}}">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <i class="fa fa-cog fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-8 text-right">
+                                                    <span> {{$total[$i]->c_jobdesc}} </span>
+                                                    <h2 class="font-bold total_per_pekerjaan">{{$total[$i]->total}}</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endfor
+                                
+                            </div>
+                                    
 
                     </div>
 
@@ -152,8 +201,8 @@
                                                     <th width="10%">Tanggal Service</th>
                                                     <th>No. Rangka</th>
                                                     <th>No. Polisi</th>
-                                                    <th>Type Kendaraan</th>
-                                                    <th>Type Pekerjaan</th>
+                                                    <th>Tipe Kendaraan</th>
+                                                    <th>Tipe Pekerjaan</th>
                                                     <th>Service Advisor</th>
                                                 </tr>
                                             </thead>
@@ -309,6 +358,13 @@
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
 
+        $('#type_pekerjaan').on( 'change', function () {
+            table2
+                .columns( 5 )
+                .search( this.value )
+                .draw();
+        } );
+
         var table2 = $('#table_kelola').DataTable({
             responsive: true,
             serverSide: false,
@@ -444,6 +500,31 @@
             }
 
         });
+
+        $('.widget').each(function(){
+            var total =$(this).find('.total_per_pekerjaan');
+            if (parseInt(total.text()) < 100) {
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()));
+            } else if (parseInt(total.text()) > 100) {
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()) / 10);
+            } else if (parseInt(total.text()) > 1000){
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()) / 100);
+            } else {
+                counterNum(total,0,parseInt(total.text()), 1, parseInt(total.text()) / 10000);
+            }
+        });
+
+        function counterNum(obj, start, end, step, duration) {
+            $(obj).html(start);
+            setInterval(function(){
+                var val = Number($(obj).html());
+                if (val < end) {
+                    $(obj).html(val+step);
+                } else {
+                    clearInterval();
+                }
+            },duration);
+        }
 
         
     });
