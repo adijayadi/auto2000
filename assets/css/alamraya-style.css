@@ -4,7 +4,7 @@
  	#
 */
 @font-face {
-  font-family: "Myriad Pro Regular"
+  font-family: "Myriad Pro Regular";
   src: url(../fonts/Myriad Pro Regular.ttf);
 }
 body.body-cpanel{
@@ -301,4 +301,52 @@ fieldset {
 .table .table.transparent{
 	background: transparent;
 	font-size: 9pt;
+}
+.service-content{
+    font-size: 12px !important;
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+.justify-content-between{
+    justify-content: space-between !important; 
+}
+.align-items-center{
+    align-items:center;
+}
+.header-service{
+    background: #1ab394 !important;
+    color: white !important;
+    border: 0 !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    display: flex;
+    align-items: center;
+}
+.label-servies{
+    background-color: #1ab394 !important;
+    color: #fff !important;
+}
+.services-column:nth-child(2n+0) .services-box .header-service{
+  background: #1c84c6 !important;
+}
+.services-column:nth-child(2n+0) .services-box .label-servies{
+    background-color: #1c84c6 !important;
+}
+.services-column:nth-child(3n+0) .services-box .header-service{
+  background: #23c6c8 !important;
+}
+.services-column:nth-child(3n+0) .services-box .label-servies{
+    background-color: #23c6c8 !important;
+}
+.services-column:nth-child(4n+0) .services-box .header-service{
+  background: #f8ac59 !important;
+}
+.services-column:nth-child(4n+0) .services-box .label-servies{
+    background-color: #f8ac59 !important;
+}
+.services-column:nth-child(5n+0) .services-box .header-service{
+  background: #ed5565 !important;
+}
+.services-column:nth-child(5n+0) .services-box .label-servies{
+    background-color: #ed5565 !important;
 }
