@@ -28,7 +28,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-2 col-xs-12">
+                            <!-- <div class="col-sm-2 col-xs-12">
                                 <label>Tanggal Follow Up</label>
                             </div>
 
@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control input-sm clockpicker" name="timeup">
                                 </div>
-                            </div>
+                            </div>  -->
                         </div>
                     </div>
                 </form>

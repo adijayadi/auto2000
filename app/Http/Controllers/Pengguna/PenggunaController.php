@@ -29,12 +29,12 @@ class PenggunaController extends Controller
 
     	return DataTables::of($data)
         ->addColumn('action',function($data){
-            return '<form action="'.route("editpage.pengguna").'" method="post">
+            return '<form action="'.route("editpage.pengguna").'" class="btn-group btn-group-sm" method="post">
                 <input type="hidden" name="_token" value="'.csrf_token().'">
                 <input type="hidden" name="id" value="'.$data->u_id.'">
             <button class="btn btn-warning" type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                </form>
-                <button class="btn btn-danger delete" data-id="'.$data->u_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>';
+                <button class="btn btn-danger delete" data-id="'.$data->u_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></button>
+                </form>';
                 
         })
     	->addColumn('hak',function($data){
