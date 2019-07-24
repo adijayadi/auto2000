@@ -252,7 +252,7 @@ class ImportController extends Controller
         $rcount = $request->serial;
         $code = $request->code;
         $data = DB::table('d_customer')->where('c_code',$code)->count();
-        $data2 = DB::table('d_customer')->where('status_data','true')->count();
+        $data2 = DB::table('d_customer')->count();
         $avaible = $request->cout - 1;
           DB::table('d_recap')->insert([
             're_dataadded' => $data,
