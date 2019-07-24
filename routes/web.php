@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::post('/master/sales/table', 'Master\SalesController@tablesales')->name('sales.table');
 	Route::post('/master/sales/edit', 'Master\SalesController@edit')->name('sales.edit');
 	Route::post('/master/sales/delete', 'Master\SalesController@delete')->name('sales.delete');
+	Route::post('/master/sales/active', 'Master\SalesController@active')->name('sales.active');
 
 
 

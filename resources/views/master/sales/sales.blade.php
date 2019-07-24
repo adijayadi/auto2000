@@ -96,6 +96,48 @@
 
         });
 
+        $(document).on('click','.active',function(){
+            swal({
+                title: "Apa anda yakin?",
+                text: "Service Advisor akan diaktifkan!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak!",
+                closeOnConfirm: true,
+                closeOnCancel: true 
+            },
+            function (isConfirm) {
+                if(isConfirm){
+                active();
+                }
+            });
+
+            var id = $(this).data('id');
+             function active(){
+                $.ajax({
+                url : '{{route("sales.active")}}',
+                type : 'POST',
+                data : { '_token' : '{{csrf_token()}}' ,'id' : id},
+                success:function(){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Mengaktifkan!'
+                    });
+
+                    table.ajax.reload();
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.error({
+                                title: 'Gagal!',
+                                message: 'Mengaktifkan',
+                    });
+                    },
+                });
+            }
+        })
+
         $(document).on('click','.delete',function(){
             swal({
                 title: "Apa anda yakin?",

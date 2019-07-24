@@ -30,7 +30,7 @@ class SalesController extends Controller
     }
 
     public function tablesales(Request $request){
-    	$data = DB::table('m_sales')->where('status_data','true')->orWhere('status_data','no')->get();
+    	$data = DB::table('m_sales')->get();
     	return DataTables::of($data)
     	->addIndexColumn()
     	->addColumn('action',function($data){
@@ -43,14 +43,13 @@ class SalesController extends Controller
 	    		          <button class="btn btn-danger delete" type="button" data-id="'.$data->s_id.'" data-toggle="tooltip" data-placement="top" title="Non Aktifkan"><i class="fa fa-times"></i></button>
                 </form>';	
     		}else{
-    			return '<div class="btn-group btn-group-sm">
-                <form action="'.route("editpage.sales").'" method="POST">
+    			return '
+                <form action="'.route("editpage.sales").'" class="btn-group btn-group-sm" method="POST">
                             <input type="hidden" name="_token" value="'.csrf_token().'">
                             <input type="hidden" name="id" value="'.$data->s_id.'">
     			            <button class="btn btn-warning edit"  type="submit" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-alt"></i></button>
-                </form>
-    			            <button class="btn btn-primary delete" data-id="'.$data->s_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fa fa-check"></i></button>
-    			        </div>';
+    			            <button class="btn btn-success active" data-id="'.$data->s_id.'" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fa fa-check"></i></button>
+                </form>';
     		}
     	})
     	->addColumn('status',function($data){
@@ -101,6 +100,14 @@ class SalesController extends Controller
         DB::table('m_sales')->where('s_id',$id)
             ->update([
                 'status_data' => 'false',
+            ]);
+    }
+
+    public function active(Request $request){
+        $id = $request->id;
+        DB::table('m_sales')->where('s_id',$id)
+            ->update([
+                'status_data' => 'true',
             ]);
     }
 
