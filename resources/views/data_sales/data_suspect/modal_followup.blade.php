@@ -1,4 +1,4 @@
-
+    
     {{-- Modal --}}
     <div class="modal" id="modal-follow-up" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">

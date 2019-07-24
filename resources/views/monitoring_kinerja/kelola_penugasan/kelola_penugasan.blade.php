@@ -277,15 +277,13 @@
                             title: 'Berhasil!',
                             message: 'Menyimpan Data',
                         });
+                        $('.close').click();
                         table.ajax.reload();
                         table2.ajax.reload();
                     } 
                 },
                 error:function(xhr,textStatus,errorThrowl){
-                            iziToast.show({
-                                color: '#DC143C',
-                                titleColor: '#ffffff',
-                                messageColor: '#ffffff',
+                            iziToast.error({
                                 title: 'Gagal!',
                                 message: 'Menyimpan Data',
                     });

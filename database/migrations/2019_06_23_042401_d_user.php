@@ -17,7 +17,7 @@ class DUser extends Migration
             $table->bigIncrements('u_id');
             $table->string('u_name',50);
             $table->string('u_username',50);
-            $table->string('u_email',50)->unique();
+            $table->string('u_email',50)->nullable();
             $table->string('password');
             $table->string('u_cmenu',50)->nullable();
             $table->string('u_group',50)->nullable();

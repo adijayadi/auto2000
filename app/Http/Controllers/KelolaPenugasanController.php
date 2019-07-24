@@ -39,7 +39,7 @@ class KelolaPenugasanController extends Controller
 
         return DataTables::of($data)
       ->addColumn('check',function($data){
-        return '<input type="checkbox" class="up" name="followup[]" value="'.$data->c_code.'"><input type="checkbox" hidden name="customer[]" value="'.$data->c_serviceadvisor.'"><input type="checkbox" hidden name="id[]" value="'.$data->c_id.'">';
+        return '<input type="checkbox" class="up" name="followup[]" value="'.$data->c_code.'"><input type="checkbox" hidden name="customer[]" value="'.$data->c_serviceadvisor.'"><input type="checkbox" hidden name="id[]" value="'.$data->c_order.'">';
       })
       ->addColumn('serial',function($data){
         return $data->c_serial.'<input type="checkbox" hidden name="serial[]" value="'.$data->c_serial.'">';
@@ -55,7 +55,7 @@ class KelolaPenugasanController extends Controller
         ->get();
     	return DataTables::of($data)
     	->addColumn('check',function($data){
-    		return '<input type="checkbox" class="up" name="followup[]" value="'.$data->c_code.'"><input type="checkbox" hidden name="customer[]" value="'.$data->c_serviceadvisor.'"><input type="checkbox" hidden name="id[]" value="'.$data->c_id.'">';
+    		return '<input type="checkbox" class="up" name="followup[]" value="'.$data->c_code.'"><input type="checkbox" hidden name="customer[]" value="'.$data->c_serviceadvisor.'"><input type="checkbox" hidden name="id[]" value="'.$data->c_order.'">';
     	})
     	->addColumn('serial',function($data){
     		return $data->c_serial.'<input type="checkbox" hidden name="serial[]" value="'.$data->c_serial.'">';

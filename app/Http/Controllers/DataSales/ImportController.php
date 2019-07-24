@@ -138,7 +138,7 @@ class ImportController extends Controller
 
                 $cek = DB::table('d_customer')->where('c_serial',$request->serial[$i])->count();
                 $langsung = DB::table('d_user')->where('u_name',$request->advisor[$i])->count();
-                $langsung2 = DB::table('d_user')->where('u_name',$request->advisor[$i])->get();
+                $langsung2 = DB::table('d_user')->where('u_name',$request->advisor[$i])->get('u_code');
                 $td = Carbon::parse($request->date[$i])->addMonths(3)->format('Y,m');
                 if (strtoupper($request->direct[$i]) == 'S') {
                   if ($langsung == 1) {
@@ -156,7 +156,7 @@ class ImportController extends Controller
 
                     $arr2 = array(
                   'fu_cid' => $ordercode,
-                  'fu_cstaff' => $langsung2[0]->u_code,
+                  'fu_cstaff' => $langsung2,
                   'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
                   'fu_time' => Carbon::parse('Asia/Jakarta'),
                   'fu_status' => 'Planning',
@@ -205,14 +205,14 @@ class ImportController extends Controller
 
                     $arr2 = array(
                   'fu_cid' => $ordercode,
-                  'fu_cstaff' => $langsung[0]->u_code,
+                  'fu_cstaff' => $langsung2,
                   'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
                   'fu_time' => Carbon::parse('Asia/Jakarta'),
                   'fu_status' => 'Planning',
                   'status_data' =>'true',
                   );
 
-                  array_push($alldata, $arr);
+                  array_push($alldata, $arr1);
                   array_push($direct, $arr2);
                   DB::table('d_customerremovable')->where('cr_id', $id[$i])->delete();
                   }else if ($cek == 0 )  {
@@ -252,10 +252,11 @@ class ImportController extends Controller
         $rcount = $request->serial;
         $code = $request->code;
         $data = DB::table('d_customer')->where('c_code',$code)->count();
+        $data2 = DB::table('d_customer')->where('status_data','true')->count();
         $avaible = $request->cout - 1;
           DB::table('d_recap')->insert([
             're_dataadded' => $data,
-            're_availabledata' => $avaible,
+            're_availabledata' => $data2,
             're_totaldata' => $request->cout - 1,
             're_dateupload' => Carbon::now('Asia/Jakarta'),
             're_ccustomer' => $code,

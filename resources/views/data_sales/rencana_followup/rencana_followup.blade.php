@@ -154,7 +154,7 @@
                     });
 
                     setTimeout(function(){
-                        
+                        $('.close').click();
                         table.ajax.reload();
                         table2.ajax.reload();
                     },500);
@@ -181,6 +181,7 @@
                     });
 
                     setTimeout(function(){
+                        $('.close').click();
                         table2.ajax.reload();
                         table.ajax.reload();
                     },500);

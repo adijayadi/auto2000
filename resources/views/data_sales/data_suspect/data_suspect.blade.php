@@ -96,6 +96,7 @@
 
                     setTimeout(function(){
                         table.ajax.reload();
+                        $('.close').click();
                     },500);
                 }
             });
