@@ -141,7 +141,7 @@
         $('#table_sales').on('click','.delete',function(){
             swal({
                 title: "Apa anda yakin?",
-                text: "Data akan dihapus permanent!",
+                text: "Data akan dinonaktifkan!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
