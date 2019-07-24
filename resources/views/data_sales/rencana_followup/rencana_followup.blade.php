@@ -154,7 +154,7 @@
                     });
 
                     setTimeout(function(){
-                        $('.close').click();
+                        $('#detail_tindakan').modal('hide');
                         table.ajax.reload();
                         table2.ajax.reload();
                     },500);
@@ -181,7 +181,7 @@
                     });
 
                     setTimeout(function(){
-                        $('.close').click();
+                        $('#detail_tindakan_2').modal('hide');
                         table2.ajax.reload();
                         table.ajax.reload();
                     },500);

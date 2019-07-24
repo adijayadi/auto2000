@@ -304,8 +304,8 @@ fieldset {
 }
 .service-content{
     font-size: 12px !important;
-    border-bottom-left-radius: 15px !important;
-    border-bottom-right-radius: 15px !important;
+    border-bottom-left-radius: 7px !important;
+    border-bottom-right-radius: 7px !important;
 }
 .justify-content-between{
     justify-content: space-between !important; 
@@ -317,8 +317,8 @@ fieldset {
     background: #1ab394 !important;
     color: white !important;
     border: 0 !important;
-    border-top-left-radius: 15px !important;
-    border-top-right-radius: 15px !important;
+    border-top-left-radius: 7px !important;
+    border-top-right-radius: 7px !important;
     display: flex;
     align-items: center;
 }
