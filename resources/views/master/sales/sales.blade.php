@@ -96,7 +96,7 @@
 
         });
 
-        $(document).on('click','.active',function(){
+        $('#table_sales').on('click','.active',function(){
             swal({
                 title: "Apa anda yakin?",
                 text: "Service Advisor akan diaktifkan!",
@@ -138,7 +138,7 @@
             }
         })
 
-        $(document).on('click','.delete',function(){
+        $('#table_sales').on('click','.delete',function(){
             swal({
                 title: "Apa anda yakin?",
                 text: "Data akan dihapus permanent!",
