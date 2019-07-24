@@ -57,7 +57,7 @@
                                                 <th width="1%">No.</th>
                                                 <th>Tanggal Difollow Up</th>
                                                 <th>Jam Difollow Up</th>
-                                                <th>No. Kendaraan</th>
+                                                <th>No. Plat Kendaraan</th>
                                                 <th>Nama Pemilik</th>
                                                 <th>Status Service</th>
                                                 <th>Status Follow Up</th>
