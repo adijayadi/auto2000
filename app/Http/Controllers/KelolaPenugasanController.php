@@ -105,8 +105,6 @@ class KelolaPenugasanController extends Controller
             $arr = array(
                		'fu_cid' => $request->id[$i],
            			'fu_cstaff' => $request->advisor_baru,
-           			'fu_date' => Carbon::parse($request->dateup)->format('Y,m,d'),
-           			'fu_time' => Carbon::parse($request->timeup),
            			'fu_status' => 'Planning',
            			'status_data' =>'true',
                 );
