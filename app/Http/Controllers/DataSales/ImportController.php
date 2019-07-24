@@ -138,7 +138,7 @@ class ImportController extends Controller
 
                 $cek = DB::table('d_customer')->where('c_serial',$request->serial[$i])->count();
                 $langsung = DB::table('d_user')->where('u_name',$request->advisor[$i])->count();
-                $langsung2 = DB::table('d_user')->where('u_name',$request->advisor[$i])->get('u_code');
+                $langsung2 = DB::table('d_user')->where('u_name',$request->advisor[$i])->get();
                 $td = Carbon::parse($request->date[$i])->addMonths(3)->format('Y,m');
                 if (strtoupper($request->direct[$i]) == 'S') {
                   if ($langsung == 1) {
@@ -156,7 +156,7 @@ class ImportController extends Controller
 
                     $arr2 = array(
                   'fu_cid' => $ordercode,
-                  'fu_cstaff' => $langsung2,
+                  'fu_cstaff' => $langsung2[0]->u_code,
                   'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
                   'fu_time' => Carbon::parse('Asia/Jakarta'),
                   'fu_status' => 'Planning',
@@ -205,7 +205,7 @@ class ImportController extends Controller
 
                     $arr2 = array(
                   'fu_cid' => $ordercode,
-                  'fu_cstaff' => $langsung2,
+                  'fu_cstaff' => $langsung2[0]->u_code,
                   'fu_date' => Carbon::now('Asia/Jakarta')->addDays(2)->format('Y,m,d'),
                   'fu_time' => Carbon::parse('Asia/Jakarta'),
                   'fu_status' => 'Planning',
