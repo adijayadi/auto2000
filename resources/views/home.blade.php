@@ -39,7 +39,7 @@
     <div class="row mt-4 " id="list-service-advisor">
     @if(count($adv) != 0)
         @for($i = 0;$i<count($adv);$i++)
-            <div class="col-lg-4 services-column">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 services-column">
                 <div class="ibox float-e-margins services-box">
                     <div class="ibox-title header-service">
                         <h5>{{$adv[$i]}}</h5>
