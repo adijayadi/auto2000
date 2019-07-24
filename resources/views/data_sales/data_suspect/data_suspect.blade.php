@@ -94,6 +94,8 @@
                         message:'Rencana di Simpan!'
                     });
 
+                    $('#modal-follow-up').modal('hide');
+                    $('#modal-follow-up :input').val('');
                     setTimeout(function(){
                         table.ajax.reload();
                     },500);
