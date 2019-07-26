@@ -33,7 +33,7 @@ class ImportController extends Controller
       }
 
       public function table(){
-         $data = DB::table('d_customerremovable')->get();
+         $data = DB::table('d_customerremovable')->groupBy('cr_serial')->get();
          return DataTables::of($data)
          ->addIndexColumn()
          ->addcolumn('rangka',function($data){
@@ -149,7 +149,7 @@ class ImportController extends Controller
                            'c_typecar' => $request->car[$i],
                            'c_jobdesc' => $request->job[$i],
                            'c_dateservice' => Carbon::parse($request->date[$i])->format('y,m,d'),
-                           'c_dateplan' => Carbon::now('Asia/Jakarta')->addMonth()->format('y,m,d'),
+                           'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
                            'c_nameadvisor' => $request->advisor[$i],
                            'c_serviceadvisor' => $langsung2[0]->u_code,
                            'c_code' => $request->code,
@@ -184,7 +184,7 @@ class ImportController extends Controller
                           'fu_cid' => $ordercode,
                           'fu_cstaff' => $langsung2[0]->u_code,
                           'fu_date' => Carbon::parse($request->date[$i])->addMonths(3)->format('y,m,d'),
-                          'fu_time' => Carbon::parse('Asia/Jakarta'),
+                          'fu_time' => Carbon::now('Asia/Jakarta'),
                           'fu_status' => 'Planning',
                           'status_data' =>'true',
                           );
@@ -200,7 +200,7 @@ class ImportController extends Controller
                        'c_typecar' => $request->car[$i],
                        'c_jobdesc' => $request->job[$i],
                        'c_dateservice' => Carbon::parse($request->date[$i])->format('y,m,d'),
-                       'c_dateplan' => Carbon::parse($request->date[$i])->addMonth()->format('y,m,d'),
+                       'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
                        'c_nameadvisor' => $request->advisor[$i],
                        'c_serviceadvisor' => '',
                        'c_code' => $request->code,
@@ -229,7 +229,7 @@ class ImportController extends Controller
                       if(strtoupper($request->direct[$i]) == 'F'){
                           DB::table('d_customer')->where('c_plate',$request->plate[$i])->update([
                               'c_dateservice' => Carbon::parse($request->date[$i])->format('y,m,d'),
-                              'c_dateplan' => Carbon::parse($request->date[$i])->addMonth()->format('y,m,d'),
+                              'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
                           ]);
                         }else{
                           DB::table('d_customer')->where('c_plate',$request->plate[$i])->update([
