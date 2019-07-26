@@ -46,7 +46,7 @@
                             <thead>
                                 <tr>
                                     <th width="1%">No.</th>
-                                    <th>No Kendaraan</th>
+                                    <th>No Plat Kendaraan</th>
                                     <th>Nama Kendaraan</th>
                                     <th>Nama Pemilik</th>
                                     <th>No HP</th>
