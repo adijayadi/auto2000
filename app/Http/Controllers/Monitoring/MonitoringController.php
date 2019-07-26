@@ -65,35 +65,26 @@ class MonitoringController extends Controller
 
     public function gdata(Request $request){
         $adv = $request->adv;
-        $satu = DB::table('d_followup')
-        ->join('d_resultfu','rf_cid','fu_cid')
-        ->where('fu_cstaff',$adv)
-        ->where('d_resultfu.status_data','true')
-        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
-        ->where('rf_csummary','1')->count();
-        $dua = DB::table('d_followup')
-        ->where('fu_cstaff',$adv)
-        ->where('status_data','true')
-        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
-        ->where('fu_status','Planning')->count();
-        $tiga = DB::table('d_followup')
-        ->join('d_resultfu','rf_cid','fu_cid')
-        ->where('fu_cstaff',$adv)
-        ->where('d_resultfu.status_data','true')
-        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
-        ->where('rf_csummary','3')->count();
-        $empat = DB::table('d_followup')
-        ->join('d_resultfu','rf_cid','fu_cid')
-        ->where('fu_cstaff',$adv)
-        ->where('d_resultfu.status_data','true')
-        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
-        ->where('rf_csummary','4')->count();
-        $lima = DB::table('d_followup')
-        ->join('d_resultfu','rf_cid','fu_cid')
-        ->where('fu_cstaff',$adv)
-        ->where('d_resultfu.status_data','true')
-        ->whereBetween('fu_plandate',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])
-        ->where('rf_csummary','5')->count();
+        $satu = DB::table('d_resultfu')
+        ->where('rf_cstaff',$adv)
+        ->where('rf_csummary','1')
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        $dua = DB::table('d_resultfu')
+        ->where('rf_cstaff',$adv)
+        ->where('rf_csummary','2')
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        $tiga = DB::table('d_resultfu')
+        ->where('rf_cstaff',$adv)
+        ->where('rf_csummary','3')
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        $empat = DB::table('d_resultfu')
+        ->where('rf_cstaff',$adv)
+        ->where('rf_csummary','4')
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        $lima = DB::table('d_resultfu')
+        ->where('rf_cstaff',$adv)
+        ->where('rf_csummary','5')
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
         return response()->json(array(
             'satu' => $satu,
             'dua' => $dua,

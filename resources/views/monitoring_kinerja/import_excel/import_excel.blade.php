@@ -139,6 +139,7 @@ function fileReader(oEvent) {
             var data = result;
             var alldata = data[single_sheetname].length;
             var count = alldata;
+            console.log(count);
             $('#cout').val(count);
             
             $.ajax({

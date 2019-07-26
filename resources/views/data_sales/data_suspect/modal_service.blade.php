@@ -1,6 +1,6 @@
     
     {{-- Modal --}}
-    <div class="modal" id="modal-follow-up" role="dialog" aria-hidden="true">
+    <div class="modal" id="modal-service" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
         <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
@@ -9,35 +9,24 @@
                     <h4 class="modal-title text-center">Follow Up</h4>
                     
                 </div>
-                    <form id="form_modal">
+                    <form id="form_service">
                         <div class="modal-body">
                             <div class="row">
                                 
                                 <div class="col-sm-4 col-xs-12">
-                                    <label>Tanggal Rencana Follow Up</label>
+                                    <label>Type Pekerjaan</label>
                                 </div>
 
                                 <div class="col-sm-8 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control input-sm" name="rencanadate">
+                                        <input type="text" class="form-control input-sm" name="typejob">
                                     </div>
                                 </div>
-
-                                <div class="col-sm-4 col-xs-12">
-                                    <label>Jam Rencana Follow Up</label>
-                                </div>
-
-                                <div class="col-sm-8 col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control input-sm clockpicker" name="rencanatime">
-                                    </div>
-                                </div>
-                                
                             </div>
                         </div>
                     </form>
                 <div class="modal-footer text-right">
-                    <button class="btn btn-primary" id="btn-simpan" type="button">Simpan</button>
+                    <button class="btn btn-primary" id="simpan_service" type="button">Simpan</button>
                      
                 </div>
             </div>

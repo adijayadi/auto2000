@@ -147,17 +147,22 @@
                 url : '{{route("update.follow")}}',
                 type : 'POST',
                 data : form,
-                success:function(){
-                    iziToast.success({
-                        title:'Berhasil!',
-                        message:'Follow Up Selesai!'
-                    });
+                success:function(get){
+                    if (get['error'] != null) {
+                        iziToast.error({
+                            title:'Berhasil!',
+                            message: get['error'],
+                        });
+                    }else{
+                        iziToast.success({
+                            title:'Berhasil!',
+                            message: get['success'],
+                        });
 
-                    setTimeout(function(){
                         $('#detail_tindakan').modal('hide');
                         table.ajax.reload();
                         table2.ajax.reload();
-                    },500);
+                    }
                 },
                 error:function(xhr,textStatus,errorThrowl){
                             iziToast.error({

@@ -37,15 +37,20 @@ class loginController extends Controller
         } else {
             return redirect()->route('login')->with(['gagal' => 'gagal']);
         }
+
  	}
 
  	public function logout(){
- 		DB::table('d_user')
-            ->where('u_username', '=', Auth::user()->u_username)
-            ->update([
-                'u_lastlogout' => Carbon::now('Asia/Jakarta')
-            ]);
-        Auth::logout();
-        return redirect()->route('login');
+        if (null != '') {
+            return redirect()->route('login');
+        }else{
+     		DB::table('d_user')
+                ->where('u_username', '=', Auth::user()->u_username)
+                ->update([
+                    'u_lastlogout' => Carbon::now('Asia/Jakarta')
+                ]);
+            Auth::logout();
+            return redirect()->route('login');
+        }
  	}
 }

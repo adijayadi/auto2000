@@ -23,7 +23,7 @@
                                     <select class=" form-control input-sm select2" name="newadvisor">
                                         <option value="" hidden>~ Pilih Service Advisor Baru ~</option>
                                         @foreach($advisor as $row)
-                                            <option value="{{$row->u_name}}">{{$row->u_name}}</option>
+                                            <option value="{{$row->u_code}}">{{$row->u_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

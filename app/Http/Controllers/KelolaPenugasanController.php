@@ -13,7 +13,7 @@ class KelolaPenugasanController extends Controller
 {
     public function kelola_penugasan()
     {
-      $countwork = DB::table('d_customer')->where('status_data','true')->select('c_jobdesc', DB::raw('count(*) as total'))->groupBy('c_jobdesc')->orderBy('c_jobdesc','asc')->get();
+      $countwork = DB::table('d_customer')->where('status_data','true')->select('c_jobdesc', DB::raw('count(*) as total'))->whereYear('c_dateplan',Carbon::now('Asia/Jakarta')->format('Y'))->whereMonth('c_dateplan',Carbon::now('Asia/Jakarta')->format('m'))->groupBy('c_jobdesc')->orderBy('c_jobdesc','asc')->get();
     	$advisor = DB::table('d_user')->where(['u_user' => 'S', 'status_data' => 'true'])->get();
     	return view('monitoring_kinerja.kelola_penugasan.kelola_penugasan',array(
     		'advisor' => $advisor,
@@ -25,15 +25,19 @@ class KelolaPenugasanController extends Controller
       if ($request->serviceadv != null) {
         $data = DB::table('d_followup')
           ->leftJoin('d_customer','c_order','fu_cid')
-          ->where('d_followup.status_data','true')
-          ->where('fu_status','Planning')
-          ->where('c_serviceadvisor',$request->serviceadv)
+          ->leftJoin('d_user','u_code','c_serviceadvisor')
+          ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
+          ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
+          ->where('u_code',$request->serviceadv)
+          ->where('fu_status','!=','success')
           ->get();
       }else{
       	$data = DB::table('d_followup')
           ->leftJoin('d_customer','c_order','fu_cid')
-          ->where('d_followup.status_data','true')
-          ->where('fu_status','Planning')
+          ->leftJoin('d_user','u_code','c_serviceadvisor')
+          ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
+          ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
+          ->where('fu_status','!=','success')
           ->get();
       }
 
@@ -49,7 +53,10 @@ class KelolaPenugasanController extends Controller
     }
 
     public function tablecustomer(Request $request){
-    		$data = DB::table('d_customer')->where('status_data','true')
+    		$data = DB::table('d_customer')
+        ->where('status_data','true')
+        ->whereYear('c_dateplan',Carbon::now('Asia/Jakarta')->format('Y'))
+        ->whereMonth('c_dateplan',Carbon::now('Asia/Jakarta')->format('m'))
         ->orderBy('c_dateservice')
         ->orderBy('c_jobdesc')
         ->get();
@@ -78,19 +85,28 @@ class KelolaPenugasanController extends Controller
     }
 
     public function updateserviceadv(Request $request){
+        $advisor = $request->newadvisor;
     	if ($request->scount == NULL) {
     		return false;
     	}else{
     	for ($i=0; $i < $request->scount ; $i++) { 
+
+            DB::table('d_followup')
+            ->where('fu_cid',$request->id[$i])
+            ->update([
+                'fu_cstaff' => $advisor,
+              ]);
+
            		DB::table('d_customer')
            		->where('c_serial',$request->serial[$i])
            		->where('c_serviceadvisor',$request->customer[$i])
            		->where('c_code',$request->followup[$i])
            		->update([
-           			'c_serviceadvisor' => $request->newadvisor,
+           			'c_serviceadvisor' => $advisor,
            		]);
             }
-            }
+          return response()->json(['success' => 'Berhasil Mengganti Service Advisor']);
+          }
 
     }
 

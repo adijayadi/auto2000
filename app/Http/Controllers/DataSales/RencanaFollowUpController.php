@@ -98,9 +98,19 @@ class RencanaFollowUpController extends Controller
         if ($id != null) {
             if ($tindakan === 'ya' && $request->tanggalbooking != null) {
 
-                DB::table('d_followup')->where('fu_cid',$id)->update([
-                    'fu_updatedate' => Carbon::now(),
-                    'fu_updatetime' => Carbon::now(),
+                DB::table('d_customer')
+                ->where('c_order',$id)->update([
+                    'status_data' => 'true',
+                    'c_dateservice' => Carbon::parse($request->tanggalbooking)->format('Y,m,d'),
+                    'c_dateplan' => Carbon::parse($request->tanggalbooking)->addMonths(3)->format('Y,m,d'),
+                ]);
+
+                DB::table('d_followup')
+                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
+                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
+                ->where('fu_cid',$id)->update([
+                    'fu_updatedate' => Carbon::now('Asia/Jakarta'),
+                    'fu_updatetime' => Carbon::now('Asia/Jakarta'),
                     'fu_bookingdate' => Carbon::parse($request->tanggalbooking)->format('Y,m,d'),
                     'fu_status' => 'success',
                     'status_data' => 'false',
@@ -109,16 +119,27 @@ class RencanaFollowUpController extends Controller
                 DB::table('d_resultfu')->insert([
                     'rf_csummary' => '4',
                     'rf_cid' => $id,
+                    'rf_cstaff' => Auth::user()->u_code,
                     'rf_reason' => 'Bersedia Melakukan Service',
+                    'rf_date' => Carbon::now('Asia/Jakarta'),
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_order',$id)->update([
-                    'status_data' => 'done',
+                DB::table('d_followup')->insert([
+                    'fu_cid' => $id,
+                    'fu_cstaff' => Auth::user()->u_code,
+                    'fu_date' => Carbon::parse($request->tanggalbooking)->addMonths(3)->format('Y,m,d'),
+                    'fu_time' =>  Carbon::parse($request->tanggalbooking),
+                    'fu_status' => 'Planning',
                 ]);
 
+                return response()->json(['success' => 'berhasil Melakukan Booking']);
+
             } else if($tindakan === 'ntar'){
-                DB::table('d_followup')->where('fu_cid',$id)->update([
+                DB::table('d_followup')
+                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
+                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
+                ->where('fu_cid',$id)->update([
                     'fu_plandate' => Carbon::parse($request->tanggalrefollowup)->format('Y,m,d'),
                     'fu_plantime' =>    $request->timerefollowup,
                     'fu_updatedate' => Carbon::now(),
@@ -131,51 +152,57 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 're',
                 ]);
 
+                return response()->json(['success' => 'Memasukkan Data Refollowup']);
+
             } else if($tindakan === 'tidak'){
-                DB::table('d_followup')->where('fu_cid',$id)->update([
-                    'fu_updatedate' => Carbon::now(),
-                    'fu_updatetime' => Carbon::now(),
-                    'fu_status' => 'denied',
-                    'status_data' => 'false',
+                DB::table('d_followup')
+                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
+                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
+                ->where('fu_cid',$id)->update([
+                    'fu_updatedate' => Carbon::now('Asia/Jakarta'),
+                    'fu_updatetime' => Carbon::now('Asia/Jakarta'),
+                    'fu_date' => Carbon::now('Asia/Jakarta')->addMonth(),
+                    'fu_time' => Carbon::now('Asia/Jakarta'),
+                    'fu_status' => 'planning',
+                    'status_data' => 'true',
+                ]);
+
+                DB::table('d_customer')
+                ->where('c_order',$id)->update([
+                    'status_data' => 'true',
+                    'c_dateplan' => Carbon::parse($request->tanggalbooking)->addMonth()->format('Y,m,d'),
                 ]);
 
                 DB::table('d_resultfu')->insert([
                     'rf_csummary' => '3',
                     'rf_cid' => $id,
+                    'rf_cstaff' => Auth::user()->u_code,
+                    'rf_date' => Carbon::now('Asia/Jakarta'),
                     'rf_reason' => $alasan,
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_order',$id)->update([
-                    'status_data' => 'not',
-                ]);
+                return response()->json(['success' => 'berhasil Mengubah Status']);
             }
             
             else if($tindakan === 'ya' && $request->tanggalbooking == null){
-                DB::table('d_followup')->where('fu_cid',$id)->update([
-                    'fu_updatedate' => Carbon::now(),
-                    'fu_updatetime' => Carbon::now(),
-                    'fu_status' => 'schedule',
-                    'status_data' => 'false',
-                ]);
-
-                DB::table('d_resultfu')->insert([
-                    'rf_csummary' => '4',
-                    'rf_cid' => $id,
-                    'rf_reason' => 'Bersedia Belum booking',
-                    'status_data' => 'true',
-                ]);
-
-                DB::table('d_customer')->where('c_order',$id)->update([
-                    'status_data' => 'done',
-                ]);
-
+                return response()->json(['error' => 'tanggal booking masih kosong']);
             }
 
         }else if($id2 != null){
 
             if ($request->tanggalbooking2 != null) {
-                DB::table('d_followup')->where('fu_cid',$id2)->update([
+                DB::table('d_customer')
+                ->where('c_order',$id2)->update([
+                    'status_data' => 'true',
+                    'c_dateservice' => Carbon::parse($request->tanggalbooking2)->format('Y,m,d'),
+                    'c_dateplan' => Carbon::parse($request->tanggalbooking2)->addMonths(3)->format('Y,m,d'),
+                ]);
+
+                DB::table('d_followup')
+                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
+                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
+                ->where('fu_cid',$id2)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),
                     'fu_bookingdate' => Carbon::parse($request->tanggalbooking2)->format('Y,m,d'),
@@ -185,35 +212,55 @@ class RencanaFollowUpController extends Controller
 
                 DB::table('d_resultfu')->insert([
                     'rf_csummary' => '4',
-                    'rf_cid' => $request->id2,
+                    'rf_cid' => $id2,
+                    'rf_cstaff' => Auth::user()->u_code,
                     'rf_reason' => 'Bersedia Melakukan Service',
+                    'rf_date' => Carbon::now('Asia/Jakarta'),
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_order',$id2)->update([
-                    'status_data' => 'done',
+                DB::table('d_followup')->insert([
+                    'fu_cid' => $id2,
+                    'fu_cstaff' => Auth::user()->u_code,
+                    'fu_date' => Carbon::parse($request->tanggalbooking2)->addMonths(3)->format('Y,m,d'),
+                    'fu_time' =>  Carbon::parse($request->tanggalbooking2),
+                    'fu_status' => 'Planning',
                 ]);
 
+                return response()->json(['success' => 'berhasil Melakukan Booking']);
+
             }else if($request->alasan2 != ''){
-                DB::table('d_followup')->where('fu_cid',$id2)->update([
+                DB::table('d_followup')
+                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
+                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
+                ->where('fu_cid',$id2)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),
-                    'fu_status' => 'denied',
-                    'status_data' => 'false',
+                    'fu_date' => Carbon::now('Asia/Jakarta')->addMonth(),
+                    'fu_time' => Carbon::now('Asia/Jakarta'),
+                    'fu_status' => 'planning',
+                    'status_data' => 'true',
+                ]);
+
+                DB::table('d_customer')
+                ->where('c_order',$id2)->update([
+                    'status_data' => 'true',
+                    'c_dateplan' => Carbon::parse($request->tanggalbooking2)->addMonth()->format('Y,m,d'),
                 ]);
 
                 DB::table('d_resultfu')->insert([
                     'rf_csummary' => '3',
-                    'rf_cid' => $request->id2,
+                    'rf_cid' => $id2,
+                    'rf_cstaff' => Auth::user()->u_code,
+                    'rf_date' => Carbon::now('Asia/Jakarta'),
                     'rf_reason' => $request->alasan2,
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_customer')->where('c_order',$id2)->update([
-                    'status_data' => 'not',
-                ]);
+                return response()->json(['success' => 'berhasil Mengubah Status']);
+
             }else{
-                return false;
+                return response()->json(['error' => 'tanggal booking masih kosong']);
             }
         }
     }

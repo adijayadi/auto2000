@@ -17,10 +17,11 @@ class DResultfu extends Migration
             $table->bigIncrements('rf_id');
             $table->string('rf_csummary',100)->index();
             $table->string('rf_cid',100)->nullable();
+            $table->string('rf_cstaff',100)->nullable();
+            $table->date('rf_date')->nullable();
             $table->string('rf_reason',100)->nullable();
             $table->string('status_data',20);
         });
-   
     }
 
     /**

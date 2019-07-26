@@ -22,6 +22,7 @@
     </div>
 </div>
 @include('data_sales.data_suspect.modal_followup')
+@include('data_sales.data_suspect.modal_service')
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -31,6 +32,14 @@
                 <div class="ibox-title">
                     <h5>Rencana Follow Up</h5>
                     <div class="ibox-tools">
+                        <button class="btn btn-success btn-sm" id="btn-service" title="Mengubah Status Sudah service" >
+                            <i class="fa fa-calendar-alt"></i>
+                            Sudah Service ?
+                        </button>
+                        <button class="btn btn-info btn-sm" id="btn-limit" title="Buka Limit Waktu Normal" >
+                            <i class="fa fa-calendar-alt"></i>
+                            Remove Limit
+                        </button>
                         <button class="btn btn-primary btn-sm" id="btn-modal" title="Follow Up yang dicentang" >
                             <i class="fa fa-calendar-alt"></i>
                             Follow Up yang dicentang
@@ -80,6 +89,67 @@
     $(document).ready(function(){   
         $.fn.dataTable.ext.errMode = 'none';
         
+        $('#btn-limit').on('click',function(){
+            var table = $('#table_kendaraan').DataTable({
+            responsive: true,
+            serverSide: false,
+            destroy: true,
+            ajax : {
+                url: "{{ route('table.suspect') }}",
+                type: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'break' : 'true',
+                }
+            },
+            columns : [
+            {data : 'check' , name : 'check'},
+            {data : 'c_dateservice' , name : 'c_dateservice'},
+            {data : 'c_serial' , name : 'c_serial'},
+            {data : 'c_plate' , name : 'c_plate'},
+            {data : 'c_typecar' , name : 'c_typecar'},
+            {data : 'c_jobdesc' , name : 'c_jobdesc'},
+
+            ],
+            pageLength: -1,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
+        });
+        })
+
+        $('#btn-service').on('click',function(){
+            $('#modal-service').modal('show');
+        })
+
+        $('#simpan_service').on('click',function(){
+            var form2 = $('#form_table').serialize() + '&' + $('#form_service').serialize();
+            $.ajax({
+                url : '{{route("sudahservice.suspect")}}',
+                type : 'post',
+                data : form2,
+                success : function(get){
+                    if (get['success'] != null) {
+                        iziToast.success({
+                            title:'Berhasil!',
+                             message: get['success'],
+                        });
+                        table.ajax.reload();
+                        $('.close').click();
+                    }else if (get['error'] != null) {
+                        iziToast.success({
+                            title:'error!',
+                             message: get['error'],
+                        });
+                    }else {
+                        iziToast.success({
+                            title:'error!',
+                             message:'Error Tidak jelas!'
+                        });
+                    }
+                }
+            })
+        })
+
+
         $('#btn-simpan').on('click',function(){
             var cout = $('.table-checked').length;
             $('#cout').val(cout);
@@ -127,10 +197,6 @@
             pageLength: -1,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
-
-
-            
-
     });
 
     $('#btn-modal').click(function(){

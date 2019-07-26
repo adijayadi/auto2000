@@ -180,7 +180,7 @@
                                                         <select class="form-control input-sm select2" id="selectservice" name="">
                                                             <option value="" hidden>~ Pilih Service Advisor ~</option>
                                                             @foreach($advisor as $row)
-                                                            <option value="{{$row->u_name}}">{{$row->u_name}}</option>
+                                                            <option value="{{$row->u_code}}">{{$row->u_name}}</option>
                                                             @endforeach
                                                         </select>
                                                         <div class="input-group-btn">
@@ -312,7 +312,7 @@
             {data : 'c_plate' , name : 'c_plate'},
             {data : 'c_typecar' , name : 'c_typecar'},
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
-            {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+            {data : 'c_nameadvisor' , name : 'c_nameadvisor'},
             {data : 'fu_status' , name : 'fu_status'},
 
             ],
@@ -337,7 +337,6 @@
                                     title: 'Gagal!',
                                     message: 'Mohon Import Data',
                         });
-
                     }else{
                         iziToast.success({
                             title: 'Berhasil!',
@@ -345,6 +344,7 @@
                         });
                         table.ajax.reload();
                         table2.ajax.reload();
+                        $('modal-ganti-satu').modal('hide');
                     } 
                     
                 },
@@ -356,6 +356,7 @@
                                 title: 'Gagal!',
                                 message: 'Menyimpan Data',
                     });
+                            $('.close').click();
                 }
             })
 
@@ -379,7 +380,7 @@
             {data : 'c_plate' , name : 'c_plate'},
             {data : 'c_typecar' , name : 'c_typecar'},
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
-            {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+            {data : 'c_nameadvisor' , name : 'c_nameadvisor'},
             {data : 'fu_status' , name : 'fu_status'},
 
             ],
@@ -413,7 +414,7 @@
             {data : 'c_plate' , name : 'c_plate'},
             {data : 'c_typecar' , name : 'c_typecar'},
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
-            {data : 'c_serviceadvisor' , name : 'c_serviceadvisor'},
+            {data : 'c_nameadvisor' , name : 'c_nameadvisor'},
 
             ],
             pageLength: 10,

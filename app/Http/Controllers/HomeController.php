@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use App\d_user;
 use DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -31,32 +32,32 @@ class HomeController extends Controller
         $adv;
 
         foreach ($data as $key) {
-            # code...
            $adv[] = $key->u_name;
 
-            $service[] = DB::table('d_followup')
-            ->join('d_resultfu','rf_cid','fu_cid')
-            ->where('fu_cstaff',$key->u_code)
-            ->where('d_resultfu.status_data','true')
+            $service[] = DB::table('d_resultfu')
+            ->where('rf_cstaff',$key->u_code)
+            ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
+            ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
             ->where('rf_csummary','1')->count();
-            $followup[] = DB::table('d_followup')
-            ->where('fu_cstaff',$key->u_code)
-            ->where('status_data','true')
-            ->where('fu_status','Planning')->count();
-            $tidakbersedia[] = DB::table('d_followup')
-            ->join('d_resultfu','rf_cid','fu_cid')
-            ->where('fu_cstaff',$key->u_code)
-            ->where('d_resultfu.status_data','true')
+            $followup[] = DB::table('d_resultfu')
+            ->where('rf_cstaff',$key->u_code)
+            ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
+            ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
+            ->where('rf_csummary','2')->count();
+            $tidakbersedia[] = DB::table('d_resultfu')
+            ->where('rf_cstaff',$key->u_code)
+            ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
+            ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
             ->where('rf_csummary','3')->count();
-            $booking[] = DB::table('d_followup')
-            ->join('d_resultfu','rf_cid','fu_cid')
-            ->where('fu_cstaff',$key->u_code)
-            ->where('d_resultfu.status_data','true')
+            $booking[] = DB::table('d_resultfu')
+            ->where('rf_cstaff',$key->u_code)
+            ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
+            ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
             ->where('rf_csummary','4')->count();
-            $tidakbooking[] = DB::table('d_followup')
-            ->join('d_resultfu','rf_cid','fu_cid')
-            ->where('fu_cstaff',$key->u_code)
-            ->where('d_resultfu.status_data','true')
+            $tidakbooking[] = DB::table('d_resultfu')
+            ->where('rf_cstaff',$key->u_code)
+            ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
+            ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
             ->where('rf_csummary','5')->count();
         }
         // return $adv;

@@ -252,7 +252,7 @@ $.fn.dataTable.ext.errMode = 'none';
             {data: 'DT_RowIndex'},
             {data : 'c_plate' , name : 'c_plate'},
             {data : 'nama' , name : 'nama'},
-            {data : 'fu_status' , name : 'fu_status'},
+            {data : 'status' , name : 'status'},
 
             ],
             pageLength: 10,
