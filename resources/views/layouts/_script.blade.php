@@ -46,6 +46,8 @@
     <script src="{{asset('assets/iziToast/iziToast.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/slick/slick.min.js')}}"></script>
 
+    <script src="{{asset('assets/js/plugins/jsKnob/jquery.knob.js')}}"></script>
+
     <script src="{{asset('assets/js-cookie/js.cookie.js')}}"></script>
     {{-- Text editor --}}
     <script src="{{asset('assets/summernote/dist/summernote.min.js')}}"></script>
