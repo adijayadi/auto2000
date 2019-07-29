@@ -39,6 +39,7 @@
                     <h5>Manajemen Import Data</h5>
                     <div class="ibox-tools">
                         <a href="{{asset('download_contoh_excel/contoh_import_excel.xlsx')}}" download="" class="btn btn-primary btn-sm"><i class="fa fa-file-excel"></i> Contoh Format Excel</a>
+                        <button class="btn btn-primary btn-sm" id="reset" type="button"><i class="fa fa-file-excel"></i> Data Baru</button>
                         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-import" type="button"><i class="fa fa-file-excel"></i> Import Excel</button>
 
                     </div>
@@ -107,6 +108,20 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('#reset').click(function(){
+            $.ajax({
+                url : '{{route("table.reset")}}',
+                type : 'post',
+                data : {'_token' : '{{csrf_token()}}'},
+                success : function(get){
+                    iziToast.success({
+                            title: 'Berhasil!',
+                            message: 'Mereset data, Silahkan Masukan Data Pertama lalu Data kedua',
+                        });
+                },
+            })
+        })
 
         $('#progress_upload').knob({
             step:1,

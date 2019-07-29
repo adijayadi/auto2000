@@ -425,6 +425,9 @@ class ImportController extends Controller
 
       }
 
+      public function reset(Request $request){
+          d_hcustommer::truncate();
+      }
 
 
 }
