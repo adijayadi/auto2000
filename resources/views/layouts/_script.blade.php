@@ -74,17 +74,17 @@
             },1000);
 
             $(document).ajaxStart(function(){
-                $('.div-loading').removeClass('fadeOut');
-                $('body').addClass('body-loading');
+                $('.ajax-loading').removeClass('fadeOut');
+                $('body').addClass('body-ajax-loading');
 
                 
             });
 
             $(document).ajaxComplete(function(){
-                $('.div-loading').addClass('fadeOut');
+                $('.ajax-loading').addClass('fadeOut');
                 setTimeout(function(){
 
-                    $('body').removeClass('body-loading');
+                    $('body').removeClass('body-ajax-loading');
                 },1000);
               
             });
