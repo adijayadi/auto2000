@@ -250,9 +250,9 @@ $.fn.dataTable.ext.errMode = 'none';
             },
             columns : [
             {data: 'DT_RowIndex'},
-            {data : 'c_plate' , name : 'c_plate'},
-            {data : 'nama' , name : 'nama'},
-            {data : 'status' , name : 'status'},
+            {data : 'c_plate'},
+            {data : 'nama'},
+            {data : 'status'},
 
             ],
             pageLength: 10,

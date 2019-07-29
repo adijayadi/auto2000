@@ -41,14 +41,13 @@ class SummaryTindakanController extends Controller
                         array_push($data,$arr);
                     }
                 }
-
                 if ($fu != '[]') {
                     foreach ($fu as $row) {
                         $arrr = array(
                             'c_dateservice' => $row->c_dateservice,
                             'v_owner' => $row->v_owner,
                             'c_plate' => $row->c_plate,
-                            'fu_status' => $row->fu_status,
+                            'rf_csummary' => $row->fu_status,
                         );
                         array_push($data,$arrr);
                     }
@@ -77,9 +76,8 @@ class SummaryTindakanController extends Controller
                 return 'Bersedia Sudah Booking';
             }else if($data['rf_csummary'] == '5'){
                 return 'Bersedia Belum Booking';
-            }
-            else{
-                return '';
+            }else{
+                return $data['rf_csummary'];
             }
         })
         ->rawColumns(['tanggal','nama','status'])

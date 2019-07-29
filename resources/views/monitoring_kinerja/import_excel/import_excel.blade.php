@@ -174,6 +174,10 @@ function fileReader(oEvent) {
                 type : 'POST',
                 data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini , 'code' : $('#code').val(),},
                 success:function(){
+                        iziToast.success({
+                            title: 'Berhasil!',
+                            message: 'Menyimpan Data',
+                        });
                     setTimeout(function(){
                                 $.ajax({
                                     url : '{{route("rekap.excel")}}',

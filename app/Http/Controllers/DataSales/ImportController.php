@@ -69,13 +69,14 @@ class ImportController extends Controller
           // data upload raw
       		    $alldata = [];
               $alldata2 = [];
+              $datanosa = [];
               $direct2 = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
                 $countremove = DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->count();
                 //order code
                 $ordercode = DB::table('d_customer')->groupBy('c_code')->count().$i; 
               $datetime = Carbon::parse($request->result[$workbook][$i][4])->format('Y,m,d');
-                if ($countremove == 0) {
+
 
                 if(empty($request->result[$workbook][$i][6])){
                   $direct = 'R';
@@ -83,21 +84,25 @@ class ImportController extends Controller
                   $direct = $request->result[$workbook][$i][6];
                 }
 
+              if ($countremove == 0) {
+                  $arr = array(
+                'cr_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),  
+                'cr_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                'cr_typecar' => $request->result[$workbook][$i][2],
+                'cr_jobdesc' => $request->result[$workbook][$i][3],
+                'cr_dateservice' => $datetime,
+                'cr_serviceadvisor' => $request->result[$workbook][$i][5],
+                'cr_direct' => $direct,
+                'cr_code' => $code,
+                'status_data' => 'true',
+                  );
 
-              $arr = array(
-         			'cr_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),  
-         			'cr_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
-         			'cr_typecar' => $request->result[$workbook][$i][2],
-         			'cr_jobdesc' => $request->result[$workbook][$i][3],
-         			'cr_dateservice' => $datetime,
-              'cr_serviceadvisor' => $request->result[$workbook][$i][5],
-         			'cr_direct' => $direct,
-         			'cr_code' => $code,
-         			'status_data' => 'true',
-         		    );
-
-              array_push($alldata, $arr);
+                array_push($alldata, $arr);
               }else{
+
+              }
+              
+            
               $cekdata = DB::table('d_customerremovable')->count();
               $langsung = DB::table('d_user')->where('u_name',$request->result[$workbook][$i][5])->count();
               $langsung2 = DB::table('d_user')->where('u_name',$request->result[$workbook][$i][5])->get();
@@ -146,10 +151,10 @@ class ImportController extends Controller
                   'status_data' => 'true',
                 ]);
 
-                  array_push($alldata2, $arr1);
+                  array_push($datanosa, $arr1);
                 }
 
-                DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->delete();
+                // DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->delete();
 
           }else if ($cekdata > 0) { // data di filter status 0
             if ($cek == 0) { // jika di filter status 0 maka data di masukkan
@@ -191,10 +196,12 @@ class ImportController extends Controller
                   'c_nameadvisor' => $request->result[$workbook][$i][5],
                   'c_code' => $request->code,
                   'c_order' => $ordercode,
-                  'status_data' => 'plan',
+                  'status_data' => 'true',
                 ]);
-                  array_push($alldata2, $arr1);
+                  array_push($datanosa, $arr1);
                 }
+
+                // DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->delete();
               }else{ // jika sama
                 //   if ($langsung == 1) { // jika ada service advisornya
                 // $arr1 = ([
@@ -240,12 +247,15 @@ class ImportController extends Controller
                 //   array_push($alldata2, $arr1);
                 // }
 
-                  DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->delete();
+                  // DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->delete();
               }
             }
           }	 
-        }
+              // dd($alldata2);
 
+              if ($datanosa != null) {
+                d_customer::insert($datanosa);
+              }
                if ($alldata2 != null) { 
                   d_customer::insert($alldata2);
                }

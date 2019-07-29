@@ -13,7 +13,7 @@ class KelolaPenugasanController extends Controller
 {
     public function kelola_penugasan()
     {
-      $countwork = DB::table('d_customer')->where('status_data','true')->select('c_jobdesc', DB::raw('count(*) as total'))->whereYear('c_dateplan',Carbon::now('Asia/Jakarta')->format('Y'))->whereMonth('c_dateplan',Carbon::now('Asia/Jakarta')->format('m'))->groupBy('c_jobdesc')->orderBy('c_jobdesc','asc')->get();
+      $countwork = DB::table('d_customer')->where('status_data','true')->select('c_jobdesc', DB::raw('count(*) as total'))->groupBy('c_jobdesc')->orderBy('c_jobdesc','asc')->get();
     	$advisor = DB::table('d_user')->where(['u_user' => 'S', 'status_data' => 'true'])->get();
     	return view('monitoring_kinerja.kelola_penugasan.kelola_penugasan',array(
     		'advisor' => $advisor,
@@ -26,17 +26,14 @@ class KelolaPenugasanController extends Controller
         $data = DB::table('d_followup')
           ->leftJoin('d_customer','c_order','fu_cid')
           ->leftJoin('d_user','u_code','c_serviceadvisor')
-          ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-          ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
           ->where('u_code',$request->serviceadv)
           ->where('fu_status','!=','success')
+          ->groupBy('fu_id')
           ->get();
       }else{
       	$data = DB::table('d_followup')
           ->leftJoin('d_customer','c_order','fu_cid')
           ->leftJoin('d_user','u_code','c_serviceadvisor')
-          ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-          ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
           ->where('fu_status','!=','success')
           ->get();
       }
@@ -122,7 +119,7 @@ class KelolaPenugasanController extends Controller
            			'fu_status' => 'Planning',
            			'status_data' =>'true',
                 );
-            DB::table('d_customer')->where('c_id',$request->id[$i])
+            DB::table('d_customer')->where('c_order',$request->id[$i])
             ->update([
             	'status_data' => 'plan',
             ]);
