@@ -49,6 +49,9 @@
                     <input type="hidden" id="seriallenght" name="serialc">
                     @csrf
                         <div class="ibox-content">
+                            <div class="text-center">
+                                <input type="text" name="" id="progress_upload" data readonly="" value="0">
+                            </div>
                             <h2>Data dari Import Excel</h2>
                             <hr>
                             <div class="table-responsive">
@@ -104,6 +107,15 @@
 @section('extra_script')
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('#progress_upload').knob({
+            step:1,
+            min:0,
+            max:100,
+            readOnly:true,
+            // format:'%',
+        });
+
         $.fn.dataTable.ext.errMode = 'none';
 
         setInterval(function(){

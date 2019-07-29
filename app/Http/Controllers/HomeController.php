@@ -29,7 +29,12 @@ class HomeController extends Controller
     {
         $data = d_user::where('u_user', 'S')->get();
 
-        $adv;
+        $adv = [];
+        $service = [];
+        $followup = [];
+        $tidakbersedia = [];
+        $booking = [];
+        $tidakbooking = [];
 
         foreach ($data as $key) {
            $adv[] = $key->u_name;
