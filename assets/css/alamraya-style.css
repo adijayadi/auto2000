@@ -253,7 +253,15 @@ fieldset {
 .div-loading{
 	display: none;
 }
-
+.body-ajax-loading .ajax-loading{
+	display: initial;
+	position: fixed;
+	bottom:0px;
+	right: 100px;
+}
+.ajax-loading{
+	display: none;
+}
 .btn-primary{
 	background-color: #f3291a;
     border-color: #f3291a;

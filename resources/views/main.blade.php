@@ -14,7 +14,19 @@
                 <div class="sk-cube2"></div>
             </div>
         </div>
-		
+
+	</div>
+
+	<div class="ajax-loading animated fadeIn">
+		<div class="spiner-example">
+            <div class="sk-spinner sk-spinner-wave">
+                <div class="sk-rect1"></div>
+                <div class="sk-rect2"></div>
+                <div class="sk-rect3"></div>
+                <div class="sk-rect4"></div>
+                <div class="sk-rect5"></div>
+            </div>
+        </div>
 	</div>
 		@include('layouts._sidebar')
 
