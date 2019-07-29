@@ -65,10 +65,15 @@ class ImportController extends Controller
         ini_set('max_execution_time', 300);
           $workbook = $request->sheet[0];
           $code = $request->code;
-         $check = DB::table('d_customerremovable')->count();
-         if ($check == 0) {
+
+          // data upload raw
       		    $alldata = [];
+              $alldata2 = [];
+              $direct = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
+                //order code
+                $ordercode = DB::table('d_customer')->groupBy('c_code')->count().$i; 
+
                 if(empty($request->result[$workbook][$i][6])){
                   $direct = 'R';
                   }else{
@@ -87,34 +92,128 @@ class ImportController extends Controller
          			'cr_direct' => $direct,
          			'cr_code' => 'true',
          			'status_data' => 'true',
-
          		    );
 
+          $cekdata = DB::table('d_customerremovable')->count();
+          $langsung = DB::table('d_user')->where('u_name',$request->advisor[$i])->count();
+          $langsung2 = DB::table('d_user')->where('u_name',$request->result[$workbook][$i][5])->get();
+          $cek = DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->count();
+
+          if(strtoupper($request->result[$workbook][$i][6]) == 'S'){ // data langsung masuk tanpa di filter
+
+              if ($langsung == 1) { // jika ada service advisornya
+                $arr = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_serviceadvisor' => $langsung2[0]->u_code,
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'plan',
+                ]);
+
+                $arr2 = array(
+                  'fu_cid' => $ordercode,
+                  'fu_cstaff' => $langsung2[0]->u_code,
+                  'fu_date' => Carbon::now('Asia/Jakarta')->format('Y,m,d'),
+                  'fu_time' => Carbon::parse('Asia/Jakarta'),
+                  'fu_status' => 'Planning',
+                  'status_data' =>'true',
+                  );
+
+                array_push($alldata2, $arr1);
+                array_push($direct, $arr2);
+
+                }else { // tidak ada service advisor
+                  $arr = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_serviceadvisor' => $langsung2[0]->u_code,
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'plan',
+                ]);
+
+                  array_push($alldata2, $arr1);
+                }
+
+          }else if ($cekdata > 0) { // data di filter status 0
+            if ($cek == 0) { // jika di filter status 0 maka data di masukkan
+              if ($langsung == 1) { // jika ada service advisornya
+                $arr = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_serviceadvisor' => $langsung2[0]->u_code,
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'plan',
+                ]);
+
+                $arr2 = array(
+                  'fu_cid' => $ordercode,
+                  'fu_cstaff' => $langsung2[0]->u_code,
+                  'fu_date' => Carbon::now('Asia/Jakarta')->format('Y,m,d'),
+                  'fu_time' => Carbon::parse('Asia/Jakarta'),
+                  'fu_status' => 'Planning',
+                  'status_data' =>'true',
+                  );
+
+                array_push($alldata2, $arr1);
+                array_push($direct, $arr2);
+
+                }else { // tidak ada service advisor
+                  $arr = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_serviceadvisor' => $langsung2[0]->u_code,
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'plan',
+                ]);
+
+                  array_push($alldata2, $arr1);
+                }
+              }
+          }
+
       		 array_push($alldata, $arr);
+
                }
+               
+
+               if ($alldata2 != '[]') { 
+                  d_customer::insert($alldata);
+               }
+
+               if ($direct != '[]') {
+                  d_followup::insert($direct); 
+               }
+
       		d_hcustommer::insert($alldata);
-         }else{
-            d_hcustommer::truncate();
+          // data filter status 0 tidak service
 
-            for ($i=1 ; $i < $request->datacount ; $i++) { 
-                $datetime = Carbon::parse($request->result[$workbook][$i][4])->format('Y,m,d');
-               $arr = array(
-                  'cr_serial' => $request->result[$workbook][$i][0],  
-                  'cr_plate' => $request->result[$workbook][$i][1],
-                  'cr_typecar' => $request->result[$workbook][$i][2],
-                  'cr_jobdesc' => $request->result[$workbook][$i][3],
-                  'cr_dateservice' => $datetime,
-                  'cr_serviceadvisor' => $request->result[$workbook][$i][5],
-                  'cr_direct' => $request->result[$workbook][$i][6],
-                  'cr_code' => 'true',
-                  'status_data' => 'true',
 
-                   );
 
-             array_push($alldata, $arr);
-               }
-            d_hcustommer::insert($alldata);
-         }
+         
 
    	}
 
@@ -142,7 +241,7 @@ class ImportController extends Controller
 
                 if ($cek == 0 )  {
                    if ($langsung == 1) {
-                      if(strtoupper($request->direct[$i]) == 'F'){
+                      if(strtoupper($request->direct[$i]) == 'S'){
                           $arr1 = array(
                            'c_serial' => $request->serial[$i],
                            'c_plate' => $request->plate[$i],
@@ -241,7 +340,6 @@ class ImportController extends Controller
                 }
              d_customer::insert($alldata);
              d_followup::insert($direct);
-             d_hcustommer::truncate();
               }
              // } catch (\Exception $e) {
               // pesan error
@@ -256,7 +354,7 @@ class ImportController extends Controller
         $avaible = $request->cout - 1;
           DB::table('d_recap')->insert([
             're_dataadded' => $data,
-            're_availabledata' => max($data2 - $avaible,0),
+            're_availabledata' => max($data2 - $data,0),
             're_totaldata' => $request->cout - 1,
             're_dateupload' => Carbon::now('Asia/Jakarta'),
             're_ccustomer' => $code,
@@ -270,9 +368,6 @@ class ImportController extends Controller
 
       }
 
-      public function reset(Request $request){
-          d_hcustommer::truncate();
-      }
 
 
 }

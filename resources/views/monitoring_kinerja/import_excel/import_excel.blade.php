@@ -148,11 +148,7 @@ function fileReader(oEvent) {
                 type : 'POST',
                 data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini},
                 success:function(){
-                    table.ajax.reload();
                 },
-                error:function(xhr,textStatus,errorThrowl){
-                    table.ajax.reload();
-                }
             });
 
         // $('#table_upload tbody').find('tr').on('click', '.hapus', function(){
@@ -174,105 +170,60 @@ function fileReader(oEvent) {
         reader.readAsArrayBuffer(oFile);       
 }
 
-        $('#excelstore').on('click',function(){
+        // $('#excelstore').on('click',function(){
+        //     var formm = $('#formexcel');
+        //     console.log(formm.serialize());
+        //     console.log($('#code').val());
+        //     $.ajax({
+        //         url : '{{route("store.excel")}}',
+        //         type : 'POST',
+        //         data : formm.serialize(),
+        //         success:function(get){
+        //             table.ajax.reload();
+        //             if (get['error'] == 'Mohon Import Data') {
+        //                 iziToast.error({
+        //                             title: 'Gagal!',
+        //                             message: 'Mohon Import Data',
+        //                 });
+        //             }else{
+        //                 iziToast.success({
+        //                     title: 'Berhasil!',
+        //                     message: 'Menyimpan Data',
+        //                 });
+        //             }
 
-            var formm = $('#formexcel');
-            console.log(formm.serialize());
-            console.log($('#code').val());
-            $.ajax({
-                url : '{{route("store.excel")}}',
-                type : 'POST',
-                data : formm.serialize(),
-                success:function(get){
-                    table.ajax.reload();
-                    if (get['error'] == 'Mohon Import Data') {
-                        iziToast.error({
-                                    title: 'Gagal!',
-                                    message: 'Mohon Import Data',
-                        });
-                    }else{
-                        iziToast.success({
-                            title: 'Berhasil!',
-                            message: 'Menyimpan Data',
-                        });
-                    }
 
-
-                        setTimeout(function(){
-                            if ($('.serial').length == 0 || $('.serial').length == 'undefined') {
-                                $.ajax({
-                                    url : '{{route("rekap.excel")}}',
-                                    type : 'POST',
-                                    data : formm.serialize(),
-                                    success:function(get){
-                                    }
-                                });
-                                setTimeout(function(){
-                                    window.location.reload();
-                                },1000);
-                            }
-                        },1000);
+        //                 setTimeout(function(){
+        //                     if ($('.serial').length == 0 || $('.serial').length == 'undefined') {
+        //                         $.ajax({
+        //                             url : '{{route("rekap.excel")}}',
+        //                             type : 'POST',
+        //                             data : formm.serialize(),
+        //                             success:function(get){
+        //                             }
+        //                         });
+        //                         setTimeout(function(){
+        //                             window.location.reload();
+        //                         },1000);
+        //                     }
+        //                 },1000);
                     
 
                     
                     
-                },
-                error:function(xhr,textStatus,errorThrowl){
-                            iziToast.show({
-                                color: '#DC143C',
-                                titleColor: '#ffffff',
-                                messageColor: '#ffffff',
-                                title: 'Gagal!',
-                                message: 'Menyimpan Data',
-                    });
-                }
-            });
-        })
+        //         },
+        //         error:function(xhr,textStatus,errorThrowl){
+        //                     iziToast.show({
+        //                         color: '#DC143C',
+        //                         titleColor: '#ffffff',
+        //                         messageColor: '#ffffff',
+        //                         title: 'Gagal!',
+        //                         message: 'Menyimpan Data',
+        //             });
+        //         }
+        //     });
+        // })
 
-        $(document).on('click', '.hapus' ,function(){
-            var id = $(this).data('id');
-            $.ajax({
-                url : '{{route("delete.excel")}}',
-                type : 'POST',
-                data : {'_token' : '{{csrf_token()}}','id' : id },
-                success:function(){
-                    table.ajax.reload();
-                    setTimeout(function(){
-                        $.ajax({
-                            url : '{{route("rekap.excel")}}',
-                            type : 'POST',
-                            data : formm.serialize(),
-                            success:function(get){
-                            }
-                        });
-                        setTimeout(function(){
-                            window.location.reload();
-                        },1000);
-                    });
-                },
-            });
-        });
-
-
-  if (performance.navigation.type == 1) {
-    $.ajax({
-                url : '{{route("table.reset")}}',
-                type : 'POST',
-                data : {'_token' : '{{csrf_token()}}'},
-                success:function(){
-                    table.ajax.reload();
-                },
-            });
-  } else {
-    $.ajax({
-                url : '{{route("table.reset")}}',
-                type : 'POST',
-                data : {'_token' : '{{csrf_token()}}'},
-                success:function(){
-                    table.ajax.reload();
-                },
-            });
-  }
 
 // Add your id of "File Input" 
 $('#btn-upload').on('click',function(){
@@ -285,32 +236,6 @@ $('#btn-upload').on('click',function(){
     },500);
 })
 
-var table2 = $('#table_db').DataTable();
-        var table = $('#table_upload').DataTable({
-            responsive: true,
-            serverSide: true,
-            paging: false,
-            destroy: true,
-            fixedHeader: true,
-            ajax : {
-                url: "{{ route('table.excel') }}",
-                type: "post",
-                data: {
-                    "_token": "{{ csrf_token() }}"
-                }
-            },
-            columns : [
-            {data : 'rangka' , name : 'rangka'},
-            {data : 'plate' , name : 'plate'},
-            {data : 'type' , name : 'type'},
-            {data : 'job' , name : 'job'},
-            {data : 'date' , name : 'date'},
-            {data : 'servicead' , name : 'servicead'},
-            {data : 'action' , name : 'action'},
-
-            ],
-
-        });
         var table2 = $('#table_rekap').DataTable({
             responsive: true,
             serverSide: true,
