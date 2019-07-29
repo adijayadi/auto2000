@@ -55,8 +55,6 @@ class KelolaPenugasanController extends Controller
     public function tablecustomer(Request $request){
     		$data = DB::table('d_customer')
         ->where('status_data','true')
-        ->whereYear('c_dateplan',Carbon::now('Asia/Jakarta')->format('Y'))
-        ->whereMonth('c_dateplan',Carbon::now('Asia/Jakarta')->format('m'))
         ->orderBy('c_dateservice')
         ->orderBy('c_jobdesc')
         ->get();

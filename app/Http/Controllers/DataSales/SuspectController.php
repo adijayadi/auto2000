@@ -22,7 +22,6 @@ class SuspectController extends Controller
             $data = DB::table('d_followup')
                 ->leftJoin('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereBetween('fu_date',[Carbon::now('Asia/Jakarta')->addMonth(),Carbon::now('Asia/Jakarta')->addMonths(7)])
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','planning')
                 ->get();
@@ -30,10 +29,9 @@ class SuspectController extends Controller
     	$data = DB::table('d_followup')
     			->leftJoin('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','planning')
+                ->groupBy('fu_id')
     			->get();
         }
 

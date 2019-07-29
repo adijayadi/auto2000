@@ -106,8 +106,6 @@ class RencanaFollowUpController extends Controller
                 ]);
 
                 DB::table('d_followup')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_cid',$id)->update([
                     'fu_updatedate' => Carbon::now('Asia/Jakarta'),
                     'fu_updatetime' => Carbon::now('Asia/Jakarta'),
@@ -125,20 +123,10 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_followup')->insert([
-                    'fu_cid' => $id,
-                    'fu_cstaff' => Auth::user()->u_code,
-                    'fu_date' => Carbon::parse($request->tanggalbooking)->addMonths(3)->format('Y,m,d'),
-                    'fu_time' =>  Carbon::parse($request->tanggalbooking),
-                    'fu_status' => 'Planning',
-                ]);
-
                 return response()->json(['success' => 'berhasil Melakukan Booking']);
 
             } else if($tindakan === 'ntar'){
                 DB::table('d_followup')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_cid',$id)->update([
                     'fu_plandate' => Carbon::parse($request->tanggalrefollowup)->format('Y,m,d'),
                     'fu_plantime' =>    $request->timerefollowup,
@@ -156,8 +144,6 @@ class RencanaFollowUpController extends Controller
 
             } else if($tindakan === 'tidak'){
                 DB::table('d_followup')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_cid',$id)->update([
                     'fu_updatedate' => Carbon::now('Asia/Jakarta'),
                     'fu_updatetime' => Carbon::now('Asia/Jakarta'),
@@ -165,12 +151,6 @@ class RencanaFollowUpController extends Controller
                     'fu_time' => Carbon::now('Asia/Jakarta'),
                     'fu_status' => 'planning',
                     'status_data' => 'true',
-                ]);
-
-                DB::table('d_customer')
-                ->where('c_order',$id)->update([
-                    'status_data' => 'true',
-                    'c_dateplan' => Carbon::parse($request->tanggalbooking)->addMonth()->format('Y,m,d'),
                 ]);
 
                 DB::table('d_resultfu')->insert([
@@ -192,16 +172,8 @@ class RencanaFollowUpController extends Controller
         }else if($id2 != null){
 
             if ($request->tanggalbooking2 != null) {
-                DB::table('d_customer')
-                ->where('c_order',$id2)->update([
-                    'status_data' => 'true',
-                    'c_dateservice' => Carbon::parse($request->tanggalbooking2)->format('Y,m,d'),
-                    'c_dateplan' => Carbon::parse($request->tanggalbooking2)->addMonths(3)->format('Y,m,d'),
-                ]);
 
                 DB::table('d_followup')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_cid',$id2)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),
@@ -219,20 +191,10 @@ class RencanaFollowUpController extends Controller
                     'status_data' => 'true',
                 ]);
 
-                DB::table('d_followup')->insert([
-                    'fu_cid' => $id2,
-                    'fu_cstaff' => Auth::user()->u_code,
-                    'fu_date' => Carbon::parse($request->tanggalbooking2)->addMonths(3)->format('Y,m,d'),
-                    'fu_time' =>  Carbon::parse($request->tanggalbooking2),
-                    'fu_status' => 'Planning',
-                ]);
-
                 return response()->json(['success' => 'berhasil Melakukan Booking']);
 
             }else if($request->alasan2 != ''){
                 DB::table('d_followup')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_cid',$id2)->update([
                     'fu_updatedate' => Carbon::now(),
                     'fu_updatetime' => Carbon::now(),

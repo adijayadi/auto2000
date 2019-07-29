@@ -32,14 +32,14 @@
                 <div class="ibox-title">
                     <h5>Rencana Follow Up</h5>
                     <div class="ibox-tools">
-                        <button class="btn btn-success btn-sm" id="btn-service" title="Mengubah Status Sudah service" >
+                        <!-- <button class="btn btn-success btn-sm" id="btn-service" title="Mengubah Status Sudah service" >
                             <i class="fa fa-calendar-alt"></i>
                             Sudah Service ?
                         </button>
                         <button class="btn btn-info btn-sm" id="btn-limit" title="Buka Limit Waktu Normal" >
                             <i class="fa fa-calendar-alt"></i>
                             Remove Limit
-                        </button>
+                        </button> -->
                         <button class="btn btn-primary btn-sm" id="btn-modal" title="Follow Up yang dicentang" >
                             <i class="fa fa-calendar-alt"></i>
                             Follow Up yang dicentang

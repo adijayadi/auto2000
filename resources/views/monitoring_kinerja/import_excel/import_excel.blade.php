@@ -122,16 +122,16 @@
             $('#seriallenght').val($('.serialc').length);
         },500);
 var counter = 0;
-
+        var result;
+        var count;
 function fileReader(oEvent) {
-
 
         var oFile = oEvent.target.files[0];
         var sFilename = oFile.name;
 
         var reader = new FileReader();
         var result = {};
-
+        var ini ;
         reader.onload = function (e) {
             var data = e.target.result;
             data = new Uint8Array(data);
@@ -139,7 +139,7 @@ function fileReader(oEvent) {
             
             var result = {};
             Global_sheetname = [];
-            var ini =workbook.SheetNames;
+            ini = workbook.SheetNames;
             workbook.SheetNames.forEach(function (sheetName) {
                 var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header: 1, raw:false});
                 if (roa.length) result[sheetName] = roa;
@@ -150,18 +150,10 @@ function fileReader(oEvent) {
 
             var data = result;
             var alldata = data[single_sheetname].length;
-            var count = alldata;
+            count = alldata;
             console.log(count);
             $('#cout').val(count);
             
-            $.ajax({
-
-                url : '{{route("hstore.excel")}}',
-                type : 'POST',
-                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini},
-                success:function(){
-                },
-            });
 
         // $('#table_upload tbody').find('tr').on('click', '.hapus', function(){
         //   var row = $(this).find('td:first').text();
@@ -176,7 +168,26 @@ function fileReader(oEvent) {
             // }
 
 
-            
+            $.ajax({
+
+                url : '{{route("hstore.excel")}}',
+                type : 'POST',
+                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini , 'code' : $('#code').val(),},
+                success:function(){
+                    setTimeout(function(){
+                                $.ajax({
+                                    url : '{{route("rekap.excel")}}',
+                                    type : 'POST',
+                                    data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini , 'code' : $('#code').val(),},
+                                    success:function(get){
+                                    }
+                                });
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },1000);
+                        },1000);
+                },
+            });
         };
 
         reader.readAsArrayBuffer(oFile);       
@@ -205,20 +216,7 @@ function fileReader(oEvent) {
         //             }
 
 
-        //                 setTimeout(function(){
-        //                     if ($('.serial').length == 0 || $('.serial').length == 'undefined') {
-        //                         $.ajax({
-        //                             url : '{{route("rekap.excel")}}',
-        //                             type : 'POST',
-        //                             data : formm.serialize(),
-        //                             success:function(get){
-        //                             }
-        //                         });
-        //                         setTimeout(function(){
-        //                             window.location.reload();
-        //                         },1000);
-        //                     }
-        //                 },1000);
+                        
                     
 
                     
@@ -241,10 +239,12 @@ function fileReader(oEvent) {
 $('#btn-upload').on('click',function(){
     $('[name="excel"]').change(function(ev) {
             fileReader(ev);
+    console.log(ev);
     });
     $('[name="excel"]').change();
+
     setTimeout(function(){
-        $('#trigger').click();
+        $('#modal-import').modal('hide');
     },500);
 })
 

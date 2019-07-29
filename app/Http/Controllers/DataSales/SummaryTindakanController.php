@@ -19,16 +19,12 @@ class SummaryTindakanController extends Controller
         $all = DB::table('d_resultfu')
                 ->join('d_customer','c_order' , 'rf_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('rf_cstaff',Auth::user()->u_code)
                 ->groupBy('rf_cid')
                 ->get();
         $fu = DB::table('d_followup')
                 ->join('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('d_followup.status_data','re')
                 ->groupBy('fu_id')
@@ -94,8 +90,6 @@ class SummaryTindakanController extends Controller
 		$booking = DB::table('d_resultfu')
                 ->join('d_customer','c_order' , 'rf_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('rf_cstaff',Auth::user()->u_code)
                 ->where('rf_csummary','4')
                 ->groupBy('rf_cid')
@@ -122,8 +116,6 @@ class SummaryTindakanController extends Controller
 		$notbooking = DB::table('d_resultfu')
                 ->join('d_customer','c_order' , 'rf_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('rf_cstaff',Auth::user()->u_code)
                 ->where('rf_csummary','5')
                 ->groupBy('rf_cid')
@@ -150,8 +142,6 @@ class SummaryTindakanController extends Controller
 		$refu = DB::table('d_followup')
     			->join('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','refollowup')
             	->where('d_followup.status_data','re')
@@ -179,8 +169,6 @@ class SummaryTindakanController extends Controller
 		$denied = DB::table('d_resultfu')
     			->join('d_customer','c_order' , 'rf_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
     			->where('rf_cstaff',Auth::user()->u_code)
                 ->where('rf_csummary','3')
                 ->groupBy('rf_cid')
@@ -207,22 +195,16 @@ class SummaryTindakanController extends Controller
 		$suspect = DB::table('d_followup')
     			->where('fu_cstaff',Auth::user()->u_code)
     			->leftJoin('d_customer','c_order' , 'fu_cid')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_status','planning')
                 ->groupBy('c_plate')
     			->get();
 
     	$done1 = DB::table('d_resultfu')
                 ->leftJoin('d_customer','c_order' , 'rf_cid')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('rf_cstaff',Auth::user()->u_code)->count();
 
         $done2 = DB::table('d_followup')
                 ->join('d_customer','c_order' , 'fu_cid')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->Where('d_followup.status_data','re')->count();
                 
@@ -230,24 +212,18 @@ class SummaryTindakanController extends Controller
 
         $booking = DB::table('d_resultfu')
     			->Leftjoin('d_customer','c_order' , 'rf_cid')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
     			->where('rf_cstaff',Auth::user()->u_code)
                 ->where('rf_csummary','4')
     			->count();
 
         $notbooking = DB::table('d_resultfu')
                 ->Leftjoin('d_customer','c_order' , 'rf_cid')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('rf_cstaff',Auth::user()->u_code)
                 ->where('rf_csummary','5')
                 ->count();
 
         $refu = DB::table('d_followup')
     			->leftJoin('d_customer','c_order' , 'fu_cid')
-                ->whereYear('fu_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('fu_date',Carbon::now('Asia/Jakarta')->format('m'))
     			->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','refollowup')
             	->where('d_followup.status_data','re')
@@ -255,8 +231,6 @@ class SummaryTindakanController extends Controller
 
         $denied = DB::table('d_resultfu')
                 ->Leftjoin('d_customer','c_order' , 'rf_cid')
-                ->whereYear('rf_date',Carbon::now('Asia/Jakarta')->format('Y'))
-                ->whereMonth('rf_date',Carbon::now('Asia/Jakarta')->format('m'))
                 ->where('rf_cstaff',Auth::user()->u_code)
                 ->where('rf_csummary','3')
                 ->count();
