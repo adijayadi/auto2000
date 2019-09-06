@@ -46,10 +46,10 @@
                     </div>
                     <div class="ibox-content service-content no-padding">
                         <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{--<li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>Kendaraan Telah Melakukan Service</div>
                                 <div class="label label-servies">{{$service[$i]}}</div>
-                            </li>
+                            </li>--}}
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>Kendaraan Yang Harus Di Follow Up</div>
                                 <div class="label label-servies">{{$followup[$i]}}</div>

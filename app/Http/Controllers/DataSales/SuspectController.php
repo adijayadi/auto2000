@@ -87,7 +87,7 @@ class SuspectController extends Controller
            DB::table('d_customer')
                 ->where('c_order',$id[$i])->update([
                     'c_jobdesc' => $request->typejob,
-                    'status_data' => 'true',
+                    'status_data' => 'done',
                     'c_dateservice' => Carbon::now('Asia/Jakarta')->format('Y,m,d'),
                     'c_dateplan' => Carbon::now('Asia/Jakarta')->addMonths(3)->format('Y,m,d'),
                 ]);
@@ -108,14 +108,6 @@ class SuspectController extends Controller
                     'rf_reason' => 'Bersedia Melakukan Service',
                     'rf_date' => Carbon::now('Asia/Jakarta'),
                     'status_data' => 'true',
-                ]);
-
-                DB::table('d_followup')->insert([
-                    'fu_cid' => $id[$i],
-                    'fu_cstaff' => Auth::user()->u_code,
-                    'fu_date' => Carbon::now('Asia/Jakarta')->addMonths(3)->format('Y,m,d'),
-                    'fu_time' =>  Carbon::now('Asia/Jakarta'),
-                    'fu_status' => 'Planning',
                 ]);
         }
 
