@@ -78,6 +78,23 @@ class SuspectController extends Controller
         }
     }
 
+    public function delete(Request $request)
+    {
+        for ($i=0; $i < count($request->id) ; $i++) { 
+            $get = DB::table('d_followup')
+            ->where('fu_id',$request->id[$i]);
+
+            $get_id = $get->first();
+
+            DB::table('d_customer')
+            ->where('c_id',$get_id->fu_cid)
+            ->delete();
+
+            $get->delete();
+
+        }
+    }
+
     public function sudahservice(Request $request){
         try { 
         $id = $request->id;

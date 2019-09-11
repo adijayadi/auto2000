@@ -32,14 +32,14 @@
                 <div class="ibox-title">
                     <h5>Rencana Follow Up</h5>
                     <div class="ibox-tools">
-                        <!-- <button class="btn btn-success btn-sm" id="btn-service" title="Mengubah Status Sudah service" >
-                            <i class="fa fa-calendar-alt"></i>
-                            Sudah Service ?
+                        <button class="btn btn-primary btn-sm" id="btn-delete" title="Hapus Data Yang sama" >
+                            <i class="fa fa-trash"></i>
+                            Hapus Data
                         </button>
-                        <button class="btn btn-info btn-sm" id="btn-limit" title="Buka Limit Waktu Normal" >
+                        {{--<button class="btn btn-info btn-sm" id="btn-limit" title="Buka Limit Waktu Normal" >
                             <i class="fa fa-calendar-alt"></i>
                             Remove Limit
-                        </button> -->
+                        </button>--}}
                         <button class="btn btn-primary btn-sm" id="btn-modal" title="Follow Up yang dicentang" >
                             <i class="fa fa-calendar-alt"></i>
                             Follow Up yang dicentang
@@ -116,9 +116,48 @@
         });
         })
 
-        $('#btn-service').on('click',function(){
-            $('#modal-service').modal('show');
+        $('#btn-delete').on('click',function(){
+            swal({
+                title: "Apa anda yakin?",
+                text: "Data akan dihapus permanent!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak!",
+                closeOnConfirm: true,
+                closeOnCancel: true 
+            },
+            function (isConfirm) {
+                if(isConfirm){
+                deletee();
+                }
+            });
         })
+
+        function deletee()
+        {
+            var form2 = $('#form_table').serialize() + '&' + $('#form_service').serialize();
+            $.ajax({
+                url : '{{route("delete.suspect")}}',
+                type : 'post',
+                data : form2,
+                success : function(get){
+                    iziToast.success({
+                        title:'Berhasil!',
+                        message:'Menghapus!'
+                    });
+
+                    table.ajax.reload();
+                },
+                error:function(xhr,textStatus,errorThrowl){
+                            iziToast.error({
+                                title: 'Gagal!',
+                                message: 'Menghapus',
+                        });
+                    },
+            })
+        }
 
         $('#simpan_service').on('click',function(){
             var form2 = $('#form_table').serialize() + '&' + $('#form_service').serialize();

@@ -90,6 +90,8 @@ Route::group(['middleware' => 'auth' ], function(){
 	Route::post('/data_sales/data_suspect/table', 'DataSales\SuspectController@table')->name('table.suspect');
 	Route::post('/data_sales/data_suspect/rencana', 'DataSales\SuspectController@simpan')->name('rencana.suspect');
 	Route::post('/data_sales/data_suspect/sudahservice', 'DataSales\SuspectController@sudahservice')->name('sudahservice.suspect');
+	Route::post('/data_sales/data_suspect/delete', 'DataSales\SuspectController@delete')->name('delete.suspect');
+	
 
 
 	Route::get('/data_sales/rencana_followup/index', 'DataSales\RencanaFollowUpController@rencana_followup')->name('rencana_followup');
