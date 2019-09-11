@@ -77,6 +77,7 @@
                                             <label>No HP</label>
                                         </div>
 
+
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
                                                 <div class="input-group">
@@ -154,31 +155,132 @@
 @endsection
 @section('extra_script')
 <script type="text/javascript">
+    
+
+    function check_text(variable,text_data)
+    {
+        var text = /[.*+?^${}();:'"|[\]\\]/g;
+
+        if(text.test(text_data))
+         {
+            variable.val(text_data.replace(/[.*+?^${}();:'"|[\]\\]/g, ''));
+         }
+       else
+         {
+            variable.val(text_data.replace(/[.*+?^${}();:'"/|[\]\\]/g, ''));
+         }
+    }
+
+    function check_number(variable,text_data)
+    {
+        var text = /[a-zA-Z.*+?^${}();:'"|[\]\\]/g;
+        var number = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[\s\./0-9]*$/g;
+
+        if(number.test(text_data))
+         {
+            variable.val(parseInt(text_data.replace(text, '')));
+         }
+       else
+         {
+            variable.val(parseInt(text_data.replace(text, '')));
+         }
+    }
+
+    function validateEmail(variable,email) {
+        var text = /[.*+?^${}();:'"|[\]\\]/g;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if(re.test(String(email).toLowerCase()))
+         {
+            return true;
+         }
+       else
+         {
+            iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Email Tidak Valid!'
+                });
+            variable.val(email.replace(/[*+?^${}();:'"/|[\]\\]/g, ''));
+            return false;
+         }
+
+    }
+
     $(document).ready(function(){
-        
+
+        $('[name=name]').on('change',function(){
+            check_text($(this),$(this).val());
+        })
+
+        $('[name=username]').on('change',function(){
+            check_text($(this),$(this).val());
+        })
+
+        $('[name=email]').on('change',function(){
+            validateEmail($(this),$(this).val());
+        })
+
+        $('[name=phone]').on('change',function(){
+            check_number($(this),$(this).val());
+        })
+
         $('#storesales').on('click',function(){
             var form = $('#form_sales');
-            $.ajax({
-                url : '{{route("sales.input")}}',
-                type : 'POST',
-                data : form.serialize(),
-                success:function(){
-                    iziToast.success({
-                        title:'Berhasil!',
-                        message:'Menginput Service Advisor!'
-                    });
+            if (validateEmail($('[name=email]'),$('[name=email]').val()) == false) {
 
-                    setTimeout(function(){
-                        window.location.href="{{route('sales')}}";
-                    },500);
-                },
-                error:function(xhr,textStatus,errorThrowl){
-                            iziToast.error({
-                                title: 'Gagal!',
-                                message: 'Ada yang Kosong / Email, Username Sudah Ada',
-                    });
-                },
-            })
+            }else if ($('[name=name]').val() == '') {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Nama Masih Kosong!'
+                });
+            }else if ($('[name=email]').val() == '') {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Email Masih Kosong!'
+                });
+            }else if ($('[name=username]').val() == '') {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Username Masih Kosong!'
+                });
+            }else if ($('[name=password]').val() == '') {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'password Masih Kosong!'
+                });
+            }else if ($('[name=address]').val() == '') {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'alamat Masih Kosong!'
+                });
+            }else if ($('[name=phone]').val() == '') {
+                iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Nomor Hp Masih Kosong!'
+                });
+            }else{
+                $.ajax({
+                    url : '{{route("sales.input")}}',
+                    type : 'POST',
+                    data : form.serialize(),
+                    success:function(){
+                        iziToast.success({
+                            title:'Berhasil!',
+                            message:'Menginput Service Advisor!'
+                        });
+
+                        setTimeout(function(){
+                            window.location.href="{{route('sales')}}";
+                        },500);
+                    },
+                    error:function(xhr,textStatus,errorThrowl){
+                                iziToast.error({
+                                    title: 'Gagal!',
+                                    message: 'Ada yang Kosong / Email, Username Sudah Ada',
+                        });
+                    },
+                })
+            }
         })
 
         $('#btn-show').click(function(){

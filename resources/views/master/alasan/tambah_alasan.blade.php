@@ -74,8 +74,26 @@
 @endsection
 @section('extra_script')
 <script type="text/javascript">
+    function check_text(variable,text_data)
+    {
+        var text = /[.*+?^${}();:'"|[\]\\]/g;
+
+        if(text.test(text_data))
+         {
+            variable.val(text_data.replace(/[.*+?^${}();:'"|[\]\\]/g, ''));
+         }
+       else
+         {
+            variable.val(text_data.replace(/[.*+?^${}();:'"/|[\]\\]/g, ''));
+         }
+    }
+
     $(document).ready(function(){
 
+        $('#reason').change(function(){
+            check_text($(this),$(this).val());
+        })
+    
         $('#input_alasan').on('click',function(){
             if ($('#reason').val() != '') {
                 adddata();

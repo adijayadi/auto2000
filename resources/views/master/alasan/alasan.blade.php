@@ -65,7 +65,11 @@
 
 @section('extra_script')
 <script type="text/javascript">
+    
+
     $(document).ready(function(){
+
+
         var table = $('#table_alasan').DataTable({
             responsive: true,
             serverSide: true,

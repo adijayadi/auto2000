@@ -149,7 +149,83 @@
 @endsection
 @section('extra_script')
 <script type="text/javascript">
+     function check_text(variable,text_data)
+    {
+        var text = /[.*+?^${}();:'"|[\]\\]/g;
+
+        if(text.test(text_data))
+         {
+            variable.val(text_data.replace(/[.*+?^${}();:'"|[\]\\]/g, ''));
+         }
+       else
+         {
+            variable.val(text_data.replace(/[.*+?^${}();:'"/|[\]\\]/g, ''));
+         }
+    }
+
+    function check_number(variable,text_data)
+    {
+        var text = /[a-zA-Z.*+?^${}();:'"|[\]\\]/g;
+        var number = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[\s\./0-9]*$/g;
+
+        if(number.test(text_data))
+         {
+            variable.val(parseInt(text_data.replace(text, '')));
+         }
+       else
+         {
+            variable.val(parseInt(text_data.replace(text, '')));
+         }
+    }
+
+    function validateEmail(variable,email) {
+        var text = /[.*+?^${}();:'"|[\]\\]/g;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if(re.test(String(email).toLowerCase()))
+         {
+            return true;
+         }
+       else
+         {
+            iziToast.warning({
+                    title:'Peringatan!',
+                    message:'Email Tidak Valid!'
+                });
+            variable.val(email.replace(/[*+?^${}();:'"/|[\]\\]/g, ''));
+            return false;
+         }
+
+    }
+
     $(document).ready(function(){
+
+        $('[name=name]').change(function(){
+            check_text($(this),$(this).val());
+        })
+
+        $('[name=nphone]').change(function(){
+            check_number($(this),$(this).val());
+        })
+
+        $('[name=email]').change(function(){
+            validateEmail($(this),$(this).val());
+        })
+
+        $('[name=nkendaraan]').change(function(){
+            check_text($(this),$(this).val());
+        })
+
+        $('[name=namekendaraan]').change(function(){
+            check_text($(this),$(this).val());
+        })
+
+        
+
+
+
+
+
         $('#save').on('click',function(){
             var form = $('#form_kendaraan');
             $.ajax({

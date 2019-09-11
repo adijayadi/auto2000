@@ -3,6 +3,7 @@
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('assets/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/moment/moment.js')}}"></script>
     <!-- Flot -->
     <script src="{{asset('assets/js/plugins/flot/jquery.flot.js')}}"></script>

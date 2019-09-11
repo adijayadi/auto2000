@@ -46,7 +46,7 @@ class AlasanController extends Controller
 		$code = $urutan . Carbon::now()->format('s');
 		$group = 'G'.$urutan . Carbon::now()->format('s');
 		DB::table('m_reason')->insert([
-			'r_reason' => $request->alasan,
+			'r_reason' => htmlspecialchars($request->alasan),
 			'r_code' => $code,
 			'r_group' => $group,
 			'status_data' => 'true',
@@ -65,7 +65,7 @@ class AlasanController extends Controller
 		$id = $request->id;
 		DB::table('m_reason')->where('r_id',$id)
 		->update([
-			'r_reason' => $request->alasan,
+			'r_reason' => htmlspecialchars($request->alasan),
 		]);
 	}
 }
