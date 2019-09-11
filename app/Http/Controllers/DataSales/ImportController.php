@@ -268,10 +268,9 @@ class ImportController extends Controller
                }
           // data filter status 0 tidak service
 
-
-
-         
-
+              return response()->json([
+                'progress' => 100,
+              ]);
    	}
 
       // public function storedata(Request $request){

@@ -123,11 +123,17 @@
             })
         })
 
+        var a = 0;
+        var loop , progress;
+
+
         $('#progress_upload').knob({
             step:1,
+            'change' : function (v) { console.log(v); },
             min:0,
             max:100,
             readOnly:true,
+
             // format:'%',
         });
 
@@ -188,11 +194,15 @@ function fileReader(oEvent) {
                 url : '{{route("hstore.excel")}}',
                 type : 'POST',
                 data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini , 'code' : $('#code').val(),},
-                success:function(){
+                success:function(get){
+                        progress = get['progress'];
                         iziToast.success({
                             title: 'Berhasil!',
                             message: 'Menyimpan Data',
                         });
+
+                        
+
                     setTimeout(function(){
                                 $.ajax({
                                     url : '{{route("rekap.excel")}}',
@@ -253,6 +263,27 @@ function fileReader(oEvent) {
         //     });
         // })
 
+        function upload_data()
+        {
+            ++a;
+            console.log(progress);
+            
+            if (a > 98) {
+                a = 99;
+            }
+
+            if (progress != null) {
+                a = progress;
+            }
+
+            $('#progress_upload').val(a).trigger('change');
+
+            if (a >= 100) {
+                clearInterval(loop);
+            }
+        }
+
+
 
 // Add your id of "File Input" 
 $('#btn-upload').on('click',function(){
@@ -261,6 +292,8 @@ $('#btn-upload').on('click',function(){
     console.log(ev);
     });
     $('[name="excel"]').change();
+
+    loop = setInterval(upload_data,400);
 
     setTimeout(function(){
         $('#modal-import').modal('hide');
