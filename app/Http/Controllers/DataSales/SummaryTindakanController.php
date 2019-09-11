@@ -106,7 +106,10 @@ class SummaryTindakanController extends Controller
                 return '';
             }
         })
-    	->rawColumns(['tanggal','nama'])
+        ->addColumn('status',function(){
+            return 'Bersedia Booking';
+        })
+    	->rawColumns(['tanggal','nama','status'])
     	->make(true);
 	}
 
@@ -132,7 +135,10 @@ class SummaryTindakanController extends Controller
                 return '';
             }
         })
-    	->rawColumns(['tanggal','nama'])
+        ->addColumn('status',function(){
+            return 'Bersedia Belum Booking';
+        })
+    	->rawColumns(['tanggal','nama','status'])
     	->make(true);
 	}
 
@@ -159,7 +165,10 @@ class SummaryTindakanController extends Controller
                 return '';
             }
         })
-    	->rawColumns(['tanggal','nama'])
+        ->addColumn('status',function(){
+            return 'Dihubungi Kembali';
+        })
+    	->rawColumns(['tanggal','nama','status'])
     	->make(true);
 	}
 
@@ -185,7 +194,10 @@ class SummaryTindakanController extends Controller
                 return '';
             }
         })
-    	->rawColumns(['tanggal','nama'])
+        ->addColumn('status',function(){
+            return 'Menolak Booking';
+        })
+    	->rawColumns(['tanggal','nama','status'])
     	->make(true);
 	}
 
@@ -194,7 +206,7 @@ class SummaryTindakanController extends Controller
     			->where('fu_cstaff',Auth::user()->u_code)
     			->leftJoin('d_customer','c_order' , 'fu_cid')
                 ->where('fu_status','planning')
-                ->groupBy('c_plate')
+                ->groupBy('fu_id')
     			->get();
 
     	$done1 = DB::table('d_resultfu')
