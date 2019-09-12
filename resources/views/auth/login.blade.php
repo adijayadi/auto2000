@@ -15,7 +15,7 @@
             <div>
 
                 {{-- <h3 class="logo-name">Auto 2000</h3> --}}
-                <img src="{{asset('assets/img/auto2000.png')}}" height="100px">
+                <img src="{{asset('assets/img/auto2000-new.png')}}" height="70px">
 
             </div>
             {{-- <h3>Login</h3> --}}
