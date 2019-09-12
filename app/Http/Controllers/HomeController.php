@@ -41,18 +41,22 @@ class HomeController extends Controller
 
             $service[] = DB::table('d_resultfu')
             ->where('rf_cstaff',$key->u_code)
+            ->whereBetween('rf_date',[Carbon::now()->subMonth()->format('Y-m-d'),Carbon::now()->format('Y-m-d')])
             ->where('rf_csummary','1')->count();
             $followup[] = DB::table('d_followup')
             ->where('fu_cstaff',$key->u_code)
             ->where('fu_status','planning')->count();
             $tidakbersedia[] = DB::table('d_resultfu')
             ->where('rf_cstaff',$key->u_code)
+            ->whereBetween('rf_date',[Carbon::now()->subMonth()->format('Y-m-d'),Carbon::now()->format('Y-m-d')])
             ->where('rf_csummary','3')->count();
             $booking[] = DB::table('d_resultfu')
             ->where('rf_cstaff',$key->u_code)
+            ->whereBetween('rf_date',[Carbon::now()->subMonth()->format('Y-m-d'),Carbon::now()->format('Y-m-d')])
             ->where('rf_csummary','4')->count();
             $tidakbooking[] = DB::table('d_resultfu')
             ->where('rf_cstaff',$key->u_code)
+            ->whereBetween('rf_date',[Carbon::now()->subMonth()->format('Y-m-d'),Carbon::now()->format('Y-m-d')])
             ->where('rf_csummary','5')->count();
         }
         // return $adv;
