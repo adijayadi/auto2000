@@ -213,7 +213,7 @@ function fileReader(oEvent) {
                                 });
                                 setTimeout(function(){
                                     window.location.reload();
-                                },1000);
+                                },200);
                         },1000);
                 },
             });

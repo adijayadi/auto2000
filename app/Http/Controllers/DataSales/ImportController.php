@@ -87,7 +87,7 @@ class ImportController extends Controller
                 }
 
               if ($countremove == 0) {
-                  d_hcustommer::insert([
+                  $arr = array(
                 'cr_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),  
                 'cr_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
                 'cr_typecar' => $request->result[$workbook][$i][2],
@@ -97,132 +97,131 @@ class ImportController extends Controller
                 'cr_direct' => $direct,
                 'cr_code' => $code,
                 'status_data' => 'true',
-                  ]);
+                  );
 
-                // array_push($alldata, $arr);
+                array_push($alldata, $arr);
               }else{
 
               }
-                $cekdata = DB::table('d_customerremovable')->count();
-                $langsung = DB::table('d_user')->where('u_name',$request->result[$workbook][$i][5])->count();
-                $langsung2 = DB::table('d_user')->where('u_name',$request->result[$workbook][$i][5])->get();
-                $cek = DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->count();
-
-                if(strtoupper($request->result[$workbook][$i][6]) == 'S'){ // data langsung masuk tanpa di filter
-
-                if ($langsung == 1) { // jika ada service advisornya
-                  d_customer::insert([
-                    'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
-                    'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
-                    'c_typecar' => $request->result[$workbook][$i][2],
-                    'c_jobdesc' => $request->result[$workbook][$i][3],
-                    'c_dateservice' => $datetime,
-                    'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
-                    'c_nameadvisor' => $request->result[$workbook][$i][5],
-                    'c_serviceadvisor' => $langsung2[0]->u_code,
-                    'c_code' => $request->code,
-                    'c_order' => $ordercode,
-                    'status_data' => 'plan',
-                  ]);
-
-                  d_followup::insert([
-                    'fu_cid' => $ordercode,
-                    'fu_cstaff' => $langsung2[0]->u_code,
-                    'fu_date' => Carbon::now('Asia/Jakarta')->format('Y,m,d'),
-                    'fu_time' => Carbon::parse('Asia/Jakarta'),
-                    'fu_status' => 'Planning',
-                    'status_data' =>'true',
-                    ]);
-
-                  // array_push($alldata2, $arr1);
-                  // array_push($direct2, $arr2);
-
-                  }else { // tidak ada service advisor
-                    d_customer::insert([
-                    'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
-                    'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
-                    'c_typecar' => $request->result[$workbook][$i][2],
-                    'c_jobdesc' => $request->result[$workbook][$i][3],
-                    'c_dateservice' => $datetime,
-                    'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
-                    'c_nameadvisor' => $request->result[$workbook][$i][5],
-                    'c_code' => $request->code,
-                    'c_order' => $ordercode,
-                    'status_data' => 'true',
-                  ]);
-
-                    // array_push($datanosa, $arr1);
-                  }
-
-                  // DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->delete();
-
-            }else if ($cekdata > 0) { // data di filter status 0
-              if ($cek == 0) { // jika di filter status 0 maka data di masukkan
-                if ($langsung == 1) { // jika ada service advisornya
-                  d_customer::insert([
-                    'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
-                    'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
-                    'c_typecar' => $request->result[$workbook][$i][2],
-                    'c_jobdesc' => $request->result[$workbook][$i][3],
-                    'c_dateservice' => $datetime,
-                    'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
-                    'c_nameadvisor' => $request->result[$workbook][$i][5],
-                    'c_serviceadvisor' => $langsung2[0]->u_code,
-                    'c_code' => $request->code,
-                    'c_order' => $ordercode,
-                    'status_data' => 'plan',
-                  ]);
-
-                  d_followup::insert([
-                    'fu_cid' => $ordercode,
-                    'fu_cstaff' => $langsung2[0]->u_code,
-                    'fu_date' => Carbon::now('Asia/Jakarta')->format('Y,m,d'),
-                    'fu_time' => Carbon::parse('Asia/Jakarta'),
-                    'fu_status' => 'Planning',
-                    'status_data' =>'true',
-                    ]);
-
-                  // array_push($alldata2, $arr1);
-                  // array_push($direct2, $arr2);
-
-                  }else { // tidak ada service advisor
-                    d_customer::insert([
-                    'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
-                    'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
-                    'c_typecar' => $request->result[$workbook][$i][2],
-                    'c_jobdesc' => $request->result[$workbook][$i][3],
-                    'c_dateservice' => $datetime,
-                    'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
-                    'c_nameadvisor' => $request->result[$workbook][$i][5],
-                    'c_code' => $request->code,
-                    'c_order' => $ordercode,
-                    'status_data' => 'true',
-                  ]);
-                    // array_push($datanosa, $arr1);
-                  }
-
-                }else{
-                }
-              }
               
             
+              $cekdata = DB::table('d_customerremovable')->count();
+              $langsung = DB::table('d_user')->where('u_name',$request->result[$workbook][$i][5])->count();
+              $langsung2 = DB::table('d_user')->where('u_name',$request->result[$workbook][$i][5])->get();
+              $cek = DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->count();
+
+              if(strtoupper($request->result[$workbook][$i][6]) == 'S'){ // data langsung masuk tanpa di filter
+
+              if ($langsung == 1) { // jika ada service advisornya
+                $arr1 = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_serviceadvisor' => $langsung2[0]->u_code,
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'plan',
+                ]);
+
+                $arr2 = array(
+                  'fu_cid' => $ordercode,
+                  'fu_cstaff' => $langsung2[0]->u_code,
+                  'fu_date' => Carbon::now('Asia/Jakarta')->format('Y,m,d'),
+                  'fu_time' => Carbon::parse('Asia/Jakarta'),
+                  'fu_status' => 'Planning',
+                  'status_data' =>'true',
+                  );
+
+                array_push($alldata2, $arr1);
+                array_push($direct2, $arr2);
+
+                }else { // tidak ada service advisor
+                  $arr1 = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'true',
+                ]);
+
+                  array_push($datanosa, $arr1);
+                }
+
+                // DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->delete();
+
+          }else if ($cekdata > 0) { // data di filter status 0
+            if ($cek == 0) { // jika di filter status 0 maka data di masukkan
+              if ($langsung == 1) { // jika ada service advisornya
+                $arr1 = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_serviceadvisor' => $langsung2[0]->u_code,
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'plan',
+                ]);
+
+                $arr2 = array(
+                  'fu_cid' => $ordercode,
+                  'fu_cstaff' => $langsung2[0]->u_code,
+                  'fu_date' => Carbon::now('Asia/Jakarta')->format('Y,m,d'),
+                  'fu_time' => Carbon::parse('Asia/Jakarta'),
+                  'fu_status' => 'Planning',
+                  'status_data' =>'true',
+                  );
+
+                array_push($alldata2, $arr1);
+                array_push($direct2, $arr2);
+
+                }else { // tidak ada service advisor
+                  $arr1 = ([
+                  'c_serial' => preg_replace('/\s+/', '', $request->result[$workbook][$i][0]),
+                  'c_plate' => preg_replace('/\s+/', '', $request->result[$workbook][$i][1]),
+                  'c_typecar' => $request->result[$workbook][$i][2],
+                  'c_jobdesc' => $request->result[$workbook][$i][3],
+                  'c_dateservice' => $datetime,
+                  'c_dateplan' => Carbon::now('Asia/Jakarta')->format('y,m,d'),
+                  'c_nameadvisor' => $request->result[$workbook][$i][5],
+                  'c_code' => $request->code,
+                  'c_order' => $ordercode,
+                  'status_data' => 'true',
+                ]);
+                  array_push($datanosa, $arr1);
+                }
+
+              }else{
+              }
+            }
           }	 
               // dd($alldata2);
 
-              // if ($datanosa != null) {
-              //   d_customer::insert($datanosa);
-              // }
-              //  if ($alldata2 != null) { 
-              //     d_customer::insert($alldata2);
-              //  }
+              if ($datanosa != null) {
+                d_customer::insert($datanosa);
+              }
+               if ($alldata2 != null) { 
+                  d_customer::insert($alldata2);
+               }
 
-              //  if ($direct2 != null) {
-              //     d_followup::insert($direct2); 
-              //  }
-              //  if ($alldata != null) {
-      		      //   d_hcustommer::insert($alldata);
-              //  }
-
+               if ($direct2 != null) {
+                  d_followup::insert($direct2); 
+               }
+               if ($alldata != null) {
+      		        d_hcustommer::insert($alldata);
+               }
             DB::commit();
 
           } catch (\Exception $e) {
