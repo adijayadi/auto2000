@@ -6,7 +6,7 @@
 
 	<div id="wrapper">
 
-	<div class="div-loading animated fadeIn">
+{{-- 	<div class="div-loading animated fadeIn">
 
         <div class="spiner-example">
             <div class="sk-spinner sk-spinner-wandering-cubes">
@@ -15,7 +15,7 @@
             </div>
         </div>
 
-	</div>
+	</div> --}}
 
 	<div class="ajax-loading animated fadeIn">
 		<div class="spiner-example">

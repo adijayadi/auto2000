@@ -68,11 +68,11 @@
     <script>
         $(document).ready(function() {
 
-            $('.div-loading').addClass('fadeOut');
-            setTimeout(function(){
+            // $('.div-loading').addClass('fadeOut');
+            // setTimeout(function(){
 
-                $('body').removeClass('body-loading');
-            },1000);
+            //     $('body').removeClass('body-loading');
+            // },1000);
 
             $(document).ajaxStart(function(){
                 $('.ajax-loading').removeClass('fadeOut');
