@@ -40,7 +40,7 @@
                     <div class="ibox-tools">
                         <a href="{{asset('download_contoh_excel/contoh_import_excel.xlsx')}}" download="" class="btn btn-primary btn-sm"><i class="fa fa-file-excel"></i> Contoh Format Excel</a>
                         <button class="btn btn-primary btn-sm" id="reset" type="button"><i class="fa fa-file-excel"></i> Data Baru</button>
-                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-import" type="button"><i class="fa fa-file-excel"></i> Import Excel</button>
+                        <button class="btn btn-primary btn-sm" id="trigger_upload" data-toggle="modal" data-target="#modal-import" type="button"><i class="fa fa-file-excel"></i> Import Excel</button>
 
                     </div>
                 </div>
@@ -193,7 +193,7 @@ function fileReader(oEvent) {
 
                 url : '{{route("hstore.excel")}}',
                 type : 'POST',
-                data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini , 'code' : $('#code').val(),},
+                data : {'_token' : '{{csrf_token()}}','datacount' : count, 'sheet' : ini , 'code' : $('#code').val(),'result' : result },
                 success:function(get){
                         progress = get['progress'];
                         iziToast.success({
@@ -207,13 +207,14 @@ function fileReader(oEvent) {
                                 $.ajax({
                                     url : '{{route("rekap.excel")}}',
                                     type : 'POST',
-                                    data : {'_token' : '{{csrf_token()}}','result' : result ,'datacount' : count, 'sheet' : ini , 'code' : $('#code').val(),},
+                                    data : {'_token' : '{{csrf_token()}}','datacount' : count, 'sheet' : ini , 'code' : $('#code').val()},
                                     success:function(get){
+                                        setTimeout(function(){
+                                            window.location.reload();
+                                        },200);
                                     }
                                 });
-                                setTimeout(function(){
-                                    window.location.reload();
-                                },200);
+                                
                         },1000);
                 },
             });
@@ -283,21 +284,16 @@ function fileReader(oEvent) {
             }
         }
 
-
-
 // Add your id of "File Input" 
 $('#btn-upload').on('click',function(){
+    $('#modal-import').modal('hide');
     $('[name="excel"]').change(function(ev) {
             fileReader(ev);
     console.log(ev);
     });
     $('[name="excel"]').change();
 
-    loop = setInterval(upload_data,400);
-
-    setTimeout(function(){
-        $('#modal-import').modal('hide');
-    },500);
+    loop = setInterval(upload_data,1000);
 })
 
         var table2 = $('#table_rekap').DataTable({

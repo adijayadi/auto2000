@@ -111,7 +111,7 @@
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
 
             ],
-            pageLength: -1,
+            pageLength: -10,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
         })
@@ -233,7 +233,7 @@
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
 
             ],
-            pageLength: -1,
+            pageLength: 10,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
     });

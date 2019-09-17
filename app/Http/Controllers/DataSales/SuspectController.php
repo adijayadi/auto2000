@@ -24,6 +24,7 @@ class SuspectController extends Controller
                 ->leftJoin('m_vehicle','v_code','c_plate')
                 ->where('fu_cstaff',Auth::user()->u_code)
                 ->where('fu_status','planning')
+                ->groupBy('fu_id')
                 ->get();
         // }
      //    else{
