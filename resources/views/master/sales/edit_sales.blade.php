@@ -46,7 +46,7 @@
                     </div>
                     <form id="form_sales">
                         @foreach($data as $row)
-                        <input type="hidden" value="{{$row->s_id}}" name="id">
+                        <input type="hidden" value="{{$row->s_code}}" name="id">
                         <div class="ibox-content">
 
                             <div class="row">

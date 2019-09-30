@@ -72,10 +72,13 @@ class HomeController extends Controller
 
         $tidakbooking = [];
 
+        $process = [];
+
         $tfollowup = 0;
         $ttidakbersedia = 0;
         $tbooking = 0;
         $ttidakbooking = 0;
+        $tprocess = 0;
 
 
         foreach ($data as $key) {

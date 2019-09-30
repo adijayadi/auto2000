@@ -41,6 +41,7 @@
                         <tr style="font-size: 14px;">
                             <th width="30%">Service Advisor</th>
                             <th>Data FU</th>
+                            <th>Data Proses</th>
                             <th>Booking</th>
                             <th>Not Booking</th>
                             <th>Not Yet</th>
@@ -51,6 +52,7 @@
                             @for($i = 0;$i < count($adv);$i++)
                             <tr class="text-center">
                                 <td class="text-left">{{$adv[$i]}}</td>
+                                <td>{{$process[$i]}}</td>
                                 <td>{{$followup[$i]}}</td>
                                 <td>{{$booking[$i]}}</td>
                                 <td>{{$tidakbooking[$i]}}</td>
@@ -61,6 +63,7 @@
                         @endif
                             <tr class="text-center">
                                 <td class="text-left">Total</td>
+                                <td>{{$tprocess}}</td>
                                 <td>{{$tfollowup}}</td>
                                 <td>{{$tbooking}}</td>
                                 <td>{{$ttidakbooking}}</td>

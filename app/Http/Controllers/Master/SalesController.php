@@ -114,8 +114,7 @@ class SalesController extends Controller
     public function edit(Request $request){
         $id = $request->id;
 
-        dd($request->password);
-        DB::table('m_sales')->where('s_id',$id)
+        DB::table('m_sales')->where('s_code',$id)
             ->update([
                 's_name' => $request->name,
                 's_email' => $request->email,
@@ -124,6 +123,14 @@ class SalesController extends Controller
                 's_username' => $request->username,
                 'password' => bcrypt($request->password),
         ]);
+
+        DB::table('d_user')->where('u_code',$id)
+                ->update([
+                    'u_name' => $request->name,
+                    'u_email' => $request->email,
+                    'u_username' => $request->username,
+                    'password' => bcrypt($request->password),
+            ]);
     }
 }
 
