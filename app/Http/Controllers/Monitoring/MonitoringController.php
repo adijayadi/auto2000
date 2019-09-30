@@ -64,27 +64,28 @@ class MonitoringController extends Controller
     }
 
     public function gdata(Request $request){
+
         $adv = $request->adv;
-        $satu = DB::table('d_resultfu')
-        ->where('rf_cstaff',$adv)
-        ->where('rf_csummary','1')
-        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
-        $dua = DB::table('d_resultfu')
-        ->where('rf_cstaff',$adv)
-        ->where('rf_csummary','2')
-        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        $satu = DB::table('d_followup')
+        ->where('fu_cstaff',$adv)
+        ->where('fu_status','Planning')
+        ->count();
+        $dua = DB::table('d_followup')
+        ->where('fu_cstaff',$adv)
+        ->where('fu_status','planned')
+        ->count();
         $tiga = DB::table('d_resultfu')
         ->where('rf_cstaff',$adv)
         ->where('rf_csummary','3')
-        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->startOfMonth()->format('Y,m,d'),Carbon::parse($request->tanggal2)->endOfMonth()->format('Y,m,d')])->count();
         $empat = DB::table('d_resultfu')
         ->where('rf_cstaff',$adv)
         ->where('rf_csummary','4')
-        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->startOfMonth()->format('Y,m,d'),Carbon::parse($request->tanggal2)->endOfMonth()->format('Y,m,d')])->count();
         $lima = DB::table('d_resultfu')
         ->where('rf_cstaff',$adv)
         ->where('rf_csummary','5')
-        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->format('Y,m,d'),Carbon::parse($request->tanggal2)->format('Y,m,d')])->count();
+        ->whereBetween('rf_date',[Carbon::parse($request->tanggal1)->startOfMonth()->format('Y,m,d'),Carbon::parse($request->tanggal2)->endOfMonth()->format('Y,m,d')])->count();
         return response()->json(array(
             'satu' => $satu,
             'dua' => $dua,

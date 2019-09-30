@@ -17,6 +17,7 @@
     <div class="ibox">
 
         <div class="ibox-content">
+            {{--
             <div class="row">
 
                 <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -32,7 +33,7 @@
                 </div>
                 
             </div>
-
+            --}}
             <div class="table-responsive">
                 <h2>Bulan : {{$now}}</h2>
                 <hr>
