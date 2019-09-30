@@ -44,5 +44,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/alamraya-style.css')}}">
+    <link href="{{asset('assets/jquery-cropper/cropper.min.css')}}" rel="stylesheet">
 
 </head>

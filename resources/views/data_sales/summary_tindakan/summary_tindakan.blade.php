@@ -33,19 +33,19 @@
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a data-toggle="tab" href="#tab-1"><i class="fa fa-dice-one"></i> <span class="tab-title">Result Suspect</span></a>
+                        <a data-toggle="tab" href="#tab-1"><i class="fa fa-dice-one"></i> <span class="tab-title">Data FU</span></a>
                     </li>
                     <li class="">
-                        <a data-toggle="tab" href="#tab-2"><i class="fa fa-dice-two"></i> <span class="tab-title">Bersedia + Booking</span></a>
+                        <a data-toggle="tab" href="#tab-2"><i class="fa fa-dice-two"></i> <span class="tab-title">Booking</span></a>
                     </li>
                     <li class="">
-                        <a data-toggle="tab" href="#tab-3"><i class="fa fa-dice-three"></i> <span class="tab-title">Bersedia + Belum Booking</span></a>
+                        <a data-toggle="tab" href="#tab-3"><i class="fa fa-dice-three"></i> <span class="tab-title">Not Booking</span></a>
                     </li>
                     <li class="">
-                        <a data-toggle="tab" href="#tab-4"><i class="fa fa-dice-four"></i> <span class="tab-title">Minta Dihubungi Lagi</span></a>
+                        <a data-toggle="tab" href="#tab-4"><i class="fa fa-dice-four"></i> <span class="tab-title"> Dihubungi Lagi</span></a>
                     </li>
                     <li class="">
-                        <a data-toggle="tab" href="#tab-5"><i class="fa fa-dice-five"></i> <span class="tab-title">Tidak Bersedia</span></a>
+                        <a data-toggle="tab" href="#tab-5"><i class="fa fa-dice-five"></i> <span class="tab-title">Not Yet</span></a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -66,34 +66,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="alll">
+                                            <tr>
                                                 <td align="center">1</td>
-                                                <td><a class="d-block alll" href="#detail_status" data-toggle="modal">Daftar Kendaraan Suspect</a></td>
+                                                <td>Daftar Data FU</td>
                                                 <td align="center" id="all"></td>
                                             </tr>
-                                            <tr class="sudah">
+                                            <tr>
                                                 <td align="center">2</td>
-                                                <td><a class="d-block sudah"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Difollow Up</a></td>
+                                                <td>Daftar Done</td>
                                                 <td align="center" id="done"></td>
                                             </tr>
-                                            <tr class="sbooking">
+                                            <tr>
                                                 <td align="center">3</td>
-                                                <td><a class="d-block sbooking"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Sudah Booking</a></td>
+                                                <td>Daftar Booking</td>
                                                 <td align="center" id="booking"></td>
                                             </tr>
-                                            <tr class="bebooking">
+                                            <tr>
                                                 <td align="center">4</td>
-                                                <td><a class="d-block bebooking"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Belum Booking</a></td>
+                                                <td>Daftar Not Booking</td>
                                                 <td align="center" id="nbooking"></td>
                                             </tr>
-                                            <tr class="refollow">
+                                            <tr>
                                                 <td align="center">5</td>
-                                                <td><a class="d-block refollow" href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Dihubungi Lagi</a></td>
+                                                <td>Daftar Dihubungi Lagi</td>
                                                 <td align="center" id="refu"></td>
                                             </tr>
-                                            <tr class="notfu">
+                                            <tr>
                                                 <td align="center">6</td>
-                                                <td><a class="d-block notfu"  href="#detail_status" data-toggle="modal">Daftar Kendaraan Yang Tidak Bersedia</a></td>
+                                                <td>Daftar Not Yet</td>
                                                 <td align="center" id="not"></td>
                                             </tr>
                                         </tbody>

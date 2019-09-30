@@ -93,6 +93,14 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
                                     <div class="row">
+                                                    @include('modal')
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                            <div class="form-group">
+                                                <input type="hidden" class="gambarr" name="gambar[]">
+                                                <button class="btn btn-primary btn-sm" data-gambar="" type="button" data-toggle="modal" data-target="#modal-foto"><i class="fa fa-images"></i> <span>Pilih Foto</span></button>
+                                            </div>
+                                        </div>
 
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <label>Username</label>
@@ -155,6 +163,8 @@
 @endsection
 @section('extra_script')
 <script type="text/javascript">
+
+    var gambar = '';
     
 
     function check_text(variable,text_data)
@@ -224,6 +234,18 @@
             check_number($(this),$(this).val());
         })
 
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $(input).parents('tr').find('img').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         $('#storesales').on('click',function(){
             var form = $('#form_sales');
             if (validateEmail($('[name=email]'),$('[name=email]').val()) == false) {
@@ -262,7 +284,7 @@
                 $.ajax({
                     url : '{{route("sales.input")}}',
                     type : 'POST',
-                    data : form.serialize(),
+                    data : form.serialize()+'&gambar='+gambar,
                     success:function(){
                         iziToast.success({
                             title:'Berhasil!',
@@ -282,6 +304,80 @@
                 })
             }
         })
+
+            var $image = $(".image-crop > img");
+            $($image).cropper({
+                aspectRatio: 1 / 1,
+                preview: "#image-preview",
+                autoCropArea: 0,
+                strict: true,
+                guides: true,
+                highlight: true,
+                dragCrop: true,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                done: function (data) {
+                    // Output the result data for cropping image.
+                }
+            });
+
+            var $inputImage = $("#input-foto");
+            if (window.FileReader) {
+                $inputImage.change(function () {
+                    var fileReader = new FileReader(),
+                        files = this.files,
+                        file;
+
+                    if (!files.length) {
+                        return;
+                    }
+
+                    file = files[0];
+
+                    if (/^image\/\w+$/.test(file.type)) {
+                        fileReader.readAsDataURL(file);
+                        fileReader.onload = function () {
+                            $inputImage.val("");
+                            $image.cropper("reset", true).cropper("replace", this.result);
+                        };
+                    } else {
+                        showMessage("Please choose an image file.");
+                    }
+                });
+            } else {
+                $inputImage.addClass("hide");
+            }
+
+            $("#zoomIn").click(function () {
+                $image.cropper("zoom", 0.1);
+            });
+
+            $("#zoomOut").click(function () {
+                $image.cropper("zoom", -0.1);
+            });
+
+            $("#rotateLeft").click(function () {
+                $image.cropper("rotate", 45);
+            });
+
+            $("#rotateRight").click(function () {
+                $image.cropper("rotate", -45);
+            });
+
+            $("#resetCrop").click(function () {
+                $image.cropper("reset", true);
+            });
+
+            $('#update-foto').click(function () {
+
+                var is = $image.cropper("getCroppedCanvas");
+
+                // $('#foto-terpilih').html(is);
+
+                var convert = $image.cropper('getCroppedCanvas').toDataURL();
+                gambar = convert;
+                gambarrrr = $(this).parents('tr').find('.gambarr').val(convert); 
+            })
 
         $('#btn-show').click(function(){
         var tuwek = $(this).parents('.input-group');

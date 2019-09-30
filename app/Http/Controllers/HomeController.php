@@ -56,7 +56,7 @@ class HomeController extends Controller
 
     {
 
-        $data = d_user::where('u_user', 'S')->get();
+        $data = d_user::where('u_user', 'S')->orderBy('u_name','asc')->get();
 
         $now = Carbon::now('Asia/Jakarta')->formatLocalized('%B');
 
@@ -99,7 +99,7 @@ class HomeController extends Controller
 
             ->where('fu_cstaff',$key->u_code)
 
-            ->where('fu_status','planning')->count();
+            ->where('fu_status','Planning')->count();
 
             $tidakbersedia[] = DB::table('d_resultfu')
 
@@ -125,6 +125,12 @@ class HomeController extends Controller
 
             ->where('rf_csummary','5')->count();
 
+            $process[] = DB::table('d_followup')
+
+            ->where('fu_cstaff',$key->u_code)
+
+            ->where('fu_status','planned')->count();
+
         }
 
         // return $adv;
@@ -144,12 +150,15 @@ class HomeController extends Controller
             ->whereBetween('rf_date',[Carbon::now()->startOfMonth()->format('Y-m-d'),Carbon::now()->endOfMonth()->format('Y-m-d')])
             ->where('rf_csummary','5')->count();
 
+            $tprocess += DB::table('d_followup')
+            ->where('fu_status','planned')->count();
+
 
         // return $adv;
        
         // return dd($adv, $satu, $dua, $tiga, $empat, $lima);
 
-        return view('home', ['adv' => $adv, 'service' => $service, 'followup' => $followup, 'tidakbersedia' => $tidakbersedia, 'booking' => $booking, 'tidakbooking' => $tidakbooking , 'now' => $now, 'tfollowup' => $tfollowup , 'ttidakbersedia' => $ttidakbersedia , 'tbooking' => $tbooking  , 'ttidakbooking' => $ttidakbooking]);
+        return view('home', ['adv' => $adv, 'service' => $service, 'followup' => $followup, 'tidakbersedia' => $tidakbersedia, 'booking' => $booking, 'tidakbooking' => $tidakbooking , 'now' => $now, 'tfollowup' => $tfollowup , 'ttidakbersedia' => $ttidakbersedia , 'tbooking' => $tbooking  , 'ttidakbooking' => $ttidakbooking , 'process' => $process , 'tprocess' => $tprocess]);
 
     }
 

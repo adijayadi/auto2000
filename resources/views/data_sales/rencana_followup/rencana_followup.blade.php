@@ -54,7 +54,7 @@
                                     <table class="table table-striped table-bordered table-hover" id="table_tindakan">
                                         <thead>
                                             <tr>
-                                                <th width="1%">No.</th>
+                                                <th class="col-1 col-md-1">No.</th>
                                                 <th>Tanggal Difollow Up</th>
                                                 <th>Jam Difollow Up</th>
                                                 <th>No. Plat Kendaraan</th>
@@ -79,10 +79,10 @@
 
                                 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="table_tindakan_2" style="width: 100%">
+                                    <table class="table table-striped table-bordered table-hover" id="table_tindakan_2">
                                         <thead>
                                             <tr>
-                                                <th width="1%">No.</th>
+                                                <th>No.</th>
                                                 <th>Tanggal Difollow Up</th>
                                                 <th>No. Kendaraan</th>
                                                 <th>Nama Pemilik</th>
@@ -92,17 +92,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>11 Mei 2019 08:00</td>
-                                                <td>W 4321 W</td>
-                                                <td>Bravo</td>
-                                                <td align="center">Pernah Service</td>
-                                                <td align="center">No. Kendaraan Yang Harus Di Follow Up</td>
-                                                <td align="center">
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail_tindakan_2" title="Tindakan"><i class="fa fa-cog"></i></button>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -204,6 +193,7 @@
             responsive: true,
             serverSide: true,
             destroy: true,
+            fixedHeader:false,
             ajax : {
                 url: "{{ route('tablere.follow') }}",
                 type: "post",
@@ -229,6 +219,7 @@
             responsive: true,
             serverSide: true,
             destroy: true,
+            fixedHeader:false,
             ajax : {
                 url: "{{ route('table.follow') }}",
                 type: "post",

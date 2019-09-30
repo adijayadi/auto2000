@@ -211,6 +211,10 @@
 <script type="text/javascript">
     $(document).ready(function(){
         @if (Auth::user()->u_user == 'A')
+            $('#table_upload').DataTable({
+                responsive: true,
+            })
+
             $('.services-column .label-servies').each(function(){
                 var ini = $(this);
                 // console.log(ini.text());
