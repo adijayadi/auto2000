@@ -168,7 +168,7 @@
                 success:function(){
                     iziToast.success({
                         title:'Berhasil!',
-                        message:'Menginput Service Advisor!'
+                        message:'Mengubah Service Advisor!'
                     });
 
                     setTimeout(function(){
