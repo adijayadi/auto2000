@@ -113,6 +113,8 @@ class SalesController extends Controller
 
     public function edit(Request $request){
         $id = $request->id;
+
+        dd($request->password);
         DB::table('m_sales')->where('s_id',$id)
             ->update([
                 's_name' => $request->name,
