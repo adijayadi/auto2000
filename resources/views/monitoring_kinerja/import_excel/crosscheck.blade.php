@@ -16,7 +16,7 @@
                         <div class="col-md-6 col-sm-12">
                             <span class="label label-warning">Data Lama</span>
                             <hr>
-                            <div class="table-responsive">
+                            <div class="table-responsive-x">
                                 
                                 <table class="table table-hover table-bordered">
                                     <thead>
@@ -52,7 +52,7 @@
                         <div class="col-md-6 col-sm-12">
                             <span class="label label-primary">Data Baru</span>
                             <hr>
-                            <div class="table-responsive">
+                            <div class="table-responsive-x">
                                 
                                 <table class="table table-hover table-bordered">
                                     <thead>

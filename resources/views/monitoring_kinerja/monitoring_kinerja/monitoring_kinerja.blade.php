@@ -71,7 +71,7 @@
 
                                 </div>
 
-                                <div class="table-responsive">
+                                <div class="table-responsive-x">
                                     <table style="width: 100%;" class="table table-striped table-bordered table-hover" id="table_pengguna">
                                         <thead>
                                             <tr>

@@ -10,7 +10,7 @@
                     
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive-x">
                         <table class="table table-hover table-bordered data-table" id="detailll" style="width: 100%">
                             <thead>
                                 <tr>

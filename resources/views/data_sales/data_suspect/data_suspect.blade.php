@@ -56,7 +56,7 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive">
+                    <div class="table-responsive-x">
                         <form id="form_table">
                             @csrf
                             <input id="cout" type="hidden" name="cout">

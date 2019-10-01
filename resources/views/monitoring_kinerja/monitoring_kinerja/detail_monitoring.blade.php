@@ -19,7 +19,7 @@
 
                     <hr>
 
-                    <div class="table-responsive">
+                    <div class="table-responsive-x">
                         
                         <table class="table table-hover table-bordered" id="list">
                             <thead>

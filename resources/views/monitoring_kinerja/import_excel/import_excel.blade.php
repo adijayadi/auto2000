@@ -55,7 +55,7 @@
                             </div>
                             <h2>Data dari Import Excel</h2>
                             <hr>
-                            <div class="table-responsive">
+                            <div class="table-responsive-x">
                                     <table class="table table-striped table-bordered table-hover table-sticky" id="table_upload">
                                         <thead>
                                             <tr>
@@ -80,7 +80,7 @@
                             <h2>Rekap Import</h2>
                             <hr>
 
-                            <div class="table-responsive">
+                            <div class="table-responsive-x">
                                 <table class="table table-bordered table-hover table-striped" id="table_rekap">
                                     <thead>
                                         <tr>

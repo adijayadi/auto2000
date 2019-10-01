@@ -56,7 +56,7 @@
                                 <h5>Manajemen Tindakan Customer</h5>
                             </div> --}}
                             <div class="ibox-content">
-                                <div class="table-responsive">
+                                <div class="table-responsive-x">
                                     <table class="table table-striped table-bordered table-hover" id="table_summary" style="width: 100%">
                                         <thead>
                                             <tr>
@@ -108,7 +108,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 
-                                <div class="table-responsive">
+                                <div class="table-responsive-x">
                                     <table class="table table-striped table-bordered table-hover" id="table_kendaraan_1" style="width: 100%">
                                         <thead>
                                             <tr>
@@ -131,7 +131,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 
-                                <div class="table-responsive">
+                                <div class="table-responsive-x">
                                     <table class="table table-striped table-bordered table-hover" id="table_kendaraan_2" style="width: 100%">
                                         <thead>
                                             <tr>
@@ -154,7 +154,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 
-                                <div class="table-responsive">
+                                <div class="table-responsive-x">
                                     <table class="table table-striped table-bordered table-hover" id="table_kendaraan_3" style="width: 100%">
                                         <thead>
                                             <tr>
@@ -177,7 +177,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 
-                                <div class="table-responsive">
+                                <div class="table-responsive-x">
                                     <table class="table table-striped table-bordered table-hover" id="table_kendaraan_4" style="width: 100%">
                                         <thead>
                                             <tr>

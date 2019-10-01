@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="table-responsive">
+                                    <div class="table-responsive-x">
                                         <table class="table table-striped table-bordered table-hover table-sticky" id="table_kelola" style="width: 100%;">
                                             <thead>
                                                 <tr>
@@ -201,7 +201,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="table-responsive">
+                                    <div class="table-responsive-x">
                                         <table class="table table-striped table-bordered table-hover" id="table_kendaraan">
                                             <thead>
                                                 <tr>

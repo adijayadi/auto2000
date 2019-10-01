@@ -98,7 +98,7 @@
                     
                 </div>
                 <div class="ibox-content">
-                    <div class="table-responsive">
+                    <div class="table-responsive-x">
 
                         <table class="table table-bordered table-hover" id="table_service">
                             <thead>
