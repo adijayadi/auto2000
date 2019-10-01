@@ -17,6 +17,7 @@
     <div class="ibox">
 
         <div class="ibox-content">
+            {{--
             <div class="row">
 
                 <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
@@ -32,62 +33,51 @@
                 </div>
                 
             </div>
+            --}}
+            <div class="table-responsive">
+                <h2>Bulan : {{$now}}</h2>
+                <hr>
+                <table class="table table-striped table-bordered table-hover table-sticky" id="table_upload">
+                    <thead>
+                        <tr style="font-size: 14px;">
+                            <th width="30%">Service Advisor</th>
+                            <th>Data FU</th>
+                            <th>Data Proses</th>
+                            <th>Booking</th>
+                            <th>Not Booking</th>
+                            <th>Not Yet</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        @if(count($adv) != 0)
+                            @for($i = 0;$i < count($adv);$i++)
+                            <tr class="text-center">
+                                <td class="text-left">{{$adv[$i]}}</td>
+                                <td>{{$process[$i]}}</td>
+                                <td>{{$followup[$i]}}</td>
+                                <td>{{$booking[$i]}}</td>
+                                <td>{{$tidakbooking[$i]}}</td>
+                                <td>{{$tidakbersedia[$i]}}</td>
+                            </tr>
+                            @endfor
+                        @else
+                        @endif
+                            <tr class="text-center">
+                                <td class="text-left">Total</td>
+                                <td>{{$tprocess}}</td>
+                                <td>{{$tfollowup}}</td>
+                                <td>{{$tbooking}}</td>
+                                <td>{{$ttidakbooking}}</td>
+                                <td>{{$ttidakbersedia}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
     </div>
 
-    <div class="row mt-4 " id="list-service-advisor">
-    @if(count($adv) != 0)
-        @for($i = 0;$i<count($adv);$i++)
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 services-column">
-                <div class="ibox float-e-margins services-box">
-                    <div class="ibox-title header-service">
-                        <h5>{{$adv[$i]}}</h5>
-                    </div>
-                    <div class="ibox-content service-content no-padding">
-                        <ul class="list-group">
-                            {{--<li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Kendaraan Telah Melakukan Service</div>
-                                <div class="label label-servies">{{$service[$i]}}</div>
-                            </li>--}}
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Kendaraan Yang Harus Di Follow Up</div>
-                                <div class="label label-servies">{{$followup[$i]}}</div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Kendaraan Yang Telah Di Follow Up Dan Tidak Bersedia</div> 
-                                <div class="label label-servies">{{$tidakbersedia[$i]}}</div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Telah Melakukan Booking</div>
-                                <div class="label label-servies">{{$booking[$i]}}</div>
-                                
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Kendaraan Yang Telah Di Follow Up Dan Bersedia Service dan Belum Melakukan Booking</div>
-                                <div>
-                                <span class="label label-servies">{{$tidakbooking[$i]}}</span>
-                                </div>
-                                
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </div>
-            </div>   
-        @endfor
-
-        <div class="col-xs-12 d-none" id="noRecordFound">
-            <div class="widget style1 white-bg">
-                <h3 class="text-center">Tidak ada yang cocok</h3>
-            </div>
-        </div>
-    @else
-        <div class="widget style1 white-bg">
-            <h3 class="text-center">Tidak ada Data</h3>
-        </div>
-    @endif
-                    
+    
         {{-- <div class="col-xs-12">
 
             <div class="ibox">
@@ -121,7 +111,6 @@
         
     </div>
 
-</div>
 @elseif(Auth::user()->u_user == 'S')
 <div class="wrapper wrapper-content">
 
@@ -135,7 +124,7 @@
                         <i class="fa fa-user fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
-                        <span> Suspect </span>
+                        <span> Data FU </span>
                         <h2 class="font-bold suspect">0</h2>
                     </div>
                 </div>
@@ -149,7 +138,7 @@
                         <i class="fa fa-user-check fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
-                        <span>Sudah Follow Up</span>
+                        <span>Done</span>
                         <h2 class="font-bold follow-up">0</h2>
                     </div>
                 </div>
@@ -163,7 +152,7 @@
                         <i class="fa fa-book-open fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
-                        <span>Sudah Booking</span>
+                        <span>Booking</span>
                         <h2 class="font-bold sudah-booking">0</h2>
                     </div>
                 </div>
@@ -177,8 +166,8 @@
                         <i class="fa fa-book fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
-                        <span>Belum Booking</span>
-                        <h2 class="font-bold belum-booking">0</h2>
+                        <span>Not Yet</span>
+                        <h2 class="font-bold tidak-bersedia">0</h2>
                     </div>
                 </div>
             </div>
@@ -205,8 +194,8 @@
                         <i class="fa fa-times fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
-                        <span>Tidak Bersedia</span>
-                        <h2 class="font-bold tidak-bersedia">0</h2>
+                        <span>Not Booking</span>
+                        <h2 class="font-bold belum-booking">0</h2>
                     </div>
                 </div>
             </div>
@@ -223,6 +212,10 @@
 <script type="text/javascript">
     $(document).ready(function(){
         @if (Auth::user()->u_user == 'A')
+            $('#table_upload').DataTable({
+                responsive: true,
+            })
+
             $('.services-column .label-servies').each(function(){
                 var ini = $(this);
                 // console.log(ini.text());

@@ -64,6 +64,8 @@
     <script type="text/javascript" src="{{asset('assets/xlsx.full.min.js')}}"></script>
     <!-- iCheck -->
     <script src="{{asset('assets/js/plugins/iCheck/icheck.min.js')}}"></script>
+    
+    <script src="{{asset('assets/jquery-cropper/cropper.min.js')}}"></script>
 
     <script>
         $(document).ready(function() {
