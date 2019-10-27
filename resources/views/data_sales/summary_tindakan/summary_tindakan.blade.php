@@ -68,6 +68,16 @@
                                         <tbody>
                                             <tr>
                                                 <td align="center">1</td>
+                                                <td>Daftar Data</td>
+                                                <td align="center" id="data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">1</td>
+                                                <td>Daftar Data proses</td>
+                                                <td align="center" id="proses"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">1</td>
                                                 <td>Daftar Data FU</td>
                                                 <td align="center" id="all"></td>
                                             </tr>
@@ -368,6 +378,8 @@ $.fn.dataTable.ext.errMode = 'none';
                 success: function(get){
                         console.log(get);
                     $('#all').html(' ');
+                    $('#data').html(' ');
+                    $('#proses').html(' ');
                     $('#done').html(' ');
                     $('#booking').html(' ');
                     $('#nbooking').html(' ');
@@ -375,6 +387,8 @@ $.fn.dataTable.ext.errMode = 'none';
                     $('#not').html(' ');
                     
                     setTimeout(function(){
+                        $('#data').html(get['data']);
+                        $('#proses').html(get['proses']);
                         $('#all').html(get['all']);
                         $('#done').html(get['done']);
                         $('#booking').html(get['booking']);

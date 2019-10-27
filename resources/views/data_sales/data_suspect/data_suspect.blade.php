@@ -44,6 +44,10 @@
                             <i class="fa fa-calendar-alt"></i>
                             Follow Up yang dicentang
                         </button>
+                        <button class="btn btn-info btn-sm" id="btn-ots" title="Tampilkan Ots" >
+                            <i class="fa fa-book"></i>
+                            Tampilkan Data OTS
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -89,7 +93,7 @@
     $(document).ready(function(){   
         $.fn.dataTable.ext.errMode = 'none';
         
-        $('#btn-limit').on('click',function(){
+        $('#btn-ots').on('click',function(){
             var table = $('#table_kendaraan').DataTable({
             responsive: true,
             serverSide: false,
@@ -99,7 +103,7 @@
                 type: "post",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    'break' : 'true',
+                    'ots' : 'true',
                 }
             },
             columns : [
@@ -111,7 +115,7 @@
             {data : 'c_jobdesc' , name : 'c_jobdesc'},
 
             ],
-            pageLength: -10,
+            pageLength: 10,
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'All']]
         });
         })

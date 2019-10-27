@@ -202,6 +202,18 @@ class SummaryTindakanController extends Controller
 	}
 
 	public function getcount(){
+
+        $data = DB::table('d_followup')
+                ->where('fu_cstaff',Auth::user()->u_code)
+                ->get();
+
+        $proses = 0;
+        foreach ($data as $row) {
+            if ($row->fu_status == 'planned') {
+                $proses++;
+            }
+        }
+
 		$suspect = DB::table('d_followup')
     			->where('fu_cstaff',Auth::user()->u_code)
     			->leftJoin('d_customer','c_order' , 'fu_cid')
@@ -252,6 +264,8 @@ class SummaryTindakanController extends Controller
     				'notbooking' => $notbooking,
     				'refu' => $refu,
     				'denied' => $denied,
+                    'data' => count($data),
+                    'proses' => $proses,
     			));
 
 	}

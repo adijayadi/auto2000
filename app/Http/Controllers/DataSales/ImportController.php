@@ -65,7 +65,6 @@ class ImportController extends Controller
         ini_set('max_execution_time', 300);
           DB::beginTransaction();
           try {
-          $sudahada = DB::table('d_customer')->where('c_serial',$request->result[$workbook][$i][0])->count();
           $workbook = $request->sheet[0];
           $code = $request->code;
 
@@ -75,6 +74,7 @@ class ImportController extends Controller
               $datanosa = [];
               $direct2 = [];
                for ($i=1; $i < $request->datacount ; $i++) { 
+                $sudahada = DB::table('d_customer')->where('c_serial',$request->result[$workbook][$i][0])->count();
                 $countremove = DB::table('d_customerremovable')->where('cr_serial',preg_replace('/\s+/', '', $request->result[$workbook][$i][0]))->count();
                 //order code
                 $ordercode = DB::table('d_customer')->groupBy('c_code')->count().$i; 
@@ -127,6 +127,7 @@ class ImportController extends Controller
                   'c_serviceadvisor' => $langsung2[0]->u_code,
                   'c_code' => $request->code,
                   'c_order' => $ordercode,
+                  'c_direct' => 'Y',
                   'status_data' => 'plan',
                 ]);
 
@@ -153,6 +154,7 @@ class ImportController extends Controller
                   'c_nameadvisor' => $request->result[$workbook][$i][5],
                   'c_code' => $request->code,
                   'c_order' => $ordercode,
+                  'c_direct' => 'Y',
                   'status_data' => 'true',
                 ]);
 

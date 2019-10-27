@@ -390,7 +390,7 @@
 
         $('#type_pekerjaan').on( 'change', function () {
             table2
-                .columns( 5 )
+                .columns(5)
                 .search( this.value )
                 .draw();
         } );

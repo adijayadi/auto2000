@@ -18,7 +18,7 @@ class SuspectController extends Controller
 
     public function table(Request $request )
     {
-        // if ($request->break != null) {
+        if ($request->ots  != 'true') {
             $data = DB::table('d_followup')
                 ->leftJoin('d_customer','c_order' , 'fu_cid')
                 ->leftJoin('m_vehicle','v_code','c_plate')
@@ -26,16 +26,16 @@ class SuspectController extends Controller
                 ->where('fu_status','planning')
                 ->groupBy('fu_id')
                 ->get();
-        // }
-     //    else{
-    	// $data = DB::table('d_followup')
-    	// 		->leftJoin('d_customer','c_order' , 'fu_cid')
-     //            ->leftJoin('m_vehicle','v_code','c_plate')
-    	// 		->where('fu_cstaff',Auth::user()->u_code)
-     //            ->where('fu_status','planning')
-     //            ->groupBy('fu_id')
-    	// 		->get();
-     //    }
+        }else{
+    	$data = DB::table('d_followup')
+    			->leftJoin('d_customer','c_order' , 'fu_cid')
+                ->leftJoin('m_vehicle','v_code','c_plate')
+    			->where('fu_cstaff',Auth::user()->u_code)
+                ->where('fu_status','planning')
+                ->where('c_direct','Y')
+                ->groupBy('fu_id')
+    			->get();
+        }
 
     	return DataTables::of($data)
         ->addIndexColumn()

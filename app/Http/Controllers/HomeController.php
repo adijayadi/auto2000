@@ -55,13 +55,17 @@ class HomeController extends Controller
     public function index()
 
     {
+        $type = DB::table('d_user')->groupBy('u_typeuser')->get();
 
-        $data = d_user::where('u_user', 'S')->orderBy('u_name','asc')->get();
+        $datas = d_user::where('u_user', 'S')->orderBy('u_name','asc')->where('u_typeuser','S')->get();
+        $dataths = d_user::where('u_user', 'S')->orderBy('u_name','asc')->where('u_typeuser','THS')->get();
 
         $now = Carbon::now('Asia/Jakarta')->formatLocalized('%B');
 
         $adv = [];
 
+        $Data = [];
+        
         $service = [];
 
         $followup = [];
@@ -74,18 +78,89 @@ class HomeController extends Controller
 
         $process = [];
 
+        $typeuser = [];
+
         $tfollowup = 0;
+        $tData = 0;
         $ttidakbersedia = 0;
         $tbooking = 0;
         $ttidakbooking = 0;
         $tprocess = 0;
+        foreach ($datas as $key) {
+
+            $adv[] = $key->u_name;
 
 
-        foreach ($data as $key) {
+            $typeuser []= $key->u_typeuser;
 
-           $adv[] = $key->u_name;
+           
+
+            $Data[] = DB::table('d_followup')
+
+            ->where('fu_cstaff',$key->u_code)
+
+            ->count();
+
+            $service[] = DB::table('d_resultfu')
+
+            ->where('rf_cstaff',$key->u_code)
+
+            ->whereBetween('rf_date',[Carbon::now()->startOfMonth()->format('Y-m-d'),Carbon::now()->endOfMonth()->format('Y-m-d')])
+
+            ->where('rf_csummary','1')->count();
+
+            $followup[] = DB::table('d_followup')
+
+            ->where('fu_cstaff',$key->u_code)
+
+            ->where('fu_status','Planning')->count();
+
+            $tidakbersedia[] = DB::table('d_resultfu')
+
+            ->where('rf_cstaff',$key->u_code)
+
+            ->whereBetween('rf_date',[Carbon::now()->startOfMonth()->format('Y-m-d'),Carbon::now()->endOfMonth()->format('Y-m-d')])
+
+            ->where('rf_csummary','3')->count();
+
+            $booking[] = DB::table('d_resultfu')
+
+            ->where('rf_cstaff',$key->u_code)
+
+            ->whereBetween('rf_date',[Carbon::now()->startOfMonth()->format('Y-m-d'),Carbon::now()->endOfMonth()->format('Y-m-d')])
+
+            ->where('rf_csummary','4')->count();
+
+            $tidakbooking[] = DB::table('d_resultfu')
+
+            ->where('rf_cstaff',$key->u_code)
+
+            ->whereBetween('rf_date',[Carbon::now()->startOfMonth()->format('Y-m-d'),Carbon::now()->endOfMonth()->format('Y-m-d')])
+
+            ->where('rf_csummary','5')->count();
+
+            $process[] = DB::table('d_followup')
+
+            ->where('fu_cstaff',$key->u_code)
+
+            ->where('fu_status','planned')->count();
+
+        }
+
+        foreach ($dataths as $key) {
+
+            $adv[] = $key->u_name;
 
 
+            $typeuser []= $key->u_typeuser;
+
+           
+
+            $Data[] = DB::table('d_followup')
+
+            ->where('fu_cstaff',$key->u_code)
+
+            ->count();
 
             $service[] = DB::table('d_resultfu')
 
@@ -135,6 +210,9 @@ class HomeController extends Controller
 
         // return $adv;
 
+            $tData += DB::table('d_followup')
+            ->count();
+
             $tfollowup += DB::table('d_followup')
             ->where('fu_status','planning')->count();
 
@@ -158,7 +236,7 @@ class HomeController extends Controller
        
         // return dd($adv, $satu, $dua, $tiga, $empat, $lima);
 
-        return view('home', ['adv' => $adv, 'service' => $service, 'followup' => $followup, 'tidakbersedia' => $tidakbersedia, 'booking' => $booking, 'tidakbooking' => $tidakbooking , 'now' => $now, 'tfollowup' => $tfollowup , 'ttidakbersedia' => $ttidakbersedia , 'tbooking' => $tbooking  , 'ttidakbooking' => $ttidakbooking , 'process' => $process , 'tprocess' => $tprocess]);
+        return view('home', ['adv' => $adv, 'service' => $service, 'followup' => $followup, 'tidakbersedia' => $tidakbersedia, 'booking' => $booking, 'tidakbooking' => $tidakbooking , 'now' => $now, 'tfollowup' => $tfollowup , 'ttidakbersedia' => $ttidakbersedia , 'tbooking' => $tbooking  , 'ttidakbooking' => $ttidakbooking , 'process' => $process , 'tprocess' => $tprocess , 'Data' => $Data ,'tData' => $tData ,'type' => $type,'typeuser' => $typeuser]);
 
     }
 

@@ -36,13 +36,21 @@
             --}}
             <div class="table-responsive">
                 <h2>Bulan : {{$now}}</h2>
+                    <select class="select2" id="pekerjaan">
+                        <option value=""> ~ pilih type ~ </option>
+                        @foreach($type as $row)
+                        <option value="{{$row->u_typeuser}}">{{$row->u_typeuser}}</option>
+                        @endforeach
+                    </select>
                 <hr>
                 <table class="table table-striped table-bordered table-hover table-sticky" id="table_upload">
                     <thead>
                         <tr style="font-size: 14px;">
                             <th width="30%">Service Advisor</th>
-                            <th>Data FU</th>
+                            <th width="10%">type</th>
+                            <th>Data</th>
                             <th>Data Proses</th>
+                            <th>Data FU</th>
                             <th>Booking</th>
                             <th>Not Booking</th>
                             <th>Not Yet</th>
@@ -53,6 +61,8 @@
                             @for($i = 0;$i < count($adv);$i++)
                             <tr class="text-center">
                                 <td class="text-left">{{$adv[$i]}}</td>
+                                <td class="text-left">{{$typeuser[$i]}}</td>
+                                <td>{{$Data[$i]}}</td>
                                 <td>{{$process[$i]}}</td>
                                 <td>{{$followup[$i]}}</td>
                                 <td>{{$booking[$i]}}</td>
@@ -63,7 +73,8 @@
                         @else
                         @endif
                             <tr class="text-center">
-                                <td class="text-left">Total</td>
+                                <td colspan="2" class="text-left">Total</td>
+                                <td>{{$tData}}</td>
                                 <td>{{$tprocess}}</td>
                                 <td>{{$tfollowup}}</td>
                                 <td>{{$tbooking}}</td>
@@ -116,6 +127,34 @@
 
     <div class="row">
 
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Data</span>
+                        <h2 class="font-bold data">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span>Proses</span>
+                        <h2 class="font-bold proses">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
 
             <div class="widget style1 yellow-bg">
@@ -210,11 +249,12 @@
 @endsection
 @section('extra_script')
 <script type="text/javascript">
+    
     $(document).ready(function(){
         @if (Auth::user()->u_user == 'A')
-            $('#table_upload').DataTable({
-                responsive: true,
-            })
+        var table = $('#table_upload').DataTable({
+            responsive: true,
+        })
 
             $('.services-column .label-servies').each(function(){
                 var ini = $(this);
@@ -265,6 +305,8 @@
                 },
                 success:function(res){
                     console.log(res);
+                    counterNum($('.proses'), 0, res.proses, 1, 15);
+                    counterNum($('.data'), 0, res.data, 1, 15);
                     counterNum($('.widget .suspect'), 0, res.all, 1, 15);
                     counterNum($('.widget .follow-up'), 0, res.done, 1, 250);
                     counterNum($('.widget .sudah-booking'), 0, res.booking, 1, 500);
