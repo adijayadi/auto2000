@@ -36,12 +36,6 @@
             --}}
             <div class="table-responsive">
                 <h2>Bulan : {{$now}}</h2>
-                    <select class="select2" id="pekerjaan">
-                        <option value=""> ~ pilih type ~ </option>
-                        @foreach($type as $row)
-                        <option value="{{$row->u_typeuser}}">{{$row->u_typeuser}}</option>
-                        @endforeach
-                    </select>
                 <hr>
                 <table class="table table-striped table-bordered table-hover table-sticky" id="table_upload">
                     <thead>
