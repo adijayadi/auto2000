@@ -99,6 +99,7 @@ class SalesController extends Controller
                 'u_email' => $request->email,
                 'password' => bcrypt($request->password),
                 'u_user' => 'S',
+                'u_typeuser' => $request->type,
                 'u_path' => $imageName,
                 'u_code' => $code,
                 'status_data' =>'true',
@@ -152,13 +153,14 @@ class SalesController extends Controller
         ]);
 
         DB::table('d_user')->where('u_code',$id)
-                ->update([
-                    'u_name' => $request->name,
-                    'u_email' => $request->email,
-                    'u_username' => $request->username,
-                    'u_path' => $imageName,
-                    'password' => bcrypt($request->password),
-            ]);
+            ->update([
+                'u_name' => $request->name,
+                'u_email' => $request->email,
+                'u_username' => $request->username,
+                'u_path' => $imageName,
+                'u_typeuser' => $request->type,
+                'password' => bcrypt($request->password),
+        ]);
     }
 }
 

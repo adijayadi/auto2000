@@ -1,3 +1,4 @@
+
 @if(Auth::user()->u_user != 'A')
 <script type="text/javascript">window.location.href="{{route('home')}}";</script>
 @endif
@@ -60,6 +61,19 @@
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                             <div class="form-group">
                                                 <input type="text" class="form-control input-sm" name="name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <label>Type Pekerja</label>
+                                        </div>
+
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="form-control input-sm select2" name="type">
+                                                    <option value="THS">THS</option>
+                                                    <option value="S">SA</option>
+                                                </select>
                                             </div>
                                         </div>
 
